@@ -47,6 +47,7 @@
   h6,
   .font-brand {
     @apply font-serif;
+    @apply font-sans;
   }
 }
 

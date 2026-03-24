@@ -74,7 +74,7 @@ export default function Navbar() {
             </Link>
 
             {/* Call Us Button */}
-            <Link href="tel:+9112345678" className="flex items-center border border-brand-maroon group overflow-hidden">
+            <Link href="/contact" className="flex items-center border border-brand-maroon group overflow-hidden">
               <span className="px-5  text-brand-maroon font-sans font-bold text-[22px]  tracking-wider">Call us</span>
               <div className="bg-brand-maroon p-2.5 text-white transition-colors group-hover:bg-brand-maroon-hover">
 
