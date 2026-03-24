@@ -1,7 +1,9 @@
-// src/app/about/page.tsx
-// ─── Example: Per-Page SEO Override ─────────────────────────────────────────
-// Copy this pattern for every page: /services, /work, /contact, etc.
-
+import TopInfoBar from '@/components/layout/TopInfoBar';
+import AboutHero from '@/components/sections/about/AboutHero';
+import LogoReflection from '@/components/sections/about/LogoSection';
+import TeamSection from '@/components/sections/about/TeamSection';
+import FAQ from '@/components/sections/home/FAQ';
+import Journey from '@/components/sections/home/Journey';
 import type { Metadata } from 'next';
 
 // Per-page SEO — overrides layout defaults
@@ -22,11 +24,13 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <section className="min-h-screen pt-24 pb-16 px-6 max-w-7xl mx-auto">
-      <h1 className="text-5xl font-bold tracking-tight mb-4">About Us</h1>
-      <p className="text-gray-500 text-lg max-w-2xl">
-        This is the About page. Replace this content with your own sections.
-      </p>
-    </section>
+    <>
+      <TopInfoBar />
+      <AboutHero />
+      <LogoReflection />
+      <TeamSection />
+      <Journey />
+      <FAQ />
+    </>
   );
 }

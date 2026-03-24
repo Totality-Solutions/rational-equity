@@ -29,7 +29,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-brand-maroon py-24 text-white font-sans">
+    <section className="bg-brand-maroon-hover py-24 text-white font-sans">
       <div className="max-w-4xl mx-auto px-6">
         
         {/* Header - Serif Font */}

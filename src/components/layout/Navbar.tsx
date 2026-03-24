@@ -50,7 +50,7 @@ export default function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
-                  className={`text-[20px] font-sans font-medium transition-colors duration-200 whitespace-nowrap hover:text-brand-maroon ${isActive(href)
+                  className={`text-[18px] font-sans font-medium transition-colors duration-200 whitespace-nowrap hover:text-brand-maroon ${isActive(href)
                     ? 'text-brand-maroon' // Active State
                     : 'text-black'     // Default State
                     }`}
