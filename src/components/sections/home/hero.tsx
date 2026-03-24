@@ -1,15 +1,12 @@
 
-
-
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 // --- Types ---
-
 interface RollingDigitProps {
     digit: number;
 }
@@ -27,23 +24,21 @@ interface StatCard {
 
 // --- Sub-Components ---
 
-/**
- * Creates a vertical strip of numbers 0-9 and slides to the target digit
- */
 const RollingDigit: React.FC<RollingDigitProps> = ({ digit }) => {
     const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     
     return (
-        <div className="inline-block h-[1em] overflow-hidden leading-none">
+        <div className="inline-block h-[1em] overflow-hidden leading-none flex-shrink-0">
             <motion.div
                 initial={{ y: 0 }}
                 animate={{ y: `-${digit * 10}%` }}
                 transition={{ 
                     duration: 2, 
                     ease: [0.45, 0.05, 0.55, 0.95], 
-                    delay: Math.random() * 0.5 // Staggered finish for KBC effect
+                    delay: Math.random() * 0.3 
                 }}
-                className="flex flex-col"
+                className="flex flex-col will-change-transform"
+                style={{ transform: 'translateZ(0)' }}
             >
                 {numbers.map((num) => (
                     <span key={num} className="h-[1em] flex items-center justify-center">
@@ -55,26 +50,19 @@ const RollingDigit: React.FC<RollingDigitProps> = ({ digit }) => {
     );
 };
 
-/**
- * Parses a string (like "25,000") and renders individual rolling digits
- */
 const KBCNumber: React.FC<KBCNumberProps> = ({ value, inView }) => {
-    if (!inView) return <span>0</span>;
-
     return (
-        <span className="inline-flex">
+        <span className="inline-flex overflow-hidden">
             {value.split('').map((char, index) => {
                 const parsed = parseInt(char);
                 if (isNaN(parsed)) {
-                    return <span key={index}>{char}</span>;
+                    return <span key={index} className="flex-shrink-0">{char}</span>;
                 }
-                return <RollingDigit key={index} digit={parsed} />;
+                return <RollingDigit key={index} digit={inView ? parsed : 0} />;
             })}
         </span>
     );
 };
-
-// --- Main Component ---
 
 const STATS_CARDS: StatCard[] = [
     { value: '25,000', suffix: '+ Cr', label: 'AUM' },
@@ -84,72 +72,81 @@ const STATS_CARDS: StatCard[] = [
 ];
 
 export default function Hero() {
+    const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     const { ref, inView } = useInView({ 
-        threshold: 0.2, 
-        triggerOnce: true 
+        threshold: 0, 
+        triggerOnce: true,
+        fallbackInView: true 
     });
 
+    if (!mounted) return null;
+
     return (
-        <section ref={ref} className="bg-black text-white relative overflow-hidden font-sans">
+        <section ref={ref} className="bg-black text-white relative overflow-hidden font-sans min-h-[85vh] flex items-center">
 
-            {/* Background Graphic Element with Loop Animation */}
-            <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ 
-                    opacity: 0.15,
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 2, 0]
-                }}
-                transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                }}
-                className="absolute inset-0 z-0"
-            >
-                <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <circle cx="20" cy="50" r="1.5" stroke="currentColor" strokeWidth="0.03" fill="none" className="text-gray-600" />
-                    <line x1="15" y1="45" x2="25" y2="55" stroke="currentColor" strokeWidth="0.05" className="text-brand-maroon" />
-                    <path d="M70 10 Q 75 50, 70 90" stroke="currentColor" strokeWidth="0.02" fill="none" className="text-gray-800" strokeDasharray="1 1" />
-                    
-                    {/* Additional animated floating element for depth */}
-                    <motion.circle 
-                        cx="80" cy="20" r="0.5" 
-                        animate={{ opacity: [0.2, 0.8, 0.2] }} 
-                        transition={{ duration: 4, repeat: Infinity }} 
-                        fill="currentColor" 
-                        className="text-brand-maroon" 
-                    />
-                </svg>
-            </motion.div>
+            {/* --- VIDEO BACKGROUND SECTION --- */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover opacity-40" // Adjust opacity as needed
+                >
+                    {/* REPLACE THIS PATH WITH YOUR ACTUAL VIDEO FILE */}
+                    <source src="/videos/hero-bg.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                {/* Optional: Dark overlay to ensure text readability */}
+                <div className="absolute inset-0 bg-black/40 z-[1]" />
+            </div>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 md:py-32 relative z-10">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 relative z-10 w-full">
 
                 {/* Main Header */}
-                <div className="text-center mb-16 max-w-2xl mx-auto">
-                    <h1 className="font-serif text-[56px] md:text-6xl font-black text-white tracking-widest mb-1">
+                <div className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
+                    <motion.h1 
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6 }}
+                        className="font-serif text-4xl sm:text-5xl md:text-[64px] font-black text-white tracking-[0.2em] mb-4"
+                    >
                         INVESTING
-                    </h1>
-                    <p className="font-sans text-[32px] font-normal text-white tracking-wider mb-10">
+                    </motion.h1>
+                    <motion.p 
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ delay: 0.2, duration: 0.6 }}
+                        className="font-sans text-xl sm:text-2xl md:text-[32px] font-light text-white tracking-widest mb-10"
+                    >
                         the Rational way.
-                    </p>
+                    </motion.p>
 
-                    <p className="text-[22px] text-gray-300 leading-relaxed mb-12 font-sans">
+                    <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={inView ? { opacity: 1 } : {}}
+                        transition={{ delay: 0.4, duration: 0.8 }}
+                        className="text-base sm:text-lg md:text-[20px] text-gray-400 leading-relaxed mb-12 px-4"
+                    >
                         Long-only strategies built on conviction, discipline,<br className="hidden md:block" />
                         and long-term value creation.
-                    </p>
+                    </motion.p>
 
-                    {/* CTA Button */}
                     <div className="flex justify-center">
-                        <Link href="/funds" className="flex items-center border border-brand-maroon group overflow-hidden bg-black/40 backdrop-blur-sm">
-                            <span className="px-6 text-white font-normal font-sans text-[22px] group-hover:text-white transition-colors">
+                        <Link href="/funds" className="flex items-stretch border border-brand-maroon group overflow-hidden bg-black/20 backdrop-blur-sm hover:scale-75">
+                            <span className="px-6 md:px-8 py-3 md:py-4 text-white font-sans text-lg md:text-[20px]">
                                 Explore Funds
                             </span>
-                            <div className="bg-brand-maroon p-3.5 text-white transition-colors group-hover:bg-brand-maroon-hover">
+                            <div className="bg-brand-maroon px-4 flex items-center text-white transition-colors group-hover:bg-brand-maroon-hover">
                                 <img
                                     src="/images/arrowbtn.png"
                                     alt="Arrow Icon"
-                                    className="w-[20px] object-contain transition-transform duration-300 group-hover:translate-x-1"
+                                    className="w-4 md:w-5 object-contain transition-transform group-hover:translate-x-1"
                                 />
                             </div>
                         </Link>
@@ -157,26 +154,29 @@ export default function Hero() {
                 </div>
 
                 {/* Statistic Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {STATS_CARDS.map((stat) => (
-                        <div
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    {STATS_CARDS.map((stat, idx) => (
+                        <motion.div
                             key={stat.label}
-                            className="group relative bg-white/[0.03] hover:bg-white/[0.06] backdrop-blur-md border border-white/10 rounded-sm p-10 text-center transition-all duration-500"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: 0.1 * idx, duration: 0.5 }}
+                            className="group relative bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-sm p-8 md:p-10 text-center transition-all duration-500"
+                            style={{ transform: 'translateZ(0)' }}
                         >
-                            <div className="font-serif text-3xl font-medium text-white mb-3 tracking-wider flex justify-center items-baseline">
+                            <div className="font-serif text-2xl md:text-3xl font-medium text-white mb-2 tracking-wider flex justify-center items-baseline">
                                 <KBCNumber value={stat.value} inView={inView} />
-                                <span className="ml-1">{stat.suffix}</span>
+                                <span className="ml-1 text-xl md:text-2xl">{stat.suffix}</span>
                             </div>
                             
-                            <p className="text-[10px] font-bold tracking-[0.3em] text-gray-500 uppercase">
+                            <p className="text-[10px] md:text-[11px] font-bold tracking-[0.3em] text-gray-500 uppercase">
                                 {stat.label}
                             </p>
                             
-                            <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-red-800 group-hover:w-full transition-all duration-700" />
-                        </div>
+                            {/* <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-brand-maroon group-hover:w-full transition-all duration-700" /> */}
+                        </motion.div>
                     ))}
                 </div>
-
             </div>
         </section>
     );
