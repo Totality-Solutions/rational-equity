@@ -3,10 +3,28 @@ import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { EB_Garamond, Lato } from 'next/font/google';
 import './globals.css';
 
-const geistSans = Geist({ variable: '--font-sans', subsets: ['latin'] });
-const geistMono = Geist_Mono({ variable: '--font-mono', subsets: ['latin'] });
+
+// const geistSans = Geist({ variable: '--font-sans', subsets: ['latin'] });
+// const geistMono = Geist_Mono({ variable: '--font-mono', subsets: ['latin'] });
+
+
+
+// Configure fonts to match your globals.css variables
+const ebGaramond = EB_Garamond({ 
+  variable: '--font-eb-garamond', 
+  subsets: ['latin'] 
+});
+
+const lato = Lato({ 
+  variable: '--font-lato', 
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'] 
+});
+
+
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://designpov.com';
 
@@ -97,7 +115,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${ebGaramond.variable} ${lato.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -105,6 +123,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-white text-gray-900 font-sans">
+      
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -3,13 +3,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Brand Colors */
+  --brand-maroon: #800000;
+  --brand-maroon-hover: #600000;
 }
 
 @theme inline {
+  /* Mapping Next.js Font Variables to Tailwind */
+  --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-eb-garamond), ui-serif, Georgia, serif;
+
+  /* Custom Brand Colors */
+  --color-brand-maroon: var(--brand-maroon);
+  --color-brand-maroon-hover: var(--brand-maroon-hover);
+
+  /* Background/Foreground */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +30,66 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Base Styles */
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    @apply font-sans antialiased;
+  }
+
+  /* Global Heading Style: EB Garamond */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-brand {
+    @apply font-serif;
+  }
 }
+
+/* Custom Component Utilities */
+@layer components {
+  .nav-link {
+    @apply text-[15px] font-medium transition-colors duration-200;
+  }
+
+  .social-icon-circle {
+    @apply w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center text-white hover:bg-brand-maroon-hover transition-colors duration-200;
+  }
+}
+
+
+@layer utilities {
+  .animate-infinite-scroll {
+    animation: infinite-scroll 40s linear infinite;
+  }
+}
+
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  */
