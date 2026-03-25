@@ -6,6 +6,7 @@ import InvestmentSolutions from '@/components/sections/home/InvestmentSolutions'
 import Journey from '@/components/sections/home/Journey';
 import Testimonials from '@/components/sections/home/Testimonials';
 
+
 export default function Home() {
   return (
     <>

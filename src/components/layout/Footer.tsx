@@ -1,3 +1,5 @@
+
+
 // src/components/layout/Footer.tsx
 "use client";
 
@@ -31,8 +33,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-gray-300 font-sans border-t border-gray-900">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 md:gap-12 mb-16">
 
           {/* Brand & Description */}
           <div className="md:col-span-5">
@@ -78,8 +80,8 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="md:col-span-3">
-            <h3 className="text-white font-bold mb-6 font-sans">Contact Us</h3>
-            <ul className="space-y-5 text-[14px] font-sans">
+            <h3 className="text-white font-bold mb-5 md:mb-6 font-sans">Contact Us</h3>
+            <ul className="space-y-4 md:space-y-5 text-sm font-sans">
               <li className="flex gap-3">
                 <MapPin className="text-brand-maroon shrink-0" size={20} />
                 <span className="text-gray-400">
@@ -100,8 +102,8 @@ export default function Footer() {
         </div>
 
         {/* Legal Bar */}
-        <div className="border-t border-gray-800 pt-10 text-center">
-          <p className="text-[14px] tracking-[0.1em] text-gray-500 mb-6 uppercase font-sans">
+        <div className="border-t border-gray-900 pt-10 text-center">
+          <p className="text-xs md:text-sm tracking-[0.1em] text-gray-500 mb-6 uppercase font-sans">
             © {year} RATIONAL ASSET MANAGEMENT COMPANY. ALL RIGHTS RESERVED.
           </p>
 

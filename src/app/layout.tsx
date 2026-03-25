@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
     shortcut: '/favicon-16x16.png',
   },
-  manifest: '/site.webmanifest',
+  // manifest: '/site.webmanifest',
   alternates: {
     canonical: BASE_URL,
   },
@@ -131,3 +131,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+
