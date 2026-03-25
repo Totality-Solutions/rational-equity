@@ -1,18 +1,11 @@
-// src/app/layout.tsx
+
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { EB_Garamond, Lato } from 'next/font/google';
+import { siteConfig } from '@/lib/seo.config'; // Importing our new config
 import './globals.css';
 
-
-// const geistSans = Geist({ variable: '--font-sans', subsets: ['latin'] });
-// const geistMono = Geist_Mono({ variable: '--font-mono', subsets: ['latin'] });
-
-
-
-// Configure fonts to match your globals.css variables
 const ebGaramond = EB_Garamond({ 
   variable: '--font-eb-garamond', 
   subsets: ['latin'] 
@@ -24,23 +17,18 @@ const lato = Lato({
   weight: ['300', '400', '700', '900'] 
 });
 
-
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://designpov.com';
-
-// ─── Global Metadata (SEO) ───────────────────────────────────────────────────
+// ─── Global Metadata (Updated for Rational Equity) ───────────────────────────
 export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
+  metadataBase: new URL(siteConfig.baseUrl),
   title: {
-    default: 'DesignPOV — Digital Excellence',
-    template: '%s | DesignPOV',
+    default: siteConfig.defaultTitle,
+    template: siteConfig.titleTemplate,
   },
-  description:
-    'We build exceptional digital experiences — strategy, design, and engineering under one roof.',
-  keywords: ['digital agency', 'web design', 'software development', 'branding'],
-  authors: [{ name: 'DesignPOV', url: BASE_URL }],
-  creator: 'DesignPOV',
-  publisher: 'DesignPOV',
+  description: siteConfig.description,
+  keywords: ['equity investment', 'strategic growth', 'rational business', 'capital management'],
+  authors: [{ name: siteConfig.name, url: siteConfig.baseUrl }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   robots: {
     index: true,
     follow: true,
@@ -49,66 +37,56 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: BASE_URL,
-    siteName: 'DesignPOV',
-    title: 'DesignPOV — Digital Excellence',
-    description:
-      'We build exceptional digital experiences — strategy, design, and engineering under one roof.',
+    url: siteConfig.baseUrl,
+    siteName: siteConfig.name,
+    title: siteConfig.defaultTitle,
+    description: siteConfig.description,
     images: [
       {
-        url: '/images/og-default.jpg',
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: 'DesignPOV',
+        alt: siteConfig.name,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@DesignPOV',
-    creator: '@DesignPOV',
-    title: 'DesignPOV — Digital Excellence',
-    description:
-      'We build exceptional digital experiences — strategy, design, and engineering under one roof.',
-    images: ['/images/og-default.jpg'],
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
+    title: siteConfig.defaultTitle,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
-    shortcut: '/favicon-16x16.png',
   },
-  // manifest: '/site.webmanifest',
   alternates: {
-    canonical: BASE_URL,
+    canonical: './',
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0f0f0f',
+  themeColor: '#000000', // Professional Rational Black
   width: 'device-width',
   initialScale: 1,
 };
 
-// ─── JSON-LD Structured Data ─────────────────────────────────────────────────
+// ─── JSON-LD (Tells Google EXACTLY who you are) ──────────────────────────────
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'DesignPOV',
-  url: BASE_URL,
-  logo: `${BASE_URL}/images/logo.png`,
+  name: siteConfig.name,
+  url: siteConfig.baseUrl,
+  logo: `${siteConfig.baseUrl}/images/logo.png`,
+  description: siteConfig.description,
   sameAs: [
-    'https://twitter.com/DesignPOV',
-    'https://linkedin.com/company/DesignPOV',
-    'https://instagram.com/DesignPOV',
+    'https://twitter.com/rationalequity',
+    'https://linkedin.com/company/rationalequity',
   ],
-  contactPoint: {
-    '@type': 'ContactPoint',
-    email: 'hello@designpov.com',
-    contactType: 'customer support',
-  },
 };
 
-// ─── Layout ──────────────────────────────────────────────────────────────────
 export default function RootLayout({
   children,
 }: {
@@ -123,7 +101,6 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-white text-gray-900 font-sans">
-      
         <Navbar />
         <main>{children}</main>
         <Footer />
@@ -131,5 +108,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-
