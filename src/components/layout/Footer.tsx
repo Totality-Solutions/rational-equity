@@ -1,20 +1,31 @@
 
 
 // src/components/layout/Footer.tsx
+"use client";
+
 import Link from 'next/link';
 import { Linkedin, Twitter, MapPin, Phone, Mail } from 'lucide-react';
 
-const QUICK_LINKS = [
+// 1. Types for dynamic styling
+interface FooterLink {
+  label: string;
+  href: string;
+  color?: string; // Optional: e.g., 'text-brand-maroon' or 'text-emerald-400'
+}
+
+const QUICK_LINKS: FooterLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Investment Approach', href: '/approach' },
   { label: 'Thought Center', href: '/thought-center' },
+  { label: 'Call Us', href: '/contact' }
 ];
 
-const PRODUCTS = [
+const PRODUCTS: FooterLink[] = [
   { label: 'India Long-Only Fund', href: '/products/long-only' },
   { label: 'Gold & Silver Miners Fund', href: '/products/miners' },
   { label: 'Absolute Return Fund', href: '/products/absolute-return' },
+  { label: 'Invest With Us', href: '/invest-with-us', color: 'text-brand-maroon' }, // 🔹 Custom Color Example
 ];
 
 export default function Footer() {
@@ -26,9 +37,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 md:gap-12 mb-16">
 
           {/* Brand & Description */}
-          <div className="col-span-1 sm:col-span-2 md:col-span-5">
-            <Link href="/" className="inline-block pb-6">
-              <div className="relative h-10 md:h-12 w-auto">
+          <div className="md:col-span-5">
+            <Link href="/" className="flex items-center shrink-0 pb-6">
+              <div className="relative h-12 w-auto">
                 <img
                   src="/images/logo.png"
                   alt="Rational Asset Management Logo"
@@ -36,7 +47,7 @@ export default function Footer() {
                 />
               </div>
             </Link>
-            <p className="text-base leading-relaxed max-w-sm text-gray-400 font-sans">
+            <p className="text-[16px] leading-relaxed max-w-sm text-gray-400 font-sans">
               A leading asset management company committed to delivering superior risk-adjusted returns
               through disciplined investment strategies and unwavering focus on long-term value creation.
             </p>
@@ -47,7 +58,7 @@ export default function Footer() {
                 <Link
                   key={icon}
                   href="#"
-                  className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center text-white hover:bg-brand-maroon-hover transition-all hover:-translate-y-1"
+                  className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center text-white hover:bg-opacity-80 transition-all"
                 >
                   {icon === 'in' && <Linkedin size={18} />}
                   {icon === 'tw' && <Twitter size={18} />}
@@ -61,51 +72,29 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="md:col-span-2">
-            <h3 className="text-white font-bold mb-5 md:mb-6 font-sans">Quick Links</h3>
-            <ul className="space-y-3 md:space-y-4">
-              {QUICK_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm hover:text-white transition-colors font-sans py-1 block">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Quick Links Column */}
+          <FooterColumn title="Quick Links" links={QUICK_LINKS} />
 
-          {/* Products */}
-          <div className="md:col-span-2">
-            <h3 className="text-white font-bold mb-5 md:mb-6 font-sans">Products</h3>
-            <ul className="space-y-3 md:space-y-4">
-              {PRODUCTS.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm hover:text-white transition-colors font-sans py-1 block">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Products Column */}
+          <FooterColumn title="Products" links={PRODUCTS} />
 
-          {/* Contact Us */}
+          {/* Contact Info */}
           <div className="md:col-span-3">
             <h3 className="text-white font-bold mb-5 md:mb-6 font-sans">Contact Us</h3>
             <ul className="space-y-4 md:space-y-5 text-sm font-sans">
               <li className="flex gap-3">
-                <MapPin className=" shrink-0" size={20} />
+                <MapPin className="text-brand-maroon shrink-0" size={20} />
                 <span className="text-gray-400">
                   123 Financial District,<br />
                   Mumbai, Maharashtra 400001
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className=" shrink-0" size={20} />
+                <Phone className="text-brand-maroon shrink-0" size={20} />
                 <span className="text-gray-400">+91 22 1234 5678</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="shrink-0" size={20} />
+                <Mail className="text-brand-maroon shrink-0" size={20} />
                 <span className="text-gray-400">info@rationalamc.com</span>
               </li>
             </ul>
@@ -118,19 +107,45 @@ export default function Footer() {
             © {year} RATIONAL ASSET MANAGEMENT COMPANY. ALL RIGHTS RESERVED.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm md:text-base text-gray-400 mb-8 font-sans">
+          <div className="flex justify-center flex-wrap gap-6 text-[16px] text-gray-400 mb-8 font-sans">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <span className="hidden sm:inline text-gray-800">|</span>
+            <span className="text-gray-700 hidden sm:block">|</span>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-            <span className="hidden sm:inline text-gray-800">|</span>
+            <span className="text-gray-700 hidden sm:block">|</span>
             <Link href="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
           </div>
 
-          <p className="text-[11px] md:text-[12px] text-gray-600 max-w-3xl mx-auto leading-relaxed font-sans px-4">
+          <p className="text-[12px] text-gray-600 max-w-3xl mx-auto leading-relaxed font-sans">
             Mutual fund investments are subject to market risks. Please read all scheme related documents carefully before investing.
           </p>
         </div>
       </div>
     </footer>
+  );
+}
+
+/**
+ * 🔹 Reusable Column Component
+ * Handles Default vs. Custom Color logic
+ */
+function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) {
+  return (
+    <div className="md:col-span-2">
+      <h3 className="text-white font-bold mb-6 font-sans">{title}</h3>
+      <ul className="space-y-4">
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.href}
+              className={`text-[14px] transition-colors font-sans hover:text-white ${
+                link.color || 'text-gray-400' // 🔹 Default to gray-400 if no color provided
+              }`}
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

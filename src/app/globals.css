@@ -5,8 +5,8 @@
   --foreground: #171717;
 
   /* Brand Colors */
-  --brand-maroon: #800000;
-  --brand-maroon-hover: #600000;
+  --brand-maroon: #9B0000;
+  --brand-maroon-hover: #7B0000;
 }
 
 @theme inline {
@@ -47,6 +47,7 @@
   h6,
   .font-brand {
     @apply font-serif;
+    @apply font-sans;
   }
 }
 

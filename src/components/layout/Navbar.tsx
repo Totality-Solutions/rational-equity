@@ -61,9 +61,10 @@ export default function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
-                  className={`text-[17px] xl:text-[20px] font-sans font-medium transition-colors duration-200 whitespace-nowrap hover:text-brand-maroon ${
-                    isActive(href) ? 'text-brand-maroon' : 'text-black'
-                  }`}
+                  className={`text-[18px] font-sans font-medium transition-colors duration-200 whitespace-nowrap hover:text-brand-maroon ${isActive(href)
+                    ? 'text-brand-maroon' // Active State
+                    : 'text-black'     // Default State
+                    }`}
                 >
                   {label}
                 </Link>
@@ -84,9 +85,10 @@ export default function Navbar() {
             </Link>
 
             {/* Call Us Button */}
-            <Link href="tel:+9112345678" className="flex items-center border border-brand-maroon group overflow-hidden shrink-0">
-              <span className="px-3 xl:px-5 text-brand-maroon font-sans font-bold text-[18px] xl:text-[22px] tracking-wider">Call us</span>
-              <div className="bg-brand-maroon p-2 xl:p-2.5 text-white transition-colors group-hover:bg-brand-maroon-hover">
+            <Link href="/contact" className="flex items-center border border-brand-maroon group overflow-hidden">
+              <span className="px-5  text-brand-maroon font-sans font-bold text-[22px]  tracking-wider">Call us</span>
+              <div className="bg-brand-maroon p-2.5 text-white transition-colors group-hover:bg-brand-maroon-hover">
+
                 <img
                   src="/images/arrowbtn.png"
                   alt="Arrow Icon"
