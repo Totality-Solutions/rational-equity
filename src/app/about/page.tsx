@@ -6,17 +6,17 @@ import FAQ from '@/components/sections/home/FAQ';
 import Journey from '@/components/sections/home/Journey';
 import type { Metadata } from 'next';
 
-// Per-page SEO — overrides layout defaults
+// Updated Metadata for Rational
 export const metadata: Metadata = {
-  title: 'About Us',                          // → "About Us | DesignPOV"
+  title: 'About Rational', // → "About Rational | [Your Catchphrase]"
   description:
-    'Learn about DesignPOV — our story, our team, and why we do what we do.',
+    'Learn about Rational — our logical approach to design, our dedicated team, and our mission to build high-performance digital products.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About Us | DesignPOV',
-    description: 'Learn about DesignPOV — our story, our team, and why we do what we do.',
+    title: 'About Us | Rational',
+    description: 'Discover the story, the team, and the methodology behind Rational.',
     url: '/about',
     images: [{ url: '/images/og-about.jpg', width: 1200, height: 630 }],
   },
