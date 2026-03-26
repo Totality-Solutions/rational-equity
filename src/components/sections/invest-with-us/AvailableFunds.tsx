@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { TrendingUp, X, Shield, Calendar, Wallet, BarChart3 } from "lucide-react";
 import Link from "next/link"; // 🔹 Import Link
+import CTAButton from "@/components/common/CTAButton";
 
 // 1. Added 'link' property to each fund
 const funds = [
@@ -114,13 +115,14 @@ export default function AvailableFunds() {
                 </div>
               </div>
 
-              <button 
-                onClick={() => setSelectedFund(fund)}
-                className="flex items-center w-full group overflow-hidden border border-brand-maroon transition-all"
-              >
-                <span className="flex-1 py-3 text-brand-maroon font-sans font-bold text-sm bg-white group-hover:bg-gray-50 transition-colors">View Details</span>
-                <div className="bg-brand-maroon p-4 text-white"><img src="/images/arrowbtn.png" alt="Arrow" className="w-4 h-4 object-contain" /></div>
-              </button>
+              <div onClick={() => setSelectedFund(fund)} className="w-full cursor-pointer">
+                <CTAButton 
+                  href="#" 
+                  text="View Details" 
+                  variant="light"
+                  className="w-full"
+                />
+              </div>
             </motion.div>
           ))}
         </div>
@@ -168,7 +170,6 @@ export default function AvailableFunds() {
                 </div>
               </div>
 
-              {/* 🔹 Dynamic Action Button Link */}
               <div className="px-8 pb-8">
                 <Link href={selectedFund.link} className="block w-full">
                   <button className="w-full bg-brand-maroon text-white font-bold py-4 hover:bg-opacity-90 transition-all shadow-lg shadow-brand-maroon/20 uppercase tracking-wider text-sm ">

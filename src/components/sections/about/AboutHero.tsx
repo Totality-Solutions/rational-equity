@@ -52,7 +52,7 @@ export default function AboutHero() {
   return (
     <section 
       ref={ref} 
-      className="h-[100dvh] md:h-[70vh] relative flex justify-center pt-24 px-6"
+      className="relative flex justify-center py-24 px-6"
     >
       <div className="max-w-6xl text-center md:space-y-8 font-serif">
         {paragraphs.map((para) => (

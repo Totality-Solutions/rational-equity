@@ -3,6 +3,7 @@
 import { motion, Variants, useInView, useSpring, useTransform } from "framer-motion";
 import { useRef, useEffect } from "react";
 import Link from "next/link";
+import CTAButton from "@/components/common/CTAButton";
 
 // 1. Heading: Heavy & Slow (Small distance, elegant easing)
 const headingVariants: Variants = {
@@ -124,21 +125,12 @@ export default function InvestWithUs() {
             viewport={{ once: true }}
             className="flex justify-center"
           >
-            <Link 
-              href="/invest" 
-              className="flex items-center border border-brand-maroon group overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow"
-            >
-              <span className="px-8 py-3 text-brand-maroon font-sans font-bold text-lg tracking-wider">
-                Start Investing
-              </span>
-              <div className="bg-brand-maroon p-4 text-white">
-                <img
-                  src="/images/arrowbtn.png" 
-                  alt="Arrow"
-                  className="w-5 h-5 object-contain"
-                />
-              </div>
-            </Link>
+            <CTAButton
+              href="/contact" 
+              text="Start Investing" 
+              variant="light" 
+              className="w-full sm:w-auto" // Keeps it responsive
+            />
           </motion.div>
         </div>
       </div>

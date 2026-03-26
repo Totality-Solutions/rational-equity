@@ -155,7 +155,7 @@ export default function ChooseYourPath() {
                   </select>
                 </div>
 
-                <button className="w-full bg-brand-maroon text-white font-bold py-4  hover:cursor-pointer transition-all text-base mt-4 shadow-lg shadow-brand-maroon/20">
+                <button className="w-full bg-brand-maroon text-white font-bold py-4  hover:cursor-pointer hover:bg-brand-maroon-hover transition-all text-base mt-4 shadow-lg shadow-brand-maroon/20">
                   Confirm Request
                 </button>
               </form>

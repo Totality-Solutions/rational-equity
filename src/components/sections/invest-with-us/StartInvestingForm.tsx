@@ -105,7 +105,7 @@ export default function StartInvestingForm() {
                   <div className="pt-4">
                     <button 
                       type="submit"
-                      className="w-full bg-brand-maroon text-white py-4 font-medium flex items-center justify-center gap-2 hover:bg-opacity-90 transition-all"
+                      className="w-full bg-brand-maroon hover:bg-brand-maroon-hover text-white py-4 font-medium flex items-center justify-center gap-2 hover:bg-opacity-90 transition-all"
                     >
                       Submit Request
                       <ArrowRight size={18} />
