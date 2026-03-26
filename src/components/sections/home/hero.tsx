@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import CTAButton from '@/components/common/CTAButton';
 
 // --- Types ---
 interface RollingDigitProps {
@@ -137,20 +138,15 @@ export default function Hero() {
                         and long-term value creation.
                     </motion.p>
 
-                    <div className="flex justify-center">
-                        <Link href="/funds" className="flex items-stretch border border-brand-maroon group overflow-hidden bg-black/20 backdrop-blur-sm hover:scale-75">
-                            <span className="px-6 md:px-8 py-3 md:py-4 text-white font-sans text-lg md:text-[20px]">
-                                Explore Funds
-                            </span>
-                            <div className="bg-brand-maroon px-4 flex items-center text-white transition-colors group-hover:bg-brand-maroon-hover">
-                                <img
-                                    src="/images/arrowbtn.png"
-                                    alt="Arrow Icon"
-                                    className="w-4 md:w-5 object-contain transition-transform group-hover:translate-x-1"
-                                />
-                            </div>
-                        </Link>
-                    </div>
+                    {/* Replace the entire 12-line div/Link block with just this */}
+<CTAButton 
+  href="/funds" 
+  text="Explore Funds" 
+  variant="dark"
+  primaryColor="#800000"
+  textColor="#ffffff"
+  className="mt-8" // Use className for any specific section spacing
+/>
                 </div>
 
                 {/* Statistic Cards */}

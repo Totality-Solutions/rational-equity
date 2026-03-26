@@ -6,6 +6,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import CTAButton from '@/components/common/CTAButton';
 
 const FUNDS = [
   { title: 'India Long-Only Fund', description: 'Focused long-term equity investments in high-quality Indian businesses', returns: '16.5% CAGR' },
@@ -132,16 +133,14 @@ export default function InvestmentSolutions() {
         </div>
 
         {/* CTA */}
-        <div className="flex justify-center px-4">
-          <Link href="/invest" className="flex items-stretch group transition-transform hover:scale-75 w-full sm:w-auto">
-            <div className="bg-white flex-1 sm:flex-none px-6 md:px-8 py-3 md:py-4 border border-gray-200 text-[#800000] font-bold text-lg md:text-xl flex items-center justify-center">
-              Invest With Us
-            </div>
-            <div className="bg-[#800000] px-5 md:px-6 flex items-center justify-center">
-              <img src="/images/arrowbtn.png" alt="Arrow" className="w-5 md:w-6 invert group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
-        </div>
+        
+
+        <CTAButton
+          href="/invest"
+          text="Invest With Us"
+          variant="light"
+          iconClassName="invert" // No invert needed here
+        />
 
       </div>
     </section>
