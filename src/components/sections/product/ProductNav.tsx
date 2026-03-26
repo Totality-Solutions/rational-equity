@@ -15,7 +15,7 @@ export default function ProductNav() {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-center h-16 gap-2 md:gap-8">
+        <div className="flex items-center justify-center h-22 gap-2 md:gap-8">
           {NAV_LINKS.map((link) => (
             <a
               key={link.target}

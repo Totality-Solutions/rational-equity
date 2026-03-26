@@ -82,7 +82,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
       { period: "Since Inception", fundReturn: "+196.4%", benchmark: "+152.8%" },
     ]
   },
-  "gold-miners": {
+  "gold-silver-miners": {
     title: "Gold & Silver Miners Fund",
     description: "Strategic precious metals exposure for portfolio diversification.",
     color: "text-brand-maroon",
