@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import CTAButton from '@/components/common/CTAButton';
 
 export default function ApproachHero() {
     return (
@@ -35,20 +36,14 @@ export default function ApproachHero() {
                     A disciplined, research-driven approach to generating superior long-term returns
                 </motion.p>
 
-                <div className="flex justify-center mb-16">
-                    <button className="flex items-stretch group border border-[#8B0000] transition-all duration-300 bg-white hover:bg-gray-50 hover:scale-75">
-                        <span className="px-10 py-3 font-sans text-[13px] text-[#8B0000] font-medium tracking-[0.2em]">
-                            VIEW OUR APPROACH
-                        </span>
-                        <div className="bg-[#8B0000] px-4 flex items-center justify-center">
-                               <img
-                                    src="/images/arrowbtn.png"
-                                    alt="Arrow Icon"
-                                    className="w-4 md:w-5 object-contain transition-transform group-hover:translate-x-1"
-                                />
-                        </div>
-                    </button>
-                </div>
+              
+
+                <CTAButton
+                    href="#"
+                    text=" VIEW OUR APPROACH"
+                    variant="light"
+                    iconClassName="invert" // No invert needed here
+                />
             </div>
         </section>
     );
