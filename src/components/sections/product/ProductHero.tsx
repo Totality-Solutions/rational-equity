@@ -31,7 +31,7 @@ interface ProductHeroProps {
 
 export default function ProductHero({ title, description, titleColor = "text-brand-maroon" }: ProductHeroProps) {
   return (
-    <section className="w-full pt-18 bg-white flex flex-col items-start overflow-hidden">
+    <section className="w-full py-12 bg-white flex flex-col items-start overflow-hidden">
       <div className="w-full px-8 md:px-16 flex flex-col items-start gap-6">
         
         {/* Back Button */}

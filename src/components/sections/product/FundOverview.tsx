@@ -26,7 +26,7 @@ interface FundOverviewProps {
 
 export default function FundOverview({ description, stats }: FundOverviewProps) {
   return (
-    <section className="bg-white py-24 px-6 md:px-16 font-sans">
+    <section className="bg-white py-12 px-6 md:px-16 font-sans">
       <div className="max-w-7xl mx-auto">
         
         {/* Header Section */}

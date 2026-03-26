@@ -83,18 +83,18 @@ export default function Footer() {
             <h3 className="text-white font-bold mb-5 md:mb-6 font-sans">Contact Us</h3>
             <ul className="space-y-4 md:space-y-5 text-sm font-sans">
               <li className="flex gap-3">
-                <MapPin className="text-brand-maroon shrink-0" size={20} />
+                <MapPin className="text-white shrink-0" size={20} />
                 <span className="text-gray-400">
                   123 Financial District,<br />
                   Mumbai, Maharashtra 400001
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="text-brand-maroon shrink-0" size={20} />
+                <Phone className="text-white shrink-0" size={20} />
                 <span className="text-gray-400">+91 22 1234 5678</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="text-brand-maroon shrink-0" size={20} />
+                <Mail className="text-white shrink-0" size={20} />
                 <span className="text-gray-400">info@rationalamc.com</span>
               </li>
             </ul>
