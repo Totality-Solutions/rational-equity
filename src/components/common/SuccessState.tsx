@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import CTAButton from "@/components/common/CTAButton"; // Adjust path as needed
 
 interface SuccessStateProps {
   onReset: () => void;
@@ -36,12 +37,14 @@ export function SuccessState({ onReset, variant = "page" }: SuccessStateProps) {
         </p>
       </div>
 
-      <button
-        onClick={onReset}
-        className="px-8 py-3 border-2 border-[#000000]/5 text-sm bg-[#F8F9FA] text-gray-500 font-medium transition-all hover:bg-brand-maroon hover:text-white"
-      >
-        Submit another request
-      </button>
+      {/* 🔹 Replaced standard button with your CTAButton */}
+      <div onClick={onReset} className="cursor-pointer">
+        <CTAButton 
+          href="#" 
+          text="Submit another request" 
+          variant="light" 
+        />
+      </div>
     </motion.div>
   );
 }

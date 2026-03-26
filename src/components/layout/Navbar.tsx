@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import CTAButton from '../common/CTAButton';
 
 const NAV_LINKS = [
   { label: 'About Us', href: '/about' },
@@ -48,7 +49,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm border-b border-b-gray-200 ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b border-b-gray-200 ${
         scrolled ? ' py-2 md:py-2' : 'py-3 md:py-4'
       }`}
     >
@@ -121,16 +122,13 @@ export default function Navbar() {
               </svg>
             </Link>
 
-            <Link href="/contact" className="flex items-center border border-brand-maroon group overflow-hidden">
-              <span className="px-5 text-brand-maroon font-sans font-bold text-[22px] tracking-wider">Call us</span>
-              <div className="bg-brand-maroon p-2.5 text-white transition-colors group-hover:bg-brand-maroon-hover">
-                <img
-                  src="/images/arrowbtn.png"
-                  alt="Arrow Icon"
-                  className="w-[16px] xl:w-[20px] object-contain transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </div>
-            </Link>
+            <CTAButton
+              href="/contact" 
+              text="Call us" 
+              variant="light" 
+              paddingClassName='px-4 md:px-6 py-3'
+              className="w-full sm:w-auto" // Keeps it responsive
+            />
           </div>
         </div>
 

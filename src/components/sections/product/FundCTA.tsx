@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import CTAButton from "@/components/common/CTAButton";
 
 interface ProductCTAProps {
   fundTitle: string;
@@ -34,14 +35,12 @@ export default function FundCTA({
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
             
             {/* Start Investing Button */}
-            <button className="group flex items-center h-[50px] w-full sm:w-auto">
-              <div className="h-full px-8 flex items-center justify-center border border-brand-maroon text-brand-maroon font-sans text-lg hover:bg-brand-maroon hover:text-white transition-all duration-300">
-                Start Investing
-              </div>
-              <div className="h-full w-12 bg-brand-maroon flex items-center justify-center text-white">
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </div>
-            </button>
+            <CTAButton 
+              href="/invest" // Or your specific investment path
+              text="Start Investing" 
+              variant="light"
+              className="h-[50px]" // Matches your specific height requirement
+            />
 
             {/* Talk to Advisor Button */}
             <button className="h-[50px] px-8 w-full sm:w-auto border border-gray-200 text-gray-500 font-sans text-lg hover:bg-gray-50 transition-colors">

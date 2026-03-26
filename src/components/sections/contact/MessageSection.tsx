@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Mail, ArrowRight, X } from "lucide-react";
 import { SuccessState } from "@/components/common/SuccessState"; // Ensure this path is correct
+import CTAButton from "@/components/common/CTAButton";
 
 // 🔹 Animation Variants
 const titleVariants: Variants = {
@@ -126,11 +127,13 @@ export default function MessageSection() {
                   <textarea rows={4} placeholder="Tell us how we can help..." className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all text-sm resize-none" />
                 </div>
 
-                <button type="submit" className="flex items-center border border-brand-maroon group overflow-hidden bg-white transition-all active:scale-[0.98]">
-                  <span className="px-5 text-brand-maroon font-sans font-medium text-[18px] tracking-wider whitespace-nowrap">Send Message</span>
-                  <div className="bg-brand-maroon p-2.5 text-white">
-                    <img src="/images/arrowbtn.png" alt="Arrow Icon" className="w-[20px] h-[20px] object-contain transition-transform duration-300 group-hover:scale-110" />
-                  </div>
+                <button type="submit" className="w-full sm:w-auto">
+                  <CTAButton 
+                    href="#" 
+                    text="Send Message" 
+                    variant="light"
+                    className="pointer-events-none" // Prevents the Link from intercepting the button click
+                  />
                 </button>
               </form>
             </div>

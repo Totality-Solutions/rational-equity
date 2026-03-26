@@ -3,15 +3,15 @@
 import React from 'react';
 import Link from 'next/link';
 
-// 1. We must define EVERY prop here to satisfy TypeScript
 interface CTAButtonProps {
   href: string;
   text: string;
   variant?: 'light' | 'dark' | 'maroon-bg';
-  primaryColor?: string;   // FIXED: Added this
-  textColor?: string;      // FIXED: Added this
+  primaryColor?: string;
+  textColor?: string;
   className?: string;
-  iconClassName?: string;  // FIXED: Added this
+  paddingClassName?: string; // 🔹 Added optional padding prop
+  iconClassName?: string;
   iconSrc?: string;
 }
 
@@ -19,9 +19,10 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   href,
   text,
   variant = 'light',
-  primaryColor = "#800000",
-  textColor = "#800000",
+  primaryColor = "#7B0000",
+  textColor = "#7B0000",
   className = "",
+  paddingClassName = "px-8 md:px-12 py-4", // 🔹 Default padding
   iconClassName = "",
   iconSrc = "/images/arrowbtn.png"
 }) => {
@@ -30,14 +31,13 @@ const CTAButton: React.FC<CTAButtonProps> = ({
 
   return (
     <div className={`flex justify-center ${className}`}>
-      {/* 'group' is required for the arrow animation to trigger on button hover */}
       <Link 
         href={href} 
-        className="group flex items-stretch border border-[#800000] overflow-hidden transition-all duration-500 hover:scale-82 w-full sm:w-auto"
+        className="group flex items-stretch border border-brand-maroon overflow-hidden transition-all duration-500 w-full sm:w-auto hover:shadow-lg hover:shadow-brand-maroon-hover/40"
       >
         {/* TEXT AREA */}
         <div 
-          className="flex-grow px-8 md:px-12 py-4 flex items-center justify-center transition-colors duration-300"
+          className={`flex-grow flex items-center justify-center transition-colors duration-300 ${paddingClassName}`}
           style={{ 
             backgroundColor: isMaroonBg ? primaryColor : (variant === 'dark' ? 'rgba(0,0,0,0.9)' : 'white'),
             color: isMaroonBg ? '#ffffff' : textColor 
@@ -48,9 +48,9 @@ const CTAButton: React.FC<CTAButtonProps> = ({
           </span>
         </div>
 
-        {/* ARROW BOX - This is where the "Zoom Out" animation happens */}
+        {/* ARROW BOX */}
         <div 
-          className="relative flex-shrink-0 w-[64px] flex items-center justify-center border-l border-[#800000] transition-colors duration-300"
+          className="relative flex-shrink-0 w-[64px] flex items-center justify-center border-l border-brand-maroon transition-colors duration-300"
           style={{ 
             backgroundColor: isMaroonBg ? 'white' : primaryColor 
           }}
@@ -60,8 +60,6 @@ const CTAButton: React.FC<CTAButtonProps> = ({
             alt="" 
             className={`
               w-4 md:w-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-              /* THE ZOOM OUT LOGIC */
-              group-hover:scale-95 group-hover:opacity-100
               ${!isMaroonBg ? 'brightness-0 invert' : ''} 
               ${iconClassName}
             `}

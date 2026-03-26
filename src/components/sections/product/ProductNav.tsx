@@ -20,7 +20,7 @@ export default function ProductNav() {
             <a
               key={link.target}
               href={`#${link.target}`}
-              className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-brand-maroon transition-colors px-3 py-2"
+              className="text-[16px] font-semibold tracking-wider text-gray-400 hover:text-brand-maroon transition-colors px-3 py-2"
             >
               {link.label}
             </a>

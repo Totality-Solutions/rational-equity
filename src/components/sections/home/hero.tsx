@@ -139,14 +139,14 @@ export default function Hero() {
                     </motion.p>
 
                     {/* Replace the entire 12-line div/Link block with just this */}
-<CTAButton 
-  href="/funds" 
-  text="Explore Funds" 
-  variant="dark"
-  primaryColor="#800000"
-  textColor="#ffffff"
-  className="mt-8" // Use className for any specific section spacing
-/>
+                    <CTAButton 
+                      href="/funds" 
+                      text="Explore Funds" 
+                      variant="dark"
+                      primaryColor="#7B0000"
+                      textColor="#ffffff"
+                      className="mt-8" // Use className for any specific section spacing
+                    />
                 </div>
 
                 {/* Statistic Cards */}
