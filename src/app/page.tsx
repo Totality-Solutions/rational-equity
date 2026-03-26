@@ -36,7 +36,6 @@ export default function Home() {
         <AboutSection />
         <InvestmentSolutions />
         <Journey />
-        <Journey />
         <Testimonials />
         <FAQ />
       </main>
