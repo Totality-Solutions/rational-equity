@@ -151,7 +151,7 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu Overlay */}
-   
+
       <div
         className={`lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl transition-all duration-300 ease-in-out ${isOpen ? 'translate-y-0 opacity-100 visible' : '-translate-y-4 opacity-0 invisible'
           }`}
@@ -159,41 +159,40 @@ export default function Navbar() {
         <ul className="px-6 py-8 space-y-6 font-sans">
           {NAV_LINKS.map(({ label, href, subMenu }) => (
             <li key={label}>
-{subMenu ? (
-  <div className="flex flex-col">
-    {/* Clickable Header - Arrow now sits right next to the text */}
-    <button 
-      onClick={() => setIsMobileSubMenuOpen(!isMobileSubMenuOpen)}
-      className="flex items-center gap-2 w-fit text-xl font-bold text-gray-800 focus:outline-none transition-colors duration-300"
-    >
-      <span>{label}</span>
-      <svg 
-        className={`w-4 h-4 text-brand-maroon transition-transform duration-300 ${isMobileSubMenuOpen ? 'rotate-180' : ''}`} 
-        fill="none" stroke="currentColor" viewBox="0 0 24 24"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
-    
-    {/* Sub-menu Items - Centered text & Desktop hover style */}
-    <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
-      isMobileSubMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
-    }`}>
-      <div className="bg-white border border-gray-100 shadow-sm flex flex-col divide-y divide-brand-maroon/10">
-        {subMenu.map((sub) => (
-          <Link
-            key={sub.href}
-            href={sub.href}
-            onClick={() => setIsOpen(false)}
-            className="block px-4 py-5 text-[16px] text-gray-800 font-sans font-medium text-center transition-all duration-300 active:bg-[#ffe4e6] active:text-brand-maroon active:font-bold"
-          >
-            {sub.label}
-          </Link>
-        ))}
-      </div>
-    </div>
-  </div>
-) : (
+              {subMenu ? (
+                <div className="flex flex-col">
+                  {/* Clickable Header - Arrow now sits right next to the text */}
+                  <button
+                    onClick={() => setIsMobileSubMenuOpen(!isMobileSubMenuOpen)}
+                    className="flex items-center gap-2 w-fit text-xl font-bold text-gray-800 focus:outline-none transition-colors duration-300"
+                  >
+                    <span>{label}</span>
+                    <svg
+                      className={`w-4 h-4 text-brand-maroon transition-transform duration-300 ${isMobileSubMenuOpen ? 'rotate-180' : ''}`}
+                      fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Sub-menu Items - Centered text & Desktop hover style */}
+                  <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isMobileSubMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
+                    }`}>
+                    <div className="bg-white border border-gray-100 shadow-sm flex flex-col divide-y divide-brand-maroon/10">
+                      {subMenu.map((sub) => (
+                        <Link
+                          key={sub.href}
+                          href={sub.href}
+                          onClick={() => setIsOpen(false)}
+                          className="block px-4 py-5 text-[16px] text-gray-800 font-sans font-medium text-center transition-all duration-300 active:bg-[#ffe4e6] active:text-brand-maroon active:font-bold"
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
                 <Link
                   href={href}
                   onClick={() => setIsOpen(false)}
