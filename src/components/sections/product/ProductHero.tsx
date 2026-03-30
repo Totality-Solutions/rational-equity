@@ -34,7 +34,6 @@ export default function ProductHero({ title, description, titleColor = "text-bra
     <section className="w-full py-12 bg-white flex flex-col items-start overflow-hidden">
       <div className="w-full px-8 md:px-16 flex flex-col items-start gap-6">
         
-        {/* Back Button */}
         <Link 
           href="/" 
           className="group flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity cursor-pointer"

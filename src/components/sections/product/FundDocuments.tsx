@@ -1,27 +1,20 @@
-// src/components/sections/product/FundDocuments.tsx
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import PdfGrid, { PdfItem } from "@/components/common/PdfGrid";
+import AnimatedHeader from "@/components/common/AnimatedHeader"; // Adjust path as needed
 
 interface FundDocumentsProps {
   documents: PdfItem[];
 }
-
-const titleVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {  
-    opacity: 1, 
-    transition: { duration: 0.8, ease: "easeOut" } 
-  },
-};
 
 export default function FundDocuments({ documents }: FundDocumentsProps) {
   // Gracefully hide if no documents exist for a specific fund
   if (!documents || documents.length === 0) return null;
 
   return (
-    <section className="relative w-full bg-white font-sans py-12 overflow-hidden">
+    <section className="relative w-full bg-white font-sans pb-16 md:pb-20 overflow-hidden">
+      {/* Background Decorative Grid */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-40"
         style={{
@@ -31,27 +24,21 @@ export default function FundDocuments({ documents }: FundDocumentsProps) {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 space-y-4">
-          <motion.h2 
-            variants={titleVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-5xl md:text-4xl font-serif text-gray-900"
-          >
-          Fund <span className="text-brand-maroon">Documents</span>
-          </motion.h2>
+        
+        {/* --- INTEGRATED ANIMATED HEADER --- */}
+        <AnimatedHeader 
+          title="Fund Documents"
+          highlight="Documents"
+          highlightColor="#8B0000"
+          subheading="Access detailed insights, performance reports, and strategy documents for this fund."
+          variant="light"
+          className="mb-16"
+        />
 
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-gray-500 text-lg md:text-[16px]"
-          >
-            Access detailed insights, performance reports, and strategy documents for this fund.
-          </motion.p>
+        {/* PDF Grid Component */}
+        <div className="mt-8">
+          <PdfGrid data={documents} />
         </div>
-
-        <PdfGrid data={documents} />
       </div>
     </section>
   );

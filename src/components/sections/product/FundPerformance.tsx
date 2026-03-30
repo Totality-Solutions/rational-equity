@@ -1,6 +1,8 @@
 // src/components/sections/product/FundPerformance.tsx
 "use client";
 
+import AnimatedHeader from "@/components/common/AnimatedHeader";
+
 interface PerformanceProps {
   data: { period: string; fundReturn: string; benchmark: string }[];
 }
@@ -12,21 +14,29 @@ export default function FundPerformance({ data }: PerformanceProps) {
         
         {/* Static Header */}
         <div className="text-center mb-12 space-y-3">
-          <h2 className="font-serif text-[42px] text-gray-900">
+          <AnimatedHeader 
+            title="Fund Performance"
+            highlight="Performance"
+            highlightColor="#8B0000"
+            subheading="Historical returns across different time periods"
+            variant="light"
+            className="mb-16"
+          />
+          {/* <h2 className="font-serif text-[42px] text-gray-900">
             Fund <span className="text-brand-maroon">Performance</span>
           </h2>
           <p className="text-gray-400 text-lg leading-relaxed">
             Historical returns across different time periods
-          </p>
+          </p> */}
         </div>
 
         {/* Performance Table */}
         <div className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
           {/* Table Header */}
           <div className="grid grid-cols-3 bg-gray-50/30 border-b border-gray-100 px-8 py-5">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-300">Period</span>
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-300 text-center">Fund Return</span>
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-300 text-right">Benchmark</span>
+            <span className="text-[14px] font-semibold text-[#000000]/50">Period</span>
+            <span className="text-[14px] font-semibold text-[#000000]/50 text-center">Fund Return</span>
+            <span className="text-[14px] font-semibold text-[#000000]/50 text-right">Benchmark</span>
           </div>
 
           {/* Table Body */}

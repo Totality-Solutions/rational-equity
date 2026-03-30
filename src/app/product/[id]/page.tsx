@@ -27,10 +27,10 @@ export default function FundPage() {
         <ProductHero
           title={fund.title}
           description={fund.description}
-          titleColor={fund.color}
+          // titleColor={fund.color}
         />
-
-        <ProductNav />
+      
+      <ProductNav />
 
       <section id="overview">
         <FundOverview 

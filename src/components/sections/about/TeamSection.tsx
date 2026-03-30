@@ -1,9 +1,11 @@
-"use client";
+'use client';
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
-import Image0 from "../../../../public/images/Rational.svg"; 
+// Import your new component here
+import AnimatedHeader from "@/components/common/AnimatedHeader"; // Adjust the path as needed
+
 import Image1 from "../../../../public/images/Rational.svg";
 
 interface TeamMember {
@@ -49,25 +51,6 @@ const teamMembersSmall: TeamMember[] = [
   { id: 4, name: "Jaba Misra", title: "Coo", image: Image1, linkedin: "#", twitter: "#" },
 ];
 
-// Animation Variants
-const titleVariants: Variants = {
-  hidden: { x: 100, opacity: 0 },
-  visible: { 
-    x: 0, 
-    opacity: 1, 
-    transition: { duration: 0.8, ease: "easeOut" } 
-  },
-};
-
-const sublineVariants: Variants = {
-  hidden: { y: 40, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.8, delay: 0.3, ease: "easeOut" },
-  },
-};
-
 const cardVariants: Variants = {
   hidden: { x: -80, opacity: 0 },
   visible: (i: number) => ({
@@ -83,30 +66,18 @@ const cardVariants: Variants = {
 
 export default function TeamSection() {
   return (
-    <section className="relative w-full bg-white  font-serif overflow-hidden">
+    <section className="relative w-full bg-white font-serif py-16 md:py-24 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-        {/* Header Section */}
-        <div className="mb-6 space-y-6">
-          <motion.h2
-            variants={titleVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="font-serif text-4xl md:text-5xl"
-          >
-            Our <span style={{ color: "var(--color-brand-maroon)" }}>Team</span>
-          </motion.h2>
-          
-          <motion.p
-            variants={sublineVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-lg md:text-[20px] text-gray-600 max-w-2xl mx-auto leading-relaxed"
-          >
-            Analytical minds shaping disciplined investment strategies for long-term growth.
-          </motion.p>
-        </div>
+        
+        {/* --- NEW HEADER SECTION --- */}
+        <AnimatedHeader 
+          title="Our TEAM" 
+          highlight="TEAM"
+          highlightColor="#8B0000" // Your maroon color
+          subheading="Analytical minds shaping disciplined investment strategies for long-term growth."
+          variant="light"
+          className="mb-12 md:mb-16"
+        />
 
         {/* Main Team Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -133,17 +104,10 @@ export default function TeamSection() {
               <p className="text-gray-500 font-medium mb-8">{member.title}</p>
 
               <div className="flex gap-4">
-                <a
-                  href={member.linkedin}
-                  className="group w-10 h-10 flex items-center justify-center bg-brand-maroon rounded-full"
-                >
+                <a href={member.linkedin} className="w-10 h-10 flex items-center justify-center bg-[#8B0000] rounded-full">
                   <span className="text-white text-xl font-medium leading-none">in</span>
                 </a>
-
-                <a
-                  href={member.twitter}
-                  className="group w-10 h-10 flex items-center justify-center bg-brand-maroon rounded-full"
-                >
+                <a href={member.twitter} className="w-10 h-10 flex items-center justify-center bg-[#8B0000] rounded-full">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/>
                   </svg>
