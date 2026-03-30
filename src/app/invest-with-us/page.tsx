@@ -12,7 +12,7 @@ import StartInvestingForm from '@/components/sections/invest-with-us/StartInvest
 // ─── INVEST WITH US SEO ─────────────────────────────────────────────────────
 export const metadata: Metadata = {
   title: 'Start Investing', // Becomes "Start Investing | Rational Equity"
-  description: 
+  description:
     'Take the first step toward logical wealth growth. Explore our available funds, choose your investment path, and start your journey with Rational Equity today.',
   keywords: ['start investing', 'investment funds', 'equity portfolios', 'invest with rational equity'],
   alternates: {

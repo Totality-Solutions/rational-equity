@@ -162,7 +162,7 @@ export default function Navbar() {
                   {/* Clickable Header - Arrow now sits right next to the text */}
                   <button
                     onClick={() => setIsMobileSubMenuOpen(!isMobileSubMenuOpen)}
-                    className="flex items-center gap-2 w-fit text-xl font-bold text-gray-800 focus:outline-none transition-colors duration-300"
+                    className="flex items-center justify-between w-full text-xl font-bold text-gray-800 focus:outline-none transition-colors duration-300"
                   >
                     <span>{label}</span>
                     <svg
