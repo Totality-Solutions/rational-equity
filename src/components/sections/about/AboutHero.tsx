@@ -89,7 +89,7 @@ export default function AboutHero() {
                   <div key={`${pIdx}-${lIdx}`} className="relative">
                     {/* BASE LAYER (Grayscale) */}
                     <p 
-                      className="text-3xl leading-tight text-gray-400 select-none opacity-20"
+                      className="text-h3 leading-tight select-none opacity-5"
                       style={{ filter: "grayscale(100%)" }}
                     >
                       {line}
@@ -101,7 +101,7 @@ export default function AboutHero() {
                         WebkitMaskImage: mask,
                         maskImage: mask,
                       }}
-                      className="absolute inset-0 text-3xl leading-tight text-black"
+                      className="absolute inset-0 text-h3 leading-tight text-black"
                     >
                       {line}
                     </motion.p>

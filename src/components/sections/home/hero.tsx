@@ -115,7 +115,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="font-serif text-4xl sm:text-5xl md:text-[64px] font-regular text-white tracking-[0.1em] "
+                        className="font-serif text-4xl sm:text-5xl md:text-[64px] font-weight-normal text-white tracking-[0.1em] "
                     >
                         INVESTING
                     </motion.h1>
@@ -123,7 +123,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.2, duration: 0.6 }}
-                        className="font-sans text-xl sm:text-2xl md:text-[32px] font-regular text-white tracking-widest mb-10"
+                        className="font-sans text-xl sm:text-2xl md:text-[32px] font-weight-normal text-white tracking-widest mb-10"
                     >
                         the Rational way.
                     </motion.p>

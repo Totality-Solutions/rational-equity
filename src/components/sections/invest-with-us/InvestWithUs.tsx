@@ -135,7 +135,7 @@ export default function InvestWithUs() {
         </div>
       </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-b border-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-gray-100">
           {stats.map((stat, index) => (
             <motion.div 
               key={index}
@@ -144,9 +144,9 @@ export default function InvestWithUs() {
               whileInView="visible"
               viewport={{ once: true }}
               style={{ perspective: 1000 }} // Required for the 3D rotation
-              className={`py-16 px-6 text-center space-y-2 border-gray-100 
+              className={`py-8 px-3 md:py-16 md:px-6 text-center space-y-2 border-gray-100 
                 ${index !== stats.length - 1 ? 'lg:border-r' : ''} 
-                ${index % 2 === 0 ? 'md:border-r lg:border-r' : 'md:border-r-0 lg:border-r'}`}
+                ${index % 2 === 0 ? 'md:border-r md:border-b lg:border-r' : 'md:border-r-0 md:border-b lg:border-r'}`}
             >
               <h3 className="text-[20px] md:text-[28px] font-semibold font-serif text-gray-900">
                 <Counter value={stat.value} />

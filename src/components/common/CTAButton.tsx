@@ -19,8 +19,8 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   href,
   text,
   variant = 'light',
-  primaryColor = "#7B0000",
-  textColor = "#7B0000",
+  primaryColor = "#9B0000",
+  textColor = "#9B0000",
   className = "",
   paddingClassName = "px-8 md:px-12 py-4", // 🔹 Default padding
   iconClassName = "",
@@ -43,7 +43,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
             color: isMaroonBg ? '#ffffff' : textColor 
           }}
         >
-          <span className="font-sans font-bold text-[13px] md:text-[15px] uppercase tracking-[0.1em] whitespace-nowrap">
+          <span className="font-sans font-semibold text-cta-mobile tracking-cta md:text-cta whitespace-nowrap">
             {text}
           </span>
         </div>

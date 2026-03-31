@@ -78,15 +78,15 @@ export default function Journey() {
                 <motion.div 
                   variants={yearVariants}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="font-serif text-5xl sm:text-6xl md:text-7xl mb-4 md:mb-6 opacity-80 select-none origin-left"
+                  className="font-serif text-h2  mb-4 md:mb-6 opacity-80 select-none origin-left"
                 >
                   {item.year}
                 </motion.div>
 
-                <h3 className="font-sans font-bold text-lg text-black mb-3 md:mb-4 group-hover:text-[#8B0000] transition-colors duration-300">
+                <h3 className="font-sans text-body-lg font-medium text-black mb-3 md:mb-4 group-hover:text-[#8B0000] transition-colors duration-300">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 text-sm md:text-[15px] leading-relaxed flex-grow">
+                <p className="text-[#000000]/50 text-body-md font-weight-normal leading-relaxed flex-grow">
                   {item.description}
                 </p>
               </motion.div>

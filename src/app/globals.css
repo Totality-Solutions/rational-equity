@@ -4,60 +4,131 @@
   --background: #ffffff;
   --foreground: #171717;
 
-  /* Brand Colors */
+  /* =========================
+     BRAND COLORS
+  ========================= */
   --brand-maroon: #9B0000;
   --brand-maroon-hover: #7B0000;
 
-  /* Font Weights */
-  --weight-light: 300;
-  --weight-normal: 400;
-  --weight-medium: 500;
-  --weight-semibold: 600;
-  --weight-bold: 700;
-  --weight-black: 800;
+  /* =========================
+     FONT WEIGHTS
+  ========================= */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
 
-  /* Text Sizes (Using a modular scale) */
-  --text-xs: 0.75rem;    /* 12px */
-  --text-sm: 0.875rem;   /* 14px */
-  --text-base: 1rem;     /* 16px */
-  --text-lg: 1.125rem;   /* 18px */
-  --text-xl: 1.25rem;    /* 20px */
-  --text-2xl: 1.5rem;    /* 24px */
-  --text-3xl: 1.875rem;  /* 30px */
-  --text-4xl: 2.25rem;   /* 36px */
-  --text-5xl: 3rem;      /* 48px */
+  /* =========================
+     LETTER SPACING
+  ========================= */
+  --tracking-h1: -0.5px;
+  --tracking-h2: -0.3px;
+  --tracking-cta: 0.5px;
+
+  /* =========================
+     DESKTOP TYPOGRAPHY
+  ========================= */
+  --text-h1: 56px;
+  --text-h2: 44px;
+  --text-h3: 32px;
+  --text-h4: 24px;
+
+  --text-body-lg: 18px;
+  --text-body-md: 16px;
+  --text-body-sm: 14px;
+  --text-cta: 16px;
+
+  /* =========================
+     TABLET TYPOGRAPHY
+  ========================= */
+  --tab-text-h1: 42px;
+  --tab-text-h2: 34px;
+  --tab-text-h3: 26px;
+  --tab-text-h4: 20px;
+
+  --tab-text-body-lg: 16px;
+  --tab-text-body-md: 15px;
+  --tab-text-body-sm: 14px;
+  --tab-text-cta: 18px;
+
+  /* =========================
+     MOBILE TYPOGRAPHY
+  ========================= */
+  --mobile-text-h1: 32px;
+  --mobile-text-h2: 26px;
+  --mobile-text-h3: 22px;
+  --mobile-text-h4: 18px;
+
+  --mobile-text-body-lg: 16px;
+  --mobile-text-body-md: 14px;
+  --mobile-text-body-sm: 13px;
+  --mobile-text-body-xs: 12px;
+  --mobile-text-cta: 14px;
 }
 
 @theme inline {
-  /* Mapping Next.js Font Variables */
+  /* Fonts */
   --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-eb-garamond), ui-serif, Georgia, serif;
 
-  /* Custom Brand Colors */
+  /* Colors */
   --color-brand-maroon: var(--brand-maroon);
   --color-brand-maroon-hover: var(--brand-maroon-hover);
 
-  /* Background/Foreground */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* =========================
+     DESKTOP
+  ========================= */
+  --text-h1: var(--text-h1);
+  --text-h2: var(--text-h2);
+  --text-h3: var(--text-h3);
+  --text-h4: var(--text-h4);
 
-  /* Text Sizes Mapping */
-  --text-xs: var(--text-xs);
-  --text-sm: var(--text-sm);
-  --text-base: var(--text-base);
-  --text-lg: var(--text-lg);
-  --text-xl: var(--text-xl);
-  --text-2xl: var(--text-2xl);
-  --text-3xl: var(--text-3xl);
-  --text-4xl: var(--text-4xl);
-  --text-5xl: var(--text-5xl);
+  --text-body-lg: var(--text-body-lg);
+  --text-body-md: var(--text-body-md);
+  --text-body-sm: var(--text-body-sm);
+  --text-cta: var(--text-cta);
 
-  /* Font Weight Mapping */
-  --font-weight-light: var(--weight-light);
-  --font-weight-normal: var(--weight-normal);
-  --font-weight-medium: var(--weight-medium);
-  --font-weight-semibold: var(--weight-semibold);
-  --font-weight-bold: var(--weight-bold);
+  /* =========================
+     TABLET
+  ========================= */
+  --text-h1-tab: var(--tab-text-h1);
+  --text-h2-tab: var(--tab-text-h2);
+  --text-h3-tab: var(--tab-text-h3);
+  --text-h4-tab: var(--tab-text-h4);
+
+  --text-body-lg-tab: var(--tab-text-body-lg);
+  --text-body-md-tab: var(--tab-text-body-md);
+  --text-body-sm-tab: var(--tab-text-body-sm);
+  --text-cta-tab: var(--tab-text-cta);
+
+  /* =========================
+     MOBILE
+  ========================= */
+  --text-h1-mobile: var(--mobile-text-h1);
+  --text-h2-mobile: var(--mobile-text-h2);
+  --text-h3-mobile: var(--mobile-text-h3);
+  --text-h4-mobile: var(--mobile-text-h4);
+
+  --text-body-lg-mobile: var(--mobile-text-body-lg);
+  --text-body-md-mobile: var(--mobile-text-body-md);
+  --text-body-sm-mobile: var(--mobile-text-body-sm);
+  --text-body-xs-mobile: var(--mobile-text-body-xs);
+  --text-cta-mobile: var(--mobile-text-cta);
+
+  /* Font Weights */
+  --font-weight-normal: var(--font-weight-normal);
+  --font-weight-medium: var(--font-weight-medium);
+  --font-weight-semibold: var(--font-weight-semibold);
+  --font-weight-bold: var(--font-weight-bold);
+  --font-weight-extrabold: var(--font-weight-extrabold);
+  --font-weight-black: var(--font-weight-black);
+
+  /* Letter Spacing */
+  --tracking-h1: var(--tracking-h1);
+  --tracking-h2: var(--tracking-h2);
+  --tracking-cta: var(--tracking-cta);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -61,8 +61,8 @@ export default function ContactSection() {
 
         {/* --- INTEGRATED ANIMATED HEADER --- */}
         <AnimatedHeader 
-          title="Get in TOUCH"
-          highlight="TOUCH"
+          title="Get in Touch"
+          highlight="Touch"
           highlightColor="#8B0000"
           subheading="Have questions about our funds or need help getting started? Our team is ready to assist you."
           variant="light"
@@ -90,14 +90,14 @@ export default function ContactSection() {
                 {item.icon}
               </div>
 
-              <div className="space-y-2">
-                <span className="text-xs font-semibold text-[#000000]/50 ">
+                <p className="text-body-sm-mobile uppercase font-weight-normal text-[#000000]/50 mb-3 ">
                   {item.label}
-                </span>
-                <h3 className="text-md font-semibold text-black">
+                </p>
+              <div className="space-y-1">
+                <h3 className="text-body-md-tab font-bold text-black">
                   {item.value}
                 </h3>
-                <p className="text-sm text-[#000000]/50 leading-relaxed">
+                <p className="text-body-sm-mobile text-[#000000]/50 font-weight-normal leading-relaxed">
                   {item.subValue}
                 </p>
               </div>

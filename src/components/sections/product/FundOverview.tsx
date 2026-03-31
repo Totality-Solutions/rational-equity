@@ -50,7 +50,7 @@ export default function FundOverview({ description, stats }: FundOverviewProps) 
         </div>
 
         {/* 🔹 Stats Grid - Perfectly matching your screenshot */}
-        <div className="border border-gray-100 rounded-2xl overflow-hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="border border-gray-100 rounded-2xl overflow-hidden grid grid-cols-2 lg:grid-cols-5">
           {stats.map((stat, index) => (
             <div 
               key={index} 
