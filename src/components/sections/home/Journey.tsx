@@ -37,7 +37,7 @@ export default function Journey() {
   };
 
   return (
-    <section className="bg-white py-16 md:py-24 font-sans overflow-hidden">
+    <section className="bg-white pb-16 md:pb-24 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* --- INTEGRATED ANIMATED HEADER --- */}
@@ -56,7 +56,7 @@ export default function Journey() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 bg-[#f9f9f9] border border-gray-100  overflow-hidden items-stretch"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-[#f9f9f9] border border-gray-100  overflow-hidden items-stretch"
         >
           {MILESTONES.map((item, index) => (
             <motion.div

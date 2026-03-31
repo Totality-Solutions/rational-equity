@@ -16,7 +16,7 @@ export default function FundCTA({
   minSIP = "₹5,000" 
 }: ProductCTAProps) {
   return (
-    <section className="pt-12">
+    <section className="">
         <div className="w-full min-h-[160px] px-8 md:px-16 py-12 bg-white border-3 border-gray-100 rounded-t-2xl ">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
           

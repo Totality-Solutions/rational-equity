@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { TrendingUp, X, Shield, Calendar, Wallet, BarChart3 } from "lucide-react";
-import Link from "next/link"; // 🔹 Import Link
+import Link from "next/link";
 import CTAButton from "@/components/common/CTAButton";
+// 1. Import your AnimatedHeader
+import AnimatedHeader from "@/components/common/AnimatedHeader";
 
-// 1. Added 'link' property to each fund
 const funds = [
   {
     name: "India Long-Only Fund",
@@ -40,16 +41,6 @@ const funds = [
   },
 ];
 
-const titleVariants: Variants = {
-  hidden: { y: 40, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
-};
-
-const sublineVariants: Variants = {
-  hidden: { y: 40, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.3, ease: "easeOut" } },
-};
-
 const cardVariants: Variants = {
   hidden: { x: -80, opacity: 0 },
   visible: (i: number) => ({
@@ -72,23 +63,27 @@ export default function AvailableFunds() {
   }, [selectedFund]);
 
   return (
-    <section className="bg-white pb-24 pt-16 px-6 font-sans overflow-hidden">
+    <section className="relative bg-white py-12 px-6 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16 space-y-4">
-          <motion.h2 variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-5xl md:text-4xl font-serif text-gray-900">
-            Available Funds
-          </motion.h2>
-          <motion.p variants={sublineVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-gray-400 text-lg">
-            Our managed investment solutions
-          </motion.p>
-        </div>
-
+        
+        {/* 2. Integrated AnimatedHeader */}
+        <AnimatedHeader 
+          title="Available Funds"
+          subheading="Our managed investment solutions"
+          variant="light"
+          className="mb-16"
+        />
+   
         {/* Funds Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {funds.map((fund, index) => (
             <motion.div 
-              key={index} custom={index} variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+              key={index} 
+              custom={index} 
+              variants={cardVariants} 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true, amount: 0.2 }}
               className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow"
             >
               <div className="flex justify-between items-center mb-4">
@@ -115,12 +110,13 @@ export default function AvailableFunds() {
                 </div>
               </div>
 
+              {/* View Details trigger */}
               <div onClick={() => setSelectedFund(fund)} className="w-full cursor-pointer">
                 <CTAButton 
                   href="#" 
                   text="View Details" 
                   variant="light"
-                  className="w-full"
+                  className="w-full pointer-events-none" // pointer-events-none so the div click handles it
                 />
               </div>
             </motion.div>
@@ -141,7 +137,7 @@ export default function AvailableFunds() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[460px] bg-white rounded-[24px] shadow-2xl z-[100] border border-gray-100 overflow-hidden"
+              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-full max-w-[460px] bg-white rounded-[24px] shadow-2xl z-[100] border border-gray-100 overflow-hidden"
             >
               <div className="p-8 pb-4 flex justify-between items-start">
                 <div className="space-y-1">
@@ -172,7 +168,7 @@ export default function AvailableFunds() {
 
               <div className="px-8 pb-8">
                 <Link href={selectedFund.link} className="block w-full">
-                  <button className="w-full bg-brand-maroon text-white font-bold py-4 hover:bg-opacity-90 transition-all shadow-lg shadow-brand-maroon/20 uppercase tracking-wider text-sm ">
+                  <button className="w-full bg-[#800000] text-white font-bold py-4 hover:bg-opacity-90 transition-all shadow-lg shadow-[#800000]/20 uppercase tracking-wider text-sm ">
                     Invest in this fund
                   </button>
                 </Link>

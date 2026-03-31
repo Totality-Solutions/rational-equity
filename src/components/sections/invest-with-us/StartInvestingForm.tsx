@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SuccessState } from "@/components/common/SuccessState"; // Adjust path as needed
+import AnimatedHeader from "@/components/common/AnimatedHeader";
 
 export default function StartInvestingForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -15,7 +16,7 @@ export default function StartInvestingForm() {
   };
 
   return (
-    <section className="bg-[#F8F9FA] py-20 px-6 font-sans overflow-hidden">
+    <section className="bg-[#F8F9FA] py-12 px-6 font-sans overflow-hidden">
       <div className="max-w-4xl mx-auto min-h-[500px] flex flex-col justify-center">
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
@@ -26,14 +27,14 @@ export default function StartInvestingForm() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
             >
-              <div className="text-center mb-12 space-y-3">
-                <h2 className="text-5xl md:text-4xl font-serif font-regular text-gray-900">
-                  Start <span className="text-brand-maroon">Investing</span>
-                </h2>
-                <p className="text-gray-500 text-lg md:text-[16px]">
-                  Fill out the form and our team will reach out within 24 hours
-                </p>
-              </div>
+
+              <AnimatedHeader
+                title="Start Investing"
+                highlight="Investing"
+                subheading="Fill out the form and our team will reach out within 24 hours"
+                variant="light"
+                className="mb-16"
+              />
 
               <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
                 <form className="space-y-6" onSubmit={handleSubmit}>

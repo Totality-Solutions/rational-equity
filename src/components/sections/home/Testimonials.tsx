@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import AnimatedHeader from '@/components/common/AnimatedHeader';
 
 const TESTIMONIALS = [
   {
@@ -51,15 +52,13 @@ export default function Testimonials() {
   const xKeyframes = [0, -shift, -(shift * 2), -(shift * 3), -(shift * 4)];
 
   return (
-    <section className="bg-white py-16 md:py-24 overflow-hidden font-sans">
-      <div className="max-w-7xl mx-auto px-6 mb-12 md:mb-16 text-center">
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-black mb-4 md:mb-6">
-          What Our Investors Say
-        </h2>
-        <p className="text-gray-500 text-base md:text-lg font-sans max-w-2xl mx-auto">
-          Trusted by thousands of investors across India for disciplined wealth creation.
-        </p>
-      </div>
+    <section className="bg-white pb-16 md:pb-24 overflow-hidden font-sans">
+      <AnimatedHeader 
+        title="What Our Investors Say" 
+        subheading="Trusted by thousands of investors across India for disciplined wealth creation."
+        variant="light"
+        className="mb-12 md:mb-16"
+      />
 
       <div className="relative w-full overflow-hidden">
         <motion.div

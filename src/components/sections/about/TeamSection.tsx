@@ -66,13 +66,13 @@ const cardVariants: Variants = {
 
 export default function TeamSection() {
   return (
-    <section className="relative w-full bg-white font-serif py-16 md:py-24 overflow-hidden">
+    <section className="relative w-full bg-white font-serif pb-16 md:pb-24 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         
         {/* --- NEW HEADER SECTION --- */}
         <AnimatedHeader 
-          title="Our TEAM" 
-          highlight="TEAM"
+          title="Our Team" 
+          highlight="Team"
           highlightColor="#8B0000" // Your maroon color
           subheading="Analytical minds shaping disciplined investment strategies for long-term growth."
           variant="light"
@@ -80,7 +80,7 @@ export default function TeamSection() {
         />
 
         {/* Main Team Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {teamMembers.map((member, i) => (
             <motion.div
               key={member.id}

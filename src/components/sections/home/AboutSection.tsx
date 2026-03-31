@@ -14,14 +14,14 @@ export default function AboutSection() {
   });
 
   const barHeights = [
-    120, 160, 200, 150, 180, 240, 210, 280, 320, 350, 290, 380, 420, 450, 410,
+    120, 160, 200, 150, 180, 240, 430 , 190, 170, 120, 200, 380, 420, 450, 410,
     490, 460, 520
   ];
 
   return (
     <section 
       ref={sectionRef} 
-      className="relative bg-white py-16 md:py-24 overflow-hidden font-sans min-h-[700px] md:min-h-[900px] flex flex-col justify-center"
+      className="relative bg-white py-16 md:py-24 overflow-hidden font-sans min-h-[700px] md:min-h-[80  0px] flex flex-col justify-center"
     >
 
       {/* --- 1. SVG BACKGROUND LAYER (Stays exactly the same) --- */}

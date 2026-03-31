@@ -2,6 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import PdfGrid, { PdfItem } from "@/components/common/PdfGrid"; 
+import AnimatedHeader from "@/components/common/AnimatedHeader";
 
 // 🔹 Now includes fileUrl (important for download)
 const documents: PdfItem[] = [
@@ -34,7 +35,7 @@ const sublineVariants: Variants = {
 
 export default function ResourcesSection() {
   return (
-    <section className="relative w-full bg-white font-sans py-24 overflow-hidden">
+    <section className="relative w-full bg-white font-sans py-12 overflow-hidden">
       
       {/* Background Pattern */}
       <div 
@@ -48,27 +49,13 @@ export default function ResourcesSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         
         {/* ✅ SAME HEADER (unchanged) */}
-        <div className="text-center mb-16 space-y-4">
-          <motion.h2 
-            variants={titleVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-5xl md:text-4xl font-serif font-regular text-gray-900"
-          >
-            Resources & <span className="text-brand-maroon">Documents</span>
-          </motion.h2>
-
-          <motion.p 
-            variants={sublineVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-gray-500 text-lg md:text-[16px]"
-          >
-            Download important documents and reports
-          </motion.p>
-        </div>
+          <AnimatedHeader
+            title="Resources & Documents"
+            highlight="Documents"
+            subheading="Download important documents and reports"
+            variant="light"
+            className="mb-16"
+          />
 
         {/* ✅ REPLACED GRID WITH REUSABLE COMPONENT */}
         <PdfGrid data={documents} />

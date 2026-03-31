@@ -45,7 +45,7 @@ export default function ProductNav() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 ">
+    <nav className="sticky top-0 z-50 w-full bg-white border-b border-t border-gray-100 ">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-center h-16 md:h-22 gap-2 md:gap-8">
           {NAV_LINKS.map((link) => {
@@ -56,7 +56,7 @@ export default function ProductNav() {
                 key={link.target}
                 href={`#${link.target}`}
                 className={`relative text-[13px] md:text-[15px] font-bold tracking-wider transition-colors px-3 py-2 uppercase ${
-                  isActive ? "text-brand-maroon" : "text-gray-400 hover:text-brand-maroon"
+                  isActive ? "text-brand-maroon" : "text-[#000000]/50 hover:text-brand-maroon"
                 }`}
               >
                 {link.label}

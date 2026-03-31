@@ -115,7 +115,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="font-serif text-4xl sm:text-5xl md:text-[64px] font-black text-white tracking-[0.2em] mb-4"
+                        className="font-serif text-4xl sm:text-5xl md:text-[64px] font-regular text-white tracking-[0.1em] "
                     >
                         INVESTING
                     </motion.h1>
@@ -123,7 +123,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.2, duration: 0.6 }}
-                        className="font-sans text-xl sm:text-2xl md:text-[32px] font-light text-white tracking-widest mb-10"
+                        className="font-sans text-xl sm:text-2xl md:text-[32px] font-regular text-white tracking-widest mb-10"
                     >
                         the Rational way.
                     </motion.p>
@@ -132,7 +132,7 @@ export default function Hero() {
                         initial={{ opacity: 0 }}
                         animate={inView ? { opacity: 1 } : {}}
                         transition={{ delay: 0.4, duration: 0.8 }}
-                        className="text-base sm:text-lg md:text-[20px] text-gray-400 leading-relaxed mb-12 px-4"
+                        className="text-base sm:text-lg md:text-[20px] text-white leading-relaxed mb-12 px-4"
                     >
                         Long-only strategies built on conviction, discipline,<br className="hidden md:block" />
                         and long-term value creation.
@@ -150,7 +150,7 @@ export default function Hero() {
                 </div>
 
                 {/* Statistic Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {STATS_CARDS.map((stat, idx) => (
                         <motion.div
                             key={stat.label}
@@ -165,7 +165,7 @@ export default function Hero() {
                                 <span className="ml-1 text-xl md:text-2xl">{stat.suffix}</span>
                             </div>
                             
-                            <p className="text-[10px] md:text-[11px] font-bold tracking-[0.3em] text-gray-500 uppercase">
+                            <p className="text-[10px] md:text-[14px] font-medium tracking-[0.2em] text-white uppercase">
                                 {stat.label}
                             </p>
                             
