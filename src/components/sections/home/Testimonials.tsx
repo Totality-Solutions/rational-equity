@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Container from '@/components/common/Container';
+import AnimatedHeader from '@/components/common/AnimatedHeader';
 
 const TESTIMONIALS = [
   {
@@ -52,12 +53,12 @@ export default function Testimonials() {
   return (
     <section className="bg-white py-16 md:py-24 overflow-hidden font-sans">
       <Container className="mb-12 md:mb-16 text-center">
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black mb-4 md:mb-6">
-          What Our Investors Say
-        </h2>
-        <p className="text-black-600 text-base md:text-lg lg:text-xl max-w-2xl mx-auto">
-          Trusted by thousands of investors across India for disciplined wealth creation and long-term partnership.
-        </p>
+          <AnimatedHeader 
+        title="What Our Investors Say" 
+        subheading="Trusted by thousands of investors across India for disciplined wealth creation."
+        variant="light"
+        className="mb-12 md:mb-16"
+      />
       </Container>
 
       <div className="relative w-full overflow-hidden">

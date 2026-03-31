@@ -87,7 +87,7 @@ export default function Navbar() {
 
                   {/* Sub Menu Dropdown */}
                   {subMenu && (
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-[300px] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-4 transition-all duration-300 z-50">
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-[300px] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-2 transition-all duration-300 z-50 ">
                       <ul className="bg-white border border-gray-100 shadow-2xl overflow-hidden">
                         {subMenu.map((sub, index) => (
                           <li key={sub.href} className={`${index !== subMenu.length - 1 ? 'border-b border-brand-maroon/20' : ''}`}>

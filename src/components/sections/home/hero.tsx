@@ -113,6 +113,8 @@ export default function Hero() {
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
                         className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-black text-white  leading-tight font-normal"
+                        // className="font-serif text-h1-mobile md:text-h1-tab lg:text-h1 font-black text-white leading-tight tracking-h1 font-normal"
+                    
                     >
                         INVESTING
                     </motion.h1>
@@ -146,7 +148,7 @@ export default function Hero() {
                 </div>
 
                 {/* Statistic Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {STATS_CARDS.map((stat, idx) => (
                         <motion.div
                             key={stat.label}
