@@ -5,6 +5,8 @@ import Footer from '@/components/layout/Footer';
 import { EB_Garamond, Lato } from 'next/font/google';
 import { siteConfig } from '@/lib/seo.config'; // Importing our new config
 import './globals.css';
+import SmartScrollToTop from '@/components/common/ScrollToTop';
+import RouteLoader from '@/components/common/RouteLoader';
 
 const ebGaramond = EB_Garamond({ 
   variable: '--font-eb-garamond', 
@@ -101,9 +103,13 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-white text-gray-900 font-sans">
+
+        <RouteLoader />
+
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <SmartScrollToTop />
       </body>
     </html>
   );

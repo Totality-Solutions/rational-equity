@@ -1,5 +1,6 @@
 "use client";
 
+import AnimatedHeader from "@/components/common/AnimatedHeader";
 import { 
   Wallet, 
   Calendar, 
@@ -31,12 +32,21 @@ export default function FundOverview({ description, stats }: FundOverviewProps) 
         
         {/* Header Section */}
         <div className="text-center mb-16 space-y-6">
-          <h2 className="font-serif text-[40px] text-gray-900">
+
+          <AnimatedHeader 
+                    title="Fund Overview"
+                    highlight="Overview"
+                    highlightColor="#8B0000"
+                    subheading={description}
+                    variant="light"
+                    className="mb-16"
+                  />
+          {/* <h2 className="font-serif text-[40px] text-gray-900">
             Fund <span className="text-brand-maroon ">Overview</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-6xl mx-auto leading-relaxed tracking-wide">
             {description}
-          </p>
+          </p> */}
         </div>
 
         {/* 🔹 Stats Grid - Perfectly matching your screenshot */}
@@ -52,11 +62,11 @@ export default function FundOverview({ description, stats }: FundOverviewProps) 
             >
               <div className="flex items-center gap-2 text-brand-maroon">
                 {stat.icon}
-                <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-gray-300">
+                <span className="text-[14px] font-medium text-[#000000]/50">
                   {stat.label}
                 </span>
               </div>
-              <p className="text-[16px] font-semibold text-gray-900 leading-tight">
+              <p className="text-[16px] font-semibold text-black leading-tight">
                 {stat.value}
               </p>
             </div>

@@ -5,10 +5,10 @@ import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
 
 const MILESTONES = [
-  { year: '2020', title: 'SEBI Registration', description: 'Rational Equity Partners established in Mumbai...' },
-  { year: '2021', title: 'SEBI Registration', description: 'Registered with SEBI as a Category II AIF...' },
-  { year: '2022', title: 'First Multibaggers', description: 'Delivered 3x—5x returns on multiple holdings...' },
-  { year: '2024', title: 'Top Performer', description: 'Ranked among India\'s top performing AIFs...' },
+  { year: '2020', title: 'Establishment', description: 'Rational Equity Partners established in Mumbai with a focus on high-conviction strategies.' },
+  { year: '2021', title: 'SEBI Registration', description: 'Registered with SEBI as a Category III AIF, launching our flagship investment scheme.' },
+  { year: '2022', title: 'First Multibaggers', description: 'Delivered 3x—5x returns on multiple holdings within the mid-cap and small-cap space.' },
+  { year: '2024', title: 'Top Performer', description: "Ranked among India's top performing AIFs based on risk-adjusted alpha generation." },
 ];
 
 export default function Journey() {
@@ -20,31 +20,23 @@ export default function Journey() {
     visible: {
       opacity: 1,
       transition: { 
-        staggerChildren: 0.1, 
-        delayChildren: 0.3 
+        staggerChildren: 0.15, 
+        delayChildren: 0.4 
       }
     }
   };
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, x: -50, scale: 0.95 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
-      opacity: 1, x: 0, scale: 1,
-      transition: { type: "spring", stiffness: 60, damping: 15, duration: 0.8 }
+      opacity: 1, y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
     }
   };
 
-  const letterVariants: Variants = {
-    hidden: { opacity: 0, y: 5 },
-    visible: (i: number) => ({
-      opacity: 1, y: 0,
-      transition: { delay: i * 0.1, duration: 0.3 }
-    })
-  };
-
   const yearVariants: Variants = {
-    initial: { color: "#E5E7EB" },
-    hover: { color: "#8B0000" }
+    initial: { color: "#E5E7EB", scale: 1 },
+    hover: { color: "#8B0000", scale: 1.05 }
   };
 
   return (

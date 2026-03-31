@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, X } from "lucide-react";
+import AnimatedHeader from "@/components/common/AnimatedHeader";
 
 const paths = [
   {
@@ -50,17 +51,17 @@ export default function ChooseYourPath() {
   }, [isModalOpen]);
 
   return (
-    <section className="bg-white pb-24 px-6 font-sans overflow-hidden">
+    <section className="bg-white py-12 px-6 font-sans overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-5xl md:text-4xl font-serif text-gray-900">
-            Choose Your <span className="text-brand-maroon">Path</span>
-          </h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Select the investment method that aligns with your financial goals
-          </p>
-        </div>
+
+        <AnimatedHeader 
+          title="Choose Your Path"
+          highlight="Path"
+          subheading="Select the investment method that aligns with your financial goals"
+          variant="light"
+          className="mb-16"
+        />
 
         {/* Path Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -75,7 +76,7 @@ export default function ChooseYourPath() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
                 onClick={() => setSelectedPath(path.id)}
-                className={`relative p-10 rounded-3xl cursor-pointer transition-all duration-300 border-2 flex flex-col min-h-[400px] 
+                className={`relative p-10 rounded-3xl cursor-pointer border-2 flex flex-col min-h-[400px] 
                   ${isActive ? "border-brand-maroon/20 bg-[#FDF2F2]/30 shadow-lg" : "border-gray-100 bg-white"}`}
               >
                 <div className="flex items-start gap-4 mb-8">

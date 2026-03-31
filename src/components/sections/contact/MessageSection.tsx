@@ -93,7 +93,7 @@ export default function MessageSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-[#000000]/50 text-sm"
+            className="text-[#000000]/50 text-md"
           >
             Fill out the form and our team will get back to you within 24 hours.
           </motion.p>

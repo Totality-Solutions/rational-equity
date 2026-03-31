@@ -3,20 +3,18 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import CTAButton from '@/components/common/CTAButton';
+import AnimatedHeader from '@/components/common/AnimatedHeader'; // Ensure path is correct
 
 export default function AboutSection() {
-  // 1. Create a reference to the section
   const sectionRef = useRef(null);
   
-  // 2. This hook tracks if the section is truly in the center of the screen
-  // margin: "-300px" ensures it doesn't trigger until you've scrolled deep into it
   const isInView = useInView(sectionRef, { 
     once: true, 
     margin: "0px 0px -300px 0px" 
   });
 
   const barHeights = [
-    120, 160, 200, 150, 180, 240, 210, 280, 320, 350, 290, 380, 420, 450, 410,
+    120, 160, 200, 150, 180, 240, 430 , 190, 170, 120, 200, 380, 420, 450, 410,
     490, 460, 520
   ];
 
@@ -26,7 +24,7 @@ export default function AboutSection() {
       className="relative bg-white py-16 md:py-24 overflow-hidden font-sans min-h-[700px] md:min-h-[700px] flex flex-col justify-center"
     >
 
-      {/* 1. FULL-WIDTH BACKGROUND CHART */}
+      {/* --- 1. SVG BACKGROUND LAYER (Stays exactly the same) --- */}
       <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.12] pointer-events-none">
         <svg
           width="100%"
@@ -45,14 +43,9 @@ export default function AboutSection() {
           {barHeights.map((h, i) => {
             const lastIndex = barHeights.length - 1;
             let customDelay = 0;
-
-            if (i >= lastIndex - 3) {
-              customDelay = (lastIndex - i) * 0.15;
-            } else if (i <= 3) {
-              customDelay = 0.6 + (i * 0.1);
-            } else {
-              customDelay = 1.2 + (i * 0.05);
-            }
+            if (i >= lastIndex - 3) customDelay = (lastIndex - i) * 0.15;
+            else if (i <= 3) customDelay = 0.6 + (i * 0.1);
+            else customDelay = 1.2 + (i * 0.05);
 
             const barWidth = 40; 
             const spacing = 1400 / lastIndex;
@@ -63,34 +56,23 @@ export default function AboutSection() {
                 x={(spacing * i) - (barWidth / 2)}
                 width={barWidth}
                 fill="url(#barFade)"
-                // We use the 'animate' prop controlled by 'isInView'
                 initial={{ height: 0, y: 500, opacity: 0 }}
                 animate={isInView ? { height: h, y: 400 - h / 2, opacity: 1 } : {}}
-                transition={{
-                  duration: 2,
-                  delay: customDelay,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
+                transition={{ duration: 2, delay: customDelay, ease: [0.16, 1, 0.3, 1] }}
               />
             );
           })}
 
           <motion.path
             d="M0 500 C 400 460, 1000 380, 1400 300"
-            stroke="#800000"
-            strokeWidth="2"
-            strokeOpacity="0.4"
-            fill="none"
+            stroke="#800000" strokeWidth="2" strokeOpacity="0.4" fill="none"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
             transition={{ duration: 3, ease: "easeInOut", delay: 2.2 }}
           />
           <motion.path
             d="M0 450 C 350 420, 950 320, 1400 200"
-            stroke="#800000"
-            strokeWidth="3"
-            strokeOpacity="0.6"
-            fill="none"
+            stroke="#800000" strokeWidth="3" strokeOpacity="0.6" fill="none"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
             transition={{ duration: 2.5, ease: "easeInOut", delay: 2.5 }}
@@ -120,6 +102,21 @@ export default function AboutSection() {
           <div className="h-[1.5px] w-12 md:w-20 bg-[#800000] opacity-30" />
         </div>
 
+        {/* Main About Content: Title + Subheading Slide up together */}
+        <div>
+        <AnimatedHeader 
+          title="About Rational"
+          variant="light"
+          className="!mb-0"
+        />
+        <AnimatedHeader 
+          title="Asset Management"
+          subheading="We are a leading asset management company committed to delivering superior risk-adjusted returns through disciplined investment strategies. With over 15 years of excellence, we manage ₹25,000+ Crores for 500,000+ satisfied investors."
+          variant="light"
+        />
+        </div>
+
+        {/* Button with independent stagger */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
@@ -138,15 +135,13 @@ export default function AboutSection() {
           transition={{ delay: 0.7 }}
           className="font-sans text-black text-base md:text-[20px] leading-relaxed max-w-6xl mx-auto mb-10 md:mb-16 px-2 md:px-4"
         >
-          We are a leading asset management company committed to delivering superior risk-adjusted returns through disciplined investment strategies. With over 15 years of excellence, we manage <span className="whitespace-nowrap">₹25,000+ Crores</span> for <span className="whitespace-nowrap">500,000+</span> satisfied investors.
-        </motion.p>
-
-        <CTAButton
-          href="/about"
-          text="Learn More about us"
-          variant="maroon-bg"
-          iconClassName="invert" 
-        />
+          <CTAButton
+            href="/about"
+            text="Learn More about us"
+            variant="maroon-bg"
+            iconClassName="invert" 
+          />
+        </motion.div>
       </div>
     </section>
   );

@@ -18,7 +18,7 @@ export default function Toast({ isVisible, message, progress, isComplete }: Toas
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 50, transition: { delay: 1.5 } }} // Stays briefly after finishing
-          className="fixed top-20 right-6 z-[100] pointer-events-none"
+          className="fixed top-25 right-6 z-[100] pointer-events-none"
         >
           <div className="w-80 p-4 bg-emerald-50 rounded-lg shadow-lg outline outline-1 outline-green-200 flex flex-col gap-3 pointer-events-auto">
             <div className="flex items-center gap-3">

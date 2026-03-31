@@ -1,7 +1,7 @@
-
 'use client';
 
 import React, { useState } from 'react';
+import AnimatedHeader from '@/components/common/AnimatedHeader'; // Adjust path as needed
 
 const FAQ_DATA = [
   {
@@ -33,15 +33,15 @@ export default function FAQ() {
     <section className="bg-brand-maroon-hover py-12 text-white font-sans">
       <div className="max-w-4xl mx-auto px-6">
         
-        {/* Header - Fluid Sizing */}
-        <div className="text-center mb-10 md:mb-16">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-4 md:mb-6 leading-tight">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-rose-100/70 text-base md:text-lg max-w-2xl mx-auto font-sans">
-            Find answers to common questions about investing with us
-          </p>
-        </div>
+        {/* --- REPLACED HEADER SECTION --- */}
+        <AnimatedHeader 
+          title="Frequently Asked Questions"
+          // highlight="QUESTIONS"
+          // highlightColor="#ffffff" // White highlight for the dark background
+          subheading="Find answers to common questions about investing with us"
+          variant="dark" // Ensures text is white
+          className="mb-12 md:mb-16"
+        />
 
         {/* Accordion List */}
      {/* Accordion List */}

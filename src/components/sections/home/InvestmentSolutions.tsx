@@ -48,7 +48,7 @@ export default function InvestmentSolutions() {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="relative bg-[#0a0a0a] py-16 md:py-24 text-white font-sans overflow-hidden"
+      className="relative bg-[#0a0a0a] py-16 mb-24 text-white font-sans overflow-hidden"
     >
       
       {/* GRID BACKGROUND */}

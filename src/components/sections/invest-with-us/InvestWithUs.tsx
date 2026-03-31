@@ -81,7 +81,7 @@ const stats = [
 
 export default function InvestWithUs() {
   return (
-    <section className="relative w-full h-screen bg-white font-sans overflow-hidden">
+    <section className="relative w-full min-h-[600px] bg-white font-sans overflow-hidden">
       {/* Background Dotted Pattern */}
 
       <div className="relative ">

@@ -31,16 +31,15 @@ interface ProductHeroProps {
 
 export default function ProductHero({ title, description, titleColor = "text-brand-maroon" }: ProductHeroProps) {
   return (
-    <section className="w-full py-12 bg-white flex flex-col items-start overflow-hidden">
+    <section className="w-full pb-12 bg-white flex flex-col items-start overflow-hidden">
       <div className="w-full px-8 md:px-16 flex flex-col items-start gap-6">
         
-        {/* Back Button */}
         <Link 
           href="/" 
-          className="group flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity cursor-pointer"
+          className="group flex items-center gap-2 pt-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
         >
-          <ArrowLeft size={16} className="text-gray-600 transition-transform group-hover:-translate-x-1" />
-          <span className="font-sans text-[14px] text-gray-600 font-medium tracking-[0.28px]">
+          <ArrowLeft size={16} className="text-[#000000]/50 transition-transform group-hover:-translate-x-1" />
+          <span className="font-sans text-[14px] text-[#000000]/50 font-medium tracking-[0.28px]">
             Back to Home
           </span>
         </Link>
