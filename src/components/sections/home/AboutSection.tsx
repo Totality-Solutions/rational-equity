@@ -23,7 +23,7 @@ export default function AboutSection() {
   return (
     <section 
       ref={sectionRef} // Attach the ref here
-      className="relative bg-white py-16 md:py-24 overflow-hidden font-sans min-h-[700px] md:min-h-[900px] flex flex-col justify-center"
+      className="relative bg-white py-16 md:py-24 overflow-hidden font-sans min-h-[700px] md:min-h-[700px] flex flex-col justify-center"
     >
 
       {/* 1. FULL-WIDTH BACKGROUND CHART */}
@@ -99,7 +99,7 @@ export default function AboutSection() {
       </div>
 
       {/* 2. CONTENT LAYER */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-8xl mx-auto px-12  text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -126,7 +126,7 @@ export default function AboutSection() {
           transition={{ delay: 0.5 }}
           className="mb-6 md:mb-10"
         >
-          <h3 className="font-serif text-2xl sm:text-3xl md:text-[48px] text-gray-900 leading-tight">
+          <h3 className="font-serif text-3xl sm:text-4xl md:text-[56px] text-gray-900 leading-[1.2] md:leading-[1.1] font-normal tracking-tight">
             About Rational<br />
             Asset Management
           </h3>
@@ -136,7 +136,7 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.7 }}
-          className="font-sans text-gray-700 text-base md:text-[20px] leading-relaxed max-w-4xl mx-auto mb-10 md:mb-16 px-2 md:px-4"
+          className="font-sans text-black text-base md:text-[20px] leading-relaxed max-w-6xl mx-auto mb-10 md:mb-16 px-2 md:px-4"
         >
           We are a leading asset management company committed to delivering superior risk-adjusted returns through disciplined investment strategies. With over 15 years of excellence, we manage <span className="whitespace-nowrap">₹25,000+ Crores</span> for <span className="whitespace-nowrap">500,000+</span> satisfied investors.
         </motion.p>

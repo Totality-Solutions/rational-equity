@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
+import Container from '@/components/common/Container';
 
 const MILESTONES = [
   { year: '2020', title: 'SEBI Registration', description: 'Rational Equity Partners established in Mumbai...' },
@@ -12,7 +13,7 @@ const MILESTONES = [
 
 export default function Journey() {
   const journeyWord = "JOURNEY";
-  const subTitleText = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+  const subTitleText = "Our path has been defined by a commitment to rigorous research and absolute integrity.";
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -48,11 +49,10 @@ export default function Journey() {
 
   return (
     <section className="bg-white py-16 md:py-24 font-sans overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-
+      <Container>
         {/* Header */}
         <div className="text-center mb-12 md:mb-20">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-black mb-4 md:mb-6">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black mb-4 md:mb-6">
             The {" "}
             <motion.span
               initial="hidden"
@@ -73,7 +73,7 @@ export default function Journey() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-black font-normal max-w-2xl mx-auto text-base md:text-lg leading-relaxed"
+            className="text-gray-700 font-normal max-w-2xl mx-auto text-base md:text-lg lg:text-xl leading-relaxed"
           >
             {subTitleText.split(" ").map((word, index) => (
               <motion.span
@@ -97,46 +97,44 @@ export default function Journey() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          /* REMOVED internal padding (p-8) so cards can touch the edges */
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 bg-[#f9f9f9]  overflow-hidden items-stretch"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-[#f9f9f9] overflow-hidden items-stretch "
         >
           {MILESTONES.map((item, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
-              className="relative h-full"
+              className="relative h-full border-b sm:border-b-0  border-gray-200 last:border-0"
             >
               <motion.div
                 initial="initial"
                 whileHover="hover"
                 variants={{
                   hover: {
-                   background: "linear-gradient(90deg, #8B000015 0%, #8B000008 25%, transparent 50%)",
+                    background: "linear-gradient(90deg, #8B000010 0%, #8B000005 25%, transparent 50%)",
                   }
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                /* ADDED padding here (p-8 md:p-12) so content is spaced but background fills 100% */
-                className="p-8 md:p-12 cursor-pointer transition-all duration-300 h-full flex flex-col" 
+                className="p-8 md:p-10 lg:p-12 cursor-pointer transition-all duration-300 h-full flex flex-col group" 
               >
                 <motion.div 
                   variants={yearVariants}
                   transition={{ duration: 0.3 }}
-                  className="font-serif text-5xl sm:text-6xl md:text-7xl mb-4 md:mb-6 opacity-80 select-none"
+                  className="font-serif text-5xl sm:text-6xl md:text-7xl mb-4 md:mb-6 opacity-80 select-none group-hover:scale-105 transition-transform duration-300 origin-left"
                 >
                   {item.year}
                 </motion.div>
 
-                <h3 className="font-sans font-bold text-lg text-black mb-3 md:mb-4">
+                <h3 className="font-sans font-bold text-lg md:text-xl text-black mb-3 md:mb-4">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 text-sm md:text-[15px] leading-relaxed flex-grow">
+                <p className="text-gray-500 text-sm md:text-base leading-relaxed flex-grow">
                   {item.description}
                 </p>
               </motion.div>
             </motion.div>
           ))}
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

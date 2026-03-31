@@ -30,7 +30,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-brand-maroon-hover py-24 text-white font-sans">
+    <section className="bg-brand-maroon-hover py-12 text-white font-sans">
       <div className="max-w-4xl mx-auto px-6">
         
         {/* Header - Fluid Sizing */}
@@ -78,7 +78,7 @@ export default function FAQ() {
           openIndex === index ? 'max-h-96 pb-8 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <p className="text-rose-100/80 leading-relaxed font-sans text-sm md:text-base max-w-3xl">
+        <p className="text-white leading-relaxed font-sans text-sm md:text-base max-w-3xl">
           {faq.answer}
         </p>
       </div>
