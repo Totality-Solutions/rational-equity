@@ -84,7 +84,7 @@ export default function ChooseYourPath() {
                     {isActive && <div className="w-3 h-3 lg:w-3 lg:h-3 rounded-full bg-brand-maroon" />}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">{path.title}</h3>
+                    <h3 className="text-2xl font-weight-semibold text-gray-900 mb-4">{path.title}</h3>
                     <p className="text-[#000000]/50 text-lg">{path.description}</p>
                   </div>
                 </div>
@@ -99,7 +99,7 @@ export default function ChooseYourPath() {
                 <div className="mt-auto">
                   <button 
                     onClick={(e) => { e.stopPropagation(); setIsModalOpen(true); }}
-                    className={`flex items-center gap-2 font-bold text-lg transition-all ${isActive ? "text-brand-maroon" : "text-gray-300"}`}
+                    className={`flex items-center gap-2 font-weight-bold text-lg transition-all ${isActive ? "text-brand-maroon" : "text-gray-300"}`}
                   >
                     Get started <ArrowRight size={20} />
                   </button>
@@ -133,30 +133,30 @@ export default function ChooseYourPath() {
               </button>
 
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-black font-sans">Schedule a Call</h3>
-                <p className="text-sm text-gray-500 font-medium mt-1">We'll reach out at your preferred time</p>
+                <h3 className="text-2xl font-weight-bold text-black font-sans">Schedule a Call</h3>
+                <p className="text-sm text-gray-500 font-weight-medium mt-1">We'll reach out at your preferred time</p>
               </div>
 
               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-gray-500">Full name</label>
+                  <label className="text-xs font-weight-medium text-gray-500">Full name</label>
                   <input type="text" placeholder="Your name" className="w-full bg-gray-100 border-none px-4 py-3 text-sm focus:ring-1 focus:ring-brand-maroon outline-none" />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-gray-500">Phone number</label>
+                  <label className="text-xs font-weight-medium text-gray-500">Phone number</label>
                   <input type="tel" placeholder="+1 (555) 000-0000" className="w-full bg-gray-100 border-none px-4 py-3 text-sm focus:ring-1 focus:ring-brand-maroon outline-none" />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-gray-500">Service</label>
+                  <label className="text-xs font-weight-medium text-gray-500">Service</label>
                   <select className="w-full bg-gray-100 border-none px-4 py-3 text-sm focus:ring-1 focus:ring-brand-maroon outline-none appearance-none cursor-pointer">
                     <option>{selectedPath === 'lumpsum' ? 'Lump Sum Investment' : 'SIP Investment'}</option>
                     <option>General Inquiry</option>
                   </select>
                 </div>
 
-                <button className="w-full bg-brand-maroon text-white font-bold py-4  hover:cursor-pointer hover:bg-brand-maroon-hover transition-all text-base mt-4 shadow-lg shadow-brand-maroon/20">
+                <button className="w-full bg-brand-maroon text-white font-weight-bold py-4  hover:cursor-pointer hover:bg-brand-maroon-hover transition-all text-base mt-4 shadow-lg shadow-brand-maroon/20">
                   Confirm Request
                 </button>
               </form>

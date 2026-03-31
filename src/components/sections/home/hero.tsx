@@ -123,7 +123,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.2, duration: 0.6 }}
-                        className="font-sans text-xl sm:text-2xl md:text-[32px] font-weight-normal text-white tracking-widest mb-10"
+                        className="font-sans text-xl sm:text-2xl md:text-h3font-weight-normal text-white tracking-widest mb-10"
                     >
                         the Rational way.
                     </motion.p>
@@ -132,7 +132,7 @@ export default function Hero() {
                         initial={{ opacity: 0 }}
                         animate={inView ? { opacity: 1 } : {}}
                         transition={{ delay: 0.4, duration: 0.8 }}
-                        className="text-base sm:text-lg md:text-[20px] text-white leading-relaxed mb-12 px-4"
+                        className="text-base sm:text-lg md:text-h4text-white leading-relaxed mb-12 px-4"
                     >
                         Long-only strategies built on conviction, discipline,<br className="hidden md:block" />
                         and long-term value creation.
@@ -160,12 +160,12 @@ export default function Hero() {
                             className="group relative bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-sm p-8 md:p-10 text-center transition-all duration-500"
                             style={{ transform: 'translateZ(0)' }}
                         >
-                            <div className="font-serif text-2xl md:text-3xl font-medium text-white mb-2 tracking-wider flex justify-center items-baseline">
+                            <div className="font-serif text-2xl md:text-3xl font-weight-medium text-white mb-2 tracking-wider flex justify-center items-baseline">
                                 <KBCNumber value={stat.value} inView={inView} />
                                 <span className="ml-1 text-xl md:text-2xl">{stat.suffix}</span>
                             </div>
                             
-                            <p className="text-[10px] md:text-[14px] font-medium tracking-[0.2em] text-white uppercase">
+                            <p className="text-[10px] md:text-body-sm font-weight-medium tracking-[0.2em] text-white uppercase">
                                 {stat.label}
                             </p>
                             

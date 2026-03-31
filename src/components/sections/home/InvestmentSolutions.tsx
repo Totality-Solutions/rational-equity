@@ -107,21 +107,21 @@ export default function InvestmentSolutions() {
                 {/* CONTENT */}
                 <div className="relative z-20 p-6 md:p-8 flex flex-col flex-1 justify-between">
                   <div>
-                    <h3 className="text-black font-bold text-xl md:text-2xl mb-4 md:mb-6 transition-colors group-hover:text-[#800000]">
+                    <h3 className="text-black font-weight-bold text-xl md:text-2xl mb-4 md:mb-6 transition-colors group-hover:text-[#800000]">
                       {fund.title}
                     </h3>
-                    <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed mb-8 md:mb-12">
+                    <p className="text-gray-600 text-sm md:text-body-md  leading-relaxed mb-8 md:mb-12">
                       {fund.description}
                     </p>
                   </div>
 
                   <div>
                     <div className="flex justify-between items-center mb-6 border-t border-gray-100 pt-6">
-                      <span className="text-gray-400 text-[10px] md:text-[11px] font-bold uppercase tracking-widest">3 Year Returns</span>
-                      <span className="text-[#800000] font-bold text-base md:text-lg">{fund.returns}</span>
+                      <span className="text-gray-400 text-[10px] md:text-[11px] font-weight-bold uppercase tracking-widest">3 Year Returns</span>
+                      <span className="text-[#800000] font-weight-bold text-base md:text-lg">{fund.returns}</span>
                     </div>
 
-                    <button className="w-full bg-[#800000] text-white py-3.5 rounded-lg font-bold text-sm transition-all hover:bg-[#600000] active:scale-[0.98]">
+                    <button className="w-full bg-[#800000] text-white py-3.5 rounded-lg font-weight-bold text-sm transition-all hover:bg-[#600000] active:scale-[0.98]">
                       View Details
                     </button>
                   </div>

@@ -64,7 +64,7 @@ export default function AnimatedHeader({
         viewport={{ once: true, amount: 0.5 }}
         className={`
           font-serif 
-          font-normal 
+          font-weight-normal 
           tracking-h2 
           leading-tight 
           ${titleColor}
@@ -137,7 +137,7 @@ export default function AnimatedHeader({
           variants={slideUpVariants}
           custom={0.4}
           className={`
-            font-normal 
+            font-weight-normal 
             max-w-3xl 
             mx-auto 
             leading-relaxed 

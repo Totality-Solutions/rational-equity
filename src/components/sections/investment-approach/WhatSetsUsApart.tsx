@@ -96,7 +96,7 @@ export default function WhatSetsUsApart() {
                     <div className="w-[1px] h-6 bg-brand-maroon opacity-50 group-hover:opacity-100 transition-opacity" />
                   </div>
 
-                  <h4 className="text-brand-maroon font-sans font-bold text-xl mb-3 tracking-wide">
+                  <h4 className="text-brand-maroon font-sans font-weight-bold text-xl mb-3 tracking-wide">
                     {item.title}
                   </h4>
                   <p className="text-white/60 font-sans leading-relaxed">

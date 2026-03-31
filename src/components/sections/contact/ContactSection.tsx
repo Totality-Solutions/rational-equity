@@ -66,7 +66,7 @@ export default function ContactSection() {
           highlightColor="#8B0000"
           subheading="Have questions about our funds or need help getting started? Our team is ready to assist you."
           variant="light"
-          className="mb-16 md:mb-24 !font-semibold"
+          className="mb-16 md:mb-24 !font-weight-semibold"
         />
 
         {/* Info Cards Grid - Animated Staggered */}
@@ -90,14 +90,14 @@ export default function ContactSection() {
                 {item.icon}
               </div>
 
-                <p className="text-body-sm-mobile uppercase font-weight-normal text-[#000000]/50 mb-3 ">
+                <p className="text-body-sm -mobile uppercase font-weight-normal text-[#000000]/50 mb-3 ">
                   {item.label}
                 </p>
               <div className="space-y-1">
-                <h3 className="text-body-md-tab font-bold text-black">
+                <h3 className="text-body-md -tab font-weight-bold text-black">
                   {item.value}
                 </h3>
-                <p className="text-body-sm-mobile text-[#000000]/50 font-weight-normal leading-relaxed">
+                <p className="text-body-sm -mobile text-[#000000]/50 font-weight-normal leading-relaxed">
                   {item.subValue}
                 </p>
               </div>

@@ -100,18 +100,18 @@ export default function Testimonials() {
                     ))}
                   </div>
 
-                  <p className="text-gray-700 leading-relaxed text-base md:text-[17px] font-medium">
+                  <p className="text-gray-700 leading-relaxed text-base md:text-[17px] font-weight-medium">
                     "{item.text}"
                   </p>
                 </div>
 
                 {/* Footer Area */}
                 <div className="bg-[#8B0000] p-5 md:p-6 flex items-center gap-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-[#8B0000] font-bold font-sans text-base md:text-lg">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-[#8B0000] font-weight-bold font-sans text-base md:text-lg">
                     {item.initial}
                   </div>
                   <div className="overflow-hidden">
-                    <h4 className="text-white font-bold text-sm md:text-[16px] tracking-wide font-sans truncate">{item.name}</h4>
+                    <h4 className="text-white font-weight-bold text-sm md:text-body-md tracking-wide font-sans truncate">{item.name}</h4>
                     <p className="text-rose-100/80 text-[10px] md:text-xs truncate">{item.location}</p>
                   </div>
                 </div>

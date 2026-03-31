@@ -53,10 +53,10 @@ export default function ApproachFeatures() {
               <div className="mb-8 flex justify-center text-[#8B0000]">
                 {item.icon}
               </div>
-              <h4 className="font-sans font-bold text-gray-900 mb-6 text-lg tracking-tight">
+              <h4 className="font-sans font-weight-bold text-gray-900 mb-6 text-lg tracking-tight">
                 {item.title}
               </h4>
-              <p className="font-sans text-gray-500 leading-relaxed text-[15px] px-2">
+              <p className="font-sans text-gray-500 leading-relaxed text-body-md  px-2">
                 {item.desc}
               </p>
             </motion.div>

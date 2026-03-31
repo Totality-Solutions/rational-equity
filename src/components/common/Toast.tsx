@@ -38,7 +38,7 @@ export default function Toast({ isVisible, message, progress, isComplete }: Toas
               </div>
 
               <div className="flex flex-col">
-                <span className="text-green-700 text-xs font-bold font-sans">
+                <span className="text-green-700 text-xs font-weight-bold font-sans">
                   {isComplete ? "Download Complete" : `Downloading ${message}`}
                 </span>
                 {!isComplete && (

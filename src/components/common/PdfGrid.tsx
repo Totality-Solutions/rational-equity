@@ -139,7 +139,7 @@ export default function PdfGrid({ data }: Props) {
               </div>
 
               <div className="space-y-1">
-                <h3 className="text-[16px] font-medium text-gray-900 leading-tight">
+                <h3 className="text-body-md font-weight-medium text-gray-900 leading-tight">
                   {doc.title}
                 </h3>
                 {doc.description && <p className="text-gray-500 text-[13px]">{doc.description}</p>}

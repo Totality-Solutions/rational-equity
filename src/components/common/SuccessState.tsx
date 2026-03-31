@@ -27,7 +27,7 @@ export function SuccessState({ onReset, variant = "page" }: SuccessStateProps) {
       </div>
 
       <div className="space-y-4">
-        <h2 className={`font-serif font-bold text-gray-900 ${
+        <h2 className={`font-serif font-weight-bold text-gray-900 ${
           variant === "page" ? "text-xl md:text-3xl" : "text-3xl"
         }`}>
           Request Submitted!

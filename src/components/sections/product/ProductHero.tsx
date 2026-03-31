@@ -39,7 +39,7 @@ export default function ProductHero({ title, description, titleColor = "text-bra
           className="group flex items-center gap-2 pt-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
         >
           <ArrowLeft size={16} className="text-[#000000]/50 transition-transform group-hover:-translate-x-1" />
-          <span className="font-sans text-[14px] text-[#000000]/50 font-medium tracking-[0.28px]">
+          <span className="font-sans text-body-sm text-[#000000]/50 font-weight-medium tracking-[0.28px]">
             Back to Home
           </span>
         </Link>
@@ -52,11 +52,11 @@ export default function ProductHero({ title, description, titleColor = "text-bra
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-[800px] flex flex-col justify-center items-center gap-5 text-center"
           >
-            <h1 className={`font-serif text-[48px] md:text-[56px] ${titleColor} font-bold leading-[1.1] tracking-tight`}>
+            <h1 className={`font-serif text-[48px] md:text-[56px] ${titleColor} font-weight-bold leading-[1.1] tracking-tight`}>
               {title}
             </h1>
             
-            <p className="font-sans text-[18px] text-gray-500 leading-[28px] tracking-[0.36px] max-w-[530px]">
+            <p className="font-sans text-body-lg text-gray-500 leading-[28px] tracking-[0.36px] max-w-[530px]">
               {description}
             </p>
           </motion.div>

@@ -56,7 +56,7 @@ export default function RiskManagement() {
               <div className="mb-8">
                 {item.icon}
               </div>
-              <h4 className="font-sans font-bold text-xl text-gray-900 mb-4">
+              <h4 className="font-sans font-weight-bold text-xl text-gray-900 mb-4">
                 {item.title}
               </h4>
               <p className="font-sans text-gray-500 leading-relaxed">

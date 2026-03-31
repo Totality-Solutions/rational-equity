@@ -8,11 +8,11 @@ export default function NotFound() {
       {/* 1. CONTENT LAYER */}
       <div className="relative z-20 px-8 md:px-24">
         <div className="max-w-2xl font-sans text-center">
-          <p className="text-zinc-500 text-lg md:text-xl font-normal leading-relaxed">
+          <p className="text-zinc-500 text-lg md:text-xl font-weight-normal leading-relaxed">
             The link may be outdated or the page may have been removed.
           </p>
-          <p className="text-zinc-500 text-lg md:text-xl font-normal mb-8">
-            Let's help you <span className="text-[#800000] font-semibold">Get Back</span> on track.
+          <p className="text-zinc-500 text-lg md:text-xl font-weight-normal mb-8">
+            Let's help you <span className="text-[#800000] font-weight-semibold">Get Back</span> on track.
           </p>
 
           <div className="flex justify-center">

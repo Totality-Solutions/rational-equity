@@ -21,7 +21,7 @@ export default function ApproachHero() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="font-serif text-5xl md:text-6xl text-[#8B0000] mb-6 font-medium"
+                    className="font-serif text-5xl md:text-6xl text-[#8B0000] mb-6 font-weight-medium"
                 >
                     Our Investment Approach
                 </motion.h1>

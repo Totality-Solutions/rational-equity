@@ -53,7 +53,7 @@ export default function InvestmentProcess() {
               {/* Title with vertical maroon bar */}
               <div className="w-full md:w-1/3 flex items-center mb-4 md:mb-0">
                 <div className="w-[2px] h-8 bg-brand-maroon/30 mr-6" />
-                <h3 className="font-sans font-semibold text-xl text-gray-800">
+                <h3 className="font-sans font-weight-semibold text-xl text-gray-800">
                   {item.title}
                 </h3>
               </div>

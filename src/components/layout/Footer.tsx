@@ -47,7 +47,7 @@ export default function Footer() {
                 />
               </div>
             </Link>
-            <p className="text-[16px] leading-relaxed max-w-sm text-gray-400 font-sans">
+            <p className="text-body-md leading-relaxed max-w-sm text-gray-400 font-sans">
               A leading asset management company committed to delivering superior risk-adjusted returns
               through disciplined investment strategies and unwavering focus on long-term value creation.
             </p>
@@ -80,7 +80,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="md:col-span-3">
-            <h3 className="text-white font-bold mb-5 md:mb-6 font-sans">Contact Us</h3>
+            <h3 className="text-white font-weight-bold mb-5 md:mb-6 font-sans">Contact Us</h3>
             <ul className="space-y-4 md:space-y-5 text-sm font-sans">
               <li className="flex gap-3">
                 <MapPin className="text-white shrink-0" size={20} />
@@ -107,7 +107,7 @@ export default function Footer() {
             © {year} RATIONAL ASSET MANAGEMENT COMPANY. ALL RIGHTS RESERVED.
           </p>
 
-          <div className="flex justify-center flex-wrap gap-6 text-[16px] text-gray-400 mb-8 font-sans">
+          <div className="flex justify-center flex-wrap gap-6 text-body-md text-gray-400 mb-8 font-sans">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <span className="text-gray-700 hidden sm:block">|</span>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
@@ -131,13 +131,13 @@ export default function Footer() {
 function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) {
   return (
     <div className="md:col-span-2">
-      <h3 className="text-white font-bold mb-6 font-sans">{title}</h3>
+      <h3 className="text-white font-weight-bold mb-6 font-sans">{title}</h3>
       <ul className="space-y-4">
         {links.map((link) => (
           <li key={link.label}>
             <Link
               href={link.href}
-              className={`text-[14px] transition-colors font-sans hover:text-white ${
+              className={`text-body-sm transition-colors font-sans hover:text-white ${
                 link.color || 'text-gray-400' // 🔹 Default to gray-400 if no color provided
               }`}
             >

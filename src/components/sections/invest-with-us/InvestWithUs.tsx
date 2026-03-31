@@ -100,7 +100,7 @@ export default function InvestWithUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-[32px] md:text-[52px] font-serif font-semibold text-brand-maroon"
+            className="text-h3 md:text-[52px] font-serif font-weight-semibold text-brand-maroon"
           >
             Invest With Us
           </motion.h2>
@@ -111,7 +111,7 @@ export default function InvestWithUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-gray-600 text-[14px] md:text-[18px] leading-relaxed"
+            className="text-gray-600 text-body-sm md:text-body-lg leading-relaxed"
           >
             Simple, transparent, and efficient investing with Rational AMC — a 
             disciplined, research-driven approach to generating superior long-term returns.
@@ -148,7 +148,7 @@ export default function InvestWithUs() {
                 ${index !== stats.length - 1 ? 'lg:border-r' : ''} 
                 ${index % 2 === 0 ? 'md:border-r md:border-b lg:border-r' : 'md:border-r-0 md:border-b lg:border-r'}`}
             >
-              <h3 className="text-[20px] md:text-[28px] font-semibold font-serif text-gray-900">
+              <h3 className="text-h4md:text-[28px] font-weight-semibold font-serif text-gray-900">
                 <Counter value={stat.value} />
               </h3>
               <p className="text-gray-400 text-[14px]">
