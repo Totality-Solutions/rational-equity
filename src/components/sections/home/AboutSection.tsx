@@ -20,8 +20,8 @@ export default function AboutSection() {
 
   return (
     <section 
-      ref={sectionRef} 
-      className="relative bg-white py-16 md:py-24 overflow-hidden font-sans min-h-[700px] md:min-h-[900px] flex flex-col justify-center"
+      ref={sectionRef} // Attach the ref here
+      className="relative bg-white py-16 md:py-24 overflow-hidden font-sans min-h-[700px] md:min-h-[700px] flex flex-col justify-center"
     >
 
       {/* --- 1. SVG BACKGROUND LAYER (Stays exactly the same) --- */}
@@ -80,24 +80,20 @@ export default function AboutSection() {
         </svg>
       </div>
 
-      {/* --- 2. CONTENT LAYER --- */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-        
-        {/* Top Header: Responsive sizes handled by Component */}
-        <div className="mb-12 md:mb-20">
-          <AnimatedHeader 
-            title="Rational thinking."
-            variant="light"
-            className="!mb-0" // Remove component's default bottom margin to keep layout tight
-          />
-          <AnimatedHeader 
-            title="Exceptional returns."
-            variant="light"
-            className="!mb-0" // Remove component's default bottom margin to keep layout tight
-          />
-        </div>
+      {/* 2. CONTENT LAYER */}
+      <div className="relative z-10 max-w-8xl mx-auto px-12  text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="mb-12 md:mb-20"
+        >
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-[56px] text-gray-900 leading-[1.2] md:leading-[1.1] font-normal tracking-tight">
+            Rational thinking.<br className="hidden sm:block" />
+            Exceptional returns.
+          </h2>
+        </motion.div>
 
-        {/* Since 2008 Divider (Fixed Layout) */}
         <div className="flex items-center justify-center gap-4 md:gap-6 mb-8 md:mb-12">
           <div className="h-[1.5px] w-12 md:w-20 bg-[#800000] opacity-30" />
           <span className="font-sans text-[11px] md:text-[13px] tracking-[0.2em] text-gray-500 uppercase font-bold whitespace-nowrap">
@@ -122,18 +118,31 @@ export default function AboutSection() {
 
         {/* Button with independent stagger */}
         <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.5 }}
+          className="mb-6 md:mb-10"
+        >
+          <h3 className="font-serif text-3xl sm:text-4xl md:text-[56px] text-gray-900 leading-[1.2] md:leading-[1.1] font-normal tracking-tight">
+            About Rational<br />
+            Asset Management
+          </h3>
+        </motion.div>
+
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1.2 }}
-          className="mt-10 md:mt-16"
+          transition={{ delay: 0.7 }}
+          className="font-sans text-black text-base md:text-[20px] leading-relaxed max-w-6xl mx-auto mb-10 md:mb-16 px-2 md:px-4"
         >
+          we are
+          </motion.p>
           <CTAButton
             href="/about"
             text="Learn More about us"
             variant="maroon-bg"
             iconClassName="invert" 
           />
-        </motion.div>
       </div>
     </section>
   );
