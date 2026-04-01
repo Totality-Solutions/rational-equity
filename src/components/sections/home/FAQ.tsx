@@ -1,7 +1,10 @@
+
+
+
 'use client';
 
+import AnimatedHeader from '@/components/common/AnimatedHeader';
 import React, { useState } from 'react';
-import AnimatedHeader from '@/components/common/AnimatedHeader'; // Adjust path as needed
 
 const FAQ_DATA = [
   {
@@ -30,17 +33,19 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section data-theme="dark" className="bg-brand-maroon-hover py-24 text-white font-sans">
+    <section className="bg-brand-maroon-hover py-12 text-white font-sans">
       <div className="max-w-4xl mx-auto px-6">
         
-        {/* --- REPLACED HEADER SECTION --- */}
-        <AnimatedHeader 
+        {/* Header - Fluid Sizing */}
+       <AnimatedHeader 
           title="Frequently Asked Questions"
-          // highlight="QUESTIONS"
-          // highlightColor="#ffffff" // White highlight for the dark background
+          highlight="Asked Questions"
+          highlightColor="#ffffff" // Keeping highlight white for contrast on maroon
           subheading="Find answers to common questions about investing with us"
-          variant="dark" // Ensures text is white
-          className="mb-12 md:mb-16"
+          variant="dark"
+          className="mb-12 md:mb-20"
+          titleClassName="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight"
+          subheadingClassName="text-rose-100/70 max-w-2xl mx-auto"
         />
 
         {/* Accordion List */}

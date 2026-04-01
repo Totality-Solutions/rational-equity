@@ -22,7 +22,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   primaryColor = "#9B0000",
   textColor = "#9B0000",
   className = "",
-  paddingClassName = "px-8 md:px-12 py-4", // 🔹 Default padding
+  paddingClassName = "px-3 md:px-3 py-3", // 🔹 Default padding
   iconClassName = "",
   iconSrc = "/images/arrowbtn.png"
 }) => {
@@ -33,7 +33,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
     <div className={`flex justify-center ${className}`}>
       <Link 
         href={href} 
-        className="group flex items-stretch border border-brand-maroon overflow-hidden transition-all duration-500 w-full sm:w-auto hover:shadow-lg hover:shadow-brand-maroon-hover/40"
+        className="group flex items-stretch border border-brand-maroon overflow-hidden transition-all duration-500 w-full sm:w-auto hover:shadow-lg hover:shadow-brand-maroon-hover/27"
       >
         {/* TEXT AREA */}
         <div 
