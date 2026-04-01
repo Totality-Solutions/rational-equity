@@ -100,7 +100,7 @@ export default function WhatSetsUsApart() {
                     </span>
                   </div>
 
-                  <h4 className={`font-sans font-weight-bold text-lg md:text-xl lg:text-2xl mb-3 tracking-wide transition-colors ${activeItem.id === item.id ? 'text-[#8B0000]' : 'text-white'
+                  <h4 className={`font-sans font-bold text-lg md:text-xl lg:text-2xl mb-3 tracking-wide transition-colors ${activeItem.id === item.id ? 'text-[#8B0000]' : 'text-white'
                     }`}>
                     {item.title}
                   </h4>

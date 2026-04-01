@@ -73,12 +73,12 @@ export default function TeamSection() {
               </div>
 
               {/* NAME */}
-              <h3 className="md:text-body-lg  md:text-h4 font-weight-bold tracking-h2 text-foreground mb-1">
+              <h3 className="md:text-body-lg  md:text-h4 font-bold tracking-h2 text-foreground mb-1">
                 {member.name}
               </h3>
 
               {/* TITLE */}
-              <p className="text-body-sm  md:text-body-md  text-gray-500 font-weight-medium mb-6 md:mb-8">
+              <p className="text-body-sm  md:text-body-md  text-gray-500 font-medium mb-6 md:mb-8">
                 {member.title}
               </p>
 
@@ -88,7 +88,7 @@ export default function TeamSection() {
                   href={member.linkedin}
                   className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-brand-maroon rounded-full hover:bg-brand-maroon-hover transition"
                 >
-                  <span className="text-white text-body-lg  font-weight-medium ">
+                  <span className="text-white text-body-lg  font-medium ">
                     in
                   </span>
                 </a>
@@ -123,7 +123,7 @@ export default function TeamSection() {
               </div>
 
               <div>
-                <h4 className="text-body-md  md:text-body-lg  font-weight-bold text-foreground">
+                <h4 className="text-body-md  md:text-body-lg  font-bold text-foreground">
                   {member.name}
                 </h4>
                 <p className="text-body-sm  text-gray-500">

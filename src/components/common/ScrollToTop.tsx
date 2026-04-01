@@ -53,8 +53,8 @@ export default function SmartScrollToTop() {
             opacity: 1, 
             scale: 1,
             // Logic: If over dark, use White Bg / Maroon Text. Else Maroon Bg / White Text.
-            backgroundColor: isOverDark ? "#FFFFFF" : "#8B0000",
-            color: isOverDark ? "#8B0000" : "#FFFFFF",
+            backgroundColor: isOverDark ? "#FFFFFF" : "#7B0000",
+            color: isOverDark ? "#7B0000" : "#FFFFFF",
           }}
           exit={{ opacity: 0, scale: 0.8 }}
           whileHover={{ y: -5 }}

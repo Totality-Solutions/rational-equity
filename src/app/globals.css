@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --font-lato: 'Lato', sans-serif;
+  --font-eb-garamond: 'EB Garamond', serif;
 
   /* =========================
      BRAND COLORS
@@ -13,12 +19,12 @@
   /* =========================
      FONT WEIGHTS
   ========================= */
-  --font-weight-normal: 400;
+  /* --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
-  --font-weight-black: 900;
+  --font-weight-black: 900; */
 
   /* =========================
      LETTER SPACING
@@ -70,8 +76,8 @@
 
 @theme inline {
   /* Fonts */
-  --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-eb-garamond), ui-serif, Georgia, serif;
+  --font-sans: var(--font-lato);
+  --font-serif: var(--font-eb-garamond);
 
   /* Colors */
   --color-brand-maroon: var(--brand-maroon);
@@ -118,12 +124,12 @@
   --text-cta-mobile: var(--mobile-text-cta);
 
   /* Font Weights */
-  --font-weight-normal: var(--font-weight-normal);
-  --font-weight-medium: var(--font-weight-medium);
-  --font-weight-semibold: var(--font-weight-semibold);
-  --font-weight-bold: var(--font-weight-bold);
-  --font-weight-extrabold: var(--font-weight-extrabold);
-  --font-weight-black: var(--font-weight-black);
+  /* --font-w-normal: var(--font-weight-normal);
+  --font-w-medium: var(--font-weight-medium);
+  --font-w-semibold: var(--font-weight-semibold);
+  --font-bold: var(--font-weight-bold);
+  --font-w-extrabold: var(--font-weight-extrabold);
+  --font-w-black: var(--font-weight-black); */
 
   /* Letter Spacing */
   --tracking-h1: var(--tracking-h1);
@@ -209,5 +215,3 @@
 
 
 
-
-/*  */

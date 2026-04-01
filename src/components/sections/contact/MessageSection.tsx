@@ -85,7 +85,7 @@ export default function MessageSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-4xl font-serif font-weight-medium text-gray-900 mb-4"
+            className="text-4xl font-serif font-medium text-gray-900 mb-4"
           >
             Send Us a <span className="text-brand-maroon">Message</span>
           </motion.h2>
@@ -115,28 +115,28 @@ export default function MessageSection() {
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-body-sm -mobile font-weight-semibold text-[#000000]/50 uppercase tracking-wider">Full Name *</label>
+                    <label className="text-body-sm -mobile font-semibold text-[#000000]/50 uppercase tracking-wider">Full Name *</label>
                     <input required type="text" placeholder="Your name" className="w-full px-4 py-3 rounded-xl bg-gray-50 text-body-md -tab border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-body-sm -mobile font-weight-semibold text-[#000000]/50 uppercase tracking-wider">Email *</label>
+                    <label className="text-body-sm -mobile font-semibold text-[#000000]/50 uppercase tracking-wider">Email *</label>
                     <input required type="email" placeholder="email@example.com" className="w-full px-4 py-3 rounded-xl bg-gray-50 text-body-md -tab border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-body-sm -mobile font-weight-semibold text-[#000000]/50 uppercase tracking-wider">Phone *</label>
+                    <label className="text-body-sm -mobile font-semibold text-[#000000]/50 uppercase tracking-wider">Phone *</label>
                     <input required type="text" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 rounded-xl bg-gray-50 text-body-md -tab border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-body-sm -mobile font-weight-semibold text-[#000000]/50 uppercase tracking-wider">Interested Fund (optional)</label>
+                    <label className="text-body-sm -mobile font-semibold text-[#000000]/50 uppercase tracking-wider">Interested Fund (optional)</label>
                     <input type="text" placeholder="Select a fund" className="w-full px-4 py-3 rounded-xl bg-gray-50 text-body-md -tab border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-body-sm -mobile font-weight-semibold text-[#000000]/50 uppercase tracking-wider">Message (optional)</label>
+                  <label className="text-body-sm -mobile font-semibold text-[#000000]/50 uppercase tracking-wider">Message (optional)</label>
                   <textarea rows={4} placeholder="Tell us how we can help..." className="w-full px-4 py-3 rounded-xl bg-gray-50 text-body-md -tab border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all resize-none" />
                 </div>
 
@@ -158,8 +158,8 @@ export default function MessageSection() {
               <Image src="/images/Contact.png" alt="Mumbai Office" fill className="object-cover" />
             </div>
             <div className="p-8 space-y-6">
-              <h3 className="text-body-lg  font-weight-bold font-serif text-gray-900">Mumbai Office</h3>
-              <div className="space-y-4 font-weight-normal">
+              <h3 className="text-body-lg  font-bold font-serif text-gray-900">Mumbai Office</h3>
+              <div className="space-y-4 font-normal">
                 <div className="flex items-start gap-4 text-body-sm  text-[#000000]/50 text-left">
                   <MapPin size={18} className="text-brand-maroon shrink-0 mt-0.5" />
                   <p>123 Financial District, Mumbai,<br />Maharashtra 400001</p>
@@ -169,7 +169,7 @@ export default function MessageSection() {
                   <p>+91 22 1234 5678</p>
                 </div>
               </div>
-              <a href="#" className="inline-flex items-center gap-2 text-brand-maroon font-weight-normal text-body-sm -mobile pt-4 hover:gap-3 transition-all">View on Google Maps <ArrowRight size={14} /></a>
+              <a href="#" className="inline-flex items-center gap-2 text-brand-maroon font-normal text-body-sm -mobile pt-4 hover:gap-3 transition-all">View on Google Maps <ArrowRight size={14} /></a>
             </div>
           </motion.div>
         </div>

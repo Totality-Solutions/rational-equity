@@ -62,11 +62,11 @@ export default function FundOverview({ description, stats }: FundOverviewProps) 
             >
               <div className="flex items-center gap-2 text-brand-maroon">
                 {stat.icon}
-                <span className="text-body-sm font-weight-medium text-[#000000]/50">
+                <span className="text-body-sm font-medium text-[#000000]/50">
                   {stat.label}
                 </span>
               </div>
-              <p className="text-body-md font-weight-semibold text-black leading-tight">
+              <p className="text-body-md font-semibold text-black leading-tight">
                 {stat.value}
               </p>
             </div>

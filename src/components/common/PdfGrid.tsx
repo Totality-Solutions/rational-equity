@@ -139,10 +139,10 @@ export default function PdfGrid({ data }: Props) {
               </div>
 
               <div className="space-y-1">
-                <h3 className="text-body-md font-weight-medium text-gray-900 leading-tight">
+                <h3 className="text-body-md font-bold leading-tight">
                   {doc.title}
                 </h3>
-                {doc.description && <p className="text-gray-500 text-[13px]">{doc.description}</p>}
+                {doc.description && <p className="text-gray-500 text-body-sm-mobile">{doc.description}</p>}
                 <p className="text-gray-400 text-[12px] flex items-center gap-1">
                   {doc.type || "PDF"} • {doc.size === "..." ? <Loader2 size={10} className="animate-spin" /> : doc.size}
                 </p>

@@ -4,6 +4,7 @@ import { motion, Variants, useInView, useSpring, useTransform } from "framer-mot
 import { useRef, useEffect } from "react";
 import Link from "next/link";
 import CTAButton from "@/components/common/CTAButton";
+import AnimatedHeader from "@/components/common/AnimatedHeader";
 
 // 1. Heading: Heavy & Slow (Small distance, elegant easing)
 const headingVariants: Variants = {
@@ -93,29 +94,16 @@ export default function InvestWithUs() {
         }}
       />
         <div className=" relative z-15 text-center max-w-3xl mx-auto px-6 pb-16 space-y-6 pt-18">
-          
-          {/* Distinct Heading Reveal */}
-          <motion.h2 
-            variants={headingVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-h3 md:text-[52px] font-serif font-weight-semibold text-brand-maroon"
-          >
-            Invest With Us
-          </motion.h2>
-          
-          {/* Distinct Description Drift */}
-          <motion.p 
-            variants={descVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-gray-600 text-body-sm md:text-body-lg leading-relaxed"
-          >
-            Simple, transparent, and efficient investing with Rational AMC — a 
-            disciplined, research-driven approach to generating superior long-term returns.
-          </motion.p>
+
+          <AnimatedHeader 
+            title="Invest With Us"
+            highlight="Invest With Us"
+            titleClassName="!font-bold"
+            subheading="Simple, transparent, and efficient investing with Rational AMC — a 
+            disciplined, research-driven approach to generating superior long-term returns."
+            variant="light"
+            className="mb-16"
+          />
 
           {/* Distinct Button Pop */}
           <motion.div 
@@ -148,7 +136,7 @@ export default function InvestWithUs() {
                 ${index !== stats.length - 1 ? 'lg:border-r' : ''} 
                 ${index % 2 === 0 ? 'md:border-r md:border-b lg:border-r' : 'md:border-r-0 md:border-b lg:border-r'}`}
             >
-              <h3 className="text-h4md:text-[28px] font-weight-semibold font-serif text-gray-900">
+              <h3 className="text-h4md:text-[28px] font-semibold font-serif text-gray-900">
                 <Counter value={stat.value} />
               </h3>
               <p className="text-gray-400 text-[14px]">

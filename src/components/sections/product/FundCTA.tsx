@@ -23,7 +23,7 @@ export default function FundCTA({
           {/* Text Content */}
           <div className="max-w-xl space-y-3">
             <h3 className="font-serif text-3xl md:text-[34px] leading-tight text-gray-900">
-              Invest in <span className="text-brand-maroon font-weight-bold">{fundTitle}</span>
+              Invest in <span className="text-brand-maroon font-bold">{fundTitle}</span>
             </h3>
             <p className="text-gray-500 font-sans text-lg leading-relaxed tracking-wide">
               Start with {minLumpSum} lump sum or {minSIP}/month via SIP. 

@@ -34,9 +34,9 @@ export default function FundPerformance({ data }: PerformanceProps) {
         <div className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
           {/* Table Header */}
           <div className="grid grid-cols-3 bg-gray-50/30 border-b border-gray-100 px-8 py-5">
-            <span className="text-body-sm font-weight-semibold text-[#000000]/50">Period</span>
-            <span className="text-body-sm font-weight-semibold text-[#000000]/50 text-center">Fund Return</span>
-            <span className="text-body-sm font-weight-semibold text-[#000000]/50 text-right">Benchmark</span>
+            <span className="text-body-sm font-semibold text-[#000000]/50">Period</span>
+            <span className="text-body-sm font-semibold text-[#000000]/50 text-center">Fund Return</span>
+            <span className="text-body-sm font-semibold text-[#000000]/50 text-right">Benchmark</span>
           </div>
 
           {/* Table Body */}
@@ -47,11 +47,11 @@ export default function FundPerformance({ data }: PerformanceProps) {
                 className={`grid grid-cols-3 px-8 py-4 items-center bg-white
                   ${row.period === "Since Inception" ? "!bg-gray-50/50" : ""}`}
               >
-                <span className={`text-body-md  ${row.period === "Since Inception" ? "font-weight-bold text-gray-900" : "text-gray-500"}`}>
+                <span className={`text-body-md  ${row.period === "Since Inception" ? "font-bold text-gray-900" : "text-gray-500"}`}>
                   {row.period}
                 </span>
                 
-                <span className={`text-body-md font-weight-bold text-center ${row.fundReturn.includes('+') ? 'text-green-600' : 'text-gray-900'}`}>
+                <span className={`text-body-md font-bold text-center ${row.fundReturn.includes('+') ? 'text-green-600' : 'text-gray-900'}`}>
                   {row.fundReturn}
                 </span>
                 

@@ -135,10 +135,10 @@ export default function Journey() {
                   {item.year}
                 </motion.div>
 
-                <h3 className="font-sans text-body-lg  font-weight-medium text-black mb-3 md:mb-4 group-hover:text-[#8B0000] transition-colors duration-300">
+                <h3 className="font-sans text-body-lg font-medium text-black mb-3 md:mb-4 group-hover:text-[#8B0000] transition-colors duration-300">
                   {item.title}
                 </h3>
-                <p className="text-[#000000]/50 text-body-md  font-weight-normal leading-relaxed flex-grow">
+                <p className="text-[#000000]/50 text-body-md  font-normal leading-relaxed flex-grow">
                   {item.description}
                 </p>
               </motion.div>

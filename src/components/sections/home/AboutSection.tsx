@@ -117,7 +117,7 @@ export default function AboutSection() {
 
         <div className="flex items-center justify-center gap-4 md:gap-6 my-8 md:my-12">
           <div className="h-[1.5px] w-12 md:w-20 bg-[#800000] opacity-30" />
-          <span className="font-sans text-[11px] md:text-[13px] tracking-[0.2em] text-gray-500 uppercase font-weight-bold whitespace-nowrap">
+          <span className="font-sans text-[11px] md:text-body-sm-mobile tracking-[0.2em] text-gray-500 uppercase font-bold whitespace-nowrap">
             Since 2008
           </span>
           <div className="h-[1.5px] w-12 md:w-20 bg-[#800000] opacity-30" />

@@ -24,8 +24,9 @@ export default function ApproachHero() {
 
                 <AnimatedHeader
                     title="Our Investment Approach"
+                    highlight='Our Investment Approach'
                     subheading="A disciplined, research-driven approach to generating superior long-term returns through conviction and clarity."
-                    titleClassName="text-[#8B0000]! lg:text-7xl" // This will now work perfectly
+                    titleClassName="!font-bold" // This will now work perfectly
                     subheadingClassName="max-w-2xl"
                 />
 

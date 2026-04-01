@@ -58,7 +58,7 @@ export default function RiskManagement() {
               <div className="mb-8 transition-transform duration-500 group-hover:scale-110">
                 {item.icon}
               </div>
-              <h4 className="font-sans font-weight-bold text-xl lg:text-2xl text-gray-900 mb-4 tracking-tight">
+              <h4 className="font-sans font-bold text-xl lg:text-2xl text-gray-900 mb-4 tracking-tight">
                 {item.title}
               </h4>
               <p className="font-sans text-gray-500 text-base lg:text-lg leading-relaxed">

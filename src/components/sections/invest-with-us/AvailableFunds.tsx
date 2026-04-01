@@ -87,26 +87,26 @@ export default function AvailableFunds() {
               className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm flex flex-col h-full hover:shadow-md transition-shadow"
             >
               <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center gap-2 text-emerald-500 font-weight-bold">
+                <div className="flex items-center gap-2 text-emerald-500 font-bold">
                   <TrendingUp size={18} />
                   <span>{fund.return}</span>
                 </div>
-                <span className="text-[10px] tracking-widest text-gray-300 font-weight-bold uppercase">1Y Return</span>
+                <span className="text-[10px] tracking-widest text-gray-300 font-bold uppercase">1Y Return</span>
               </div>
 
               <div className="flex-1">
-                <h3 className="text-2xl font-weight-bold text-gray-900 mb-3">{fund.name}</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{fund.name}</h3>
                 <p className="text-gray-400 leading-relaxed text-sm pb-3">{fund.description}</p>
               </div>
 
               <div className="space-y-4 mb-10 border-t border-gray-50 pt-3">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-300">Min. Investment</span>
-                  <span className="font-weight-bold text-gray-900">{fund.minInvestment}</span>
+                  <span className="font-bold text-gray-900">{fund.minInvestment}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-300">Risk Level</span>
-                  <span className="font-weight-bold text-gray-900">{fund.risk}</span>
+                  <span className="font-bold text-gray-900">{fund.risk}</span>
                 </div>
               </div>
 
@@ -141,12 +141,12 @@ export default function AvailableFunds() {
             >
               <div className="p-8 pb-4 flex justify-between items-start">
                 <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-emerald-600 font-weight-bold text-lg">
+                  <div className="flex items-center gap-2 text-emerald-600 font-bold text-lg">
                     <TrendingUp size={20} />
                     <span>{selectedFund.return}</span>
                     <span className="text-[10px] text-gray-300 uppercase tracking-widest ml-2">1Y Return</span>
                   </div>
-                  <h3 className="text-2xl font-weight-bold text-black font-serif pt-2">{selectedFund.name}</h3>
+                  <h3 className="text-2xl font-bold text-black font-serif pt-2">{selectedFund.name}</h3>
                 </div>
                 <button onClick={() => setSelectedFund(null)} className="p-2 bg-gray-50 rounded-full text-gray-400 hover:text-black transition-colors">
                   <X size={20} />
@@ -168,7 +168,7 @@ export default function AvailableFunds() {
 
               <div className="px-8 pb-8">
                 <Link href={selectedFund.link} className="block w-full">
-                  <button className="w-full bg-[#800000] text-white font-weight-bold py-4 hover:bg-opacity-90 transition-all shadow-lg shadow-[#800000]/20 uppercase tracking-wider text-sm ">
+                  <button className="w-full bg-[#800000] text-white font-bold py-4 hover:bg-opacity-90 transition-all shadow-lg shadow-[#800000]/20 uppercase tracking-wider text-sm ">
                     Invest in this fund
                   </button>
                 </Link>
@@ -186,9 +186,9 @@ function StatRow({ icon, label, value }: { icon: any, label: string, value: stri
     <div className="flex justify-between items-center">
       <div className="flex items-center gap-3 text-gray-400">
         <span className="opacity-60">{icon}</span>
-        <span className="text-sm font-weight-medium">{label}</span>
+        <span className="text-sm font-medium">{label}</span>
       </div>
-      <span className="font-weight-bold text-gray-900 text-sm">{value}</span>
+      <span className="font-bold text-gray-900 text-sm">{value}</span>
     </div>
   );
 }

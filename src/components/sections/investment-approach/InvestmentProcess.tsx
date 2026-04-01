@@ -58,7 +58,7 @@ export default function InvestmentProcess() {
               {/* Title Section */}
               <div className="w-full md:w-[30%] flex-shrink-0 flex items-center mb-6 md:mb-0 pr-4">
                 <div className="hidden md:block w-1 h-10 bg-[#8B0000]/20 mr-8 rounded-full" />
-                <h3 className="font-sans font-weight-bold text-xl md:text-2xl text-gray-900 tracking-tight">
+                <h3 className="font-sans font-bold text-xl md:text-2xl text-gray-900 tracking-tight">
                   {item.title}
                 </h3>
               </div>

@@ -16,7 +16,6 @@ export default function Container({ children, className = "" }: ContainerProps) 
         w-full 
         px-6           /* Mobile Base (default) */
         md:px-12       /* Medium screens and up (Tablets) */
-        lg:px-[170px]     /* Large screens and up (Desktop) */
         ${className}
       `}
     >

@@ -84,7 +84,7 @@ export default function ProductNav() {
               <a
                 key={link.target}
                 href={`#${link.target}`}
-                className={`relative flex-shrink-0 text-[13px] md:text-body-md  font-weight-bold tracking-wider transition-colors px-3 py-2 uppercase ${
+                className={`relative flex-shrink-0 text-body-sm-mobile md:text-body-sm  font-bold tracking-wider transition-colors px-3 py-2 uppercase ${
                   isActive ? "text-brand-maroon" : "text-[#000000]/50 hover:text-brand-maroon"
                 }`}
               >

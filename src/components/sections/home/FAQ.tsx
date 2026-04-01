@@ -44,7 +44,6 @@ export default function FAQ() {
           subheading="Find answers to common questions about investing with us"
           variant="dark"
           className="mb-12 md:mb-20"
-          titleClassName="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight"
           subheadingClassName="text-rose-100/70 max-w-2xl mx-auto"
         />
 
@@ -58,7 +57,7 @@ export default function FAQ() {
             >
               {/* Question Header */}
               <div className="w-full py-6 md:py-8 px-4 flex items-center justify-between text-left gap-4">
-                <span className="text-body-lg  font-weight-medium  group-hover:underline underline-offset-8 decoration-white/40 transition-all">
+                <span className="text-body-lg  font-medium  group-hover:underline underline-offset-8 decoration-white/40 transition-all">
                   {faq.question}
                 </span>
                 <span className={`flex-shrink-0 transform transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}>

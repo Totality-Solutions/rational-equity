@@ -55,7 +55,7 @@ export default function ApproachFeatures() {
               <div className="mb-8 text-[#8B0000] transition-transform duration-500 group-hover:scale-110">
                 {item.icon}
               </div>
-              <h4 className="font-sans font-weight-bold text-gray-900 mb-6 text-lg tracking-tight">
+              <h4 className="font-sans font-bold text-gray-900 mb-6 text-lg tracking-tight">
                 {item.title}
               </h4>
               <p className="font-sans text-gray-500 leading-relaxed text-body-md  px-2">

@@ -30,7 +30,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-gray-300 font-sans border-t border-gray-900">
-      <Container className="py-12 md:py-20">
+      <Container className="py-12 md:py-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-12 mb-16">
 
           {/* Column 1: Brand */}
@@ -102,7 +102,7 @@ export default function Footer() {
 
           {/* Column 4: Contact */}
           <div className="md:col-span-3">
-            <h3 className="text-white font-weight-bold mb-5 md:mb-6 font-sans">Contact Us</h3>
+            <h3 className="text-white font-bold mb-5 md:mb-6 font-sans">Contact Us</h3>
             <ul className="space-y-4 md:space-y-5 text-sm font-sans">
               <li className="flex gap-3">
                 <MapPin className="text-white shrink-0" size={20} />
@@ -153,7 +153,7 @@ export default function Footer() {
 function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) {
   return (
     <div className="md:col-span-2">
-      <h3 className="text-white font-weight-bold mb-6 font-sans">{title}</h3>
+      <h3 className="text-white font-bold mb-6 font-sans">{title}</h3>
       <ul className="space-y-4">
         {links.map((link) => (
           <li key={link.label}>

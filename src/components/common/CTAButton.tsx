@@ -43,14 +43,14 @@ const CTAButton: React.FC<CTAButtonProps> = ({
             color: isMaroonBg ? '#ffffff' : textColor 
           }}
         >
-          <span className="font-sans font-weight-semibold text-cta-mobile tracking-cta md:text-cta whitespace-nowrap">
+          <span className="font-sans font-semibold text-cta-mobile tracking-cta md:text-cta whitespace-nowrap">
             {text}
           </span>
         </div>
 
         {/* ARROW BOX */}
         <div 
-          className="relative flex-shrink-0 w-[64px] flex items-center justify-center border-l border-brand-maroon transition-colors duration-300"
+          className="relative flex-shrink-0 w-[50px] flex items-center justify-center border-l border-brand-maroon transition-colors duration-300"
           style={{ 
             backgroundColor: isMaroonBg ? 'white' : primaryColor 
           }}

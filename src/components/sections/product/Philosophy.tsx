@@ -9,7 +9,7 @@ interface PhilosophyProps {
 
 export default function Philosophy({ points }: PhilosophyProps) {
   return (
-    <section className="pt-12 px-6 bg-white font-sans">
+    <section className="pt-12 px-6 bg-white font-serif">
       <div className="max-w-7xl mx-auto">
         
         {/* --- INTEGRATED ANIMATED HEADER --- */}
@@ -33,15 +33,15 @@ export default function Philosophy({ points }: PhilosophyProps) {
               transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
               className="p-10 rounded-2xl border-[3px] border-gray-100 bg-white flex flex-col gap-4 hover:border-[#8B0000]/20 transition-colors duration-300"
             >
-              <span className="text-[#8B0000] font-weight-bold text-sm tracking-widest">
+              <span className="text-[#8B0000] font-medium font-sans text-sm tracking-widest">
                 {(index + 1).toString().padStart(2, '0')}
               </span>
               
-              <h4 className="font-serif text-h4text-gray-900 font-weight-bold leading-tight">
+              <h4 className="font-serif text-h4 text-gray-900 font-w-bold leading-tight">
                 {point.title}
               </h4>
               
-              <p className="text-gray-500 text-body-md  leading-relaxed">
+              <p className="text-[#000000]/50 text-body-lg  font-sans leading-relaxed">
                 {point.description}
               </p>
             </motion.div>
