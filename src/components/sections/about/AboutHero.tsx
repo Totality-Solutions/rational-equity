@@ -59,7 +59,7 @@ export default function AboutHero() {
       className="relative bg-white"
     >
       {/* Sticky container stays 100% of viewport height */}
-      <div className="sticky top-20 h-[70vh] flex pt-24 !pb-0 justify-center px-6 overflow-hidden">
+      <div className="sticky top-20 h-[70vh] flex pt-24 !pb-0 justify-center items-center px-6 overflow-hidden">
         <div className=" max-w-6xl text-center space-y-8 md:space-y-10 font-serif">
           
           {paragraphs.map((para, pIdx) => (

@@ -66,7 +66,7 @@ const cardVariants: Variants = {
 
 export default function TeamSection() {
   return (
-    <section className="relative w-full bg-white font-serif py-16 md:py-24 overflow-hidden">
+    <section className="relative w-full bg-white font-serif py-10 md:py-10 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         
         {/* --- NEW HEADER SECTION --- */}

@@ -52,13 +52,13 @@ export default function AnimatedHeader({
   const isFullTitleHighlight = highlight?.trim().toUpperCase() === title.trim().toUpperCase();
 
   return (
-    <div className={`text-center mb-12 md:mb-20 ${className}`}>
+    <div className={`text-center mb-10 md:mb-10 ${className}`}>
       {/* --- Main Title --- */}
       <motion.h2 
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        className={`font-serif text-3xl sm:text-4xl md:text-5xl ${titleDefaultColor} mb-4 leading-tight`}
+        className={`font-serif text-3xl sm:text-4xl md:text-5xl ${titleDefaultColor} leading-tight`}
       >
         {!highlight ? (
           <motion.span variants={slideUpVariants} custom={0} className="inline-block">

@@ -21,7 +21,7 @@ export default function AboutSection() {
   return (
     <section 
       ref={sectionRef} // Attach the ref here
-      className="relative bg-white py-16 md:py-24 overflow-hidden font-sans min-h-[700px] md:min-h-[700px] flex flex-col justify-center"
+      className="relative bg-white py-16 md:py-16 overflow-hidden font-sans min-h-[700px] md:min-h-[700px] flex flex-col justify-center"
     >
 
       {/* --- 1. SVG BACKGROUND LAYER (Stays exactly the same) --- */}
@@ -86,7 +86,7 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="mb-12 md:mb-20"
+          className="mb-8 md:mb-12"
         >
           <h2 className="font-serif text-3xl sm:text-4xl md:text-[56px] text-gray-900 leading-[1.2] md:leading-[1.1] font-normal tracking-tight">
             Rational thinking.<br className="hidden sm:block" />
@@ -121,7 +121,7 @@ export default function AboutSection() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.5 }}
-          className="mb-6 md:mb-10"
+          className="mb-8 md:mb-8"
         >
           <h3 className="font-serif text-3xl sm:text-4xl md:text-[56px] text-gray-900 leading-[1.2] md:leading-[1.1] font-normal tracking-tight">
             About Rational<br />
@@ -133,7 +133,7 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.7 }}
-          className="font-sans text-black text-base md:text-[20px] leading-relaxed max-w-6xl mx-auto mb-10 md:mb-16 px-2 md:px-4"
+          className="font-sans text-black text-base md:text-[20px] leading-relaxed max-w-6xl mx-auto mb-8 px-2 md:px-4"
         >
           we are
           </motion.p>

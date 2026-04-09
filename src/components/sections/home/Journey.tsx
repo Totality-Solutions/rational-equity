@@ -41,8 +41,8 @@ export default function Journey() {
   };
 
   return (
-    <section className="bg-white py-16 md:py-24 font-sans overflow-hidden">
-      <div className="max-w-[100%] mx-auto px-6">
+    <section className="bg-white py-16 md:py-16 font-sans overflow-hidden">
+      <div className="max-w-full mx-auto px-6">
 
         {/* --- INTEGRATED ANIMATED HEADER --- */}
         <AnimatedHeader 
@@ -51,11 +51,10 @@ export default function Journey() {
           highlightColor="#8B0000"
           subheading="A timeline of disciplined growth, regulatory milestones, and consistent value creation for our partners."
           variant="light"
-          className="mb-12 md:mb-20"
         />
       <Container>
         {/* Header */}
-        <div className="text-center mb-12 md:mb-20">
+        <div className="text-center mb-12 md:mb-8">
           {/* <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black mb-4 md:mb-6">
             The {" "}
             <motion.span

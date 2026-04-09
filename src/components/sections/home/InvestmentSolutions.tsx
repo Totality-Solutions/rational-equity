@@ -48,7 +48,8 @@ export default function InvestmentSolutions() {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="relative bg-[#0a0a0a] py-16 md:py-24 text-white font-sans overflow-hidden"
+      className="relative bg-[#0a0a0a] py-16 md:py-16
+       text-white font-sans overflow-hidden"
     >
       
       {/* GRID BACKGROUND */}
@@ -66,7 +67,7 @@ export default function InvestmentSolutions() {
       </motion.div>
 
       <Container className="relative z-10">
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-12 md:mb-12">
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
             Our Investment Solutions
           </h2>
@@ -74,7 +75,7 @@ export default function InvestmentSolutions() {
         </div>
 
         {/* CARDS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 mb-16 md:mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 mb-12 md:mb-16">
           {FUNDS.map((fund, index) => (
             <motion.div
               key={fund.title}
@@ -132,7 +133,7 @@ export default function InvestmentSolutions() {
         {/* CTA SECTION */}
         <div className="text-center">
           <div className="mb-10">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-4 md:mb-6">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-2 md:mb-2">
               Ready to Start Investing?
             </h2>
             <p className="text-lg md:text-[22px] font-light text-gray-300 max-w-2xl mx-auto">

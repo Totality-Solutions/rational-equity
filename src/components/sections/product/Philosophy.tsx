@@ -9,7 +9,7 @@ interface PhilosophyProps {
 
 export default function Philosophy({ points }: PhilosophyProps) {
   return (
-    <section className="py-16 md:py-24 px-6 bg-white font-sans">
+    <section className="py-16 md:py-16 px-6 bg-white font-sans">
       <div className="max-w-7xl mx-auto">
         
         {/* --- INTEGRATED ANIMATED HEADER --- */}
