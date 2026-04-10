@@ -244,7 +244,7 @@ export default function AnimatedHeader({
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        className={`font-serif text-h2 font-regular ${titleDefaultColor} mb-4 leading-tight ${titleClassName}`}
+        className={`font-serif text-h2 font-regular ${titleDefaultColor} leading-tight ${titleClassName}`}
       >
         {renderTitle()}
       </motion.h2>
