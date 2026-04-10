@@ -186,7 +186,7 @@ export default function Navbar() {
                           key={sub.href}
                           href={sub.href}
                           onClick={() => setIsOpen(false)}
-                          className="block px-4 py-5 text-[16px] text-gray-800 font-sans font-medium text-center transition-all duration-300 active:bg-[#ffe4e6] active:text-brand-maroon active:font-bold"
+                          className="block px-4 py-5 text-[16px] text-gray-800 font-sans font-medium text-start transition-all duration-300 active:bg-[#ffe4e6] active:text-brand-maroon active:font-bold"
                         >
                           {sub.label}
                         </Link>
