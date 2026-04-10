@@ -106,7 +106,7 @@ export default function MessageSection() {
             highlight="Message"
             subheading="Fill out the form and our team will get back to you within 24 hours."
             className="text-left"
-            // subHeadingClassname="!max-w-none"
+            subheadingClassName="!mx-0"
           />
 
 

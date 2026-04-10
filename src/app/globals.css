@@ -17,16 +17,6 @@
   --brand-maroon-hover: #7B0000;
 
   /* =========================
-     FONT WEIGHTS
-  ========================= */
-  /* --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  --font-weight-black: 900; */
-
-  /* =========================
      LETTER SPACING
   ========================= */
   --tracking-h1: -0.5px;
@@ -123,14 +113,6 @@
   --text-body-xs-mobile: var(--mobile-text-body-xs);
   --text-cta-mobile: var(--mobile-text-cta);
 
-  /* Font Weights */
-  /* --font-w-normal: var(--font-weight-normal);
-  --font-w-medium: var(--font-weight-medium);
-  --font-w-semibold: var(--font-weight-semibold);
-  --font-bold: var(--font-weight-bold);
-  --font-w-extrabold: var(--font-weight-extrabold);
-  --font-w-black: var(--font-weight-black); */
-
   /* Letter Spacing */
   --tracking-h1: var(--tracking-h1);
   --tracking-h2: var(--tracking-h2);
@@ -201,17 +183,4 @@
     transform: translateX(-50%);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

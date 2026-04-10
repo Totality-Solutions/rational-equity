@@ -6,6 +6,12 @@ import { usePathname } from 'next/navigation';
 import { Linkedin, Twitter, MapPin, Phone, Mail } from 'lucide-react';
 import Container from '../common/Container';
 
+interface FooterLink {
+  label: string;
+  href: string;
+  color?: string; // The '?' makes it optional
+}
+
 const QUICK_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
@@ -70,7 +76,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className={`text-[14px] transition-colors hover:text-white ${
+                    className={`text-[16px] transition-colors hover:text-white ${
                       isActive(link.href) ? 'text-brand-maroon font-bold' : 'text-gray-300'
                     }`}
                   >
@@ -83,13 +89,13 @@ export default function Footer() {
 
           {/* Column 3: Products */}
           <div className="md:col-span-2">
-            <h3 className="text-white font-bold mb-6">Products</h3>
+            <h3 className="text-white  font-bold mb-6">Products</h3>
             <ul className="space-y-4">
               {PRODUCTS.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className={`text-[14px] transition-colors hover:text-white ${
+                    className={`text-[16px] transition-colors hover:text-white ${
                       isActive(link.href) ? 'text-brand-maroon font-bold' : 'text-gray-300'
                     }`}
                   >
@@ -103,8 +109,8 @@ export default function Footer() {
           {/* Column 4: Contact */}
           <div className="md:col-span-3">
             <h3 className="text-white font-bold mb-5 md:mb-6 font-sans">Contact Us</h3>
-            <ul className="space-y-4 md:space-y-5 text-sm font-sans">
-              <li className="flex gap-3">
+            <ul className="space-y-4 md:space-y-5 text-[16px] font-sans">
+              <li className="flex items-center gap-3">
                 <MapPin className="text-white shrink-0" size={20} />
                 <span className="text-gray-400">
                   123 Financial District,<br />

@@ -40,7 +40,7 @@ export default function InvestmentProcess() {
           highlight="Investment"
           highlightColor="#8B0000"
           className="mb-2!"
-          titleClassName="text-4xl sm:text-5xl lg:text-6xl leading-tight"
+          titleClassName="leading-tight"
         />
 
         {/* Process List */}
@@ -58,14 +58,14 @@ export default function InvestmentProcess() {
               {/* Title Section */}
               <div className="w-full md:w-[30%] flex-shrink-0 flex items-center mb-6 md:mb-0 pr-4">
                 <div className="hidden md:block w-1 h-10 bg-[#8B0000]/20 mr-8 rounded-full" />
-                <h3 className="font-sans font-bold text-xl md:text-2xl text-gray-900 tracking-tight">
+                <h3 className="font-sans font-bold text-h4-tab text-gray-900 tracking-tight">
                   {item.title}
                 </h3>
               </div>
 
               {/* Description Section - Changed to flex-1 for better reliability */}
               <div className="w-full md:flex-1">
-                <p className="font-sans text-gray-600 text-base md:text-lg lg:text-xl leading-relaxed">
+                <p className="font-sans text-gray-600 text-body-lg leading-relaxed">
                   {item.description}
                 </p>
               </div>

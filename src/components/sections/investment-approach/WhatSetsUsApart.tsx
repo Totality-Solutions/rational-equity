@@ -67,10 +67,10 @@ export default function WhatSetsUsApart() {
                 highlightColor="#ffffff"
                 variant="dark"
                 className="!text-left !mb-0 !md:mb-0" // Force left align and remove default margins
-                titleClassName="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight !text-left"
+                titleClassName=" leading-tight !text-left"
               />
               {/* Your custom underline remains below the animated text */}
-              <div className="w-[11%] h-[2px] bg-[#8B0000] mt-4 block" />
+              <div className="w-[10%] h-[2px] bg-[#8B0000] mt-4 block" />
             </div>
 
             <div className="space-y-8 md:space-y-12">
@@ -100,11 +100,11 @@ export default function WhatSetsUsApart() {
                     </span>
                   </div>
 
-                  <h4 className={`font-sans font-bold text-lg md:text-xl lg:text-2xl mb-3 tracking-wide transition-colors ${activeItem.id === item.id ? 'text-[#8B0000]' : 'text-white'
+                  <h4 className={`font-sans font-bold text-h4-tab mb-3 tracking-wide transition-colors ${activeItem.id === item.id ? 'text-[#8B0000]' : 'text-white'
                     }`}>
                     {item.title}
                   </h4>
-                  <p className="text-white/60 font-sans leading-relaxed text-sm md:text-base lg:text-lg">
+                  <p className="text-white/60 font-sans leading-relaxed text-body-lg ">
                     {item.desc}
                   </p>
                 </motion.div>
@@ -136,13 +136,13 @@ export default function WhatSetsUsApart() {
               </AnimatePresence>
 
               {/* Overlay Label */}
-              <div className="absolute bottom-6 left-6 flex items-center gap-6 text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-white/30 z-10 font-bold">
+              {/* <div className="absolute bottom-6 left-6 flex items-center gap-6 text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-white/30 z-10 font-bold">
                 <span className="text-white/60">{activeItem.title}</span>
                 <span className="flex items-center gap-2">
                   <span className={`w-1.5 h-1.5 bg-[#8B0000] rounded-full ${Array.isArray(activeItem.image) ? 'animate-pulse' : ''}`} />
                   System Insight
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
 

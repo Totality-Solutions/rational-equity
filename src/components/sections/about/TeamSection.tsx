@@ -44,7 +44,7 @@ const cardVariants: Variants = {
 
 export default function TeamSection() {
   return (
-    <section className="relative w-full bg-background font-sans pb-16 md:pb-24 overflow-hidden">
+    <section className="relative w-full bg-background font-sans overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
 
         <AnimatedHeader 

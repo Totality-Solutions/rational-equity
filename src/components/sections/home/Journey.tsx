@@ -49,7 +49,7 @@ export default function Journey() {
   };
 
   return (
-    <section className="bg-white pt-16 md:pt-24 py-4 font-sans overflow-hidden">
+    <section className="bg-white py-12 md:py-20  font-sans overflow-hidden">
       <Container>
         {/* Header */}
         {/* <div className="text-center mb-12 md:mb-20">

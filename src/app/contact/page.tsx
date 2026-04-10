@@ -3,6 +3,7 @@
 import type { Metadata } from 'next';
 import ContactSection from '@/components/sections/contact/ContactSection';
 import MessageSection from '@/components/sections/contact/MessageSection';
+import MapSection from '@/components/sections/contact/MapSection';
 
 // ─── CONTACT PAGE SEO ───────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function ContactPage() {
       <main>
         <ContactSection />
         <MessageSection />
+        <MapSection />
       </main>
     </>
   );

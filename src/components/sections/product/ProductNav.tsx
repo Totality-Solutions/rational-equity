@@ -75,7 +75,7 @@ export default function ProductNav() {
 
         <div 
           ref={scrollContainerRef}
-          className="flex items-center justify-start md:justify-center h-16 md:h-22 gap-4 md:gap-8 overflow-x-auto whitespace-nowrap no-scrollbar scroll-smooth px-4 md:px-0"
+          className="flex items-center justify-start md:justify-center h-16 md:h-22 gap-4 md:gap-8 max-w-full overflow-x-auto whitespace-nowrap no-scrollbar scroll-smooth px-8 md:px-0"
         >
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.target;

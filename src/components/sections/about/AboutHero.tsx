@@ -59,7 +59,7 @@ export default function AboutHero() {
       className="relative bg-white"
     >
       {/* Sticky container stays 100% of viewport height */}
-      <div className="sticky top-20 h-screen md:h-[60vh] lg:h-[70vh] flex pt-24 !pb-0 justify-center px-6 overflow-hidden">
+      <div className="sticky top-20 max-h-screen md:h-[60vh] lg:h-[70vh] flex pt-6 lg:pt-24 pb-3 justify-center px-6 overflow-hidden">
         <div className=" max-w-6xl text-center space-y-8 md:space-y-10 font-serif">
           
           {paragraphs.map((para, pIdx) => (
@@ -89,7 +89,7 @@ export default function AboutHero() {
                   <div key={`${pIdx}-${lIdx}`} className="relative">
                     {/* BASE LAYER (Grayscale) */}
                     <p 
-                      className="text-h3 leading-tight select-none opacity-5"
+                      className="text-h3-mobile md:text-h3-tab lg:text-h3 leading-tight select-none opacity-5"
                       style={{ filter: "grayscale(100%)" }}
                     >
                       {line}
@@ -101,7 +101,7 @@ export default function AboutHero() {
                         WebkitMaskImage: mask,
                         maskImage: mask,
                       }}
-                      className="absolute inset-0 text-h3 leading-tight text-black"
+                      className="absolute inset-0 text-h3-mobile md:text-h3-tab lg:text-h3 leading-tight text-black"
                     >
                       {line}
                     </motion.p>

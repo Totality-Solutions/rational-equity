@@ -51,7 +51,7 @@ export default function Testimonials() {
   const xKeyframes = [0, -shift, -(shift * 2), -(shift * 3), -(shift * 4)];
 
   return (
-    <section className="bg-white py-16 md:py-24 overflow-hidden font-sans">
+    <section className="bg-white pb-16 md:pb-20 overflow-hidden font-sans">
       <Container className="mb-12 md:mb-16 text-center">
           <AnimatedHeader 
         title="What Our Investors Say" 
