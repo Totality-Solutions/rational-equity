@@ -16,6 +16,7 @@ const contactDetails = [
     icon: <Phone className="w-5 h-5" />,
     label: "Call Us",
     value: "+91 22 1234 5678",
+    
     subValue: "Mon – Fri, 9:30 AM – 6:00 PM",
   },
   {
