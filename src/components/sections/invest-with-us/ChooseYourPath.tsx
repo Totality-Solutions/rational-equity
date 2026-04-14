@@ -80,12 +80,12 @@ export default function ChooseYourPath() {
                   ${isActive ? "border-brand-maroon/20 bg-[#FDF2F2]/30 shadow-lg" : "border-gray-100 bg-white"}`}
               >
                 <div className="flex items-start gap-4 mb-8">
-                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mt-1 ${isActive ? "border-brand-maroon" : "border-gray-200"}`}>
-                    {isActive && <div className="w-3 h-3 rounded-full bg-brand-maroon" />}
+                  <div className={`w-8 h-7 lg:w-6 lg:h-6 rounded-full border-2 flex items-center justify-center mt-1 ${isActive ? "border-brand-maroon" : "border-gray-200"}`}>
+                    {isActive && <div className="w-3 h-3 lg:w-3 lg:h-3 rounded-full bg-brand-maroon" />}
                   </div>
                   <div>
                     <h3 className="text-2xl font-semibold text-gray-900 mb-4">{path.title}</h3>
-                    <p className="text-gray-400 text-lg">{path.description}</p>
+                    <p className="text-[#000000]/50 text-lg">{path.description}</p>
                   </div>
                 </div>
                 <ul className="space-y-4 mb-12">

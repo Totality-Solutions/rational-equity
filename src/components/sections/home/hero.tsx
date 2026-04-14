@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -6,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CTAButton from '@/components/common/CTAButton';
+import Container from '@/components/common/Container';
 
 // --- Types ---
 interface RollingDigitProps {
@@ -97,25 +97,22 @@ export default function Hero() {
                     muted
                     loop
                     playsInline
-                    className="w-full h-full object-cover opacity-40" // Adjust opacity as needed
+                    className="w-full h-full object-cover opacity-40"
                 >
-                    {/* REPLACE THIS PATH WITH YOUR ACTUAL VIDEO FILE */}
                     <source src="/videos/hero-bg.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
-                {/* Optional: Dark overlay to ensure text readability */}
                 <div className="absolute inset-0 bg-black/40 z-[1]" />
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 relative z-10 w-full">
-
+            <Container className="relative z-10 py-20">
                 {/* Main Header */}
-                <div className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
+                <div className="text-center mb-16 md:mb-24 max-w-4xl mx-auto">
                     <motion.h1 
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="font-serif text-4xl sm:text-5xl md:text-[64px] font-regular text-white tracking-[0.1em] "
+                        className="font-serif text-4xl sm:text-5xl md:text-[64px] font-normal text-white tracking-[0.1em] "
                     >
                         INVESTING
                     </motion.h1>
@@ -123,7 +120,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.2, duration: 0.6 }}
-                        className="font-sans text-xl sm:text-2xl md:text-[32px] font-regular text-white tracking-widest mb-10"
+                        className="font-sans text-xl sm:text-2xl md:text-h3 font-normal text-white tracking-widest mb-10"
                     >
                         the Rational way.
                     </motion.p>
@@ -132,32 +129,31 @@ export default function Hero() {
                         initial={{ opacity: 0 }}
                         animate={inView ? { opacity: 1 } : {}}
                         transition={{ delay: 0.4, duration: 0.8 }}
-                        className="text-base sm:text-lg md:text-[20px] text-white leading-relaxed mb-12 px-4"
+                        className="text-base sm:text-lg md:text-h4text-white leading-relaxed mb-12 px-4"
                     >
                         Long-only strategies built on conviction, discipline,<br className="hidden md:block" />
                         and long-term value creation.
                     </motion.p>
 
-                    {/* Replace the entire 12-line div/Link block with just this */}
                     <CTAButton 
                       href="/funds" 
                       text="Explore Funds" 
                       variant="dark"
                       primaryColor="#7B0000"
                       textColor="#ffffff"
-                      className="mt-8" // Use className for any specific section spacing
+                      className="mt-8"
                     />
                 </div>
 
                 {/* Statistic Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {STATS_CARDS.map((stat, idx) => (
                         <motion.div
                             key={stat.label}
                             initial={{ opacity: 0, y: 20 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 0.1 * idx, duration: 0.5 }}
-                            className="group relative bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-sm p-8 md:p-10 text-center transition-all duration-500"
+                            className="group relative bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-sm p-8 md:p-10 text-center transition-all duration-500 hover:bg-white/[0.08]"
                             style={{ transform: 'translateZ(0)' }}
                         >
                             <div className="font-serif text-2xl md:text-3xl font-medium text-white mb-2 tracking-wider flex justify-center items-baseline">
@@ -165,15 +161,13 @@ export default function Hero() {
                                 <span className="ml-1 text-xl md:text-2xl">{stat.suffix}</span>
                             </div>
                             
-                            <p className="text-[10px] md:text-[14px] font-medium tracking-[0.2em] text-white uppercase">
+                            <p className="text-[10px] md:text-body-sm font-medium tracking-[0.2em] text-white uppercase">
                                 {stat.label}
                             </p>
-                            
-                            {/* <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-brand-maroon group-hover:w-full transition-all duration-700" /> */}
                         </motion.div>
                     ))}
                 </div>
-            </div>
+            </Container>
         </section>
     );
 }

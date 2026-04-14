@@ -13,7 +13,7 @@ export default function FundDocuments({ documents }: FundDocumentsProps) {
   if (!documents || documents.length === 0) return null;
 
   return (
-    <section className="relative w-full bg-white font-sans pb-16 md:pb-20 overflow-hidden">
+    <section className="relative w-full bg-white font-sans py-12 overflow-hidden">
       {/* Background Decorative Grid */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-40"

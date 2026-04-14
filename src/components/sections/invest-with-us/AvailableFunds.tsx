@@ -154,7 +154,7 @@ export default function AvailableFunds() {
               </div>
 
               <div className="px-8 mb-6">
-                <p className="text-gray-500 leading-relaxed text-[15px]">{selectedFund.description}</p>
+                <p className="text-gray-500 leading-relaxed text-body-md ">{selectedFund.description}</p>
               </div>
 
               <div className="px-8 mb-8">

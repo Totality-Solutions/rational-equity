@@ -1,8 +1,8 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 
 const TESTIMONIALS = [
@@ -33,14 +33,13 @@ const TESTIMONIALS = [
 ];
 
 export default function Testimonials() {
-  const [shift, setShift] = useState(432); // Default for desktop (400 + 32)
+  const [shift, setShift] = useState(432); // Default (400px card + 32px gap)
 
   useEffect(() => {
     const handleResize = () => {
-      // On mobile, the card is 85vw. On desktop, it's 400px.
-      // Gap is 32px (gap-8)
-      const width = window.innerWidth < 768 ? (window.innerWidth * 0.85) : 400;
-      setShift(width + 32);
+      // Mobile: card is 85vw. Desktop: card is 400px. Gap is 32px (gap-8).
+      const cardWidth = window.innerWidth < 768 ? (window.innerWidth * 0.85) : 400;
+      setShift(cardWidth + 32);
     };
 
     handleResize();
@@ -48,51 +47,51 @@ export default function Testimonials() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Dynamic Keyframes based on current screen-size shift
+  // Infinite loop keyframes
   const xKeyframes = [0, -shift, -(shift * 2), -(shift * 3), -(shift * 4)];
 
   return (
-    <section className="bg-white pb-16 md:pb-24 overflow-hidden font-sans">
-      <AnimatedHeader 
+    <section className="bg-white pb-16 md:pb-20 overflow-hidden font-sans">
+      <Container className="mb-12 md:mb-16 text-center">
+          <AnimatedHeader 
         title="What Our Investors Say" 
         subheading="Trusted by thousands of investors across India for disciplined wealth creation."
         variant="light"
         className="mb-12 md:mb-16"
       />
+      </Container>
 
       <div className="relative w-full overflow-hidden">
         <motion.div
-          className="flex gap-8 px-6 md:px-[10%]"
-          animate={{
-            x: xKeyframes,
-          }}
+          className="flex gap-8 px-6 md:px-[5%]"
+          animate={{ x: xKeyframes }}
           transition={{
-            duration: 10, // Slightly slower for better readability on small screens
+            duration: 12, // Smoothed duration for better readability
             repeat: Infinity,
             ease: [0.22, 1, 0.36, 1],
-            times: [0, 0.23, 0.48, 0.73, 0.98, 1],
+            times: [0, 0.23, 0.48, 0.73, 0.98],
           }}
           style={{ width: "max-content" }}
         >
-          {/* Tripled list for infinite loop effect */}
+          {/* Tripled list for a seamless infinite loop */}
           {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((item, index) => (
             <div
               key={index}
               className="flex-shrink-0 w-[85vw] md:w-[400px] group"
             >
-              <div className="relative bg-white rounded-2xl shadow-xl shadow-gray-100 flex flex-col h-full overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl group-hover:bg-gradient-to-br group-hover:from-rose-50/50 group-hover:to-white">
+              <div className="relative bg-white rounded-2xl shadow-xl shadow-gray-100 flex flex-col h-full overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl hover:border-brand-maroon/20">
 
-                {/* Border Top Accent */}
-                <div className="absolute top-0 left-0 w-full h-[6px] bg-[#8B0000] opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-in-out z-10" />
+                {/* Top Accent Strip */}
+                <div className="absolute top-0 left-0 w-full h-[6px] bg-[#8B0000] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
 
                 <div className="p-6 md:p-8 flex-grow">
-                  <div className="flex gap-1 mb-4 md:mb-6">
+                  {/* Rating Stars */}
+                  <div className="flex gap-1 mb-5">
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
                         viewBox="0 0 24 24"
                         fill="#FBBF24"
-                        // Controlled via className instead of direct attributes
                         className="w-[14px] h-[14px] md:w-[16px] md:h-[16px]"
                       >
                         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
@@ -111,7 +110,7 @@ export default function Testimonials() {
                     {item.initial}
                   </div>
                   <div className="overflow-hidden">
-                    <h4 className="text-white font-bold text-sm md:text-[16px] tracking-wide font-sans truncate">{item.name}</h4>
+                    <h4 className="text-white font-bold text-sm md:text-body-md tracking-wide font-sans truncate">{item.name}</h4>
                     <p className="text-rose-100/80 text-[10px] md:text-xs truncate">{item.location}</p>
                   </div>
                 </div>
@@ -119,13 +118,7 @@ export default function Testimonials() {
             </div>
           ))}
         </motion.div>
-
-        {/* Edge Gradients for the peek effect - Reduced width on mobile */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-white via-white/40 to-transparent z-20" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-white via-white/40 to-transparent z-20" />
       </div>
     </section>
   );
 }
-
-

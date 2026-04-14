@@ -1,7 +1,10 @@
+
+
+
 'use client';
 
+import AnimatedHeader from '@/components/common/AnimatedHeader';
 import React, { useState } from 'react';
-import AnimatedHeader from '@/components/common/AnimatedHeader'; // Adjust path as needed
 
 const FAQ_DATA = [
   {
@@ -30,17 +33,18 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section data-theme="dark" className="bg-brand-maroon-hover py-24 text-white font-sans">
+    <section className="bg-brand-maroon-hover py-12 text-white font-sans">
       <div className="max-w-4xl mx-auto px-6">
         
-        {/* --- REPLACED HEADER SECTION --- */}
-        <AnimatedHeader 
+        {/* Header - Fluid Sizing */}
+       <AnimatedHeader 
           title="Frequently Asked Questions"
-          // highlight="QUESTIONS"
-          // highlightColor="#ffffff" // White highlight for the dark background
+          highlight="Asked Questions"
+          highlightColor="#ffffff" // Keeping highlight white for contrast on maroon
           subheading="Find answers to common questions about investing with us"
-          variant="dark" // Ensures text is white
-          className="mb-12 md:mb-16"
+          variant="dark"
+          className="mb-12 md:mb-20"
+          subheadingClassName="text-rose-100/70 max-w-2xl mx-auto"
         />
 
         {/* Accordion List */}
@@ -53,7 +57,7 @@ export default function FAQ() {
             >
               {/* Question Header */}
               <div className="w-full py-6 md:py-8 px-4 flex items-center justify-between text-left gap-4">
-                <span className="text-lg md:text-xl font-medium tracking-tight group-hover:underline underline-offset-8 decoration-white/40 transition-all">
+                <span className="text-body-lg  font-medium  group-hover:underline underline-offset-8 decoration-white/40 transition-all">
                   {faq.question}
                 </span>
                 <span className={`flex-shrink-0 transform transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}>
@@ -75,7 +79,7 @@ export default function FAQ() {
                   openIndex === index ? 'max-h-96 pb-8 opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                <p className="text-rose-100/80 leading-relaxed font-sans text-base md:text-lg max-w-3xl">
+                <p className="text-rose-100/80 leading-relaxed font-sans text-body-lg  max-w-3xl">
                   {faq.answer}
                 </p>
               </div>
