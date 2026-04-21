@@ -29,6 +29,13 @@ export interface PerformanceRow {
   benchmark: string;
 }
 
+export interface GraphPoint {
+  name: string;
+  fund: number;
+  bench: number;
+  status: number;
+}
+
 export interface FundDetails {
   title: string;
   description: string;
@@ -37,7 +44,12 @@ export interface FundDetails {
   stats: StatItem[];
   documents: PdfItem[];
   philosophyPoints: PhilosophyPoint[];
-  performance: PerformanceRow[];
+  performance: {
+    // table: PerformanceRow[]; // Jo table mein dikhega
+    weekly: GraphPoint[];
+    monthly: GraphPoint[];
+    yearly: GraphPoint[];
+  };
 }
 
 export const FUND_DATA: Record<string, FundDetails> = {
@@ -72,15 +84,33 @@ export const FUND_DATA: Record<string, FundDetails> = {
       { title: "Structural Growth", description: "Investing in sectors with a 10+ year tailwind in India." },
       { title: "Concentrated Conviction", description: "A high-conviction portfolio of 20-25 market-leading companies." },
     ],
-    performance: [
-      { period: "1 Month", fundReturn: "+1.7%", benchmark: "+1.3%" },
-      { period: "3 Months", fundReturn: "+4.1%", benchmark: "+3.5%" },
-      { period: "6 Months", fundReturn: "+7.2%", benchmark: "+6.1%" },
-      { period: "1 Year", fundReturn: "+12.3%", benchmark: "+9.8%" },
-      { period: "3 Years", fundReturn: "+38.6%", benchmark: "+31.2%" },
-      { period: "5 Years", fundReturn: "+84.5%", benchmark: "+68.7%" },
-      { period: "Since Inception", fundReturn: "+196.4%", benchmark: "+152.8%" },
-    ]
+    performance: {
+      // table: [
+      //   { period: "1 Month", fundReturn: "+1.7%", benchmark: "+1.3%" },
+      //   { period: "3 Months", fundReturn: "+4.1%", benchmark: "+3.5%" },
+      //   { period: "Since Inception", fundReturn: "+196.4%", benchmark: "+152.8%" },
+      // ],
+      weekly: [
+        { name: "Week 1", fund: 1.2, bench: 0.8, status: 0.5 },
+        { name: "Week 2", fund: -0.5, bench: 0.2, status: -0.2 },
+        { name: "Week 3", fund: 2.1, bench: 1.5, status: 0.8 },
+        { name: "Week 4", fund: 0.8, bench: 1.2, status: 1.1 },
+      ],
+      monthly: [
+        { name: "Jan", fund: 4.2, bench: 3.1, status: 2.0 },
+        { name: "Feb", fund: 2.8, bench: 3.5, status: 1.5 },
+        { name: "Mar", fund: 5.1, bench: 4.2, status: 3.2 },
+        { name: "Apr", fund: 3.9, bench: 4.5, status: 2.8 },
+        { name: "May", fund: 6.2, bench: 5.1, status: 4.0 },
+        { name: "Jun", fund: 5.5, bench: 5.8, status: 4.2 },
+      ],
+      yearly: [
+        { name: "2023", fund: 10.5, bench: 8.2, status: 6.1 },
+        { name: "2024", fund: 15.2, bench: 12.5, status: 9.2 },
+        { name: "2025", fund: 18.4, bench: 14.2, status: 11.5 },
+        { name: "2026", fund: 22.2, bench: 18.5, status: 15.0 },
+      ]
+    }
   },
   "gold-silver-miners": {
     title: "Gold & Silver Miners Fund",
@@ -113,15 +143,33 @@ export const FUND_DATA: Record<string, FundDetails> = {
       { title: "Balance Sheet Strength", description: "Low leverage and strong cash flow are non-negotiable." },
       { title: "Global Diversification", description: "Investing across geographies to reduce single-country risk." },
     ],
-    performance: [
-      { period: "1 Month", fundReturn: "+1.7%", benchmark: "+1.3%" },
-      { period: "3 Months", fundReturn: "+4.1%", benchmark: "+3.5%" },
-      { period: "6 Months", fundReturn: "+7.2%", benchmark: "+6.1%" },
-      { period: "1 Year", fundReturn: "+12.3%", benchmark: "+9.8%" },
-      { period: "3 Years", fundReturn: "+38.6%", benchmark: "+31.2%" },
-      { period: "5 Years", fundReturn: "+84.5%", benchmark: "+68.7%" },
-      { period: "Since Inception", fundReturn: "+196.4%", benchmark: "+152.8%" },
-    ]
+    performance: {
+      // table: [
+      //   { period: "1 Month", fundReturn: "+1.7%", benchmark: "+1.3%" },
+      //   { period: "3 Months", fundReturn: "+4.1%", benchmark: "+3.5%" },
+      //   { period: "Since Inception", fundReturn: "+196.4%", benchmark: "+152.8%" },
+      // ],
+      weekly: [
+        { name: "Week 1", fund: 1.2, bench: 0.8, status: 0.5 },
+        { name: "Week 2", fund: -0.5, bench: 0.2, status: -0.2 },
+        { name: "Week 3", fund: 2.1, bench: 1.5, status: 0.8 },
+        { name: "Week 4", fund: 0.8, bench: 1.2, status: 1.1 },
+      ],
+      monthly: [
+        { name: "Jan", fund: 4.2, bench: 3.1, status: 2.0 },
+        { name: "Feb", fund: 2.8, bench: 3.5, status: 1.5 },
+        { name: "Mar", fund: 5.1, bench: 4.2, status: 3.2 },
+        { name: "Apr", fund: 3.9, bench: 4.5, status: 2.8 },
+        { name: "May", fund: 6.2, bench: 5.1, status: 4.0 },
+        { name: "Jun", fund: 5.5, bench: 5.8, status: 4.2 },
+      ],
+      yearly: [
+        { name: "2023", fund: 10.5, bench: 8.2, status: 6.1 },
+        { name: "2024", fund: 15.2, bench: 12.5, status: 9.2 },
+        { name: "2025", fund: 18.4, bench: 14.2, status: 11.5 },
+        { name: "2026", fund: 22.2, bench: 18.5, status: 15.0 },
+      ]
+    }
   },
   "absolute-return": {
     title: "Absolute Return Fund",
@@ -154,14 +202,32 @@ export const FUND_DATA: Record<string, FundDetails> = {
       { title: "Capital Preservation", description: "Focusing on low-volatility returns to protect investor principal." },
       { title: "Low Correlation", description: "Providing returns that don't move in sync with traditional equities." },
     ],
-    performance: [
-      { period: "1 Month", fundReturn: "+1.7%", benchmark: "+1.3%" },
-      { period: "3 Months", fundReturn: "+4.1%", benchmark: "+3.5%" },
-      { period: "6 Months", fundReturn: "+7.2%", benchmark: "+6.1%" },
-      { period: "1 Year", fundReturn: "+12.3%", benchmark: "+9.8%" },
-      { period: "3 Years", fundReturn: "+38.6%", benchmark: "+31.2%" },
-      { period: "5 Years", fundReturn: "+84.5%", benchmark: "+68.7%" },
-      { period: "Since Inception", fundReturn: "+196.4%", benchmark: "+152.8%" },
-    ]
+    performance: {
+      // table: [
+      //   { period: "1 Month", fundReturn: "+1.7%", benchmark: "+1.3%" },
+      //   { period: "3 Months", fundReturn: "+4.1%", benchmark: "+3.5%" },
+      //   { period: "Since Inception", fundReturn: "+196.4%", benchmark: "+152.8%" },
+      // ],
+      weekly: [
+        { name: "Week 1", fund: 1.2, bench: 0.8, status: 0.5 },
+        { name: "Week 2", fund: -0.5, bench: 0.2, status: -0.2 },
+        { name: "Week 3", fund: 2.1, bench: 1.5, status: 0.8 },
+        { name: "Week 4", fund: 0.8, bench: 1.2, status: 1.1 },
+      ],
+      monthly: [
+        { name: "Jan", fund: 4.2, bench: 3.1, status: 2.0 },
+        { name: "Feb", fund: 2.8, bench: 3.5, status: 1.5 },
+        { name: "Mar", fund: 5.1, bench: 4.2, status: 3.2 },
+        { name: "Apr", fund: 3.9, bench: 4.5, status: 2.8 },
+        { name: "May", fund: 6.2, bench: 5.1, status: 4.0 },
+        { name: "Jun", fund: 5.5, bench: 5.8, status: 4.2 },
+      ],
+      yearly: [
+        { name: "2023", fund: 10.5, bench: 8.2, status: 6.1 },
+        { name: "2024", fund: 15.2, bench: 12.5, status: 9.2 },
+        { name: "2025", fund: 18.4, bench: 14.2, status: 11.5 },
+        { name: "2026", fund: 22.2, bench: 18.5, status: 15.0 },
+      ]
+    }
   }
 };

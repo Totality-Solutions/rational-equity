@@ -46,7 +46,7 @@ export default function ProductHero({ title, description, titleColor = "text-bra
         </Link>
 
         {/* Hero Content */}
-        <div className="w-full py-[50px] flex flex-col justify-center items-center">
+        <div className="w-full py-[10px] flex flex-col justify-center items-center">
           {/* <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export default function ProductHero({ title, description, titleColor = "text-bra
             titleClassName="!font-bold"
             subheading={description}
             variant="light"
-            className="mb-16"
+            className="!mb-12"
           />
         </div>
       </div>
