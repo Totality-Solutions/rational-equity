@@ -36,7 +36,7 @@ export default function FundCTA({
             
             {/* Start Investing Button */}
             <CTAButton 
-              href="/invest" // Or your specific investment path
+              href="/invest-with-us" // Or your specific investment path
               text="Start Investing" 
               variant="light"
               className="h-[50px]" // Matches your specific height requirement

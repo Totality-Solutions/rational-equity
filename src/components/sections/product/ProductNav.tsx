@@ -65,13 +65,13 @@ export default function ProductNav() {
   }, [activeSection]);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white border-b border-t border-gray-100">
+    <nav className="sticky top-[72px] md:top-[80px] z-50 w-full bg-white border-b border-t border-gray-100">
       <div className="relative max-w-7xl mx-auto px-4 md:px-6">
         
         {/* Visual Fade Gradient: Prevents text from looking "cut in half" 
             on small screens/tablets by adding a subtle fade at the edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none md:hidden" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none md:hidden" />
+        {/* <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none md:hidden" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none md:hidden" /> */}
 
         <div 
           ref={scrollContainerRef}

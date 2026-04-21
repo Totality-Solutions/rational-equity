@@ -16,7 +16,7 @@ const QUICK_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Investment Approach', href: '/investment-approach' },
-  { label: 'Thought Centre', href: '/thought-centre' },
+  { label: 'Thought Center', href: '/thought-center' },
   { label: 'Call Us', href: '/contact' }
 ];
 
