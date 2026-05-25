@@ -88,7 +88,7 @@ export default function Hero() {
     if (!mounted) return null;
 
     return (
-        <section ref={ref} className="bg-black text-white relative overflow-hidden font-sans min-h-[85vh] flex items-center">
+        <section ref={ref} className="bg-black text-white relative overflow-hidden font-sans max-h-[85vh] flex items-center">
 
             {/* --- VIDEO BACKGROUND SECTION --- */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -105,9 +105,9 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-black/40 z-[1]" />
             </div>
 
-            <Container className="relative z-10 py-20">
+            <Container className="relative z-10 py-20 flex justify-evenly items-center w-full ">
                 {/* Main Header */}
-                <div className="text-center mb-16 md:mb-24 max-w-4xl mx-auto">
+                <div className="text-center  ">
                     <motion.h1 
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -146,7 +146,7 @@ export default function Hero() {
                 </div>
 
                 {/* Statistic Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-6">
                     {STATS_CARDS.map((stat, idx) => (
                         <motion.div
                             key={stat.label}
