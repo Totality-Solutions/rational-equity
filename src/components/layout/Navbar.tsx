@@ -72,13 +72,13 @@ export default function Navbar() {
                 {NAV_LINKS.map(({ label, href, subMenu }) => (
                   <li key={label} className="relative group py-5">
                     {subMenu ? (
-                      <div className="text-body-lg font-sans font-weight-medium text-black cursor-default hover:text-brand-maroon">
+                      <div className="text-body-md font-sans font-weight-medium text-black cursor-default hover:text-brand-maroon">
                         {label}
                       </div>
                     ) : (
                       <Link
                         href={href}
-                        className={`text-body-lg font-sans font-weight-medium transition-colors duration-200 whitespace-nowrap hover:text-brand-maroon ${
+                        className={`text-body-md font-sans font-weight-medium transition-colors duration-200 whitespace-nowrap hover:text-brand-maroon ${
                           isActive(href) ? 'text-brand-maroon font-bold' : 'text-black'
                         }`}
                       >
@@ -128,7 +128,7 @@ export default function Navbar() {
                 href="/contact"
                 text="Call us"
                 variant="light"
-                // paddingClassName='px-3 py-2'
+                paddingClassName='px-3 py-2'
               />
             </div>
             </div>

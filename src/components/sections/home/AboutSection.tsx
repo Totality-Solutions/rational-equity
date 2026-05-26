@@ -22,11 +22,11 @@ export default function AboutSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-white py-16 md:py-24 lg:py-32 overflow-hidden font-sans min-h-[700px] flex flex-col justify-center"
+      className="relative bg-white py-10 overflow-hidden font-sans h-fit flex flex-col justify-center"
     >
 
       {/* 1. BACKGROUND CHART LAYER */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.12] pointer-events-none">
+      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.2] pointer-events-none">
         <svg
           width="100%"
           height="100%"
@@ -36,8 +36,8 @@ export default function AboutSection() {
         >
           <defs>
             <linearGradient id="barFade" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#800000" stopOpacity="1" />
-              <stop offset="100%" stopColor="#800000" stopOpacity="0" />
+              <stop offset="0%" stopColor="#9B0000" stopOpacity="1" />
+              <stop offset="100%" stopColor="#9B0000" stopOpacity="0" />
             </linearGradient>
           </defs>
 
@@ -98,7 +98,7 @@ export default function AboutSection() {
 
       {/* 2. CONTENT LAYER */}
       <Container className="relative z-10 text-center">
-        <div className="flex flex-col gap-0">
+        {/* <div className="flex flex-col gap-0">
           <AnimatedHeader
             title="Rational thinking."
             variant="light"
@@ -113,11 +113,11 @@ export default function AboutSection() {
 
             titleClassName="!text-black text-4xl sm:text-5xl md:text-6xl lg:text-6xl  tracking-tight"
           />
-        </div>
+        </div> */}
 
         <div className="flex items-center justify-center gap-4 md:gap-6 my-8 md:my-12">
           <div className="h-[1.5px] w-12 md:w-20 bg-[#800000] opacity-30" />
-          <span className="font-sans text-[11px] md:text-body-sm-mobile tracking-[0.2em] text-gray-500 uppercase font-bold whitespace-nowrap">
+          <span className="font-sans text-body-sm md:text-body-lg tracking-wider text-black/80 uppercase font-bold whitespace-nowrap">
             Since 2008
           </span>
           <div className="h-[1.5px] w-12 md:w-20 bg-[#800000] opacity-30" />
@@ -141,24 +141,26 @@ export default function AboutSection() {
             variant="light"
             className="!mb-0"
 
-            titleClassName="!text-black text-4xl sm:text-5xl md:text-6xl lg:text-6xl  tracking-tight"
+            titleClassName="!text-black text-h1  tracking-wide"
           />
           <AnimatedHeader
             title="Asset Management"
             variant="light"
             className="!mb-0"
             subheading="We are a leading asset management company committed to delivering superior risk-adjusted returns through disciplined investment strategies. With over 15 years of excellence, we manage ₹25,000+ Crores for 500,000+ satisfied investors."
-            titleClassName="!text-black text-4xl sm:text-5xl md:text-6xl lg:text-6xl  tracking-tight"
-            subheadingClassName="!max-w-none mt-8"
+            titleClassName="!text-black text-h1  tracking-wide"
+            subheadingClassName="max-w-5xl mt-8 text-body-lg tracking-wide text-black/80"
           />
         </div>
 
         <div className="flex justify-center">
           <CTAButton
             href="/about"
-            text="Learn More about us"
+            text="Explore Our Funds"
             variant="maroon-bg"
             iconClassName="invert"
+            className='tracking-wider'
+            borderRadiusClassName='rounded-full'
           />
         </div>
       </Container>

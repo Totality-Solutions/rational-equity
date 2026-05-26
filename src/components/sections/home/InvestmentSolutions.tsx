@@ -49,7 +49,7 @@ export default function InvestmentSolutions() {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="relative bg-[#0a0a0a] py-16 md:py-24 text-white font-sans overflow-hidden"
+      className="relative bg-[#0a0a0a] py-10 text-white font-sans overflow-hidden"
     >
       
       {/* GRID BACKGROUND */}
@@ -66,17 +66,20 @@ export default function InvestmentSolutions() {
         />
       </motion.div>
 
-      <Container className="relative z-10">
-        <div className="text-center mb-12 md:mb-16">
+      <Container className="relative z-10 space-y-8">
+        <div className="text-center ">
       <AnimatedHeader 
+      className="m-0"
           title="Our Investment Solutions"
+          highlight='Investment'
           variant="dark" // Use dark to ensure text is white on the black background
+          titleClassName="!text-white text-h3  tracking-wide"
         />
           {/* <div className="h-1 w-20 bg-[#800000] mx-auto md:hidden" /> */}
         </div>
 
         {/* CARDS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 mb-16 md:mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 ">
           {FUNDS.map((fund, index) => (
             <motion.div
               key={fund.title}
@@ -107,21 +110,21 @@ export default function InvestmentSolutions() {
                 {/* CONTENT */}
                 <div className="relative z-20 p-6 md:p-8 flex flex-col flex-1 justify-between">
                   <div>
-                    <h3 className="text-black font-bold text-xl md:text-2xl mb-4 md:mb-6 transition-colors group-hover:text-[#800000]">
+                    <h3 className="text-black font-bold text-h4 mb-4 md:mb-6 transition-colors group-hover:text-[#800000]">
                       {fund.title}
                     </h3>
-                    <p className="text-gray-600 text-sm md:text-body-md  leading-relaxed mb-8 md:mb-12">
+                    <p className="text-black/80 text-body-md  leading-relaxed ">
                       {fund.description}
                     </p>
                   </div>
 
                   <div>
                     <div className="flex justify-between items-center mb-6 border-t border-gray-100 pt-6">
-                      <span className="text-gray-400 text-[10px] md:text-[11px] font-bold uppercase tracking-widest">3 Year Returns</span>
+                      <span className="text-black/80 text-[10px] md:text-[11px] font-bold uppercase tracking-wide">3 Year Returns</span>
                       <span className="text-[#800000] font-bold text-base md:text-lg">{fund.returns}</span>
                     </div>
 
-                    <button className="w-full bg-[#800000] text-white py-3.5 rounded-lg font-bold text-sm transition-all hover:bg-[#600000] active:scale-[0.98]">
+                    <button className="w-full bg-[#800000] text-white py-3.5 rounded-full font-bold text-body-md tracking-wider transition-all hover:bg-[#600000] active:scale-[0.98]">
                       View Details
                     </button>
                   </div>
@@ -131,23 +134,16 @@ export default function InvestmentSolutions() {
           ))}
         </div>
 
-        {/* CTA SECTION */}
-        <div className="text-center">
-          <div className="mb-10">
-            {/* <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-4 md:mb-6">
-              Ready to Start Investing?
-            </h2>
-            <p className="text-lg md:text-[22px] font-light text-gray-300 max-w-2xl mx-auto">
-              Join thousands of investors who trust us with their wealth creation journey
-            </p> */}
+        {/* <div className="text-center">
+          <div className="">
 
              <AnimatedHeader 
                       title="Ready to Start Investing?"
                       subheading=" Join thousands of investors who trust us with their wealth creation journey"
                       variant="dark"
+                      className='mb-3 text-h4'
+                      subheadingClassName='text-body-lg tracking-wide text-white/80'
                     />
-          </div>
-
           <div className="flex justify-center">
             <CTAButton
               href="/invest"
@@ -156,7 +152,9 @@ export default function InvestmentSolutions() {
               iconClassName="invert"
             />
           </div>
-        </div>
+          </div>
+
+        </div> */}
       </Container>
     </section>
   );

@@ -44,62 +44,21 @@ export default function Journey() {
   };
 
   const yearVariants: Variants = {
-    initial: { color: "#E5E7EB" },
+    initial: { color: "#000000" },
     hover: { color: "#8B0000" }
   };
 
   return (
-    <section className="bg-white py-12 md:py-20  font-sans overflow-hidden">
-      <Container>
-        {/* Header */}
-        {/* <div className="text-center mb-12 md:mb-20">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black mb-4 md:mb-6">
-            The {" "}
-            <motion.span
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-[#8B0000] uppercase inline-block"
-            >
-              {journeyWord.split("").map((char, index) => (
-                <motion.span key={index} custom={index} variants={letterVariants} className="inline-block">
-                  {char}
-                </motion.span>
-              ))}
-            </motion.span>
-            {" "} So Far
-          </h2>
-
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-gray-700 font-normal max-w-2xl mx-auto text-base md:text-lg lg:text-xl leading-relaxed"
-          >
-            {subTitleText.split(" ").map((word, index) => (
-              <motion.span
-                key={index}
-                variants={{
-                  hidden: { opacity: 0, y: 5 },
-                  visible: { opacity: 1, y: 0 }
-                }}
-                transition={{ duration: 0.2, delay: 0.8 + (index * 0.05) }}
-                className="inline-block mr-1"
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.p>
-        </div> */}
-
-
-           <AnimatedHeader 
+    <section className="bg-white py-10 font-sans overflow-hidden">
+      <Container className='space-y-6'>
+        <AnimatedHeader 
           title="The JOURNEY So Far"
           highlight="JOURNEY"
           highlightColor="#8B0000"
           subheading="Our path has been defined by a commitment to rigorous research and absolute integrity."
           variant="light"
-          className="mb-12 md:mb-20 text-black"
+          className=" text-black text-h3"
+          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
         />
 
         {/* Spread Animation Grid */}
@@ -130,7 +89,7 @@ export default function Journey() {
                 <motion.div 
                   variants={yearVariants}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="font-serif text-h2  mb-4 md:mb-6 opacity-80 select-none origin-left"
+                  className="font-serif text-h2  mb-4 md:mb-6 opacity-100 select-none origin-left"
                 >
                   {item.year}
                 </motion.div>

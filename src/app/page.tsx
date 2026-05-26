@@ -8,6 +8,7 @@ import Hero from '@/components/sections/home/hero';
 import InvestmentSolutions from '@/components/sections/home/InvestmentSolutions';
 import Journey from '@/components/sections/home/Journey';
 import Testimonials from '@/components/sections/home/Testimonials';
+import ReadyToStart from '@/components/sections/home/ReadyToStart';
 
 // ─── HOME PAGE SEO ──────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function Home() {
         <Hero />
         <AboutSection />
         <InvestmentSolutions />
+        <ReadyToStart />
         <Journey />
         <Testimonials />
         <FAQ />

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CTAButton from '@/components/common/CTAButton';
 import Container from '@/components/common/Container';
+import AnimatedHeader from '@/components/common/AnimatedHeader';
 
 // --- Types ---
 interface RollingDigitProps {
@@ -88,7 +89,7 @@ export default function Hero() {
     if (!mounted) return null;
 
     return (
-        <section ref={ref} className="bg-black text-white relative overflow-hidden font-sans max-h-[85vh] flex items-center">
+        <section ref={ref} className="bg-black text-white relative overflow-hidden font-sans h-fit flex items-center">
 
             {/* --- VIDEO BACKGROUND SECTION --- */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -102,17 +103,49 @@ export default function Hero() {
                     <source src="/videos/hero-bg.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
-                <div className="absolute inset-0 bg-black/40 z-[1]" />
+                <div className="absolute inset-0 bg-black/40 z-1" />
             </div>
 
-            <Container className="relative z-10 py-20 flex justify-evenly items-center w-full ">
+            <Container className="relative z-10 py-10 flex justify-evenly items-center w-full ">
                 {/* Main Header */}
-                <div className="text-center  ">
-                    <motion.h1 
+                <div className="text-center w-full space-y-">
+                    <div className="flex flex-col gap-0">
+                              <AnimatedHeader
+                                title="Rational thinking."
+                                variant="light"
+                                className="mb-0!"
+                    
+                                titleClassName="text-white text-h1  tracking-tight"
+                              />
+                              <AnimatedHeader
+                                title="Exceptional returns."
+                                variant="light"
+                                className="mb-0!"
+                                titleClassName="!text-white text-h1  tracking-tight"
+                                subheading=" Long-only strategies built on conviction, discipline, and long-term value creation."
+                                subheadingClassName="max-w-sm mt-8 text-body-lg tracking-wider text-white/90"
+                              />
+                            </div>
+                    {/* <motion.p 
+                        initial={{ opacity: 0 }}
+                        animate={inView ? { opacity: 1 } : {}}
+                        transition={{ delay: 0.4, duration: 0.8 }}
+                        className="text-body-md tracking-wider md:text-body-md text-white leading-relaxed mb-12 px-4"
+                    >
+                        Long-only strategies built on conviction, discipline,<br className="hidden md:block" />
+                        and long-term value creation.
+                    </motion.p> */}
+                    </div>
+                
+
+                {/* Statistic Cards */}
+                <div className="w-full">
+                    <div className="text-center  ">
+                    {/* <motion.h1 
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="font-serif text-4xl sm:text-5xl md:text-[64px] font-normal text-white tracking-[0.1em] "
+                        className="font-serif text-xl sm:text-xl md:text-[42px] font-normal text-white tracking-widest "
                     >
                         INVESTING
                     </motion.h1>
@@ -120,7 +153,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.2, duration: 0.6 }}
-                        className="font-sans text-xl sm:text-2xl md:text-h3 font-normal text-white tracking-widest mb-10"
+                        className="font-sans text-xl sm:text-xl md:text-xl font-normal text-white tracking-widest mb-10"
                     >
                         the Rational way.
                     </motion.p>
@@ -133,19 +166,9 @@ export default function Hero() {
                     >
                         Long-only strategies built on conviction, discipline,<br className="hidden md:block" />
                         and long-term value creation.
-                    </motion.p>
+                    </motion.p> */}
 
-                    <CTAButton 
-                      href="/funds" 
-                      text="Explore Funds" 
-                      variant="dark"
-                      primaryColor="#7B0000"
-                      textColor="#ffffff"
-                      className="mt-8"
-                    />
                 </div>
-
-                {/* Statistic Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-6">
                     {STATS_CARDS.map((stat, idx) => (
                         <motion.div
@@ -155,7 +178,7 @@ export default function Hero() {
                             transition={{ delay: 0.1 * idx, duration: 0.5 }}
                             className="group relative bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-sm p-8 md:p-10 text-center transition-all duration-500 hover:bg-white/[0.08]"
                             style={{ transform: 'translateZ(0)' }}
-                        >
+                            >
                             <div className="font-serif text-2xl md:text-3xl font-medium text-white mb-2 tracking-wider flex justify-center items-baseline">
                                 <KBCNumber value={stat.value} inView={inView} />
                                 <span className="ml-1 text-xl md:text-2xl">{stat.suffix}</span>
@@ -166,6 +189,16 @@ export default function Hero() {
                             </p>
                         </motion.div>
                     ))}
+                </div>
+                    <CTAButton 
+                      href="/funds" 
+                      text="Explore Funds" 
+                      variant="dark"
+                      primaryColor="#7B0000"
+                      textColor="#ffffff"
+                      className="mt-8"
+                    //   borderRadiusClassName="rounded-full"
+                    />
                 </div>
             </Container>
         </section>

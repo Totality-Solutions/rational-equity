@@ -239,12 +239,12 @@ export default function AnimatedHeader({
   };
 
   return (
-    <div className={`text-center mb-12 md:mb-20 ${className}`}>
+    <div className={`text-center  ${className}`}>
       <motion.h2
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        className={`font-serif text-h2 font-regular ${titleDefaultColor} leading-tight ${titleClassName}`}
+        className={`font-serif font-regular ${titleDefaultColor} leading-tight ${titleClassName}`}
       >
         {renderTitle()}
       </motion.h2>
@@ -256,7 +256,7 @@ export default function AnimatedHeader({
           viewport={{ once: true }}
           variants={slideUpVariants}
           custom={0.4}
-          className={`font-regular font-sans max-w-3xl mx-auto text-base md:text-body-md leading-relaxed ${subColor} ${subheadingClassName}`}
+          className={`font-regular font-sans max-w-3xl mx-auto  leading-relaxed ${subColor} ${subheadingClassName}`}
         >
           {subheading}
         </motion.p>

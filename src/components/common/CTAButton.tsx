@@ -13,6 +13,7 @@ interface CTAButtonProps {
   paddingClassName?: string; // 🔹 Added optional padding prop
   iconClassName?: string;
   iconSrc?: string;
+  borderRadiusClassName?: string;
 }
 
 const CTAButton: React.FC<CTAButtonProps> = ({
@@ -24,7 +25,8 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   className = "",
   paddingClassName = "px-3 md:px-3 py-3", // 🔹 Default padding
   iconClassName = "",
-  iconSrc = "/images/arrowbtn.png"
+  iconSrc = "/images/arrowbtn.png",
+  borderRadiusClassName = "rounded-full"
 }) => {
   
   const isMaroonBg = variant === 'maroon-bg';
@@ -33,7 +35,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
     <div className={`flex justify-center ${className}`}>
       <Link 
         href={href} 
-        className="group flex items-stretch border border-brand-maroon overflow-hidden transition-all duration-500 w-full sm:w-auto hover:shadow-lg hover:shadow-brand-maroon-hover/27"
+        className={`${borderRadiusClassName} group flex items-stretch border border-brand-maroon overflow-hidden transition-all duration-500 w-full sm:w-auto hover:shadow-lg hover:shadow-brand-maroon-hover/27`}
       >
         {/* TEXT AREA */}
         <div 
