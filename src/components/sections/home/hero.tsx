@@ -109,20 +109,20 @@ export default function Hero() {
             <Container className="relative z-10 py-10 flex justify-evenly items-center w-full ">
                 {/* Main Header */}
                 <div className="text-center w-full space-y-">
-                    <div className="flex flex-col gap-0">
+                    <div className="flex items-center flex-col gap-0">
                               <AnimatedHeader
-                                title="Rational thinking."
+                                title="Rational thinking"
                                 variant="light"
                                 className="mb-0!"
                     
-                                titleClassName="text-white text-h1  tracking-tight"
+                                titleClassName="text-white font-light text-h1 tracking-tight"
                               />
                               <AnimatedHeader
-                                title="Exceptional returns."
+                                title="Exceptional returns"
                                 variant="light"
                                 className="mb-0!"
                                 titleClassName="!text-white text-h1  tracking-tight"
-                                subheading=" Long-only strategies built on conviction, discipline, and long-term value creation."
+                                subheading=" Long-only strategies built on conviction, discipline, and long-term value."
                                 subheadingClassName="max-w-sm mt-8 text-body-lg tracking-wider text-white/90"
                               />
                             </div>

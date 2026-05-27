@@ -4,31 +4,36 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
+import Image from 'next/image';
 
 const TESTIMONIALS = [
   {
     text: "I appreciate the rational and research-driven approach. No hype, just solid fundamentals and long-term value creation. Highly recommend!",
     name: "Amit Patel",
     location: "Bangalore",
-    initial: "A"
+    initial: "A",
+    img: "/images/testimonial/2.jpg"
   },
   {
     text: "The fund managers at Rational are truly exceptional. They understand market dynamics and have consistently delivered superior returns even in volatile markets.",
     name: "Priya Sharma",
     location: "Delhi",
-    initial: "P"
+    initial: "P",
+    img: "/images/testimonial/1.jpg"
   },
   {
     text: "Rational AMC has been managing my investments for the past 5 years. Their disciplined approach and transparent communication have helped me build substantial wealth.",
     name: "Rajesh Kumar",
     location: "Mumbai",
-    initial: "R"
+    initial: "R",
+    img: "/images/testimonial/3.jpg"
   },
   {
     text: "Finding an AMC that prioritizes investor education alongside returns is rare. Their 'Thought Centre' insights are invaluable for any serious investor.",
     name: "Vikram Singh",
     location: "Hyderabad",
-    initial: "V"
+    initial: "V",
+    img: ""
   }
 ];
 
@@ -51,13 +56,15 @@ export default function Testimonials() {
   const xKeyframes = [0, -shift, -(shift * 2), -(shift * 3), -(shift * 4)];
 
   return (
-    <section className="bg-white pb-16 md:pb-20 overflow-hidden font-sans">
-      <Container className="mb-12 md:mb-16 text-center">
+    <section className="bg-white overflow-hidden font-sans py-10 space-y-10">
+      <Container className="text-center ">
           <AnimatedHeader 
         title="What Our Investors Say" 
+        highlight='Our Investors'
         subheading="Trusted by thousands of investors across India for disciplined wealth creation."
         variant="light"
-        className="mb-12 md:mb-16"
+        className=" text-black text-h3"
+          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
       />
       </Container>
 
@@ -106,9 +113,19 @@ export default function Testimonials() {
 
                 {/* Footer Area */}
                 <div className="bg-[#8B0000] p-5 md:p-6 flex items-center gap-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-[#8B0000] font-bold font-sans text-base md:text-lg">
-                    {item.initial}
-                  </div>
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-[#8B0000] font-bold font-sans text-base md:text-lg overflow-hidden">
+  {item.img ? (
+    <Image
+      src={item.img}
+      alt={item.name}
+      width={48}
+      height={48}
+      className="w-full h-full object-cover"
+    />
+  ) : (
+    item.name?.charAt(0).toUpperCase()
+  )}
+</div>
                   <div className="overflow-hidden">
                     <h4 className="text-white font-bold text-sm md:text-body-md tracking-wide font-sans truncate">{item.name}</h4>
                     <p className="text-rose-100/80 text-[10px] md:text-xs truncate">{item.location}</p>

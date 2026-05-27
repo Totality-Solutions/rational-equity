@@ -6,15 +6,16 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import CTAButton from '../common/CTAButton';
 import Container from '../common/Container';
+import Image from 'next/image';
 
 const NAV_LINKS = [
   { label: 'About Us', href: '/about' },
   {
     label: 'Products', 
     subMenu: [
-      { label: 'India Long-Only Fund', href: '/product/india-long-only' },
-      { label: 'Gold & Silver Miners Fund', href: '/product/gold-silver-miners' },
-      { label: 'Absolute Return Funds', href: '/product/absolute-return' },
+      { label: 'India Long-Only Fund', href: '/product/india-long-only', img: '/images/icons/india-long-only.svg' },
+      { label: 'Gold & Silver Miners Fund', href: '/product/gold-silver-miners', img: '/images/icons/gold-&-silver-miners.svg' },
+      { label: 'Absolute Return Funds', href: '/product/absolute-return', img: '/images/icons/absolute-return-funds.svg' },
     ]
   },
   { label: 'Investment Approach', href: '/investment-approach' },
@@ -89,13 +90,14 @@ export default function Navbar() {
                   {/* Desktop Sub Menu Dropdown */}
                   {subMenu && (
                     <div className="absolute left-1/2 -translate-x-1/2 top-full w-[300px] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-4 transition-all duration-300 z-50">
-                      <ul className="bg-white border border-gray-100 shadow-2xl overflow-hidden">
+                      <ul className="bg-white border border-gray-100 shadow-2xl overflow-hidden p-4">
                         {subMenu.map((sub, index) => (
                           <li
                             key={sub.href}
-                            className={`${index !== subMenu.length - 1 ? 'border-b border-brand-maroon/20' : ''
+                            className={`flex items-center${index !== subMenu.length - 1 ? 'border-b border-brand-maroon/20' : ''
                               }`}
                           >
+                            <Image src={sub.img} alt="Arrow right" width={20} height={20} className="shrink-0" />
                             <Link
                               href={sub.href}
                               className="block px-4 py-6 text-body-md text-gray-800 font-sans font-weight-medium text-center transition-all duration-300 hover:bg-[#ffe4e6] hover:text-brand-maroon hover:font-weight-bold"

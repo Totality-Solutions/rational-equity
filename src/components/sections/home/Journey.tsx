@@ -4,12 +4,13 @@ import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader'; // Adjust path as needed
+import Image from 'next/image';
 
 const MILESTONES = [
-  { year: '2020', title: 'SEBI Registration', description: 'Rational Equity Partners established in Mumbai...' },
-  { year: '2021', title: 'SEBI Registration', description: 'Registered with SEBI as a Category II AIF...' },
-  { year: '2022', title: 'First Multibaggers', description: 'Delivered 3x—5x returns on multiple holdings...' },
-  { year: '2024', title: 'Top Performer', description: 'Ranked among India\'s top performing AIFs...' },
+  { year: '2020', title: 'SEBI Registration', description: 'Rational Equity Partners established in Mumbai...', img: '/images/journey/1.svg' },
+  { year: '2021', title: 'SEBI Registration', description: 'Registered with SEBI as a Category II AIF...', img: '/images/journey/2.svg' },
+  { year: '2022', title: 'First Multibaggers', description: 'Delivered 3x—5x returns on multiple holdings...', img: '/images/journey/3.svg' },
+  { year: '2024', title: 'Top Performer', description: 'Ranked among India\'s top performing AIFs...', img: '/images/journey/4.svg' },
 ];
 
 export default function Journey() {
@@ -44,7 +45,7 @@ export default function Journey() {
   };
 
   const yearVariants: Variants = {
-    initial: { color: "#000000" },
+    initial: { color: "#00000080" },
     hover: { color: "#8B0000" }
   };
 
@@ -89,9 +90,10 @@ export default function Journey() {
                 <motion.div 
                   variants={yearVariants}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="font-serif text-h2  mb-4 md:mb-6 opacity-100 select-none origin-left"
+                  className="font-serif text-h2  mb-4 md:mb-6 opacity-100 select-none origin-left flex items-center justify-between"
                 >
-                  {item.year}
+                  <Image src={item.img} alt={item.title} className="w-12 h-auto" width={200} height={200} />
+                  <p className="">{item.year}</p>
                 </motion.div>
 
                 <h3 className="font-sans text-body-lg font-medium text-black mb-3 md:mb-4 group-hover:text-[#8B0000] transition-colors duration-300">

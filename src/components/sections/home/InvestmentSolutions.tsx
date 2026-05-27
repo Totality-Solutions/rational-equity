@@ -71,7 +71,7 @@ export default function InvestmentSolutions() {
       <AnimatedHeader 
       className="m-0"
           title="Our Investment Solutions"
-          highlight='Investment'
+          highlight='Solutions'
           variant="dark" // Use dark to ensure text is white on the black background
           titleClassName="!text-white text-h3  tracking-wide"
         />
