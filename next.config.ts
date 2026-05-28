@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["http://192.168.1.12:3000", "http://localhost:3000"],
 
   images: {
+    domains: ['via.placeholder.com'],
     qualities: [75, 100],
     dangerouslyAllowLocalIP: true,
     remotePatterns: [

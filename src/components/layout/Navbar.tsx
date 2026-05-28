@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -13,9 +12,9 @@ const NAV_LINKS = [
   {
     label: 'Products', 
     subMenu: [
-      { label: 'India Long-Only Fund', href: '/product/india-long-only', img: '/images/icons/india-long-only.svg' },
-      { label: 'Gold & Silver Miners Fund', href: '/product/gold-silver-miners', img: '/images/icons/gold-&-silver-miners.svg' },
-      { label: 'Absolute Return Funds', href: '/product/absolute-return', img: '/images/icons/absolute-return-funds.svg' },
+      { label: 'India Long-Only Fund', href: '/product/india-long-only', img: '/images/icons/india-long-only-fund.svg' },
+      { label: 'Gold & Silver Miners Fund', href: '/product/gold-silver-miners', img: '/images/icons/gold-&-silver-miners-fund.svg' },
+      { label: 'Absolute Return Funds', href: '/product/absolute-return', img: '/images/icons/absolute-return-fund.svg' },
     ]
   },
   { label: 'Investment Approach', href: '/investment-approach' },
@@ -46,7 +45,17 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const isActive = (path: string) => pathname === path;
+  const isActiveLink = (link: any) => {
+    if (link.href && pathname.startsWith(link.href)) return true;
+
+    if (link.subMenu) {
+      return link.subMenu.some((sub: any) =>
+        pathname.startsWith(sub.href)
+      );
+    }
+
+    return false;
+  };
 
   return (
     <header className={`sticky top-0 left-0 right-0 z-55 transition-all duration-300 bg-white border-b border-b-gray-200 ${scrolled ? 'py-2' : 'py-3'}`}>
@@ -70,50 +79,52 @@ export default function Navbar() {
           <div className='flex'>
             <div className="hidden lg:flex items-center justify-center flex-auto">
               <ul className="flex items-center gap-6 xl:gap-10">
-                {NAV_LINKS.map(({ label, href, subMenu }) => (
-                  <li key={label} className="relative group py-5">
-                    {subMenu ? (
-                      <div className="text-body-md font-sans font-weight-medium text-black cursor-default hover:text-brand-maroon">
-                        {label}
+                {NAV_LINKS.map((link) => (
+                  <li key={link.label} className="relative group py-5">
+                    {link.subMenu ? (
+                      <div className={`text-body-md font-sans font-weight-medium cursor-default transition-colors duration-200 ${
+                        isActiveLink(link) ? 'text-brand-maroon font-bold' : 'text-black hover:text-brand-maroon'
+                      }`}>
+                        {link.label}
                       </div>
                     ) : (
                       <Link
-                        href={href}
-                        className={`text-body-md font-sans font-weight-medium transition-colors duration-200 whitespace-nowrap hover:text-brand-maroon ${
-                          isActive(href) ? 'text-brand-maroon font-bold' : 'text-black'
+                        href={link.href}
+                        className={`text-body-md font-sans font-weight-medium transition-colors duration-200 whitespace-nowrap ${
+                          isActiveLink(link) ? 'text-brand-maroon font-bold' : 'text-black hover:text-brand-maroon'
                         }`}
                       >
-                        {label}
+                        {link.label}
                       </Link>
                     )}
 
-                  {/* Desktop Sub Menu Dropdown */}
-                  {subMenu && (
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full w-[300px] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-4 transition-all duration-300 z-50">
-                      <ul className="bg-white border border-gray-100 shadow-2xl overflow-hidden p-4">
-                        {subMenu.map((sub, index) => (
-                          <li
-                            key={sub.href}
-                            className={`flex items-center${index !== subMenu.length - 1 ? 'border-b border-brand-maroon/20' : ''
-                              }`}
-                          >
-                            <Image src={sub.img} alt="Arrow right" width={20} height={20} className="shrink-0" />
-                            <Link
-                              href={sub.href}
-                              className="block px-4 py-6 text-body-md text-gray-800 font-sans font-weight-medium text-center transition-all duration-300 hover:bg-[#ffe4e6] hover:text-brand-maroon hover:font-weight-bold"
+                    {/* Desktop Sub Menu Dropdown */}
+                    {link.subMenu && (
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full w-[300px] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-4 transition-all duration-300 z-50">
+                        <ul className="bg-white border border-gray-100 rounded-xl shadow-2xl overflow-hidden p-4">
+                          {link.subMenu.map((sub, index) => (
+                            <li
+                              key={sub.href}
+                              className={`flex items-center justify-start gap-4 hover:scale-102 hover:bg-[#ffe4e6] hover:text-brand-maroon hover:font-weight-bold px-4 py-4 hover:rounded-md ${
+                                isActiveLink(sub) ? 'bg-[#ffe4e6] text-brand-maroon font-weight-bold' : ''
+                              } ${index !== link.subMenu.length - 1 ? 'border-b border-brand-maroon/20' : ''}`}
                             >
-                              {sub.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
+                              <Image src={sub.img} alt="Arrow right" width={100} height={100} className="w-7 h-7" />
+                              <Link
+                                href={sub.href}
+                                className="block text-body-md text-gray-800 font-sans font-weight-medium text-center transition-all duration-300"
+                              >
+                                {sub.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
-            
             
             <div className="flex items-center gap-4 xl:gap-6 mr-2 lg+:mr-0 ml-6 2xl:ml-10 shrink-0">
               <Link
@@ -126,72 +137,71 @@ export default function Navbar() {
                 </svg>
               </Link>
               <div className='hidden lg:block'>
-              <CTAButton
-                href="/contact"
-                text="Call us"
-                variant="light"
-                paddingClassName='px-3 py-2'
-              />
+                <CTAButton
+                  href="/contact"
+                  text="Call us"
+                  variant="light"
+                  paddingClassName='px-3 py-2'
+                />
+              </div>
             </div>
-            </div>
-
           </div>
 
-        {/* Mobile Toggle & Mobile Icons */}
-        <div className="flex lg:hidden items-center gap-4">
-          {/* <Link href="tel:+9112345678" className="text-brand-maroon p-1">
-            <span className="text-sm font-bold border border-brand-maroon px-2 py-1">CALL</span>
-          </Link> */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 text-black focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            <div className="w-6 h-5 relative flex flex-col justify-between">
-              <span className={`block w-full h-0.5 bg-black transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block w-full h-0.5 bg-black transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-full h-0.5 bg-black transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-            </div>
-          </button>
-        </div>
+          {/* Mobile Toggle & Mobile Icons */}
+          <div className="flex lg:hidden items-center gap-4">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-black focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              <div className="w-6 h-5 relative flex flex-col justify-between">
+                <span className={`block w-full h-0.5 bg-black transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`block w-full h-0.5 bg-black transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
+                <span className={`block w-full h-0.5 bg-black transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              </div>
+            </button>
+          </div>
         </Container>
       </nav>
 
       {/* Mobile Menu Overlay */}
-
       <div
-        className={`lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl transition-all duration-300 ease-in-out ${isOpen ? 'translate-y-0 opacity-100 visible' : '-translate-y-4 opacity-0 invisible'
-          }`}
+        className={`lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl transition-all duration-300 ease-in-out ${isOpen ? 'translate-y-0 opacity-100 visible' : '-translate-y-4 opacity-0 invisible'}`}
       >
         <ul className="px-6 py-8 space-y-6 font-sans">
-          {NAV_LINKS.map(({ label, href, subMenu }) => (
-            <li key={label}>
-              {subMenu ? (
+          {NAV_LINKS.map((link) => (
+            <li key={link.label}>
+              {link.subMenu ? (
                 <div className="flex flex-col">
-                  {/* Clickable Header - Arrow now sits right next to the text */}
+                  {/* Clickable Header */}
                   <button
                     onClick={() => setIsMobileSubMenuOpen(!isMobileSubMenuOpen)}
-                    className="flex items-center justify-between w-full text-xl font-bold text-gray-800 focus:outline-none transition-colors duration-300"
+                    className={`flex items-center justify-between w-full text-xl font-bold focus:outline-none transition-colors duration-300 ${
+                      isActiveLink(link) ? 'text-brand-maroon' : 'text-gray-800'
+                    }`}
                   >
-                    <span>{label}</span>
+                    <span>{link.label}</span>
                     <svg
                       className={`w-4 h-4 text-brand-maroon transition-transform duration-300 ${isMobileSubMenuOpen ? 'rotate-180' : ''}`}
-                      fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
 
-                  {/* Sub-menu Items - Centered text & Desktop hover style */}
-                  <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isMobileSubMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
-                    }`}>
+                  {/* Sub-menu Items */}
+                  <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isMobileSubMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
                     <div className="bg-white border border-gray-100 shadow-sm flex flex-col divide-y divide-brand-maroon/10">
-                      {subMenu.map((sub) => (
+                      {link.subMenu.map((sub) => (
                         <Link
                           key={sub.href}
                           href={sub.href}
                           onClick={() => setIsOpen(false)}
-                          className="block px-4 py-5 text-[16px] text-gray-800 font-sans font-medium text-start transition-all duration-300 active:bg-[#ffe4e6] active:text-brand-maroon active:font-bold"
+                          className={`block px-4 py-5 text-[16px] font-sans font-medium text-start transition-all duration-300 ${
+                            isActiveLink(sub) ? 'bg-[#ffe4e6] text-brand-maroon font-bold' : 'text-gray-800 active:bg-[#ffe4e6] active:text-brand-maroon active:font-bold'
+                          }`}
                         >
                           {sub.label}
                         </Link>
@@ -201,12 +211,13 @@ export default function Navbar() {
                 </div>
               ) : (
                 <Link
-                  href={href}
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`text-xl font-bold block transition-colors ${isActive(href) ? 'text-brand-maroon' : 'text-gray-800'
-                    }`}
+                  className={`text-xl font-bold block transition-colors ${
+                    isActiveLink(link) ? 'text-brand-maroon' : 'text-gray-800'
+                  }`}
                 >
-                  {label}
+                  {link.label}
                 </Link>
               )}
             </li>
@@ -224,7 +235,6 @@ export default function Navbar() {
               href="/contact"
               text="Call us"
               variant="light"
-              // paddingClassName='px-3 py-2'
             />
           </li>
         </ul>

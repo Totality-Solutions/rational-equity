@@ -6,11 +6,12 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import CTAButton from '@/components/common/CTAButton';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
+import Image from 'next/image';
 
 const FUNDS = [
-  { title: 'India Long-Only Fund', description: 'Focused long-term equity investments in high-quality Indian businesses', returns: '16.5% CAGR' },
-  { title: 'Gold & Silver Miners Fund', description: 'Strategic exposure to precious metals mining companies globally', returns: '18.2% CAGR' },
-  { title: 'Absolute Return Fund', description: 'Market-neutral strategies designed for consistent positive returns', returns: '12.8% CAGR' },
+  { title: 'India Long-Only Fund', description: 'Focused long-term equity investments in high-quality Indian businesses', returns: '16.5% CAGR', href: '/product/india-long-only', img: '/images/icons/india-long-only-fund.svg' },
+  { title: 'Gold & Silver Miners Fund', description: 'Strategic exposure to precious metals mining companies globally', returns: '18.2% CAGR', href: '/product/gold-silver-miners', img: '/images/icons/gold-&-silver-miners-fund.svg' },
+  { title: 'Absolute Return Fund', description: 'Market-neutral strategies designed for consistent positive returns', returns: '12.8% CAGR', href: '/product/absolute-return', img: '/images/icons/absolute-return-fund.svg' },
 ];
 
 export default function InvestmentSolutions() {
@@ -111,6 +112,7 @@ export default function InvestmentSolutions() {
                 <div className="relative z-20 p-6 md:p-8 flex flex-col flex-1 justify-between">
                   <div>
                     <h3 className="text-black font-bold text-h4 mb-4 md:mb-6 transition-colors group-hover:text-[#800000]">
+                      <Image src={fund.img} alt={fund.title} width={100} height={100} className="w-7 h-7 inline-block mr-2" />
                       {fund.title}
                     </h3>
                     <p className="text-black/80 text-body-md  leading-relaxed ">
@@ -123,10 +125,11 @@ export default function InvestmentSolutions() {
                       <span className="text-black/80 text-[10px] md:text-[11px] font-bold uppercase tracking-wide">3 Year Returns</span>
                       <span className="text-[#800000] font-bold text-base md:text-lg">{fund.returns}</span>
                     </div>
-
-                    <button className="w-full bg-[#800000] text-white py-3.5 rounded-full font-bold text-body-md tracking-wider transition-all hover:bg-[#600000] active:scale-[0.98]">
+                  <Link href={fund.href} className=''>
+                    <button className="w-full cursor-pointer bg-[#800000] text-white py-3.5 rounded-full font-bold text-body-md tracking-wider transition-all hover:bg-[#600000] active:scale-[0.98]">
                       View Details
                     </button>
+                  </Link>
                   </div>
                 </div>
               </div>
