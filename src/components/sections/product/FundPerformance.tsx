@@ -1,193 +1,308 @@
-"use client";
+'use client';
 
-import React, { useState, useMemo } from "react";
-import AnimatedHeader from "@/components/common/AnimatedHeader";
-import { 
-  LineChart, 
-  Line, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer 
+import React, { useState } from 'react';
+import {
+  LineChart, Line, ResponsiveContainer, Tooltip,
+  CartesianGrid, XAxis, YAxis, LabelList,
 } from 'recharts';
+import Container from '@/components/common/Container';
+import AnimatedHeader from '@/components/common/AnimatedHeader';
+import Image from 'next/image';
 
-interface PerformanceProps {
-  data: {
-    weekly: { name: string; fund: number; bench: number; status: number }[];
-    monthly: { name: string; fund: number; bench: number; status: number }[];
-    yearly: { name: string; fund: number; bench: number; status: number }[];
-  };
-}
+const PERIODS = ['1M', '3M', '6M', '1Y', '2Y', '3Y', '5Y', 'SI'];
 
-export default function FundPerformance({ data }: PerformanceProps) {
-  // 1. Timeframe State (Functionality)
-  const [timeframe, setTimeframe] = useState<keyof typeof data>("monthly");
+const ALL_DATA: Record<string, { period: string; label: string; fund: number; bench: number }[]> = {
+  '1M': [{ period: '1M', label: '1 Month', fund: 4.20, bench: 3.10 }],
+  '3M': [
+    { period: '1M', label: '1 Month',  fund: 4.20, bench: 3.10 },
+    { period: '3M', label: '3 Months', fund: 8.75, bench: 6.40 },
+  ],
+  '6M': [
+    { period: '1M', label: '1 Month',  fund: 4.20,  bench: 3.10 },
+    { period: '3M', label: '3 Months', fund: 8.75,  bench: 6.40 },
+    { period: '6M', label: '6 Months', fund: 13.42, bench: 9.85 },
+  ],
+  '1Y': [
+    { period: '1M', label: '1 Month',  fund: 4.20,  bench: 3.10  },
+    { period: '3M', label: '3 Months', fund: 8.75,  bench: 6.40  },
+    { period: '6M', label: '6 Months', fund: 13.42, bench: 9.85  },
+    { period: '1Y', label: '1 Year',   fund: 21.68, bench: 15.32 },
+  ],
+  '2Y': [
+    { period: '1M', label: '1 Month',        fund: 4.20,  bench: 3.10  },
+    { period: '3M', label: '3 Months',       fund: 8.75,  bench: 6.40  },
+    { period: '6M', label: '6 Months',       fund: 13.42, bench: 9.85  },
+    { period: '1Y', label: '1 Year',         fund: 21.68, bench: 15.32 },
+    { period: '2Y', label: '2 Yrs (CAGR)',   fund: 22.91, bench: 16.47 },
+  ],
+  '3Y': [
+    { period: '1M', label: '1 Month',       fund: 4.20,  bench: 3.10  },
+    { period: '3M', label: '3 Months',      fund: 8.75,  bench: 6.40  },
+    { period: '6M', label: '6 Months',      fund: 13.42, bench: 9.85  },
+    { period: '1Y', label: '1 Year',        fund: 21.68, bench: 15.32 },
+    { period: '2Y', label: '2 Yrs (CAGR)',  fund: 22.91, bench: 16.47 },
+    { period: '3Y', label: '3 Yrs (CAGR)',  fund: 24.35, bench: 17.98 },
+  ],
+  '5Y': [
+    { period: '1M', label: '1 Month',       fund: 4.20,  bench: 3.10  },
+    { period: '3M', label: '3 Months',      fund: 8.75,  bench: 6.40  },
+    { period: '6M', label: '6 Months',      fund: 13.42, bench: 9.85  },
+    { period: '1Y', label: '1 Year',        fund: 21.68, bench: 15.32 },
+    { period: '2Y', label: '2 Yrs (CAGR)',  fund: 22.91, bench: 16.47 },
+    { period: '3Y', label: '3 Yrs (CAGR)',  fund: 24.35, bench: 17.98 },
+    { period: '5Y', label: '5 Yrs (CAGR)',  fund: 23.17, bench: 16.12 },
+  ],
+  'SI': [
+    { period: '1M', label: '1 Month',             fund: 4.20,  bench: 3.10  },
+    { period: '3M', label: '3 Months',            fund: 8.75,  bench: 6.40  },
+    { period: '6M', label: '6 Months',            fund: 13.42, bench: 9.85  },
+    { period: '1Y', label: '1 Year',              fund: 21.68, bench: 15.32 },
+    { period: '2Y', label: '2 Yrs (CAGR)',        fund: 22.91, bench: 16.47 },
+    { period: '3Y', label: '3 Yrs (CAGR)',        fund: 24.35, bench: 17.98 },
+    { period: '5Y', label: '5 Yrs (CAGR)',        fund: 23.17, bench: 16.12 },
+    { period: 'SI', label: 'Since Inception',     fund: 19.28, bench: 13.14 },
+  ],
+};
 
-  // 2. Sync Table Data with Selected Timeframe
-  const tableData = useMemo(() => {
-    return data[timeframe].map(item => ({
-      period: item.name,
-      fundReturn: (item.fund >= 0 ? "+" : "") + item.fund + "%",
-      benchmark: (item.bench >= 0 ? "+" : "") + item.bench + "%",
-    }));
-  }, [data, timeframe]);
+const FundLabel = ({ x, y, value }: any) => (
+  <text x={x} y={y - 11} fill="#800000" fontSize={10} fontWeight={600} textAnchor="middle">
+    +{value?.toFixed(2)}%
+  </text>
+);
 
-  // 3. Dynamic Growth Calculation for Header
-  const currentGrowth = useMemo(() => {
-    const activeList = data[timeframe];
-    if (!activeList.length) return "0.0";
-    return activeList[activeList.length - 1].fund.toFixed(1);
-  }, [data, timeframe]);
+const BenchLabel = ({ x, y, value }: any) => (
+  <text x={x} y={y + 18} fill="#888780" fontSize={10} textAnchor="middle">
+    +{value?.toFixed(2)}%
+  </text>
+);
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
+  return (
+    <div className="bg-white border border-[#E8E2D8] rounded-xl px-3 py-2.5 text-xs shadow-sm">
+      <p className="text-[#8A7A60] mb-1.5 font-medium">{label}</p>
+      {payload.map((p: any) => (
+        <p key={p.name} style={{ color: p.color }} className="font-semibold">
+          {p.name}: +{p.value.toFixed(2)}%
+        </p>
+      ))}
+    </div>
+  );
+};
+
+const KPICard = ({
+  icon,
+  label,
+  value,
+  valueColor,
+  sub,
+}: {
+  icon?: string; // make optional
+  label: string;
+  value: string;
+  valueColor?: string;
+  sub: string;
+}) => (
+  <div className="bg-white border border-[#E8E2D8] rounded-2xl p-4 flex items-center gap-4">
+
+    <div className="w-11 h-11 rounded-full bg-brand-maroon/10 flex items-center justify-center shrink-0">
+      
+      {icon ? (
+        <Image
+          src={icon}
+          alt={label}
+          width={30}
+          height={30}
+          className="object-contain"
+        />
+      ) : (
+        <span className="text-brand-maroon text-sm font-semibold">
+          {label.charAt(0)}
+        </span>
+      )}
+
+    </div>
+
+    <div>
+      <p className="text-[11px] text-[#8A7A60] mb-1 tracking-wide">{label}</p>
+      <p className={`text-xl font-semibold leading-none ${valueColor ?? 'text-[#1a1a1a]'}`}>
+        {value}
+      </p>
+      <p className="text-[11px] text-[#8A7A60] mt-1">{sub}</p>
+    </div>
+  </div>
+);
+
+export default function FundPerformance() {
+  const [active, setActive] = useState('SI');
+  const data = ALL_DATA[active];
+  const activeRow = ALL_DATA['SI'].find((r) => r.period === active) ?? ALL_DATA['SI'].at(-1)!;
 
   return (
-    <section className="py-20 px-6 bg-[#F8F8F8] font-sans">
-      <div className="max-w-7xl mx-auto">
-        <AnimatedHeader 
+    <section className="bg-white py-10">
+      <Container>
+
+        {/* Hero title */}
+        <div className="text-center mb-8">
+          <AnimatedHeader
           title="Fund Performance"
           highlight="Performance"
           highlightColor="#8B0000"
-          subheading="Live historical returns and trend analysis"
+          // subheading="Live historical returns and trend analysis"
           variant="light"
-          className="mb-16 text-center"
+          className="text-h3 text-black"
+          subheadingClassName="text-body-lg tracking-wide text-black"
         />
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 items-stretch">
-          
-          {/* COLUMN 1: Dynamic Table (Synced with Graph Data) */}
-          <div className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm bg-white flex flex-col">
-            <div className="grid grid-cols-3 bg-gray-50/50 border-b border-gray-100 px-6 py-5">
-              <span className="text-body-sm uppercase tracking-widest font-bold text-gray-400">Period</span>
-              <span className="text-body-sm uppercase tracking-widest font-bold text-gray-400 text-center">Fund</span>
-              <span className="text-body-sm uppercase tracking-widest font-bold text-gray-400 text-right">Bench.</span>
-            </div>
+        {/* KPI strip */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+          <KPICard
+            icon="/images/icons/fund-nav.png"
+            label="Current NAV"
+            value="₹ 34.75"
+            sub="As on 31 May 2024"
+          />
+          <KPICard
+            icon="/images/icons/fund-return.png"
+            label={`Return (${activeRow.label})`}
+            value={`+${activeRow.fund.toFixed(2)}%`}
+            valueColor="text-green-700"
+            sub={`Benchmark: +${activeRow.bench.toFixed(2)}%`}
+          />
+          <KPICard
+            icon="/images/icons/fund-category.png"
+            label="Category"
+            value="Equity – Multi Cap"
+            sub="Nifty 500 TRI benchmark"
+          />
+        </div>
 
-            <div className="divide-y divide-gray-50 flex-grow">
-              {tableData.map((row, index) => (
-                <div key={index} className="grid grid-cols-3 px-6 py-5 items-center bg-white hover:bg-gray-50/50 transition-colors">
-                  <span className="text-body-md font-medium text-gray-900">{row.period}</span>
-                  <span className={`text-body-md font-bold text-center ${row.fundReturn.startsWith('-') ? 'text-red-500' : 'text-green-600'}`}>
-                    {row.fundReturn}
-                  </span>
-                  <span className="text-body-md text-gray-400 text-right">{row.benchmark}</span>
-                </div>
+        {/* Table + Chart */}
+        <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-4">
+
+          {/* Returns table */}
+          <div className="bg-white border border-[#E8E2D8] rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-[1fr_72px_84px] bg-[#F9F5F5] border-b border-[#EDE8E0] px-4 py-2.5">
+              {['Period', 'Fund', 'Benchmark'].map((h, i) => (
+                <span
+                  key={h}
+                  className={`text-[10px] tracking-[0.16em] uppercase text-[#8A7A60] font-medium ${i > 0 ? 'text-right' : ''}`}
+                >
+                  {h}
+                </span>
               ))}
             </div>
-            
-            <div className="p-4 bg-gray-50/50 border-t border-gray-100 text-[10px] text-gray-400 text-center italic">
-              *All values represent percentage growth (%)
-            </div>
+            {ALL_DATA['SI'].map((row, i) => {
+              const isActive = row.period === active;
+              return (
+                <div
+                  key={row.period}
+                  onClick={() => setActive(row.period)}
+                  className={`grid grid-cols-[1fr_72px_84px] px-4 py-2.5 border-b border-[#F5F1EC] last:border-0 cursor-pointer transition-colors duration-150
+                    ${isActive ? 'bg-[#FDF0F0]' : i % 2 === 1 ? 'bg-[#FDFCFB] hover:bg-[#FDF6F6]' : 'hover:bg-[#FDF6F6]'}`}
+                >
+                  <span className={`text-[13px] ${isActive ? 'text-brand-maroon font-semibold' : 'text-[#2c2c2a]'}`}>
+                    {row.label}
+                  </span>
+                  <span className={`text-[13px] font-semibold text-right ${isActive ? 'text-brand-maroon' : 'text-green-700'}`}>
+                    +{row.fund.toFixed(2)}%
+                  </span>
+                  <span className="text-[13px] text-[#5F5E5A] text-right">
+                    +{row.bench.toFixed(2)}%
+                  </span>
+                </div>
+              );
+            })}
+            <p className="px-4 py-2.5 text-[11px] text-[#8A7A60] border-t border-[#F0EBE4]">
+              * Returns as on 31 May 2024
+            </p>
           </div>
 
-          {/* COLUMN 2: Linear Line Graph (Dynamic mapping) */}
-          <div className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm flex flex-col">
-            
-            <div className="flex flex-wrap justify-between items-center mb-10 gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-gray-400 font-medium text-body-md">Net Growth :</span>
-                <span className="text-[#10B981] font-bold text-body-md">+{currentGrowth}%</span>
+          {/* Chart */}
+          <div className="bg-white border border-[#E8E2D8] rounded-2xl p-5">
+
+            {/* Legend + period selector in one row */}
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <div className="flex gap-5">
+                <span className="flex items-center gap-2 text-xs text-[#444441]">
+                  <span className="w-7 h-[2.5px] bg-brand-maroon rounded-full inline-block" />
+                  RATIONAL India Equity Fund
+                </span>
+                <span className="flex items-center gap-2 text-xs text-[#444441]">
+                  <span className="w-7 border-t-2 border-dashed border-[#B4B2A9] inline-block" />
+                  Nifty 500 TRI (Benchmark)
+                </span>
               </div>
 
-              {/* Legend Layout */}
-              <div className="flex items-center gap-5">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#818CF8]" />
-                  <span className="text-body-sm font-semibold text-gray-400 uppercase">Benchmark</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#22D3EE]" />
-                  <span className="text-body-sm font-bold text-black uppercase">Fund</span>
-                </div>
-              </div>
-
-              {/* Time Selection Switcher (Mapping keys from Props) */}
-              <div className="flex bg-gray-100 p-1 rounded-xl items-center border border-gray-100">
-                {(Object.keys(data) as Array<keyof typeof data>).map((t) => (
+              {/* Period buttons */}
+              <div className="flex flex-wrap gap-1.5">
+                {PERIODS.map((p) => (
                   <button
-                    key={t}
-                    onClick={() => setTimeframe(t)}
-                    className={`px-5 py-2 text-xs transition-all duration-300 rounded-lg font-bold uppercase ${
-                      timeframe === t 
-                      ? "bg-[#8B0000] text-white shadow-lg" 
-                      : "text-gray-400 hover:text-gray-600"
+                    key={p}
+                    onClick={() => setActive(p)}
+                    className={`px-3 py-1.5 text-[11px] rounded-md border transition-all duration-150 ${
+                      active === p
+                        ? 'bg-brand-maroon text-white border-brand-maroon'
+                        : 'border-[#E0D9CE] text-[#8A7A60] hover:bg-[#F7F3EE] hover:text-[#333]'
                     }`}
                   >
-                    {t}
+                    {p}
                   </button>
                 ))}
               </div>
             </div>
-            
-            {/* Chart Area: type="linear" for no curves */}
-            <div className="min-h-[400px] w-full flex-grow">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart 
-                  data={data[timeframe]} 
-                  margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
-                >
-                  <CartesianGrid strokeDasharray="0" vertical={false} stroke="#F3F4F6" />
-                  <XAxis 
-                    dataKey="name" 
-                    axisLine={{ stroke: '#E5E7EB' }} 
-                    tickLine={false} 
-                    tick={{ fill: '#9CA3AF', fontSize: 11, fontWeight: 500 }} 
-                    dy={15}
-                  />
-                  <YAxis 
-                    axisLine={false} 
-                    tickLine={false} 
-                    tick={{ fill: '#9CA3AF', fontSize: 11 }}
-                    tickFormatter={(val) => `${val}%`}
-                  />
-                  <Tooltip 
-                    cursor={{ stroke: '#E5E7EB', strokeWidth: 2 }}
-                    contentStyle={{ 
-                      borderRadius: '12px', 
-                      border: '1px solid #F3F4F6', 
-                      boxShadow: '0 10px 25px rgba(0,0,0,0.05)',
-                      fontSize: '12px'
-                    }}
-                  />
-                  
-                  {/* Purple Line: Benchmark */}
-                  <Line 
-                    type="linear" 
-                    dataKey="bench" 
-                    stroke="#818CF8" 
-                    strokeWidth={2.5} 
-                    dot={{ r: 4, fill: '#fff', strokeWidth: 2, stroke: '#818CF8' }}
-                    activeDot={{ r: 6, strokeWidth: 0 }}
-                    animationDuration={800}
-                  />
-                  
-                  {/* Cyan Line: Fund */}
-                  <Line 
-                    type="linear" 
-                    dataKey="fund" 
-                    stroke="#22D3EE" 
-                    strokeWidth={2.5} 
-                    dot={{ r: 4, fill: '#fff', strokeWidth: 2, stroke: '#22D3EE' }}
-                    activeDot={{ r: 6, strokeWidth: 0 }}
-                    animationDuration={800}
-                  />
 
-                  {/* Salmon Line: Status (Dashed) */}
-                  <Line 
-                    type="linear" 
-                    dataKey="status" 
-                    stroke="#F87171" 
-                    strokeWidth={1.5} 
-                    strokeDasharray="4 4"
-                    dot={false}
-                    animationDuration={800}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
+            <ResponsiveContainer width="100%" height={280}>
+              <LineChart data={data} margin={{ top: 24, right: 12, bottom: 0, left: 0 }}>
+                <CartesianGrid stroke="#F5F1EC" />
+                <XAxis
+                  dataKey="period"
+                  stroke="#E8E2D8"
+                  tick={{ fontSize: 11, fill: '#8A7A60' }}
+                />
+                <YAxis
+                  stroke="#E8E2D8"
+                  tick={{ fontSize: 11, fill: '#8A7A60' }}
+                  tickFormatter={(v) => `${v}%`}
+                  domain={[0, 32]}
+                  ticks={[0, 10, 20, 30]}
+                />
+                <Tooltip content={<CustomTooltip />} />
+                <Line
+                  type="monotone"
+                  dataKey="fund"
+                  name="Fund"
+                  stroke="#800000"
+                  strokeWidth={2.5}
+                  dot={{ r: 5, fill: '#800000', stroke: '#fff', strokeWidth: 2 }}
+                  activeDot={{ r: 7 }}
+                  isAnimationActive={true}
+                >
+                  <LabelList content={<FundLabel />} dataKey="fund" />
+                </Line>
+                <Line
+                  type="monotone"
+                  dataKey="bench"
+                  name="Benchmark"
+                  stroke="#B4B2A9"
+                  strokeWidth={2}
+                  strokeDasharray="6 4"
+                  dot={{ r: 4, fill: '#B4B2A9', stroke: '#fff', strokeWidth: 2 }}
+                  isAnimationActive={true}
+                >
+                  <LabelList content={<BenchLabel />} dataKey="bench" />
+                </Line>
+              </LineChart>
+            </ResponsiveContainer>
+
+            <p className="text-[11px] text-[#8A7A60] text-right mt-2">
+              * Returns as on 31 May 2024
+            </p>
           </div>
 
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

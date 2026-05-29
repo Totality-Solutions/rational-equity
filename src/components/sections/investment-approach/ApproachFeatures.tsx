@@ -31,7 +31,7 @@ const features = [
 
 export default function ApproachFeatures() {
   return (
-    <section className="relative bg-white pb-32">
+    <section className="relative">
       {/* Continued Dot Grid */}
       <div 
         className="absolute inset-0 z-0 opacity-[0.4] pointer-events-none"
@@ -50,15 +50,15 @@ export default function ApproachFeatures() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.8 }}
               viewport={{ once: true }}
-              className="bg-white/50 backdrop-blur-sm p-8 lg:p-8 rounded-2xl border border-gray-100 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 text-center flex flex-col items-center group"
+              className="bg-white/50 backdrop-blur-sm p-8 lg:p-8 rounded-2xl hover:bg-brand-maroon/10 border border-brand-maroon/10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] text-center flex flex-col items-center group transition-all duration-300 ease-out hover:-translate-y-2 sm:hover:-translate-y-3 hover:scale-[1.01] sm:hover:scale-[1.02]"
             >
               <div className="mb-8 text-[#8B0000] transition-transform duration-500 group-hover:scale-110">
                 {item.icon}
               </div>
-              <h4 className="font-sans font-bold text-gray-900 mb-6 text-lg tracking-tight">
+              <h4 className="font-bold text-gray-900 mb-6 text-lg tracking-tight">
                 {item.title}
               </h4>
-              <p className="font-sans text-gray-500 leading-relaxed text-body-md  px-2">
+              <p className=" text-gray-500 leading-relaxed text-body-md  px-2">
                 {item.desc}
               </p>
             </motion.div>

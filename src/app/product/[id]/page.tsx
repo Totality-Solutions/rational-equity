@@ -30,7 +30,7 @@ export default function FundPage() {
           // titleColor={fund.color}
         />
       
-      <ProductNav />
+      {/* <ProductNav /> */}
 
       <section id="overview">
         <FundOverview 
@@ -40,11 +40,12 @@ export default function FundPage() {
       </section>
 
       <section id="performance">
-        <FundPerformance data={fund.performance} />
+        {/* <FundPerformance data={fund.performance} /> */}
+        <FundPerformance />
       </section>
 
       <section id="philosophy">
-        <Philosophy points={fund.philosophyPoints} />
+        <Philosophy points={fund.philosophyPoints || []} />
       </section>
 
       <section id="documents">

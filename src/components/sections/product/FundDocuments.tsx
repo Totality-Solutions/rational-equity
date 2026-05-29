@@ -13,7 +13,7 @@ export default function FundDocuments({ documents }: FundDocumentsProps) {
   if (!documents || documents.length === 0) return null;
 
   return (
-    <section className="relative w-full bg-white font-sans py-12 overflow-hidden">
+    <section className="relative w-full bg-white font-sans pb-10 overflow-hidden">
       {/* Background Decorative Grid */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-40"
@@ -32,7 +32,8 @@ export default function FundDocuments({ documents }: FundDocumentsProps) {
           highlightColor="#8B0000"
           subheading="Access detailed insights, performance reports, and strategy documents for this fund."
           variant="light"
-          className="mb-16"
+         className="text-h3 text-black"
+          subheadingClassName="text-body-lg tracking-wide text-black"
         />
 
         {/* PDF Grid Component */}

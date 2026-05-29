@@ -7,7 +7,7 @@ import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import { Linkedin, Twitter } from 'lucide-react';
 
-const teamMembers = [
+export const teamMembers = [
   {
     id: 1,
     role: 'Managing Partner',
@@ -290,7 +290,9 @@ export default function TeamShowcase() {
                       </div>
 
                       <a href="/about" className="text-md text-brand-maroon underline font-semibold hover:text-brand-maroon/80 transition-colors">
-                        More Info
+                        <p className="w-fit px-10 bg-[#800000] cursor-pointer text-white py-2 rounded-full text-sm tracking-wide font-semibold transition-all hover:bg-[#600000] active:scale-[0.98]">
+                          More Info
+                        </p>
                       </a>
                     </div>
                   </div>

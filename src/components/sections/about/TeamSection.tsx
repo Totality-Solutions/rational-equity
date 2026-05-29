@@ -53,7 +53,8 @@ export default function TeamSection() {
           // highlightColor="var(--color-brand-maroon)"
           subheading="Analytical minds shaping disciplined investment strategies for long-term growth."
           variant="light"
-          className="mb-12 md:mb-16"
+          className='mb-7  text-h3 text-black'
+          subheadingClassName='text-body-lg tracking-wide text-black'
         />
 
         {/* ================= MAIN CARDS ================= */}

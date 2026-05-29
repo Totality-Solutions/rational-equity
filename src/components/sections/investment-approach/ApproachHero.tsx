@@ -18,8 +18,9 @@ export default function ApproachHero() {
                     backgroundSize: '30px 30px'
                 }}
             />
+            
 
-            <Container className="relative z-10 text-center">
+            <Container className="relative text-center space-y-8">
 
 
                 <AnimatedHeader
@@ -27,7 +28,8 @@ export default function ApproachHero() {
                     highlight='Our Investment Approach'
                     subheading="A disciplined, research-driven approach to generating superior long-term returns through conviction and clarity."
                     titleClassName="!font-bold" // This will now work perfectly
-                    subheadingClassName="max-w-2xl"
+                    className="text-h4 sm:text-h3 text-black"
+                    subheadingClassName="text-sm sm:text-base md:text-body-lg tracking-wide text-black"
                 />
 
                 <div className="flex justify-center">

@@ -9,7 +9,7 @@ interface HeroProps {
 
 export default function Hero({
   mediaType = "image",
-  mediaUrl = "/images/hero-abstract.png", 
+  mediaUrl = "/images/home-thought/thought-center.jpg", 
 }: HeroProps) {
   return (
     <section className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden bg-black">

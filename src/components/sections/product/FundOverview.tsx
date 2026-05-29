@@ -1,6 +1,7 @@
 "use client";
 
 import AnimatedHeader from "@/components/common/AnimatedHeader";
+import Container from "@/components/common/Container";
 import { 
   Wallet, 
   Calendar, 
@@ -27,53 +28,57 @@ interface FundOverviewProps {
 
 export default function FundOverview({ description, stats }: FundOverviewProps) {
   return (
-    <section className="bg-white py-12 px-6 md:px-16 font-sans">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* Header Section */}
-        <div className="text-center mb-16 space-y-6">
+    <section className="bg-white ">
+  <Container className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8 items-stretch">
 
-          <AnimatedHeader 
-                    title="Fund Overview"
-                    highlight="Overview"
-                    highlightColor="#8B0000"
-                    subheading={description}
-                    variant="light"
-                    className="mb-16"
-                  />
-          {/* <h2 className="font-serif text-[40px] text-gray-900">
-            Fund <span className="text-brand-maroon ">Overview</span>
-          </h2>
-          <p className="text-gray-400 text-lg max-w-6xl mx-auto leading-relaxed tracking-wide">
-            {description}
-          </p> */}
-        </div>
+    {/* LEFT SIDE */}
+    <div className="bg-brand-maroon/10 rounded-2xl p-5 sm:p-6 md:p-8 flex items-center">
+      <AnimatedHeader 
+        title="Fund Overview"
+        highlight="Overview"
+        highlightColor="#8B0000"
+        subheading={description}
+        variant="light"
+        className="text-h4 sm:text-h3 text-black"
+        subheadingClassName="mt-4 sm:mt-6 text-sm sm:text-base md:text-body-lg tracking-wide text-black"
+      />
+    </div>
 
-        {/* 🔹 Stats Grid - Perfectly matching your screenshot */}
-        <div className="border border-gray-100 rounded-2xl overflow-hidden grid grid-cols-2 lg:grid-cols-5">
-          {stats.map((stat, index) => (
-            <div 
-              key={index} 
-              className={`p-8 flex flex-col gap-4 border-gray-50 bg-white hover:bg-gray-50/50 transition-colors
-                ${index < 5 ? 'border-b' : ''} 
-                ${(index + 1) % 5 !== 0 ? 'lg:border-r' : ''}
-                ${(index + 1) % 2 !== 0 ? 'sm:border-r lg:border-r-0' : ''}
-              `}
-            >
-              <div className="flex items-center gap-2 text-brand-maroon">
-                {stat.icon}
-                <span className="text-body-sm font-medium text-[#000000]/50">
-                  {stat.label}
-                </span>
-              </div>
-              <p className="text-body-md font-semibold text-black leading-tight">
-                {stat.value}
-              </p>
+    {/* RIGHT SIDE */}
+    <div className="bg-white rounded-2xl overflow-hidden grid grid-cols-2 md:grid-cols-3">
+
+      {stats.map((stat, index) => (
+        <div
+          key={index}
+          className="
+            p-4 sm:p-5 md:p-6
+            flex flex-col gap-2
+            border border-gray-100
+            transition-all duration-300
+            hover:bg-brand-maroon/10
+            hover:scale-[1.02]
+          "
+        >
+          {/* Top Row */}
+          <div className="flex items-center gap-2 text-brand-maroon">
+            <div className="w-4 h-4 sm:w-5 sm:h-5">
+              {stat.icon}
             </div>
-          ))}
-        </div>
+            <span className="text-[11px] sm:text-xs md:text-sm font-medium text-black/70">
+              {stat.label}
+            </span>
+          </div>
 
-      </div>
-    </section>
+          {/* Value */}
+          <p className="text-sm sm:text-base md:text-body-md font-semibold text-black leading-snug">
+            {stat.value}
+          </p>
+        </div>
+      ))}
+
+    </div>
+
+  </Container>
+</section>
   );
 }

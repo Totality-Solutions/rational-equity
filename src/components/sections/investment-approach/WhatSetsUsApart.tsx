@@ -53,7 +53,7 @@ export default function WhatSetsUsApart() {
     : activeItem.image;
 
   return (
-    <section className="bg-black text-white py-20 md:py-32 overflow-hidden">
+    <section className="bg-black text-white py-10 overflow-hidden">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
@@ -66,7 +66,8 @@ export default function WhatSetsUsApart() {
                 highlight="Sets Us Apart"
                 highlightColor="#ffffff"
                 variant="dark"
-                className="!text-left !mb-0 !md:mb-0" // Force left align and remove default margins
+                className="text-h4 sm:text-h3 text-black"
+                subheadingClassName="text-sm sm:text-base md:text-body-lg tracking-wide text-black"
                 titleClassName=" leading-tight !text-left"
               />
               {/* Your custom underline remains below the animated text */}

@@ -32,10 +32,10 @@ interface ProductHeroProps {
 
 export default function ProductHero({ title, description, titleColor = "text-brand-maroon" }: ProductHeroProps) {
   return (
-    <section className="w-full bg-white flex flex-col items-start overflow-hidden">
+    <section className="w-full bg-white flex flex-col items-start overflow-hidden py-10">
       <div className="w-full px-8 md:px-16 flex flex-col items-start gap-0">
         
-        <Link 
+        {/* <Link 
           href="/" 
           className="group flex items-center gap-2 pt-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
         >
@@ -43,10 +43,10 @@ export default function ProductHero({ title, description, titleColor = "text-bra
           <span className="font-sans text-body-sm text-[#000000]/50 font-medium tracking-[0.28px]">
             Back to Home
           </span>
-        </Link>
+        </Link> */}
 
         {/* Hero Content */}
-        <div className="w-full py-[5px] flex flex-col justify-center items-center">
+        <div className="w-full flex flex-col justify-center items-center">
           {/* <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,7 +68,8 @@ export default function ProductHero({ title, description, titleColor = "text-bra
             titleClassName="!font-bold"
             subheading={description}
             variant="light"
-            className="!mb-8"
+            className='text-h3 text-black'
+            subheadingClassName='text-body-lg tracking-wide text-black'
           />
         </div>
       </div>

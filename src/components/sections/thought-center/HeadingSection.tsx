@@ -17,7 +17,8 @@ export default function HeadingSection({ titleColor = "text-brand-maroon" }) {
             titleClassName="!font-bold"
             subheading="A disciplined, research-driven approach to generating superior long-term returns"
             variant="light"
-            className="!mb-0"
+            className="mb-6 sm:mb-7 text-h3 text-black"
+          subheadingClassName="text-body-lg tracking-wide text-black"
           />
         </div>
       </div>

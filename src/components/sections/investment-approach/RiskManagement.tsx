@@ -27,8 +27,8 @@ const risks = [
 
 export default function RiskManagement() {
   return (
-    <section className="bg-white py-16 md:py-24 lg:py-32">
-      <Container>
+    <section className="bg-white py-10">
+      <Container className='space-y-8'>
         
         {/* Header Section */}
       <AnimatedHeader 
@@ -36,9 +36,9 @@ export default function RiskManagement() {
           highlight="Risk Management"
           highlightColor="#8B0000"
           subheading="Protecting capital is as important as generating returns"
-          className="mb-16 md:mb-24"
           titleClassName="leading-tight"
-          subheadingClassName="text-gray-600 max-w-3xl mx-auto mt-6"
+          className="text-h4 sm:text-h3 text-black"
+          subheadingClassName="text-sm sm:text-base md:text-body-lg tracking-wide text-black"
         />
 
         {/* 3-Column Grid */}
@@ -53,7 +53,7 @@ export default function RiskManagement() {
                 ease: [0.21, 0.47, 0.32, 0.98] 
               }}
               viewport={{ once: true, margin: "-50px" }}
-              className="p-8 lg:p-12 rounded-[24px] border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:border-[#8B0000]/10 transition-all duration-500 flex flex-col items-start group"
+              className="p-8 lg:p-12 rounded-[24px] border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:border-[#8B0000]/10 transition-all duration-300 ease-out hover:-translate-y-2 sm:hover:-translate-y-3 hover:scale-[1.01] sm:hover:scale-[1.02] flex flex-col items-start group"
             >
               <div className="mb-8 transition-transform duration-500 text- group-hover:scale-110">
                 {item.icon}

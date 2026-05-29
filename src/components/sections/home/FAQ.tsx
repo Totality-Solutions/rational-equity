@@ -41,10 +41,10 @@ export default function FAQ() {
       onClick={() => setOpenIndex(openIndex === actualIndex ? null : actualIndex)}
     >
       {/* Question Header */}
-      <div className="w-full py-4 px-4 flex items-center justify-between text-left gap-4">
+      <div className="w-full py-3 px-4 flex items-center justify-between text-left gap-4">
         <div className="text-body-lg  font-medium  group-hover:underline underline-offset-8 decoration-white/40 transition-all flex items-center gap-2">
         <span className={`shrink-0 transform transition-transform duration-300`}>
-          <Image src="/images/icons/graph-with-question.svg" alt="Question mark" width={20} height={20} className="shrink-0" />
+          <Image src="/images/icons/faq1.png" alt="Question mark" width={25} height={25} className="shrink-0" />
         </span>
           <span>{faq.question}</span>
         </div>

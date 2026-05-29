@@ -21,6 +21,7 @@ export interface PdfItem {
 export interface PhilosophyPoint {
   title: string;
   description: string;
+  icon: string;
 }
 
 export interface PerformanceRow {
@@ -79,10 +80,10 @@ export const FUND_DATA: Record<string, FundDetails> = {
       { title: "KYC Documents", size: "0.8 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },  
     ],
     philosophyPoints: [
-      { title: "Capital Efficiency", description: "Focusing on companies with high ROE and ROCE track records." },
-      { title: "Governance First", description: "Strict filters for management integrity and shareholder treatment." },
-      { title: "Structural Growth", description: "Investing in sectors with a 10+ year tailwind in India." },
-      { title: "Concentrated Conviction", description: "A high-conviction portfolio of 20-25 market-leading companies." },
+      { title: "Capital Efficiency", description: "Focusing on companies with high ROE and ROCE track records.", icon: "/images/icons/philosophy-capital.png" },
+      { title: "Governance First", description: "Strict filters for management integrity and shareholder treatment.", icon: "/images/icons/philosophy-governance.png" },
+      { title: "Structural Growth", description: "Investing in sectors with a 10+ year tailwind in India.", icon: "/images/icons/philosophy-growth.png" },
+      { title: "Concentrated Conviction", description: "A high-conviction portfolio of 20-25 market-leading companies.", icon: "/images/icons/philosophy-conviction.png" },
     ],
     performance: {
       // table: [
@@ -138,10 +139,10 @@ export const FUND_DATA: Record<string, FundDetails> = {
       { title: "KYC Documents", size: "0.8 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
     ],
     philosophyPoints: [
-      { title: "Low-Cost Producers", description: "We prioritize miners with AISC in the bottom quartile." },
-      { title: "Reserve Quality", description: "We evaluate ore grade and mine life for long-term sustainability." },
-      { title: "Balance Sheet Strength", description: "Low leverage and strong cash flow are non-negotiable." },
-      { title: "Global Diversification", description: "Investing across geographies to reduce single-country risk." },
+      { title: "Low-Cost Producers", description: "We prioritize miners with AISC in the bottom quartile.", icon: "/images/icons/philosophy-capital.png" },
+      { title: "Reserve Quality", description: "We evaluate ore grade and mine life for long-term sustainability.", icon: "/images/icons/philosophy-governance.png" },
+      { title: "Balance Sheet Strength", description: "Low leverage and strong cash flow are non-negotiable.", icon: "/images/icons/philosophy-growth.png" },
+      { title: "Global Diversification", description: "Investing across geographies to reduce single-country risk.", icon: "/images/icons/philosophy-conviction.png" },
     ],
     performance: {
       // table: [
@@ -197,10 +198,10 @@ export const FUND_DATA: Record<string, FundDetails> = {
       { title: "KYC Documents", size: "0.8 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
     ],
     philosophyPoints: [
-      { title: "Market Neutrality", description: "Strategies designed to perform regardless of market direction." },
-      { title: "Risk Arbitrage", description: "Capturing price inefficiencies between related financial instruments." },
-      { title: "Capital Preservation", description: "Focusing on low-volatility returns to protect investor principal." },
-      { title: "Low Correlation", description: "Providing returns that don't move in sync with traditional equities." },
+      { title: "Market Neutrality", description: "Strategies designed to perform regardless of market direction.", icon: "/images/icons/philosophy-capital.png" },
+      { title: "Risk Arbitrage", description: "Capturing price inefficiencies between related financial instruments.", icon: "/images/icons/philosophy-governance.png" },
+      { title: "Capital Preservation", description: "Focusing on low-volatility returns to protect investor principal.", icon: "/images/icons/philosophy-growth.png" },
+      { title: "Low Correlation", description: "Providing returns that don't move in sync with traditional equities.", icon: "/images/icons/philosophy-conviction.png" },
     ],
     performance: {
       // table: [
