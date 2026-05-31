@@ -186,7 +186,7 @@ export default function Journey() {
 
                   {/* Year */}
                   <div
-                    className="text-[11px] font-medium tracking-[0.1em] uppercase px-3 py-1 rounded-full border mb-4"
+                    className="text-body-md font-semibold tracking-widest uppercase px-3 py-1 rounded-full border mb-4"
                     style={{ color: CRIMSON, background: 'rgba(139,0,0,0.07)', borderColor: 'rgba(139,0,0,0.2)' }}
                   >
                     {item.year}
@@ -272,15 +272,15 @@ function NavButton({
 function NodeCircle({ src, title, crimson }: { src: string; title: string; crimson: string }) {
   return (
     <div
-      className="w-[52px] h-[52px] rounded-full border flex items-center justify-center bg-white group-hover:border-[--crimson] group-hover:bg-[#8B0000]/5 transition-all duration-300"
+      className="w-fit h-fit  rounded-full border flex items-center justify-center bg-white group-hover:border-[--crimson] group-hover:bg-[#8B0000]/5 transition-all duration-300"
       style={{ '--crimson': crimson, borderColor: 'rgba(139,0,0,0.22)' } as React.CSSProperties}
     >
       <Image
         src={src}
         alt={title}
-        width={26}
-        height={26}
-        className="opacity-50 group-hover:opacity-100 transition-opacity duration-300"
+        width={40}
+        height={40}
+        className="opacity-80 group-hover:opacity-100 transition-opacity duration-300"
       />
     </div>
   );
@@ -307,11 +307,11 @@ function MilestoneCard({
         className="h-[2px] w-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{ background: crimson }}
       />
-      <h3 className="text-gray-900 font-semibold text-[15px] leading-snug transition-colors duration-300 group-hover:text-[--crimson]"
+      <h3 className="text-black font-semibold text-body-lg leading-snug transition-colors duration-300 group-hover:text-[--crimson]"
           style={{ '--crimson': crimson } as React.CSSProperties}>
         {item.title}
       </h3>
-      <p className="text-gray-500 text-[13px] leading-relaxed">{item.description}</p>
+      <p className="text-gray-500 text-body-md leading-relaxed">{item.description}</p>
     </div>
   );
 }
