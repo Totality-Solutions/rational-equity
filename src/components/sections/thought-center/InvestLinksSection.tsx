@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrendingUp, X, Shield, Calendar, Wallet, BarChart3 } from "lucide-react";
 import CTAButton from "@/components/common/CTAButton";
+import AnimatedHeader from "@/components/common/AnimatedHeader";
 
 const CRIMSON = "#8B0000";
 
@@ -59,7 +60,7 @@ export default function InvestLinksSection() {
   }, [selectedFund]);
 
   return (
-    <section className="w-full bg-black overflow-hidden">
+    <section className="w-full overflow-hidden">
 
       {/* ── Strip ── */}
       <div className="group relative w-full bg-[#8B0000] py-6 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-500 hover:bg-white border-b border-white/10">
@@ -76,35 +77,32 @@ export default function InvestLinksSection() {
             href="/invest-with-us"
             text="Schedule a Call"
             variant="light"
-            className="h-[40px] transition-all duration-500 group-hover:!bg-[#8B0000] group-hover:!text-white group-hover:!border-[#8B0000]"
+            className="h-[40px] transition-all duration-500 group-hover:text-white group-hover:border-[#8B0000]"
           />
         </div>
       </div>
 
-      {/* ── Invest section ── */}
-      <div className="flex flex-col items-center justify-center text-center text-white px-6 md:px-20 pt-12 pb-14">
+      {/* ── Invest links ── */}
+      <div className="flex flex-col items-center justify-center text-center text-black px-6 pt-12 pb-14">
 
         {/* Eyebrow */}
-        <div className="flex items-center gap-2 mb-5">
+        {/* <div className="flex items-center gap-2 mb-5">
           <span className="block h-px w-5 bg-[#8B0000]" />
           <span className="text-xs font-medium tracking-widest uppercase text-[#8B0000]">
             Our funds
           </span>
           <span className="block h-px w-5 bg-[#8B0000]" />
-        </div>
+        </div> */}
 
         {/* Headline */}
-        <h2 className="text-h2-mobile md:text-h2-tab lg:text-h2 font-serif font-semibold leading-tight max-w-4xl mb-3 tracking-tight text-white">
-          Leading asset management{" "}
-          <em className="not-italic text-[#8B0000]">committed</em>{" "}
-          to you
-        </h2>
 
-        {/* Sub */}
-        <p className="text-neutral-400 text-sm md:text-body-sm font-light max-w-2xl mb-10 leading-relaxed">
-          Speak with our investment advisors to understand how our funds can
-          help you achieve your long-term financial goals.
-        </p>
+        <AnimatedHeader 
+          title="Leading asset management committed to you"
+          highlight="committed"
+          subheading="Speak with our investment advisors to understand how our funds can help you achieve your long-term financial goals."
+          className="mb-6 sm:mb-7 text-h3 text-black"
+          subheadingClassName="text-body-lg tracking-wide text-black"
+        />
 
         {/* Fund cards */}
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7">
