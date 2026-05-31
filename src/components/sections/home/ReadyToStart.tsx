@@ -27,7 +27,7 @@ const ReadyToStart = () => {
                     />
           <div className="flex justify-center">
             <CTAButton
-              href="/invest"
+              href="/invest-with-us"
               text="Invest With Us"
               variant="light"
               iconClassName="invert"

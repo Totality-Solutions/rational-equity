@@ -1,5 +1,3 @@
-// src/data/thoughtCenterData.ts
-
 export interface Article {
   id: number;
   title: string;
@@ -8,6 +6,8 @@ export interface Article {
   date: string;
   thumbnail: string;
   slug: string;
+  readTime: string;
+  excerpt: string;
 }
 
 export const articles: Article[] = [
@@ -17,8 +17,10 @@ export const articles: Article[] = [
     category: "Investment Insights",
     author: "Rational Equity",
     date: "February 15, 2026",
-    thumbnail: "https://placehold.co/627x269",
-    slug: "case-for-quality-volatile-markets"
+    thumbnail: "/images/thought-center/thought1.jpeg",
+    slug: "case-for-quality-volatile-markets",
+    readTime: "6 min read",
+    excerpt: "Why high-quality businesses with durable moats tend to outperform when markets get choppy — and how we identify them before the crowd does.",
   },
   {
     id: 2,
@@ -26,8 +28,10 @@ export const articles: Article[] = [
     category: "Letters to investors",
     author: "Rational Equity",
     date: "January 10, 2026",
-    thumbnail: "https://placehold.co/627x269",
-    slug: "annual-shareholder-letter-2025"
+    thumbnail: "/images/thought-center/thought2.jpeg",
+    slug: "annual-shareholder-letter-2025",
+    readTime: "12 min read",
+    excerpt: "A candid look at what worked, what didn't, and how our portfolio is positioned for the years ahead. Reflections on capital allocation discipline in a noisy market.",
   },
   {
     id: 3,
@@ -35,8 +39,10 @@ export const articles: Article[] = [
     category: "Investment Insights",
     author: "Rational Equity",
     date: "March 05, 2026",
-    thumbnail: "https://placehold.co/627x269",
-    slug: "structural-growth-indian-tech"
+    thumbnail: "/images/thought-center/thought3.jpeg",
+    slug: "structural-growth-indian-tech",
+    readTime: "8 min read",
+    excerpt: "India's technology sector is undergoing a generational shift. We examine the tailwinds — digital adoption, engineering talent, and global delivery — that make this a decade-long opportunity.",
   },
   {
     id: 4,
@@ -44,8 +50,10 @@ export const articles: Article[] = [
     category: "What we Read",
     author: "Rational Equity",
     date: "December 20, 2025",
-    thumbnail: "https://placehold.co/627x269",
-    slug: "psychology-long-term-investing"
+    thumbnail: "/images/thought-center/thought4.jpeg",
+    slug: "psychology-long-term-investing",
+    readTime: "5 min read",
+    excerpt: "Our reading notes on behavioural finance classics — why the biggest edge in investing is often not analytical but psychological, and how we train for it.",
   },
   {
     id: 5,
@@ -53,8 +61,10 @@ export const articles: Article[] = [
     category: "In the News",
     author: "Rational Equity",
     date: "February 28, 2026",
-    thumbnail: "https://placehold.co/627x269",
-    slug: "featured-in-financial-times"
+    thumbnail: "/images/thought-center/thought1.jpeg",
+    slug: "featured-in-financial-times",
+    readTime: "3 min read",
+    excerpt: "The Financial Times profiled our investment philosophy and long-term approach to Indian equities, highlighting our concentrated portfolio strategy and track record.",
   },
   {
     id: 6,
@@ -62,16 +72,75 @@ export const articles: Article[] = [
     category: "Investment Insights",
     author: "Rational Equity",
     date: "April 02, 2026",
-    thumbnail: "https://placehold.co/627x269",
-    slug: "risk-arbitrage-uncertain-waters"
+    thumbnail: "/images/thought-center/thought2.jpeg",
+    slug: "risk-arbitrage-uncertain-waters",
+    readTime: "7 min read",
+    excerpt: "Special situations can offer compelling returns with asymmetric risk profiles. We walk through our framework for evaluating merger arbitrage and event-driven opportunities.",
   },
   {
     id: 7,
-    title: "The Case for Quality in Volatile Markets",
+    title: "Why We Avoid Consensus Stocks",
     category: "Investment Insights",
     author: "Rational Equity",
-    date: "February 15, 2026",
-    thumbnail: "https://placehold.co/627x269",
-    slug: "case-for-quality-volatile-markets"
+    date: "March 18, 2026",
+    thumbnail: "/images/thought-center/thought3.jpeg",
+    slug: "why-we-avoid-consensus-stocks",
+    readTime: "5 min read",
+    excerpt: "When everyone agrees a stock is great, the expected return shrinks. We explain how contrarian thinking — not contrarianism for its own sake — guides our portfolio construction.",
+  },
+  {
+    id: 8,
+    title: "Mid-Year Letter to Investors: H1 2025",
+    category: "Letters to investors",
+    author: "Rational Equity",
+    date: "July 15, 2025",
+    thumbnail: "/images/thought-center/thought4.jpeg",
+    slug: "mid-year-letter-h1-2025",
+    readTime: "10 min read",
+    excerpt: "Six months in, we revisit our thesis on three core holdings, discuss one exit, and share our thinking on valuations in small-cap India heading into the second half.",
+  },
+  {
+    id: 9,
+    title: "Books That Shaped Our Investment Philosophy",
+    category: "What we Read",
+    author: "Rational Equity",
+    date: "November 10, 2025",
+    thumbnail: "/images/thought-center/thought1.jpeg",
+    slug: "books-shaped-investment-philosophy",
+    readTime: "6 min read",
+    excerpt: "From Poor Charlie's Almanack to Competition Demystified — a curated list of books that have had the most lasting influence on how we think about capital allocation.",
+  },
+  {
+    id: 10,
+    title: "Rational Equity on CNBC: The Long View",
+    category: "In the News",
+    author: "Rational Equity",
+    date: "April 10, 2026",
+    thumbnail: "/images/thought-center/thought2.jpeg",
+    slug: "cnbc-the-long-view",
+    readTime: "2 min read",
+    excerpt: "Our founder joined CNBC's The Long View to discuss India's equity market cycle, the case for patient capital, and what we look for in founder-led businesses.",
+  },
+  {
+    id: 11,
+    title: "Capital Allocation: The CEO's Most Important Job",
+    category: "Investment Insights",
+    author: "Rational Equity",
+    date: "January 28, 2026",
+    thumbnail: "/images/thought-center/thought3.jpeg",
+    slug: "capital-allocation-ceo-most-important-job",
+    readTime: "9 min read",
+    excerpt: "How management deploys retained earnings is often the single biggest determinant of long-run shareholder value. A framework for evaluating capital allocators before they prove themselves.",
+  },
+  {
+    id: 12,
+    title: "Q3 2025 Letter: Staying the Course",
+    category: "Letters to investors",
+    author: "Rational Equity",
+    date: "October 05, 2025",
+    thumbnail: "/images/thought-center/thought4.jpeg",
+    slug: "q3-2025-letter-staying-the-course",
+    readTime: "8 min read",
+    excerpt: "Markets tested patience in Q3. We explain why we held our positions, added to one name, and why short-term volatility rarely changes our long-term thesis on quality businesses.",
   },
 ];

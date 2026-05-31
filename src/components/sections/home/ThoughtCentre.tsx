@@ -10,19 +10,19 @@ const articles = [
     id: 1, category: 'Macro', readTime: '6 min read',
     title: "Why the gold cycle isn't over.",
     description: 'A look at miner economics, policy tailwinds, and why we still see asymmetric upside.',
-    img: '/images/home-thought/gold-cycle.png',
+    img: '/images/home-thought/notes1.jpeg',
   },
   {
     id: 2, category: 'Philosophy', readTime: '4 min read',
     title: 'The patience premium.',
     description: 'How long holding periods quietly outperform in a market obsessed with quarters.',
-    img: '/images/home-thought/patience.png',
+    img: '/images/home-thought/notes2.jpeg',
   },
   {
     id: 3, category: 'India', readTime: '8 min read',
     title: 'Small-caps after a hot year.',
     description: "What changes — and what doesn't — when a corner of the market gets crowded.",
-    img: '/images/home-thought/small-caps.png',
+    img: '/images/home-thought/notes3.jpeg',
   },
 ];
 
@@ -56,7 +56,7 @@ export default function ThoughtCentre() {
                   alt={a.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
 

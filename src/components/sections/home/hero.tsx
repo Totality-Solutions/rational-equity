@@ -113,15 +113,15 @@ export default function Hero() {
                               <AnimatedHeader
                                 title="Rational thinking"
                                 variant="light"
-                                className=""
+                                className="text-h3"
                     
-                                titleClassName="text-white text-h3"
+                                titleClassName="text-white tracking-wide text-h1"
                               />
                               <AnimatedHeader
                                 title="Exceptional returns"
                                 variant="light"
-                                className=""
-                                titleClassName="!text-white text-h3"
+                                className="text-h3"
+                               titleClassName="!text-white text-h1  tracking-wide"
                                 subheading=" Long-only strategies built on conviction, discipline, and long-term value."
                                 subheadingClassName="max-w-sm mt-8 text-body-lg tracking-wider text-white/90"
                               />
