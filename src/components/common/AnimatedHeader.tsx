@@ -62,7 +62,7 @@
 //         initial="hidden"
 //         whileInView="visible"
 //         viewport={{ once: true, amount: 0.5 }}
-//         className={`font-serif text-3xl sm:text-4xl md:text-5xl ${titleDefaultColor} mb-4 leading-tight ${titleClassName}`}
+//         className={`font-playfair text-3xl sm:text-4xl md:text-5xl ${titleDefaultColor} mb-4 leading-tight ${titleClassName}`}
 //       >
 //         {!highlight ? (
 //           <motion.span variants={slideUpVariants} custom={0} className="inline-block">
@@ -244,7 +244,7 @@ export default function AnimatedHeader({
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        className={`font-serif font-regular  ${titleDefaultColor} leading-tight ${titleClassName}`}
+        className={`font-playfair font-regular text-[44px]  ${titleDefaultColor} leading-tight ${titleClassName}`}
       >
         {renderTitle()}
       </motion.h2>
@@ -256,7 +256,7 @@ export default function AnimatedHeader({
           viewport={{ once: true }}
           variants={slideUpVariants}
           custom={0.4}
-          className={`font-regular font-sans max-w-3xl mx-auto  leading-relaxed ${subColor} ${subheadingClassName}`}
+          className={`font-regular font-sans max-w-3xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg leading-relaxed ${subColor} ${subheadingClassName}`}
         >
           {subheading}
         </motion.p>

@@ -55,13 +55,13 @@ export default function Philosophy({ points = [] }: PhilosophyProps) {
                     height={40}
                   />
                 </div>
-                <span className="font-serif text-h2 font-bold italic text-black/10 leading-none select-none">
+                <span className="font-playfair text-h2 font-bold italic text-black/10 leading-none select-none">
                   {(index + 1).toString().padStart(2, "0")}
                 </span>
               </div>
 
               {/* Title */}
-              <h3 className="font-serif text-body-lg font-bold text-[#1a1a1a] leading-snug ">
+              <h3 className="font-playfair text-body-lg font-bold text-[#1a1a1a] leading-snug ">
                 {point.title}
               </h3>
 

@@ -145,7 +145,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 15 }}
                         animate={inView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.6 }}
-                        className="font-serif text-xl sm:text-xl md:text-[42px] font-normal text-white tracking-widest "
+                        className="font-playfair text-xl sm:text-xl md:text-[42px] font-normal text-white tracking-widest "
                     >
                         INVESTING
                     </motion.h1>
@@ -179,7 +179,7 @@ export default function Hero() {
                             className="group relative bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-sm p-8 md:p-10 text-center transition-all duration-500 hover:bg-white/[0.08]"
                             style={{ transform: 'translateZ(0)' }}
                             >
-                            <div className="font-serif text-2xl md:text-3xl font-medium text-white mb-2 tracking-wider flex justify-center items-baseline">
+                            <div className="font-playfair text-2xl md:text-3xl font-medium text-white mb-2 tracking-wider flex justify-center items-baseline">
                                 <KBCNumber value={stat.value} inView={inView} />
                                 <span className="ml-1 text-xl md:text-2xl">{stat.suffix}</span>
                             </div>

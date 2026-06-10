@@ -60,7 +60,7 @@ export default function AboutHero() {
     >
       {/* Sticky container stays 100% of viewport height */}
       <div className="sticky top-20 max-h-screen md:h-[60vh] lg:h-[70vh] flex pt-6 lg:pt-24 pb-3 justify-center px-6 overflow-hidden">
-        <div className=" max-w-6xl text-center space-y-8 md:space-y-10 font-serif">
+        <div className=" max-w-6xl text-center space-y-8 md:space-y-10 font-playfair">
           
           {paragraphs.map((para, pIdx) => (
             <div key={para.id} className="space-y-2 md:space-y-3">

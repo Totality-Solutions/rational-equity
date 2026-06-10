@@ -53,7 +53,7 @@ export default function ProductHero({ title, description, titleColor = "text-bra
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-[800px] flex flex-col justify-center items-center gap-5 text-center"
           >
-            <h1 className={`font-serif text-[48px] md:text-[56px] ${titleColor} font-bold leading-[1.1] tracking-tight`}>
+            <h1 className={`font-playfair text-[48px] md:text-[56px] ${titleColor} font-bold leading-[1.1] tracking-tight`}>
               {title}
             </h1>
             

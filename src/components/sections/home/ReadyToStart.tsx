@@ -1,44 +1,39 @@
-import AnimatedHeader from '@/components/common/AnimatedHeader'
-import Container from '@/components/common/Container'
-import CTAButton from '@/components/common/CTAButton'
-import React from 'react'
+import AnimatedHeader from '@/components/common/AnimatedHeader';
+import Container from '@/components/common/Container';
+import CTAButton from '@/components/common/CTAButton';
+import React from 'react';
 
 const ReadyToStart = () => {
   return (
-    <section className='border-0 border-b border-gray-200'>
-      <Container className='bg-black/10 py-10 font-sans overflow-hidden'>
-        {/* CTA SECTION */}
-        <div className="text-center">
-            {/* <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl mb-4 md:mb-6">
-              Ready to Start Investing?
-            </h2>
-            <p className="text-lg md:text-[22px] font-light text-gray-300 max-w-2xl mx-auto">
-              Join thousands of investors who trust us with their wealth creation journey
-            </p> */}
+    <section>
+      <Container>
+        <div className="bg-black px-8 md:px-16 py-8 md:py-12 flex flex-col md:flex-row items-center md:items-center justify-between gap-8">
 
-             <AnimatedHeader 
-                      title="Ready to Start Investing?"
-                      highlight='Start Investing'
-                      highlightColor="#8B0000"
-                      subheading=" Join thousands of investors who trust us with their wealth creation journey"
-                      variant="light"
-                      className='mb-7  text-h3 text-black'
-                      subheadingClassName='text-body-lg tracking-wide text-black'
-                    />
-          <div className="flex justify-center">
+          {/* Left Content */}
+          <div className="max-w-4xl">
+            <span className="font-playfair text-white font-extralight tracking-[0.015em] text-[32px] md:text-[40px] leading-[52px]">
+              Ready to Start Investing?
+            </span>
+
+            <p className="mt-2 text-[#7B7B7B] text-[18px] md:text-[20px] ">
+              Join thousands of investors who trust us with their wealth creation journey
+            </p>
+          </div>
+
+          {/* Right CTA */}
+          <div className="shrink-0">
             <CTAButton
               href="/invest-with-us"
               text="Invest With Us"
-              variant="light"
+              variant="maroon-bg"
               iconClassName="invert"
             />
           </div>
 
         </div>
-        
       </Container>
     </section>
-  )
-}
+  );
+};
 
-export default ReadyToStart
+export default ReadyToStart;

@@ -137,7 +137,7 @@ export default function InvestWithUs() {
                 ${index !== stats.length - 1 ? 'lg:border-r' : ''} 
                 ${index % 2 === 0 ? 'md:border-r md:border-b lg:border-r' : 'md:border-r-0 md:border-b lg:border-r'}`}
             >
-              <h3 className="text-h4 md:text-[28px] font-semibold font-serif text-gray-900">
+              <h3 className="text-h4 md:text-[28px] font-semibold font-playfair text-gray-900">
                 <Counter value={stat.value} />
               </h3>
               <p className="text-gray-400 text-body-lg">

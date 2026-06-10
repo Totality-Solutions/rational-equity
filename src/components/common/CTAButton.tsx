@@ -62,7 +62,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
             alt="" 
             className={`
               w-4 md:w-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-              ${!isMaroonBg ? 'brightness-0 invert' : ''} 
+              ${!isMaroonBg ? 'brightness-0 invert' : 'brightness-0 invert-0'} 
               ${iconClassName}
             `}
           />

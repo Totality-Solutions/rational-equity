@@ -300,7 +300,7 @@ function MilestoneCard({
       onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(139,0,0,0.3)')}
       onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(139,0,0,0.12)')}
     >
-      <span className="font-serif text-[32px] font-semibold leading-none" style={{ color: 'rgba(139,0,0,0.1)' }}>
+      <span className="font-playfair text-[32px] font-semibold leading-none" style={{ color: 'rgba(139,0,0,0.1)' }}>
         {item.num}
       </span>
       <div
