@@ -45,7 +45,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
             color: isMaroonBg ? '#ffffff' : textColor 
           }}
         >
-          <span className="font-sans font-semibold text-cta-mobile tracking-cta md:text-cta whitespace-nowrap">
+          <span className="font-sans font-medium text-cta-mobile tracking-cta md:text-cta whitespace-nowrap">
             {text}
           </span>
         </div>

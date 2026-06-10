@@ -79,7 +79,7 @@ export default function TeamShowcase() {
                 </div>
                 
                 <div className="pt-4 text-center">
-                  <h3 className="text-xl font-bold text-[#800000] tracking-wide uppercase">
+                  <h3 className="text-xl font-playfair font-bold text-[#9B0000] tracking-wide uppercase">
                     {member.name}
                   </h3>
                   <p className="text-sm text-gray-500 font-medium mt-0.5">
@@ -160,7 +160,7 @@ export default function TeamShowcase() {
                       </div>
                     ) : (
                       <div className="pt-4 text-center">
-                        <h3 className="text-lg font-bold text-[#800000] tracking-wide uppercase">{member.name}</h3>
+                        <h3 className="text-lg font-playfair font-bold text-[#9B0000] tracking-wide uppercase">{member.name}</h3>
                         <p className="text-xs text-gray-500 font-medium mt-1">{member.role}</p>
                       </div>
                     )}
@@ -208,7 +208,7 @@ export default function TeamShowcase() {
                     className="flex flex-col items-center pt-4 pb-2 shrink-0 select-none"
                     style={{ pointerEvents: 'none' }}
                   >
-                    <h3 className="text-[16px] font-bold tracking-wide uppercase text-center text-[#800000] truncate w-full">
+                    <h3 className="text-[16px] font-playfair font-semibold tracking-wide uppercase text-center text-[#9B0000] truncate w-full">
                       {member.name}
                     </h3>
                     <p className="text-[12px] mt-1 text-center text-gray-500 font-medium truncate w-full">
