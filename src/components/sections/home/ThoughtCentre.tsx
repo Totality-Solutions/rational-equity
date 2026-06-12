@@ -32,18 +32,18 @@ const articles = [
 
 export default function ThoughtCentre() {
   return (
-    <section className="w-full pt-12 pb-16 bg-[#F5F4F2]">
+    <section className="w-full pt-12 pb-16 bg-[#FAFAFA]">
       <Container className="mx-auto px-4 space-y-12">
 
         <div className="mb-12">
         <AnimatedHeader
-          title="NOTES from the Desk"
-          highlight="NOTES"
-          highlightColor="#8B0000"
+          title="Notes from the Desk"
+          highlight="Notes"
+          highlightColor="#9B0000"
           subheading="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
           variant="light"
-          className="text-black text-h3"
-          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base lg:text-body-lg leading-relaxed"
+          className="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
         />
         </div>
 
@@ -79,7 +79,7 @@ export default function ThoughtCentre() {
 
                   {/* Title */}
                   <h3 
-                    className="text-[24px] md:text-[26px] leading-snug text-gray-900 font-normal tracking-tight group-hover:text-[#8B0000] transition-colors duration-200"
+                    className="text-[24px] md:text-[26px] leading-snug text-gray-900 font-normal tracking-tight group-hover:text-[#9B0000] transition-colors duration-200"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
                     {item.title}
@@ -97,7 +97,7 @@ export default function ThoughtCentre() {
                 {/* Micro Action Trigger Link */}
                 <div className="pt-2">
                   <span 
-                    className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-wider font-bold text-[#8B0000] transition-all duration-200"
+                    className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-wider font-bold text-[#9B0000] transition-all duration-200"
                     style={{ fontFamily: "'Lato', sans-serif" }}
                   >
                     Read More <span>→</span>

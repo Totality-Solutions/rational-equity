@@ -93,7 +93,7 @@ export default function ProductNav() {
                 {isActive && (
                   <motion.div
                     layoutId="activeNavUnderline"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#8B0000]"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#9B0000]"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}

@@ -63,7 +63,7 @@ export default function Testimonials() {
         highlight='Our Investors'
         subheading="Trusted by thousands of investors across India for disciplined wealth creation."
         variant="light"
-        className=" text-black text-h3"
+        className=" text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
       />
       </Container>
@@ -89,7 +89,7 @@ export default function Testimonials() {
               <div className="relative bg-white rounded-2xl shadow-xl shadow-gray-100 flex flex-col h-full overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl hover:border-brand-maroon/20">
 
                 {/* Top Accent Strip */}
-                <div className="absolute top-0 left-0 w-full h-[6px] bg-[#8B0000] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                <div className="absolute top-0 left-0 w-full h-[6px] bg-[#9B0000] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
 
                 <div className="p-6 md:p-8 flex-grow">
                   {/* Rating Stars */}
@@ -112,8 +112,8 @@ export default function Testimonials() {
                 </div>
 
                 {/* Footer Area */}
-                <div className="bg-[#8B0000] p-5 md:p-6 flex items-center gap-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-[#8B0000] font-bold font-sans text-base md:text-lg overflow-hidden">
+                <div className="bg-[#9B0000] p-5 md:p-6 flex items-center gap-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-[#9B0000] font-bold font-sans text-base md:text-lg overflow-hidden">
   {item.img ? (
     <Image
       src={item.img}

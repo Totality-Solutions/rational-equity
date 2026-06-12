@@ -7,7 +7,7 @@ import Link from "next/link";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
 import Container from "@/components/common/Container";
 
-const CRIMSON = "#8B0000";
+const CRIMSON = "#9B0000";
 
 const funds = [
   {

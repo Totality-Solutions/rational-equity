@@ -147,7 +147,7 @@ export default function FundPerformance() {
           <AnimatedHeader
           title="Fund Performance"
           highlight="Performance"
-          highlightColor="#8B0000"
+          highlightColor="#9B0000"
           // subheading="Live historical returns and trend analysis"
           variant="light"
           className="text-h3 text-black"

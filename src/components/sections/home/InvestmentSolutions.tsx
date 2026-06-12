@@ -55,7 +55,7 @@ export default function InvestmentSolutions() {
     <Container className="relative z-10">
 
       {/* Grey Wrapper */}
-      <div className="relative bg-[#F5F4F2]  px-8 md:px-16 py-12 overflow-hidden">
+      <div className="relative bg-[#FAFAFA]  px-8 md:px-16 py-12 overflow-hidden">
 
         {/* GRID BACKGROUND */}
         {/* <motion.div
@@ -85,12 +85,12 @@ export default function InvestmentSolutions() {
           {/* Heading */}
           <div className="text-center mb-12">
             <AnimatedHeader
-              className="text-black text-h3"
+              className="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
               title="Our Investment Solutions"
               highlight="Solutions"
               variant="light"
               subheading="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-              subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base lg:text-body-lg leading-relaxed"
+              subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
             />
           </div>
 
@@ -192,7 +192,7 @@ export default function InvestmentSolutions() {
                       </div>
 
                       <Link href={fund.href}>
-                        <button className="w-full mt-8 py-2 rounded-full bg-brand-maroon text-white text-[18px] font-normal transition-all hover:bg-[#8B0000] cursor-pointer">
+                        <button className="w-full mt-8 py-2 rounded-full bg-brand-maroon text-white text-[18px] font-normal transition-all hover:bg-[#9B0000] cursor-pointer">
                           View Details
                         </button>
                       </Link>

@@ -14,7 +14,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const CRIMSON = '#8B0000';
+const CRIMSON = '#9B0000';
 const CRIMSON_LIGHT = '#F5EDED';
 const CRIMSON_BORDER = 'rgba(139,0,0,0.22)';
 
@@ -165,7 +165,7 @@ export default function InvestmentProcess() {
           title="Our Investment Process"
           highlight="Investment"
           subheading='A disciplined path to superior returns'
-          highlightColor="#8B0000"
+          highlightColor="#9B0000"
           className="text-h4 sm:text-h3 text-black"
           subheadingClassName="text-sm sm:text-base md:text-body-lg tracking-wide text-black"
           titleClassName="leading-tight"

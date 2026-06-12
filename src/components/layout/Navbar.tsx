@@ -140,8 +140,7 @@ export default function Navbar() {
                 <CTAButton
                   href="/contact"
                   text="Call us"
-                  variant="light"
-                  paddingClassName='px-3 py-2'
+                  variant="maroon-bg"
                 />
               </div>
             </div>

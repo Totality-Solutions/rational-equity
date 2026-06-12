@@ -17,7 +17,7 @@
 // export default function AnimatedHeader({
 //   title,
 //   highlight,
-//   highlightColor = "#8B0000",
+//   highlightColor = "#9B0000",
 //   subheading,
 //   variant = 'light',
 //   className = "",

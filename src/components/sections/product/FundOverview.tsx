@@ -36,7 +36,7 @@ export default function FundOverview({ description, stats }: FundOverviewProps) 
       <AnimatedHeader 
         title="Fund Overview"
         highlight="Overview"
-        highlightColor="#8B0000"
+        highlightColor="#9B0000"
         subheading={description}
         variant="light"
         className="text-h4 sm:text-h3 text-black"

@@ -8,7 +8,7 @@ import { TrendingUp, X, Shield, Calendar, Wallet, BarChart3 } from "lucide-react
 import CTAButton from "@/components/common/CTAButton";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
 
-const CRIMSON = "#8B0000";
+const CRIMSON = "#9B0000";
 
 const FUNDS = [
   {
@@ -63,12 +63,12 @@ export default function InvestLinksSection() {
     <section className="w-full overflow-hidden">
 
       {/* ── Strip ── */}
-      <div className="group relative w-full bg-[#8B0000] py-6 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-500 hover:bg-white border-b border-white/10">
+      <div className="group relative w-full bg-[#9B0000] py-6 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-500 hover:bg-white border-b border-white/10">
         <p className="text-white text-lg md:text-body-lg max-w-3xl transition-colors duration-500 group-hover:text-black">
           <span className="font-normal">
             Book a quick call with our team and let's explore how we can{" "}
           </span>
-          <span className="font-bold transition-colors duration-500 group-hover:text-[#8B0000]">
+          <span className="font-bold transition-colors duration-500 group-hover:text-[#9B0000]">
             work together.
           </span>
         </p>
@@ -77,7 +77,7 @@ export default function InvestLinksSection() {
             href="/invest-with-us"
             text="Schedule a Call"
             variant="light"
-            className="h-[40px] transition-all duration-500 group-hover:text-white group-hover:border-[#8B0000]"
+            className="h-[40px] transition-all duration-500 group-hover:text-white group-hover:border-[#9B0000]"
           />
         </div>
       </div>
@@ -87,11 +87,11 @@ export default function InvestLinksSection() {
 
         {/* Eyebrow */}
         {/* <div className="flex items-center gap-2 mb-5">
-          <span className="block h-px w-5 bg-[#8B0000]" />
-          <span className="text-xs font-medium tracking-widest uppercase text-[#8B0000]">
+          <span className="block h-px w-5 bg-[#9B0000]" />
+          <span className="text-xs font-medium tracking-widest uppercase text-[#9B0000]">
             Our funds
           </span>
-          <span className="block h-px w-5 bg-[#8B0000]" />
+          <span className="block h-px w-5 bg-[#9B0000]" />
         </div> */}
 
         {/* Headline */}
@@ -133,7 +133,7 @@ export default function InvestLinksSection() {
 
                 {/* Icon + Title */}
                 <div className="flex-1">
-                  <h3 className="text-gray-900 font-semibold text-[17px] leading-snug mb-2.5 flex items-center gap-2 transition-colors group-hover:text-[#8B0000]">
+                  <h3 className="text-gray-900 font-semibold text-[17px] leading-snug mb-2.5 flex items-center gap-2 transition-colors group-hover:text-[#9B0000]">
                     <Image
                       src={fund.img}
                       alt={fund.title}
@@ -154,7 +154,7 @@ export default function InvestLinksSection() {
                     <span className="text-[11px] text-gray-400 uppercase tracking-wide font-medium">
                       3Y returns
                     </span>
-                    <span className="text-[13px] font-semibold text-[#8B0000]">
+                    <span className="text-[13px] font-semibold text-[#9B0000]">
                       {fund.returns}
                     </span>
                   </div>
@@ -171,7 +171,7 @@ export default function InvestLinksSection() {
                 {/* CTA */}
                 <button
                   onClick={() => setSelectedFund(fund)}
-                  className="w-full cursor-pointer bg-[#8B0000] text-white py-2.5 rounded-full text-[13px] font-semibold tracking-wide transition-all hover:bg-[#600000] active:scale-[0.98]"
+                  className="w-full cursor-pointer bg-[#9B0000] text-white py-2.5 rounded-full text-[13px] font-semibold tracking-wide transition-all hover:bg-[#600000] active:scale-[0.98]"
                 >
                   View Details
                 </button>
@@ -250,7 +250,7 @@ export default function InvestLinksSection() {
               {/* Footer CTA */}
               <div className="px-6 pb-6">
                 <Link href={selectedFund.href} className="block w-full">
-                  <button className="w-full bg-[#8B0000] text-white py-3 rounded-full text-[13px] font-semibold tracking-wide transition-all hover:bg-[#600000] active:scale-[0.98] cursor-pointer">
+                  <button className="w-full bg-[#9B0000] text-white py-3 rounded-full text-[13px] font-semibold tracking-wide transition-all hover:bg-[#600000] active:scale-[0.98] cursor-pointer">
                     Invest in this fund →
                   </button>
                 </Link>

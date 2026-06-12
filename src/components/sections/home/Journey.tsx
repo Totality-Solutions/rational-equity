@@ -6,7 +6,7 @@ import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import Image from 'next/image';
 
-const CRIMSON = '#8B0000';
+const CRIMSON = '#9B0000';
 
 // ─── Breakpoint thresholds ────────────────────────────────────────────────────
 const BREAKPOINTS = {
@@ -139,7 +139,7 @@ export default function Journey() {
             highlightColor={CRIMSON}
             subheading="Our path has been defined by a commitment to rigorous research and absolute integrity."
             variant="light"
-            className="text-black text-h3"
+            className="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
             subheadingClassName="text-gray-600 font-normal max-w-2xl text-base text-body-lg leading-relaxed"
           />
 
@@ -259,7 +259,7 @@ function NavButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className="w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#8B0000]/5"
+      className="w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#9B0000]/5"
       style={{ borderColor: 'rgba(139,0,0,0.25)', color: crimson }}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -272,7 +272,7 @@ function NavButton({
 function NodeCircle({ src, title, crimson }: { src: string; title: string; crimson: string }) {
   return (
     <div
-      className="w-fit h-fit  rounded-full border flex items-center justify-center bg-white group-hover:border-[--crimson] group-hover:bg-[#8B0000]/5 transition-all duration-300"
+      className="w-fit h-fit  rounded-full border flex items-center justify-center bg-white group-hover:border-[--crimson] group-hover:bg-[#9B0000]/5 transition-all duration-300"
       style={{ '--crimson': crimson, borderColor: 'rgba(139,0,0,0.22)' } as React.CSSProperties}
     >
       <Image

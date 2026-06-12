@@ -30,18 +30,18 @@ const principles = [
 
 export default function InvestorStructure() {
   return (
-    <section className="w-full py-12 bg-[#F5F4F2]">
+    <section className="w-full py-12 bg-[#FAFAFA]">
       <Container className="max-w-[1216px] mx-auto px-4 space-y-16">
 
         <div className="mb-12">
         <AnimatedHeader
           title="An Investor-First Structure, by Design."
           highlight="Investor-First Structure"
-          highlightColor="#8B0000"
+          highlightColor="#9B0000"
           subheading="Three principles that shape every decision we make — from how we invest to how we get paid."
           variant="light"
-          className="text-black text-h3"
-          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base lg:text-body-lg leading-relaxed"
+          className="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
         />
         </div>
 
@@ -53,7 +53,7 @@ export default function InvestorStructure() {
               className="relative bg-white border border-gray-100 rounded-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.03)] px-8 py-10 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)] group"
             >
               {/* Distinct Maroon Border Accent Line on Top Grid Wrapper */}
-              <div className="absolute top-0 left-0 right-0 h-[5px] bg-[#8B0000] w-full" />
+              <div className="absolute top-0 left-0 right-0 h-[5px] bg-[#9B0000] w-full" />
 
               {/* Main Contents */}
               <div className="space-y-6 flex-1 flex flex-col">

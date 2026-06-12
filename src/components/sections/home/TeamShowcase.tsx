@@ -50,11 +50,11 @@ export default function TeamShowcase() {
         <AnimatedHeader
           title="People at the Bench"
           highlight="Bench"
-          highlightColor="#8B0000"
+          highlightColor="#9B0000"
           subheading="Our Team of Dedicated Talent Behind the Agency."
           variant="light"
-          className="text-black text-h3"
-          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base lg:text-body-lg leading-relaxed"
+          className="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
         />
 
         {/* ========================================================================= */}

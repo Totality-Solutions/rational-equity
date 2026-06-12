@@ -1,117 +1,29 @@
-'use client';
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
-
-const paragraphs = [
-  {
-    id: 1,
-    lines: [
-      <>
-        <span className="text-[#8B0000]">Rational Equity</span> is a fresh, new{" "}
-        <span className="text-[#8B0000]">boutique Category III AIF</span> aiming to provide high
-      </>,
-      "returns and create long-term wealth for our investor partners.",
-    ]
-  },
-  {
-    id: 2,
-    lines: [
-      "Our first scheme, Rational Equity Flagship Fund I, offers highly favourable, investor-aligned",
-      "terms compared to other AIFs.",
-    ]
-  },
-  {
-    id: 3,
-    lines: [
-      "We maintain high skin in the game — with over of the total contribution invested",
-      "by the investment management team.",
-    ]
-  }
-];
-
 export default function AboutHero() {
-  const containerRef = useRef(null);
-
-  const allLines = paragraphs.flatMap(p => p.lines);
-  const totalLineCount = allLines.length;
-
-  // 1. DYNAMIC HEIGHT CALCULATION
-  // Instead of a fixed 250vh, we use ~25vh per line. 
-  // With 6 lines, this results in 150vh. 
-  // This ensures the "speed" of the reveal feels consistent regardless of text length.
-  const sectionHeight = `${Math.max(10, totalLineCount * 65)}vh`;
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"], 
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 60, // Slightly higher stiffness for a more responsive feel
-    damping: 25,
-    restDelta: 0.001
-  });
-
   return (
-    <section 
-      ref={containerRef} 
-      style={{ height: sectionHeight }} 
-      className="relative bg-white"
-    >
-      {/* Sticky container stays 100% of viewport height */}
-      <div className="sticky top-20 max-h-screen md:h-[60vh] lg:h-[70vh] flex pt-6 lg:pt-24 pb-3 justify-center px-6 overflow-hidden">
-        <div className=" max-w-6xl text-center space-y-8 md:space-y-10 font-playfair">
-          
-          {paragraphs.map((para, pIdx) => (
-            <div key={para.id} className="space-y-2 md:space-y-3">
-              {para.lines.map((line, lIdx) => {
-                const previousLinesCount = paragraphs
-                  .slice(0, pIdx)
-                  .reduce((acc, p) => acc + p.lines.length, 0);
-                const currentIndex = previousLinesCount + lIdx;
+    <section className="relative bg-white h-fit py-16 px-6 overflow-hidden font-playfair">
+      <div 
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(139, 0, 0, 0.08) 0%, transparent 70%)"
+        }}
+      />
+      
+      <div className="relative max-w-4xl mx-auto text-center space-y-6 ">
+        <h1 className="text-h1-mobile md:text-h1-tab lg:text-h1 leading-tight font-playfair">
+          We invest our own{" "} <br/>
+          <span className="italic font-playfair text-[#8B0000]">capital first.</span>
+        </h1>
 
-                // 2. TIMING ADJUSTMENT
-                // We want the text to start revealing after 10% scroll 
-                // and finish 100% visible by 90% scroll.
-                const start = 0.1 + (currentIndex / totalLineCount) * 0.8;
-                const end = 0.12 + ((currentIndex + 1) / totalLineCount) * 0.8;
+        <p className="text-h4-mobile md:text-h4-tab lg:text-h4 leading-relaxed text-gray-800">
+          Rational is an investment house with a singular focus: identifying global mega-trends
+          and durable mispricings in the system. We hold them long enough
+          for compounding to do its work.
+        </p>
 
-                const mask = useTransform(
-                  smoothProgress,
-                  [start, end],
-                  [
-                    "linear-gradient(to right, black 0%, transparent 0%)",
-                    "linear-gradient(to right, black 100%, transparent 100%)",
-                  ]
-                );
-
-                return (
-                  <div key={`${pIdx}-${lIdx}`} className="relative">
-                    {/* BASE LAYER (Grayscale) */}
-                    <p 
-                      className="text-h3-mobile md:text-h3-tab lg:text-h3 leading-tight select-none opacity-5"
-                      style={{ filter: "grayscale(100%)" }}
-                    >
-                      {line}
-                    </p>
-
-                    {/* REVEAL LAYER (Color) */}
-                    <motion.p
-                      style={{
-                        WebkitMaskImage: mask,
-                        maskImage: mask,
-                      }}
-                      className="absolute inset-0 text-h3-mobile md:text-h3-tab lg:text-h3 leading-tight text-black"
-                    >
-                      {line}
-                    </motion.p>
-                  </div>
-                );
-              })}
-            </div>
-          ))}
-          
-        </div>
+        <p className="text-h4-mobile md:text-h4-tab lg:text-h4 leading-relaxed italic text-gray-700">
+          We are not asset gatherers. We are investors — with our own net worth tied to every fund
+          we launch. Our fee structure rewards us only when you win.
+        </p>
       </div>
     </section>
   );

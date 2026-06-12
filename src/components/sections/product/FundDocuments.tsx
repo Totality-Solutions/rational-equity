@@ -29,7 +29,7 @@ export default function FundDocuments({ documents }: FundDocumentsProps) {
         <AnimatedHeader 
           title="Fund Documents"
           highlight="Documents"
-          highlightColor="#8B0000"
+          highlightColor="#9B0000"
           subheading="Access detailed insights, performance reports, and strategy documents for this fund."
           variant="light"
          className="text-h3 text-black"

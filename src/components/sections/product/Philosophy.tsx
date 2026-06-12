@@ -24,7 +24,7 @@ export default function Philosophy({ points = [] }: PhilosophyProps) {
         <AnimatedHeader
           title="Investment Philosophy"
           highlight="Philosophy"
-          highlightColor="#8B0000"
+          highlightColor="#9B0000"
           subheading="We believe precious metals play a critical role in portfolio construction as a hedge against inflation, currency debasement, and geopolitical uncertainty. Rather than investing in physical gold, we focus on miners who offer operational leverage to rising commodity prices."
           variant="light"
           className="text-h3 text-black"

@@ -6,7 +6,7 @@ import AnimatedHeader from "@/components/common/AnimatedHeader";
 import Container from "@/components/common/Container";
 import { articles, Article } from "@/data/thoughtCenterData";
 
-const CRIMSON = "#8B0000";
+const CRIMSON = "#9B0000";
 const PAGE_SIZE = 6;
 
 export default function ThoughtCenterArticles() {

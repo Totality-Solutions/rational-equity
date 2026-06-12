@@ -85,7 +85,7 @@ export default function FAQ() {
           highlightColor="#ffffff"
           subheading="Find answers to common questions about investing with us"
           variant="dark"
-          className=" text-black text-h3"
+          className=" text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
         />
 
