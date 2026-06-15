@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
       { protocol: 'https', hostname: 'placehold.co', pathname: '/**' },
     ],
-  },
+  }as any,
   
   // Keep your other experimental settings if you have them, 
   // but remove allowedDevOrigins from here.
