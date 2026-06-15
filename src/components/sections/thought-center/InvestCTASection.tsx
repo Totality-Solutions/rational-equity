@@ -61,7 +61,7 @@ export default function InvestCTASection() {
               title="Ready to Start Investing?"
               subheading="Join thousands of investors who trust us with their wealth creation journey"
               variant="dark"
-              className="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+              titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
               subheadingClassName="text-gray-700 font-normal mb-6 max-w-2xl mx-auto text-base lg:text-body-lg leading-relaxed"
             />
 

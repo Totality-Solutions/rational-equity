@@ -4,26 +4,43 @@ import AnimatedHeader from '@/components/common/AnimatedHeader';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
+type FAQItem = {
+  question: string;
+  answer: string | string[];
+};
+
 const FAQ_DATA = [
   {
+    question: "What are the asset management services offered by Rational?",
+    answer: [
+      "As one of the top asset management firms in India, we offer three investment opportunities focused on diversifying investor portfolios. All three follow the same investment philosophy but use different instruments based on investor suitability.",
+
+      "1. India Long-Only Fund — we invest in listed Indian companies.",
+
+      "2. Gold & Silver Miners' Fund — a GIFT City based fund investing in gold & silver mining companies listed in global markets.",
+
+      "3. Absolute Return Fund — we invest in derivatives of publicly listed Indian companies through a long-short strategy."
+    ]
+  },
+  {
     question: "What is the minimum investment amount?",
-    answer: "The minimum investment amount varies by fund. For our Long-Only strategy, it typically starts at ₹50 Lakhs as per SEBI regulations for AIFs."
+    answer: [
+      "India Fund — ₹1 Crore",
+      "GIFT City Fund — US$ 150,000"
+    ]
   },
   {
-    question: "How can I invest in Rational AMC funds?",
-    answer: "You can start by clicking the 'Invest With Us' button. Our team will guide you through the digital onboarding and KYC process."
+    question: "How do I invest in Rational's funds?",
+    answer: [
+      'Click the "Invest with Us" button or fill out the contact form. Our team will reach out to walk you through the onboarding and KYC process, share the Private Placement Memorandum, and answer any questions you may have.',
+      "Alternatively, reach out on +91 99119 00096 or +91 99872 61105."
+    ]
   },
   {
-    question: "What makes Rational AMC different?",
-    answer: "We focus on high-conviction, long-only strategies with a disciplined research process and over 15 years of market excellence."
-  },
-  {
-    question: "How do I track my investments?",
-    answer: "Investors receive monthly performance reports and have access to a dedicated dashboard for real-time tracking."
-  },
-  {
-    question: "What is the redemption process?",
-    answer: "Redemption requests can be placed through your relationship manager, subject to the specific lock-in periods of the fund."
+    question: "Which is the regulatory body governing Rational?",
+    answer: [
+      "Rational is registered with SEBI as a Category II Alternative Investment Fund. Our GIFT City Fund operates under the IFSCA regulatory framework. All funds comply fully with applicable regulations."
+    ]
   }
 ];
 
@@ -67,9 +84,15 @@ export default function FAQ() {
           openIndex === actualIndex ? 'max-h-96 pb-8 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <p className="text-rose-100/80 leading-relaxed font-sans text-body-lg  max-w-3xl">
-          {faq.answer}
-        </p>
+        <div className="space-y-4 text-rose-100/80 leading-relaxed font-sans text-body-md max-w-3xl">
+          {Array.isArray(faq.answer) ? (
+            faq.answer.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))
+          ) : (
+            <p>{faq.answer}</p>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -80,12 +103,12 @@ export default function FAQ() {
         
         {/* Header - Fluid Sizing */}
        <AnimatedHeader 
-          title="Frequently Asked Questions"
-          highlight="Asked Questions"
+          title="Questions we get asked."
+          highlight="get asked."
           highlightColor="#ffffff"
-          subheading="Find answers to common questions about investing with us"
+          subheading="Everything you need to know before investing with us. Can't find an answer? Reach out directly."
           variant="dark"
-          className=" text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+          titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
         />
 

@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <>
       <TopInfoBar />
-      <main className="min-h-screen">
+      {/* <main className="min-h-screen"> */}
         <Hero />
         <AboutSection />
         <InvestmentSolutions />
@@ -46,7 +46,7 @@ export default function Home() {
         <Testimonials />
         <ThoughtCentre />
         <FAQ />
-      </main>
+      {/* </main> */}
     </>
   );
 }

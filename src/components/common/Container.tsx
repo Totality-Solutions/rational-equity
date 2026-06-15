@@ -11,11 +11,12 @@ export default function Container({ children, className = "" }: ContainerProps) 
   return (
     <div 
       className={`
-        max-w-8xl 
+        max-w-[1440px] 
         mx-auto 
         w-full 
         px-6           /* Mobile Base (default) */
-        md:px-12       /* Medium screens and up (Tablets) */
+        md:px-16
+        2xl:px-0       /* Medium screens and up (Tablets) */
         ${className}
       `}
     >

@@ -56,7 +56,7 @@ export interface FundDetails {
 export const FUND_DATA: Record<string, FundDetails> = {
   "india-long-only": {
     title: "Indian Long-Only Fund",
-    description: "Concentrated exposure to high-quality Indian equities for long-term growth.",
+    description: "A multi-cap long-only Category III open-ended AIF to invest in the undervalued and under-priced listed equities in the public Indian markets with a heavy tilt towards the mid and small cap market. This is a good investment for Indians and NRIs who believe in the India story and are looking to invest with a long-term horizon in the Indian market.",
     color: "text-brand-maroon",
     overviewDesc: "This fund focuses on market leaders within India's structural growth sectors. We prioritize companies with high capital efficiency and strong corporate governance to deliver superior risk-adjusted returns.",
     stats: [
@@ -114,8 +114,8 @@ export const FUND_DATA: Record<string, FundDetails> = {
     }
   },
   "gold-silver-miners": {
-    title: "Gold & Silver Miners Fund",
-    description: "Strategic precious metals exposure for portfolio diversification.",
+    title: "Gold & Silver Miners' Fund",
+    description: "A focused vehicle for strategic exposure to globally listed gold and silver mining companies — operated from GIFT City. No ETFs, no other commodities. Pure miners, pure conviction. Open to Indian residents and global investors.",
     color: "text-brand-maroon",
     overviewDesc: "The Gold & Silver Miners Fund provides investors with exposure to carefully selected precious metals mining companies globally. The fund acts as a portfolio diversifier and inflation hedge.",
     stats: [

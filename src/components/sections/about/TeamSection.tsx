@@ -5,6 +5,7 @@ import Image from "next/image";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
 
 import PlaceholderImage from "../../../../public/images/Rational.png";
+import Container from "@/components/common/Container";
 
 interface TeamMember {
   id: number;
@@ -81,8 +82,8 @@ const cardVariants: Variants = {
 
 export default function TeamSection() {
   return (
-      <section className="w-full px-3 md:px-12">
-       <div className="py-8 md:py-16 bg-[#FAFAFA] mx-auto px-4 space-y-12">
+      <section className="w-full ">
+       <Container className="py-8 md:py-16 bg-[#FAFAFA] mx-auto px-4 space-y-12">
         <div className="mb-12">
           <AnimatedHeader
             title="People who put their money where their mouth is."
@@ -94,7 +95,7 @@ export default function TeamSection() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
           {teamMembers.map((member, i) => (
             <motion.div
               key={member.id}
@@ -139,7 +140,7 @@ export default function TeamSection() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -34,7 +34,7 @@ const funds = [
 
 export default function ReturnsSection() {
   return (
-    <section className="w-full px-3 md:px-12">
+    <section className="w-full px-3 md:px-16">
       <Container className="py-8 md:py-16 bg-[#FAFAFA] mx-auto px-4 space-y-12">
         <div className="mb-8">
           <AnimatedHeader

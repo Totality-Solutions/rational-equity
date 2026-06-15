@@ -144,6 +144,7 @@ interface AnimatedHeaderProps {
   title: string;
   highlight?: string;
   highlightColor?: string;
+  highlightClassName?: string;
   subheading?: string;
   variant?: 'light' | 'dark';
   className?: string;
@@ -155,6 +156,7 @@ export default function AnimatedHeader({
   title,
   highlight,
   highlightColor = "#9B0000",
+  highlightClassName,
   subheading,
   variant = 'light',
   className = "",
@@ -211,7 +213,7 @@ export default function AnimatedHeader({
         <span
           key={index}
           style={{ color: highlightColor }}
-          className="inline-block"
+          className={`inline-block ${highlightClassName}`}
         >
           {part.split("").map((char, charIndex) => (
             <motion.span
@@ -256,7 +258,7 @@ export default function AnimatedHeader({
           viewport={{ once: true }}
           variants={slideUpVariants}
           custom={0.4}
-          className={`font-regular font-sans max-w-3xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg leading-relaxed ${subColor} ${subheadingClassName}`}
+          className={`font-regular font-sans max-w-3xl mx-auto text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-tight tracking-wide ${subColor} ${subheadingClassName}`}
         >
           {subheading}
         </motion.p>

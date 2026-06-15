@@ -30,49 +30,49 @@ export const MILESTONES = [
   {
     year: '2020',
     num: '01',
-    title: 'Founded',
+    title: 'Rational Family Office Launched',
     description:
-      'Rational Equity Partners established in Mumbai with a vision to deliver disciplined, long-term superior returns.',
+      'Wound down the entire real estate portfolio within 6 months and moved everything decisively into the equity market.',
     img: '/images/journey/1.svg',
-  },
-  {
-    year: '2021',
-    num: '02',
-    title: 'SEBI Registration',
-    description:
-      'Registered with SEBI as a Category II AIF, formalising our commitment to regulatory excellence and investor trust.',
-    img: '/images/journey/2.svg',
-  },
-  {
-    year: '2022',
-    num: '03',
-    title: 'First Multibaggers',
-    description:
-      'Delivered 3×–5× returns on multiple holdings, validating our quality-first investment thesis in real market conditions.',
-    img: '/images/journey/3.svg',
   },
   {
     year: '2023',
-    num: '04',
-    title: 'Global Expansion',
+    num: '02',
+    title: 'AIF Journey Begins',
     description:
-      'Launched the Gold & Silver Miners Fund, extending our mandate to global precious metals opportunities.',
+      "Launched at a market bottom. 100% deployed Day 1 with manager's own net worth in the fund.",
+    img: '/images/journey/2.svg',
+  },
+  {
+    year: 'Dec 2023',
+    num: '03',
+    title: 'Gold & Silver Miners Spotted',
+    description:
+      'Tracked Chinese Central Bank shift to gold. Invested in miners ahead of consensus.',
+    img: '/images/journey/3.svg',
+  },
+  {
+    year: 'Mar 2024',
+    num: '04',
+    title: 'Top Performing AIF in India',
+    description:
+      'Delivered 80% post-tax return. Ranked #1 AIF in India for FY24.',
     img: '/images/journey/4.svg',
   },
   {
-    year: '2024',
+    year: 'Jun 2025',
     num: '05',
-    title: 'Top Performer',
+    title: 'First GIFT City Fund',
     description:
-      "Ranked among India's top-performing AIFs, recognised for consistent alpha generation over benchmark indices.",
+      "Launched GIFT City Fund for global investors in Gold & Silver Miners. ~79% 1-year return.",
     img: '/images/journey/1.svg',
   },
   {
-    year: '2025',
+    year: 'Jul 2026',
     num: '06',
-    title: '₹1,000 Cr AUM',
+    title: 'Absolute Returns Fund',
     description:
-      'Crossed ₹1,000 crore in assets under management, reflecting sustained investor confidence and fund performance.',
+      'Quant-plus-discretion Long-Short strategy. 41% 10-year model net CAGR.',
     img: '/images/journey/2.svg',
   },
   // ↓ Add more milestones here freely ↓
@@ -137,9 +137,9 @@ export default function Journey() {
             title="The Journey So Far"
             highlight="Journey"
             highlightColor={CRIMSON}
-            subheading="Our path has been defined by a commitment to rigorous research and absolute integrity."
+            subheading="Over a decade of investing, distilled into a fund that allocates your capital in the best opportunities."
             variant="light"
-            className="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+            titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
             subheadingClassName="text-gray-600 font-normal max-w-2xl text-base text-body-lg leading-relaxed"
           />
 

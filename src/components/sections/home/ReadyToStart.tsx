@@ -11,7 +11,7 @@ const ReadyToStart = () => {
 
           {/* Left Content */}
           <div className="max-w-4xl">
-            <span className="font-playfair text-white font-extralight tracking-[0.015em] text-[32px] md:text-[40px] leading-[52px]">
+            <span className="font-playfair text-white font-extralight tracking-[0.015em] text-h3-mobile md:text-h3-tab lg:text-h3 leading-[52px]">
               Ready to Start Investing?
             </span>
 

@@ -9,9 +9,51 @@ import AnimatedHeader from '@/components/common/AnimatedHeader';
 import Image from 'next/image';
 
 const FUNDS = [
-  { title: 'India Long-Only Fund', description: 'Focused long-term equity investments in high-quality Indian businesses', returns: '16.5% CAGR', href: '/product/india-long-only', img: '/images/icons/india-long-only-fund.svg' },
-  { title: 'Gold & Silver Miners Fund', description: 'Strategic exposure to precious metals mining companies globally', returns: '18.2% CAGR', href: '/product/gold-silver-miners', img: '/images/icons/gold-&-silver-miners-fund.svg' },
-  { title: 'Absolute Return Fund', description: 'Market-neutral strategies designed for consistent positive returns', returns: '12.8% CAGR', href: '/product/absolute-return', img: '/images/icons/absolute-return-fund.svg' },
+  {
+    title: 'India Long-Only Fund',
+    description:
+      'A high-conviction portfolio of Indian listed equities with a heavy tilt toward small and mid-caps where we see asymmetric reward.',
+    returns: '30% CAGR',
+    returnsLabel: '3 Year Returns',
+    href: '/product/india-long-only',
+    img: '/images/icons/india-long-only-fund.svg',
+    bullets: [
+      'Invests in Indian public markets',
+      'Long-only, no derivatives',
+      'Registered under SEBI',
+      'Heavy tilt toward small & mid-cap',
+    ],
+  },
+  {
+    title: 'Gold & Silver Miners Fund',
+    description:
+      'A focused vehicle for strategic exposure to global gold and silver mining equities — operated from GIFT City.',
+    returns: '~75% CAGR',
+    returnsLabel: '1 Year Returns',
+    href: '/product/gold-silver-miners',
+    img: '/images/icons/gold-&-silver-miners-fund.svg',
+    bullets: [
+      'Invests in gold & silver miners globally',
+      'Long-only, no derivatives',
+      'Operates from GIFT City',
+      'No ETFs, no other commodities',
+    ],
+  },
+  {
+    title: 'Absolute Return Fund',
+    description:
+      'A quant plus discretion model-based Long-Short strategy that focuses on identifying periods of extreme greed and fear to capture significantly large moves while sitting out of sideways choppiness and major drawdowns.',
+    returns: '41% CAGR',
+    returnsLabel: '10-Year Model Net CAGR',
+    href: '/product/absolute-return',
+    img: '/images/icons/absolute-return-fund.svg',
+    bullets: [
+      'Long-short strategy',
+      'Derivatives of publicly listed Indian companies',
+      'Indians invest via SEBI registered fund',
+      'Others invest via GIFT City Fund',
+    ],
+  },
 ];
 
 export default function InvestmentSolutions() {
@@ -85,12 +127,12 @@ export default function InvestmentSolutions() {
           {/* Heading */}
           <div className="text-center mb-12">
             <AnimatedHeader
-              className="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
-              title="Our Investment Solutions"
-              highlight="Solutions"
+              titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
+              title="Three strategies. One philosophy."
+              highlight="One philosophy."
               variant="light"
-              subheading="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-              subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
+              subheading="Rational ranks among the top asset management companies in India, offering specialized products strategically constructed to maximize returns through deep insights and a research-driven approach and align manager incentives with investor outcomes."
+              subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-md-mobile md:text-body-md-tab lg:text-body-md"
             />
           </div>
 
@@ -172,28 +214,32 @@ export default function InvestmentSolutions() {
 
                     {/* Bullets */}
                     <ul className="space-y-2 text-black/75 text-body-md mb-10">
-                      <li>• Invests in Indian public markets</li>
-                      <li>• Long-only, no derivatives</li>
-                      <li>• Registered under SEBI</li>
-                      <li>• Heavy tilt toward small & mid-cap</li>
+                      {fund.bullets.map((bullet) => (
+                        <li key={bullet}>• {bullet}</li>
+                      ))}
                     </ul>
 
                     {/* Bottom */}
                     <div className="mt-auto items-center">
 
-                      <div className="bg-[#E9DEDE] rounded-full px-5 py-2 flex border-l-4 border-brand-maroon-hover items-center gap-4">
-                        <span className="font-serif font-black text-brand-maroon-hover text-[18px]">
-                          {fund.returns}
-                        </span>
+                      {/* <div className="bg-[#E9DEDE] rounded-full px-5 py-2 flex border-l-4 border-brand-maroon-hover items-center gap-4"> */}
+                        <div className="bg-[#E9DEDE] rounded-full px-5 py-2 flex border-l-4 border-brand-maroon-hover items-center gap-2">
+                          <span className="font-serif font-black text-brand-maroon-hover text-[18px]">
+                            {fund.returns}
+                          </span>
+                          <span className="text-[12px] text-[#555]">
+                            {fund.returnsLabel}
+                          </span>
+                        </div>
 
-                        <span className="text-[12px] text-[#555]">
+                        {/* <span className="text-[12px] text-[#555]">
                           3 Year Returns
                         </span>
-                      </div>
+                      </div> */}
 
                       <Link href={fund.href}>
-                        <button className="w-full mt-8 py-2 rounded-full bg-brand-maroon text-white text-[18px] font-normal transition-all hover:bg-[#9B0000] cursor-pointer">
-                          View Details
+                        <button className="w-full mt-8 py-2 rounded-full bg-brand-maroon text-white text-[16px] font-normal transition-all hover:bg-[#9B0000] cursor-pointer">
+                          Download Investor Presentation
                         </button>
                       </Link>
 

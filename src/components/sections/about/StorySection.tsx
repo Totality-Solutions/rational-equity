@@ -46,7 +46,7 @@ export default function StorySection() {
 
             <blockquote className="border-l-3 border-[#9B0000] bg-[#FDF5F5] px-6 py-5 my-8">
               <p
-                className="text-body-sm-mobile md:text-body-sm-tab lg:text-body-sm text-gray-800 leading-relaxed font-semibold tracking-normal font-playfair italic"
+                className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-800 leading-relaxed font-semibold tracking-normal font-playfair italic"
               >
                 Because the fund was a by-product of good capital allocation and investing success – not the chase to AUM
                 building – Rationals foundations were built on being investor friendly.

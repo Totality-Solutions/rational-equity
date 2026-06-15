@@ -82,16 +82,16 @@ export default function Navbar() {
                 {NAV_LINKS.map((link) => (
                   <li key={link.label} className="relative group py-5">
                     {link.subMenu ? (
-                      <div className={`text-body-md font-sans font-weight-medium cursor-default transition-colors duration-200 ${
-                        isActiveLink(link) ? 'text-brand-maroon font-bold' : 'text-black hover:text-brand-maroon'
+                      <div className={`text-body-lg font-sans font-weight-medium cursor-default transition-colors duration-200 ${
+                        isActiveLink(link) ? 'text-brand-maroon font-medium' : 'text-black hover:text-brand-maroon'
                       }`}>
                         {link.label}
                       </div>
                     ) : (
                       <Link
                         href={link.href}
-                        className={`text-body-md font-sans font-weight-medium transition-colors duration-200 whitespace-nowrap ${
-                          isActiveLink(link) ? 'text-brand-maroon font-bold' : 'text-black hover:text-brand-maroon'
+                        className={`text-body-lg font-sans font-weight-medium transition-colors duration-200 whitespace-nowrap ${
+                          isActiveLink(link) ? 'text-brand-maroon font-medium' : 'text-black hover:text-brand-maroon'
                         }`}
                       >
                         {link.label}
@@ -106,8 +106,8 @@ export default function Navbar() {
                             <li
                               key={sub.href}
                               className={`flex items-center justify-start gap-4 hover:scale-102 hover:bg-[#ffe4e6] hover:text-brand-maroon hover:font-weight-bold px-4 py-4 hover:rounded-md ${
-                                isActiveLink(sub) ? 'bg-[#ffe4e6] text-brand-maroon font-weight-bold' : ''
-                              } ${index !== link.subMenu.length - 1 ? 'border-b border-brand-maroon/20' : ''}`}
+                                isActiveLink(sub) ? 'bg-[#ffe4e6] text-brand-maroon font-weight-bold rounded-md' : ''
+                              } ${index !== link.subMenu.length - 1 ? '' : ''}`}
                             >
                               <Image src={sub.img} alt="Arrow right" width={100} height={100} className="w-7 h-7" />
                               <Link

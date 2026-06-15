@@ -10,22 +10,22 @@ const articles = [
   {
     id: 1,
     date: 'October 12, 2025',
-    title: 'Navigating Market Volatility in Q3',
-    description: 'An in-depth look at our strategic positioning and how we capitalize on recent market fluctuations to drive long-term value.',
+    title: "Why the gold cycle isn't over.",
+    description: 'A look at miner economics, policy tailwinds, and why we still see asymmetric upside.',
     img: '/images/home-thought/notes1.jpeg',
   },
   {
     id: 2,
     date: 'September 28, 2025',
-    title: 'The Case for Indian Manufacturing',
-    description: 'Why we believe the manufacturing sector in India is at an inflection point, offering generational wealth creation opportunities.',
+    title: 'The patience premium.',
+    description: 'How long holding periods quietly outperform in a market obsessed with quarters.',
     img: '/images/home-thought/notes2.jpeg',
   },
   {
     id: 3,
     date: 'August 15, 2025',
-    title: 'Sustainable Alpha: Our ESG Approach',
-    description: 'How integrating environmental, social, and governance factors into our fundamental research enhances our portfolio resilience.',
+    title: 'Small-caps after a hot year',
+    description: "What changes — and what doesn't — when a corner of the market gets crowded.",
     img: '/images/home-thought/notes3.jpeg',
   },
 ];
@@ -37,12 +37,12 @@ export default function ThoughtCentre() {
 
         <div className="mb-12">
         <AnimatedHeader
-          title="Notes from the Desk"
-          highlight="Notes"
+          title="Notes from the Desk."
+          highlight="the Desk."
           highlightColor="#9B0000"
-          subheading="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+          subheading="Long-form views on markets, philosophy, and the businesses we own."
           variant="light"
-          className="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+          titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
         />
         </div>
@@ -71,8 +71,8 @@ export default function ThoughtCentre() {
                 <div className="space-y-4">
                   {/* Timestamp Line */}
                   <p 
-                    className="text-[13px] text-[#A34E4E] font-medium tracking-wide"
-                    style={{ fontFamily: "'Lato', sans-serif" }}
+                    className="text-[13px] text-brand-maroon font-semibold tracking-wide"
+                    style={{ fontFamily: "'DM Sans', sans-serif" }}
                   >
                     {item.date}
                   </p>

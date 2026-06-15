@@ -40,7 +40,7 @@ export default function InvestorStructure() {
           highlightColor="#9B0000"
           subheading="Three principles that shape every decision we make — from how we invest to how we get paid."
           variant="light"
-          className="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+          titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
         />
         </div>
@@ -58,7 +58,7 @@ export default function InvestorStructure() {
               {/* Main Contents */}
               <div className="space-y-6 flex-1 flex flex-col">
                 <h3 
-                  className="text-[28px] md:text-[32px] leading-[38px] text-gray-900 font-normal tracking-tight"
+                  className="text-h4-tab md:text-h4 leading-[38px] text-gray-900 font-normal tracking-tight"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   {item.title}
@@ -66,7 +66,7 @@ export default function InvestorStructure() {
                 
                 <p 
                   className="text-[14px] md:text-[15px] leading-relaxed text-gray-600 font-normal flex-grow"
-                  style={{ fontFamily: "'Lato', sans-serif" }}
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
                   {item.description}
                 </p>
@@ -76,7 +76,7 @@ export default function InvestorStructure() {
               <div className="mt-8 pt-6 border-t border-gray-300">
                 <p 
                   className="text-[14px] md:text-[15px] italic text-gray-700 font-medium tracking-wide"
-                  style={{ fontFamily: "'Lato', sans-serif" }}
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
                   {item.quote}
                 </p>

@@ -8,31 +8,38 @@ import Image from 'next/image';
 
 const TESTIMONIALS = [
   {
-    text: "I appreciate the rational and research-driven approach. No hype, just solid fundamentals and long-term value creation. Highly recommend!",
-    name: "Amit Patel",
-    location: "Bangalore",
-    initial: "A",
-    img: "/images/testimonial/2.jpg"
-  },
-  {
-    text: "The fund managers at Rational are truly exceptional. They understand market dynamics and have consistently delivered superior returns even in volatile markets.",
+    text: "The fund managers at Rational are truly exceptional. They understand market dynamics and have consistently delivered superior returns even in volatile markets. I have never felt more confident about where my wealth is being deployed.",
     name: "Priya Sharma",
-    location: "Delhi",
+    location: "Family Office . Delhi",
     initial: "P",
     img: "/images/testimonial/1.jpg"
   },
   {
-    text: "Rational AMC has been managing my investments for the past 5 years. Their disciplined approach and transparent communication have helped me build substantial wealth.",
+    text: "What truly sets Rational apart is that they invest their own money alongside mine. That alignment of interest is rare in the industry and gives me complete peace of mind. The 80% post-tax return in FY24 spoke for itself.",
+    name: "Amit Patel",
+    location: "HNI Investor · Bangalore",
+    initial: "A",
+    img: "/images/testimonial/2.jpg"
+  },
+  {
+    text: "Rational spotted the Gold & Silver Miners opportunity well before the market consensus shifted. That kind of foresight — backed by genuine research and conviction — is exactly what you want managing your capital.",
     name: "Rajesh Kumar",
-    location: "Mumbai",
+    location: "Entrepreneur · Mumbai",
     initial: "R",
     img: "/images/testimonial/3.jpg"
   },
   {
-    text: "Finding an AMC that prioritizes investor education alongside returns is rare. Their 'Thought Centre' insights are invaluable for any serious investor.",
+    text: "No fixed fees, no fluff — just performance. I appreciate the rational and research-driven approach. No hype, just solid macro thinking and long-term value creation. Their Thought Centre alone is worth following.",
     name: "Vikram Singh",
-    location: "Hyderabad",
+    location: "Angel Investor · Hyderabad",
     initial: "V",
+    img: ""
+  },
+  {
+    text: "Rational managed to deliver exceptional returns precisely because they are willing to think differently — moving capital to global miners when everyone else was crowded into Indian equities. Conviction over consensus, always.",
+    name: "Suresh Mehta",
+    location: "CFO · Pune",
+    initial: "S",
     img: ""
   }
 ];
@@ -63,7 +70,7 @@ export default function Testimonials() {
         highlight='Our Investors'
         subheading="Trusted by thousands of investors across India for disciplined wealth creation."
         variant="light"
-        className=" text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+        titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
       />
       </Container>

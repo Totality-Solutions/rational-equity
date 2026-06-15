@@ -27,7 +27,7 @@ export default function AboutSection() {
       {/* LEFT CONTENT */}
       <div>
 
-        <h2 className="font-playfair text-[44px] leading-[1.05] text-[#1A1A1A] max-w-xl">
+        <h2 className="font-playfair text-h3-mobile md:text-h3-tab lg:text-h3 leading-[1.05] text-[#1A1A1A] max-w-xl">
           A boutique fund built on
           <br />
           <em className="italic font-playfair">
@@ -36,11 +36,7 @@ export default function AboutSection() {
         </h2>
 
         <p className="mt-10 text-[#4A4A4A] leading-relaxed max-w-xl text-[16px]">
-          Rational is an investment house with a singular focus:
-          identifying global mega-trends and durable mispricings in
-          the system, then holding them long enough for compounding
-          to do its work. We invest alongside our investors and
-          structure our economics so we only make money when they do.
+          Rational is an investment house with a singular focus: identifying global mega-trends and durable mispricings in the system, then holding them long enough for compounding to do its work. We invest alongside our investors and structure our economics so we only make money when they do.
         </p>
 
         {/* STATS */}
