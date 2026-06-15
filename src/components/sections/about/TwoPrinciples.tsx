@@ -35,63 +35,65 @@ const principles = [
 
 export default function TwoPrinciples() {
   return (
-    <section className="w-full py-16 md:py-24 bg-white">
-      <Container className="max-w-[1216px] mx-auto px-4">
-        <div className="mb-12 md:mb-16">
-          <AnimatedHeader
-            title="Two principles. One conviction."
-            highlight="One conviction."
-            highlightColor="#9B0000"
-            variant="light"
-            titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
-            subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {principles.map((item) => (
-              <div
-                key={item.id}
-                className="relative bg-[#FAFAFA] rounded-xl overflow-hidden shadow-sm"
-              >
-                <div
-                  className="absolute top-0 left-0 right-0 h-[4px]"
-                  style={{ backgroundColor: item.borderColor }}
+    <section className="w-full py-12 bg-white">
+          <Container className="px-3 md:px-12">
+            <div className='md:px-20' >
+              <div className="mb-8">
+                <AnimatedHeader
+                  title="Two principles. One conviction."
+                  highlight="One conviction."
+                  highlightColor="#9B0000"
+                  variant="light"
+                  titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+                  subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
                 />
-
-                <div className="px-8 pt-10 pb-8 justify-between flex flex-col h-full">
-                  <div> 
-                    <div className="flex items-center gap-4 mb-6">
-                      {item.icon}
-                      <h3
-                        className="text-xl md:text-2xl text-gray-900"
-                        style={{ fontFamily: "'Playfair Display', serif" }}
-                      >
-                        {item.title}
-                      </h3>
-                    </div>
-
-                    <div>
-                      <p
-                        className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-600 leading-relaxed mb-8 font-sans"
-                      >
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="border-t border-gray-200 pt-2">
-                    <p
-                      className="text-body-mobile md:text-body-tab lg:text-body text-gray-500 font-sans"
-                    >
-                      {item.quote}
-                    </p>
-                  </div>
-                </div>
               </div>
-            ))}
-          </div>
-      </Container>
-    </section>
+    
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {principles.map((item) => (
+                  <div
+                    key={item.id}
+                    className="relative bg-[#FAFAFA] rounded-xl overflow-hidden shadow-sm"
+                  >
+                    <div
+                      className="absolute top-0 left-0 right-0 h-[4px]"
+                      style={{ backgroundColor: item.borderColor }}
+                    />
+    
+                    <div className="px-8 pt-10 pb-8 justify-between flex flex-col h-full">
+                      <div> 
+                        <div className="flex items-center gap-4 mb-6">
+                          {item.icon}
+                          <h3
+                            className="text-xl md:text-2xl text-gray-900"
+                            style={{ fontFamily: "'Playfair Display', serif" }}
+                          >
+                            {item.title}
+                          </h3>
+                        </div>
+    
+                        <div>
+                          <p
+                            className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-600 leading-relaxed mb-8 font-sans"
+                          >
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+    
+                      <div className="border-t border-gray-200 pt-2">
+                        <p
+                          className="text-body-mobile md:text-body-tab lg:text-body text-gray-500 font-sans"
+                        >
+                          {item.quote}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Container>
+        </section>
   );
 }
