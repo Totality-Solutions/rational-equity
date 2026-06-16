@@ -139,7 +139,7 @@ export default function FundPerformance() {
   const activeRow = ALL_DATA['SI'].find((r) => r.period === active) ?? ALL_DATA['SI'].at(-1)!;
 
   return (
-    <section className="bg-white py-10">
+    <section className="bg-white py-12">
       <Container>
 
         {/* Hero title */}
@@ -150,8 +150,8 @@ export default function FundPerformance() {
           highlightColor="#9B0000"
           // subheading="Live historical returns and trend analysis"
           variant="light"
-          className="text-h3 text-black"
-          subheadingClassName="text-body-lg tracking-wide text-black"
+          titleClassName="text-h3-mobile md:text-h3-tab lg:text-h3 text-black mb-2"
+          subheadingClassName="  text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg tracking-wide text-black"
         />
         </div>
 

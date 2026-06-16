@@ -10,6 +10,7 @@ import FundCTA from "@/components/sections/product/FundCTA";
 import Philosophy from "@/components/sections/product/Philosophy";
 import FundPerformance from "@/components/sections/product/FundPerformance";
 import ProductNav from "@/components/sections/product/ProductNav";
+import ReadyToStart from "@/components/common/ReadyToStart";
 
 export default function FundPage() {
   const params = useParams();
@@ -34,6 +35,8 @@ export default function FundPage() {
 
       <section id="overview">
         <FundOverview 
+          title={fund.overviewTitle}
+          titleItalics={fund.overviewTitleItalics}
           description={fund.overviewDesc} 
           stats={fund.stats} 
         />
@@ -42,6 +45,10 @@ export default function FundPage() {
       <section id="performance">
         {/* <FundPerformance data={fund.performance} /> */}
         <FundPerformance />
+      </section>
+
+      <section id="cta" className=" px-8 md:px-16 ">
+        <ReadyToStart />
       </section>
 
       <section id="philosophy">
@@ -58,9 +65,13 @@ export default function FundPage() {
         <FundCTA fundTitle={fund.title} />
       </section>
 
+      <section id="cta-2">
+        <ReadyToStart {...fund.finalCTA} />
+      </section>
+
       <section id="faqs">
         <FAQ />
       </section>
     </main>
   );
-}
+} 

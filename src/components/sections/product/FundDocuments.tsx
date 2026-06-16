@@ -32,8 +32,8 @@ export default function FundDocuments({ documents }: FundDocumentsProps) {
           highlightColor="#9B0000"
           subheading="Access detailed insights, performance reports, and strategy documents for this fund."
           variant="light"
-         className="text-h3 text-black"
-          subheadingClassName="text-body-lg tracking-wide text-black"
+          titleClassName="text-h3-mobile md:text-h3-tab lg:text-h3 text-black mb-2"
+          subheadingClassName="  text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg tracking-wide text-black"
         />
 
         {/* PDF Grid Component */}

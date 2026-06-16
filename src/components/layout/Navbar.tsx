@@ -126,7 +126,7 @@ export default function Navbar() {
               </ul>
             </div>
             
-            <div className="flex items-center gap-4 xl:gap-6 mr-2 lg+:mr-0 ml-6 2xl:ml-10 shrink-0">
+            <div className="flex items-center gap-4 xl:gap-6 mr-2 lg:mr-0 ml-6 2xl:ml-10 shrink-0">
               <Link
                 href="https://wa.me/yournumber"
                 target="_blank"

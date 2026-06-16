@@ -6,7 +6,7 @@ import TwoPrinciples from '@/components/sections/about/TwoPrinciples';
 import TeamSection from '@/components/sections/about/TeamSection';
 import FAQ from '@/components/sections/home/FAQ';
 import Journey from '@/components/sections/home/Journey';
-import ReadyToStart from '@/components/sections/home/ReadyToStart';
+import ReadyToStart from '@/components/common/ReadyToStart';
 import type { Metadata } from 'next';
 
 // Updated Metadata for Rational
@@ -30,13 +30,26 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <ReturnsSection />
-      <ReadyToStart />
+      <div className=' px-8 md:px-16 '>
+        <ReadyToStart />
+      </div>
       <StorySection />
       <InvestorStructure />
       <TwoPrinciples />
       <TeamSection />
       <Journey />
-      <ReadyToStart />
+      <ReadyToStart
+        title="Ready to Speak With Our Team?"
+        description="Schedule a call with one of our advisors."
+        primaryCTA={{
+          text: "Book a Call",
+          href: "/contact",
+        }}
+        secondaryCTA={{
+          text: "Learn More",
+          href: "/about",
+        }}
+      />
       <FAQ />
     </>
   );

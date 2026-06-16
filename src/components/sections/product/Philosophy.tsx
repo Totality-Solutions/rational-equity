@@ -17,7 +17,7 @@ interface PhilosophyProps {
 
 export default function Philosophy({ points = [] }: PhilosophyProps) {
   return (
-    <section className="bg-white pb-10">
+    <section className="bg-white py-12">
       <Container className=" space-y-8">
 
         {/* Two-column header: title left, subheading right */}
@@ -27,8 +27,8 @@ export default function Philosophy({ points = [] }: PhilosophyProps) {
           highlightColor="#9B0000"
           subheading="We believe precious metals play a critical role in portfolio construction as a hedge against inflation, currency debasement, and geopolitical uncertainty. Rather than investing in physical gold, we focus on miners who offer operational leverage to rising commodity prices."
           variant="light"
-          className="text-h3 text-black"
-          subheadingClassName="text-body-lg tracking-wide text-black"
+          titleClassName="text-h3-mobile md:text-h3-tab lg:text-h3 text-black mb-2"
+          subheadingClassName="  text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg tracking-wide text-black"
         />
 
         {/* Card grid — single border wraps all 4, divided by 1px gaps */}
