@@ -92,12 +92,12 @@ export default function InvestmentSolutions() {
   return (
   <section
     onMouseMove={handleMouseMove}
-    className="relative bg-white pt-12 font-sans overflow-hidden"
+    className="relative bg-[#FAFAFA] pt-12 font-sans overflow-hidden"
   >
     <Container className="relative z-10">
 
       {/* Grey Wrapper */}
-      <div className="relative bg-[#FAFAFA]  px-8 md:px-16 py-12 overflow-hidden">
+      <div className="relative px-8 md:px-16 py-12 overflow-hidden">
 
         {/* GRID BACKGROUND */}
         {/* <motion.div

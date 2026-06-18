@@ -1,6 +1,7 @@
 'use client';
 
 import AnimatedHeader from '@/components/common/AnimatedHeader';
+import Container from '@/components/common/Container';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
@@ -99,7 +100,7 @@ export default function FAQ() {
 
   return (
     <section className="bg-brand-maroon-hover py-10 text-white font-sans">
-      <div className="w-full mx-auto px-6 space-y-10">
+      <Container className="w-full mx-auto px-6 space-y-10">
         
         {/* Header - Fluid Sizing */}
        <AnimatedHeader 
@@ -124,7 +125,7 @@ export default function FAQ() {
             {rightColumn.map((faq, index) => renderFAQ(faq, index * 2 + 1))}
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

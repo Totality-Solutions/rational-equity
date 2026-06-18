@@ -36,8 +36,8 @@ export default function ReadyToStart({
 
   return (
     <section className="bg-black">
-      <Container>
-        <div className="py-8 md:py-12 flex flex-col md:flex-row items-center justify-between gap-8">
+      <Container className="">
+        <div className="py-8 md:py-12 px-4 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-4xl">
             <h2 className="font-playfair text-white font-extralight tracking-[0.015em] text-h3-mobile md:text-h3-tab lg:text-h3">
               {title}

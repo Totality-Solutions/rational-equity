@@ -82,8 +82,8 @@ const cardVariants: Variants = {
 
 export default function TeamSection() {
   return (
-      <section className="w-full ">
-       <Container className="py-8 md:py-16 bg-[#FAFAFA] mx-auto px-4 space-y-12">
+      <section className="w-full px-3 md:px-16 bg-[#FAFAFA]">
+       <Container className="py-8 md:py-16 mx-auto space-y-12">
         <div className="mb-12">
           <AnimatedHeader
             title="People who put their money where their mouth is."

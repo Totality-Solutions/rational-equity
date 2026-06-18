@@ -34,8 +34,8 @@ const funds = [
 
 export default function ReturnsSection() {
   return (
-    <section className="w-full px-3 md:px-16">
-      <Container className="py-8 md:py-16 bg-[#FAFAFA] mx-auto px-4 space-y-12">
+    <section className="w-full px-3 md:px-16 bg-[#FAFAFA]">
+      <Container className="py-8 md:py-16  mx-auto px-4 space-y-12">
         <div className="mb-8">
           <AnimatedHeader
             title="Returns that speak for themselves."

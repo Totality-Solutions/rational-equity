@@ -39,7 +39,9 @@ export default function Home() {
         <Hero />
         <AboutSection />
         <InvestmentSolutions />
-        <ReadyToStart />
+        <div className='max-w-[90rem] mx-auto'>
+          <ReadyToStart />
+        </div>
         <TeamShowcase />
         <Journey />
         <InvestorStructure />

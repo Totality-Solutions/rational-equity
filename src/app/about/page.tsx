@@ -30,7 +30,7 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <ReturnsSection />
-      <div className=' px-8 md:px-16 '>
+      <div className='max-w-[90rem] mx-auto'>
         <ReadyToStart />
       </div>
       <StorySection />

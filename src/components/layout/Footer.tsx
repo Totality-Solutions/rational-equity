@@ -35,7 +35,7 @@ export default function Footer() {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <footer className="bg-black text-gray-300 font-sans border-t border-gray-900">
+    <footer className="bg-black text-gray-300 font-sans border-t border-gray-900 px-3 md:px-8">
       <Container className="py-12 md:py-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-12 mb-16">
 

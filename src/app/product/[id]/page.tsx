@@ -47,7 +47,7 @@ export default function FundPage() {
         <FundPerformance />
       </section>
 
-      <section id="cta" className=" px-8 md:px-16 ">
+      <section id="cta" className='max-w-[90rem] mx-auto'>
         <ReadyToStart />
       </section>
 
@@ -59,10 +59,6 @@ export default function FundPage() {
         <FundDocuments  
           documents={fund.documents} 
         />
-      </section>
-
-      <section id="invest">
-        <FundCTA fundTitle={fund.title} />
       </section>
 
       <section id="cta-2">
