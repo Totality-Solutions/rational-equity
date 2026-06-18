@@ -51,7 +51,7 @@ export default function ChooseYourPath() {
   }, [isModalOpen]);
 
   return (
-    <section className="bg-white py-12 px-6 font-sans overflow-hidden">
+    <section className="bg-white px-6 py-10 font-sans overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
 
@@ -60,7 +60,8 @@ export default function ChooseYourPath() {
           highlight="Path"
           subheading="Select the investment method that aligns with your financial goals"
           variant="light"
-          className="mb-16"
+          className="mb-6 sm:mb-7 text-h3 text-black"
+          subheadingClassName="text-body-lg tracking-wide text-black"
         />
 
         {/* Path Cards */}

@@ -52,7 +52,7 @@ export default function ApproachFeatures() {
               viewport={{ once: true }}
               className="bg-white/50 backdrop-blur-sm p-8 lg:p-8 rounded-2xl hover:bg-brand-maroon/10 border border-brand-maroon/10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] text-center flex flex-col items-center group transition-all duration-300 ease-out hover:-translate-y-2 sm:hover:-translate-y-3 hover:scale-[1.01] sm:hover:scale-[1.02]"
             >
-              <div className="mb-8 text-[#8B0000] transition-transform duration-500 group-hover:scale-110">
+              <div className="mb-8 text-[#9B0000] transition-transform duration-500 group-hover:scale-110">
                 {item.icon}
               </div>
               <h4 className="font-bold text-gray-900 mb-6 text-lg tracking-tight">

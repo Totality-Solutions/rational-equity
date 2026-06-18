@@ -17,7 +17,7 @@
 // export default function AnimatedHeader({
 //   title,
 //   highlight,
-//   highlightColor = "#8B0000",
+//   highlightColor = "#9B0000",
 //   subheading,
 //   variant = 'light',
 //   className = "",
@@ -62,7 +62,7 @@
 //         initial="hidden"
 //         whileInView="visible"
 //         viewport={{ once: true, amount: 0.5 }}
-//         className={`font-serif text-3xl sm:text-4xl md:text-5xl ${titleDefaultColor} mb-4 leading-tight ${titleClassName}`}
+//         className={`font-playfair text-3xl sm:text-4xl md:text-5xl ${titleDefaultColor} mb-4 leading-tight ${titleClassName}`}
 //       >
 //         {!highlight ? (
 //           <motion.span variants={slideUpVariants} custom={0} className="inline-block">
@@ -144,6 +144,7 @@ interface AnimatedHeaderProps {
   title: string;
   highlight?: string;
   highlightColor?: string;
+  highlightClassName?: string;
   subheading?: string;
   variant?: 'light' | 'dark';
   className?: string;
@@ -155,6 +156,7 @@ export default function AnimatedHeader({
   title,
   highlight,
   highlightColor = "#9B0000",
+  highlightClassName,
   subheading,
   variant = 'light',
   className = "",
@@ -211,7 +213,7 @@ export default function AnimatedHeader({
         <span
           key={index}
           style={{ color: highlightColor }}
-          className="inline-block"
+          className={`inline-block ${highlightClassName}`}
         >
           {part.split("").map((char, charIndex) => (
             <motion.span
@@ -244,7 +246,7 @@ export default function AnimatedHeader({
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        className={`font-serif font-regular  ${titleDefaultColor} leading-tight ${titleClassName}`}
+        className={`font-playfair font-regular text-[44px]  ${titleDefaultColor} leading-tight ${titleClassName}`}
       >
         {renderTitle()}
       </motion.h2>
@@ -256,7 +258,7 @@ export default function AnimatedHeader({
           viewport={{ once: true }}
           variants={slideUpVariants}
           custom={0.4}
-          className={`font-regular font-sans max-w-3xl mx-auto  leading-relaxed ${subColor} ${subheadingClassName}`}
+          className={`font-regular font-sans max-w-3xl mx-auto text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-tight tracking-wide ${subColor} ${subheadingClassName}`}
         >
           {subheading}
         </motion.p>

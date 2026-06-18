@@ -71,7 +71,7 @@ export default function WhatSetsUsApart() {
                 titleClassName=" leading-tight !text-left"
               />
               {/* Your custom underline remains below the animated text */}
-              <div className="w-[10%] h-[2px] bg-[#8B0000] mt-4 block" />
+              <div className="w-[10%] h-[2px] bg-[#9B0000] mt-4 block" />
             </div>
 
             <div className="space-y-8 md:space-y-12">
@@ -89,7 +89,7 @@ export default function WhatSetsUsApart() {
                 >
                   <div className="absolute left-0 top-1.5 flex items-start"> {/* Changed to items-start */}
                     <div
-                      className={`w-[2px] transition-all duration-500 ease-in-out bg-[#8B0000] ${activeItem.id === item.id
+                      className={`w-[2px] transition-all duration-500 ease-in-out bg-[#9B0000] ${activeItem.id === item.id
                         ? 'h-24 opacity-100'
                         : 'h-6 opacity-20 group-hover:h-10 group-hover:opacity-100'
                         }`}
@@ -101,7 +101,7 @@ export default function WhatSetsUsApart() {
                     </span>
                   </div>
 
-                  <h4 className={`font-sans font-bold text-h4-tab mb-3 tracking-wide transition-colors ${activeItem.id === item.id ? 'text-[#8B0000]' : 'text-white'
+                  <h4 className={`font-sans font-bold text-h4-tab mb-3 tracking-wide transition-colors ${activeItem.id === item.id ? 'text-[#9B0000]' : 'text-white'
                     }`}>
                     {item.title}
                   </h4>
@@ -140,7 +140,7 @@ export default function WhatSetsUsApart() {
               {/* <div className="absolute bottom-6 left-6 flex items-center gap-6 text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-white/30 z-10 font-bold">
                 <span className="text-white/60">{activeItem.title}</span>
                 <span className="flex items-center gap-2">
-                  <span className={`w-1.5 h-1.5 bg-[#8B0000] rounded-full ${Array.isArray(activeItem.image) ? 'animate-pulse' : ''}`} />
+                  <span className={`w-1.5 h-1.5 bg-[#9B0000] rounded-full ${Array.isArray(activeItem.image) ? 'animate-pulse' : ''}`} />
                   System Insight
                 </span>
               </div> */}

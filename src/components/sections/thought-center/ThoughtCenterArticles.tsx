@@ -1,118 +1,155 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import AnimatedHeader from "@/components/common/AnimatedHeader";
+import Container from "@/components/common/Container";
 import { articles, Article } from "@/data/thoughtCenterData";
 
-const TABS = [
-  "Investment Insights",
-  "Letters to investors",
-  "What we Read",
-  "In the News",
-];
+const CRIMSON = "#9B0000";
+const PAGE_SIZE = 6;
 
 export default function ThoughtCenterArticles() {
-  const [activeTab, setActiveTab] = useState(TABS[0]);
+  const [page, setPage] = useState(1);
 
-  const filteredArticles = useMemo(() => {
-    return articles.filter((art) => art.category === activeTab);
-  }, [activeTab]);
+  const totalPages = Math.ceil(articles.length / PAGE_SIZE);
+  const paginated = articles.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const handlePage = (p: number) => {
+    setPage(p);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <section className="w-full bg-white flex flex-col items-center overflow-hidden">
-      
-      {/* --- TABS NAVIGATION --- */}
-      <div className="w-full px-4 md:px-20 bg-white border-b-2 border-neutral-50 flex flex-col justify-start items-start">
-        <div className="self-stretch inline-flex justify-center items-start overflow-x-auto no-scrollbar">
-          {TABS.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-4 transition-all duration-300 whitespace-nowrap flex justify-center items-center border-b-2 group ${
-                activeTab === tab
-                  ? "bg-rose-300/10 border-red-800 text-brand-maroon"
-                  : "border-transparent text-black hover:text-brand-maroon"
-              }`}
-            >
-              <span className={`text-body-md tracking-tight font-sans transition-colors duration-300 ${
-                activeTab === tab 
-                  ? "font-bold" 
-                  : "font-semibold"
-              }`}>
-                {tab}
-              </span>
-            </button>
+    <section className="pb-10">
+      <Container>
+
+
+        {/* Articles grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8">
+          {paginated.map((item: Article) => (
+            <ArticleCard key={item.id} item={item} />
           ))}
         </div>
-      </div>
 
-      {/* --- ARTICLES GRID --- */}
-      <div className="w-full py-3 md:py-6 px-4 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-l border-neutral-50">
-          {filteredArticles.length > 0 ? (
-            filteredArticles.map((item: Article) => (
-              <div
-                key={item.id}
-                className="
-                  p-7 border-r border-b border-neutral-50 flex flex-col justify-start items-start 
-                  group cursor-pointer transition-colors duration-500 ease-in-out
-                  hover:bg-[#7B0000]/10
-                "
-              >
-                {/* --- ALL-IN-ONE WRAPPER: Scaling everything together --- */}
-                <div className="w-full flex flex-col gap-7 transition-transform duration-500 ease-in-out group-hover:scale-[1.02] origin-center">
-                  
-                  {/* Image Section */}
-                  <div className="self-stretch aspect-[627/250] relative overflow-hidden bg-gray-100">
-                    <Image
-                      src={item.thumbnail}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
+        {/* Paginator */}
+        {totalPages > 1 && (
+          <Paginator current={page} total={totalPages} onChange={handlePage} />
+        )}
 
-                  {/* Meta & Title */}
-                  <div className="self-stretch flex flex-col gap-2.5 opacity-70 group-hover:opacity-100 transition-all duration-500">
-                    <div className="self-stretch flex justify-between items-start text-neutral-700 text-xs font-normal font-sans">
-                      <div>Author : {item.author}</div>
-                      <div className="text-right">{item.date}</div>
-                    </div>
-                    <h3 className="w-full max-w-[492px] text-black text-2xl font-semibold font-serif leading-8">
-                      {item.title}
-                    </h3>
-                  </div>
-
-                  {/* Submit Request Button: Ab wrapper ke andar hai toh saath scale hoga */}
-                  <button 
-                    type="submit"
-                    className="w-full border border-black group-hover:border-0 group-hover:bg-brand-maroon group-hover:text-white py-2 font-medium flex items-center justify-center gap-2 transition-all duration-300 group/btn"
-                  >
-                    Submit Request
-                    <svg 
-                      width="18" 
-                      height="18" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      className="transition-transform duration-300 group-hover/btn:translate-x-1"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="col-span-full py-20 text-center text-gray-400 font-sans border-r border-b border-neutral-50">
-              No articles found in this category.
-            </div>
-          )}
-        </div>
-      </div>
+      </Container>
     </section>
+  );
+}
+
+/* ── Article card ─────────────────────────────────────────── */
+function ArticleCard({ item }: { item: Article }) {
+  return (
+    <div className="group bg-white rounded-2xl border border-brand-maroon/20 overflow-hidden flex flex-col transition-all duration-300 ease-out hover:-translate-y-2 sm:hover:-translate-y-3 hover:scale-[1.01] sm:hover:scale-[1.02]">
+
+      {/* Thumbnail */}
+      <div className="h-40 sm:h-44 relative overflow-hidden bg-brand-maroon/10 shrink-0">
+        <Image
+          src={item.thumbnail}
+          alt={item.title}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      </div>
+
+      {/* Body */}
+      <div className="p-5 sm:p-6 flex flex-col flex-1 gap-3">
+
+        {/* Category + read time */}
+        <p className="text-[10px] tracking-[0.18em] uppercase text-[#8A7A60]">
+          {item.category} · {item.readTime}
+        </p>
+
+        {/* Title */}
+        <h3 className="text-black font-semibold text-base sm:text-[17px] leading-snug transition-colors group-hover:text-brand-maroon">
+          {item.title}
+        </h3>
+
+        {/* Excerpt */}
+        <p className="text-black/60 text-[13px] leading-relaxed line-clamp-3 flex-1">
+          {item.excerpt}
+        </p>
+
+        {/* Author + date */}
+        <div className="flex items-center justify-between text-[11px] text-gray-400 pt-1">
+          <span>{item.author}</span>
+          <span>{item.date}</span>
+        </div>
+
+        {/* CTA */}
+        <button
+          type="button"
+          className="w-full bg-brand-maroon text-white py-2.5 rounded-full text-[13px] tracking-wide font-semibold transition-all hover:bg-[#600000] active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer mt-1"
+        >
+          Read Article
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  );
+}
+
+/* ── Paginator ────────────────────────────────────────────── */
+function Paginator({
+  current,
+  total,
+  onChange,
+}: {
+  current: number;
+  total: number;
+  onChange: (p: number) => void;
+}) {
+  const pages = Array.from({ length: total }, (_, i) => i + 1);
+
+  return (
+    <div className="flex items-center justify-center gap-2 pt-2">
+
+      {/* Prev */}
+      <button
+        onClick={() => onChange(current - 1)}
+        disabled={current === 1}
+        className="w-9 h-9 rounded-full border border-brand-maroon/20 flex items-center justify-center text-brand-maroon disabled:opacity-30 disabled:cursor-not-allowed hover:bg-brand-maroon hover:text-white transition-all duration-200"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+
+      {/* Page numbers */}
+      {pages.map((p) => (
+        <button
+          key={p}
+          onClick={() => onChange(p)}
+          className={`w-9 h-9 rounded-full text-sm font-semibold transition-all duration-200 border
+            ${p === current
+              ? "bg-brand-maroon text-white border-brand-maroon"
+              : "border-brand-maroon/20 text-gray-500 hover:border-brand-maroon hover:text-brand-maroon"
+            }`}
+        >
+          {p}
+        </button>
+      ))}
+
+      {/* Next */}
+      <button
+        onClick={() => onChange(current + 1)}
+        disabled={current === total}
+        className="w-9 h-9 rounded-full border border-brand-maroon/20 flex items-center justify-center text-brand-maroon disabled:opacity-30 disabled:cursor-not-allowed hover:bg-brand-maroon hover:text-white transition-all duration-200"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+
+    </div>
   );
 }

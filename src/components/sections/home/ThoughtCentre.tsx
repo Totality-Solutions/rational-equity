@@ -1,91 +1,124 @@
 'use client';
 
-import AnimatedHeader from '@/components/common/AnimatedHeader';
-import Container from '@/components/common/Container';
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
+import Container from '@/components/common/Container';
+import AnimatedHeader from '@/components/common/AnimatedHeader';
+import CTAButton from '@/components/common/CTAButton';
 
 const articles = [
   {
-    id: 1, category: 'Macro', readTime: '6 min read',
+    id: 1,
+    date: 'October 12, 2025',
     title: "Why the gold cycle isn't over.",
     description: 'A look at miner economics, policy tailwinds, and why we still see asymmetric upside.',
-    img: '/images/home-thought/gold-cycle.png',
+    img: '/images/home-thought/notes1.jpeg',
   },
   {
-    id: 2, category: 'Philosophy', readTime: '4 min read',
+    id: 2,
+    date: 'September 28, 2025',
     title: 'The patience premium.',
     description: 'How long holding periods quietly outperform in a market obsessed with quarters.',
-    img: '/images/home-thought/patience.png',
+    img: '/images/home-thought/notes2.jpeg',
   },
   {
-    id: 3, category: 'India', readTime: '8 min read',
-    title: 'Small-caps after a hot year.',
+    id: 3,
+    date: 'August 15, 2025',
+    title: 'Small-caps after a hot year',
     description: "What changes — and what doesn't — when a corner of the market gets crowded.",
-    img: '/images/home-thought/small-caps.png',
+    img: '/images/home-thought/notes3.jpeg',
   },
 ];
 
 export default function ThoughtCentre() {
   return (
-    <section className="py-10 ">
-      <Container>
+    <section className="w-full pt-12 pb-16 bg-[#FAFAFA]">
+      <Container className="mx-auto px-4 space-y-12">
 
-        {/* Header */}
+        <div className="mb-12">
         <AnimatedHeader
-          title="Notes from the desk"
-          highlight='Notes'
-          highlightColor="#8B0000"
+          title="Notes from the Desk."
+          highlight="the Desk."
+          highlightColor="#9B0000"
           subheading="Long-form views on markets, philosophy, and the businesses we own."
           variant="light"
-          className="mb-6 sm:mb-7 text-h3 text-black"
-          subheadingClassName="text-body-lg tracking-wide text-black"
+          titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
         />
+        </div>
 
-        {/* Card Grid — 1 col mobile, 2 col tablet, 3 col desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {articles.map((a) => (
+        {/* Card Grid Setup */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {articles.map((item) => (
             <div
-              key={a.id}
-              className="group bg-white rounded-2xl border border-brand-maroon/20 overflow-hidden flex flex-col transition-all duration-300 ease-out hover:-translate-y-2 sm:hover:-translate-y-3 hover:scale-[1.01] sm:hover:scale-[1.02]"
+              key={item.id}
+              className="bg-white border border-gray-100 rounded-[16px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between transition-all duration-300 group"
             >
-              {/* Thumbnail */}
-              <div className="h-40 sm:h-44 relative overflow-hidden bg-brand-maroon/20 shrink-0">
+              {/* Thumbnail Area */}
+              <div className="relative w-full h-60 shrink-0">
                 <Image
-                  src={a.img}
-                  alt={a.title}
+                  src={item.img}
+                  alt={item.title}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-contain transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  priority={item.id === 1}
                 />
               </div>
 
-              {/* Body */}
-              <div className="relative z-20 p-5 sm:p-6 md:p-7 flex flex-col flex-1 justify-between gap-4">
-
-                {/* Top Content */}
-                <div>
-                  <p className="text-[10px] tracking-[0.18em] uppercase text-[#8A7A60] mb-2 sm:mb-3">
-                    {a.category} · {a.readTime}
+              {/* Card Meta Content Block */}
+              <div className="p-8 flex-1 flex flex-col justify-between gap-6">
+                <div className="space-y-4">
+                  {/* Timestamp Line */}
+                  <p 
+                    className="text-[13px] text-brand-maroon font-semibold tracking-wide"
+                    style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  >
+                    {item.date}
                   </p>
 
-                  <h3 className="text-black font-semibold text-base sm:text-[17px] md:text-[18px] leading-snug mb-2 sm:mb-3 transition-colors group-hover:text-brand-bg-brand-maroon">
-                    {a.title}
+                  {/* Title */}
+                  <h3 
+                    className="text-[24px] md:text-[26px] leading-snug text-gray-900 font-normal tracking-tight group-hover:text-[#9B0000] transition-colors duration-200"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    {item.title}
                   </h3>
 
-                  <p className="text-black/70 text-[13px] leading-relaxed line-clamp-3 sm:line-clamp-none">
-                    {a.description}
+                  {/* Description Summary */}
+                  <p 
+                    className="text-[14px] leading-relaxed text-gray-500 font-normal"
+                    style={{ fontFamily: "'Lato', sans-serif" }}
+                  >
+                    {item.description}
                   </p>
                 </div>
 
-                {/* CTA */}
-                <button className="w-full bg-brand-maroon cursor-pointer text-white py-2.5 sm:py-3 rounded-full text-[13px] tracking-wide font-semibold transition-all hover:bg-[#600000] active:scale-[0.98]">
-                  Read Essay
-                </button>
-
+                {/* Micro Action Trigger Link */}
+                <div className="pt-2">
+                  <span 
+                    className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-wider font-bold text-[#9B0000] transition-all duration-200"
+                    style={{ fontFamily: "'Lato', sans-serif" }}
+                  >
+                    Read More <span>→</span>
+                  </span>
+                </div>
               </div>
+
             </div>
           ))}
+        </div>
+
+        {/* Global Action Trigger using CTAButton Component */}
+        <div className="w-full flex justify-center">
+          <CTAButton 
+            href="/notes" 
+            text="View all Notes" 
+            variant="light"
+            primaryColor="#9B0000"
+            textColor="#9B0000"
+            className="mt-4"
+          />
         </div>
 
       </Container>

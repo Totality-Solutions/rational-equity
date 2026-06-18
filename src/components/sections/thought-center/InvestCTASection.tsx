@@ -39,10 +39,10 @@ export default function InvestCTASection() {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="relative bg-[#000000] py-12 md:py-20 text-white font-sans overflow-hidden"
+      className="relative py-10 bg-[#000000] text-white font-sans overflow-hidden"
     >
       {/* GRID BACKGROUND WITH SPOTLIGHT */}
-      <motion.div 
+      {/* <motion.div 
         className="absolute inset-0 z-0 pointer-events-none opacity-100"
         style={{ WebkitMaskImage: maskImage, maskImage: maskImage }}
       >
@@ -53,21 +53,21 @@ export default function InvestCTASection() {
             backgroundSize: isMobile ? '20px 20px' : '35px 35px' 
           }}
         />
-      </motion.div>
+      </motion.div> */}
 
       <Container className="relative z-10">
         <div className="text-center">
             <AnimatedHeader 
               title="Ready to Start Investing?"
-              titleClassName='!mb-4'
               subheading="Join thousands of investors who trust us with their wealth creation journey"
               variant="dark"
-              className='!mb-8 !tracking-[0.02em]'
+              titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+              subheadingClassName="text-gray-700 font-normal mb-6 max-w-2xl mx-auto text-base lg:text-body-lg leading-relaxed"
             />
 
           <div className="flex justify-center">
             <CTAButton
-              href="/invest"
+              href="/invest-with-us"
               text="Invest With Us"
               variant="light"
               iconClassName="invert"

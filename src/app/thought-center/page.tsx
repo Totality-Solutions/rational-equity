@@ -32,7 +32,7 @@ export default function ThoughtCenterPage() {
         <ThoughtCenterArticles />
         <InvestCTASection />
         <InvestLinksSection />
-        <Strip />
+        {/* <Strip /> */}
     </main>
   );
 }

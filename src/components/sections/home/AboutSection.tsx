@@ -20,150 +20,130 @@ export default function AboutSection() {
   ];
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative bg-white py-10 overflow-hidden font-sans h-fit flex flex-col justify-center"
-    >
+   <section className="bg-[#ffffff] py-12">
+  <Container>
+    <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-      {/* 1. BACKGROUND CHART LAYER */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.2] pointer-events-none">
+      {/* LEFT CONTENT */}
+      <div>
+
+        <h2 className="font-playfair text-h3-mobile md:text-h3-tab lg:text-h3 leading-[1.05] text-[#1A1A1A] max-w-xl">
+          A boutique fund built on
+          <br />
+          <em className="italic font-playfair">
+            conviction, not consensus.
+          </em>
+        </h2>
+
+        <p className="mt-10 text-[#4A4A4A] leading-relaxed max-w-xl text-[16px]">
+          Rational is an investment house with a singular focus: identifying global mega-trends and durable mispricings in the system, then holding them long enough for compounding to do its work. We invest alongside our investors and structure our economics so we only make money when they do.
+        </p>
+
+        {/* STATS */}
+            <div className="mt-14 grid grid-cols-4 gap-2 pt-4">
+
+              <div className="text-center">
+                <div className="text-[30px] font-playfair text-[#1A1A1A]">
+                  3+
+                </div>
+                <div className="text-[11px] tracking-normal text-[#6B6B6B] mt-1">
+                  Years building multibaggers
+                </div>
+              </div>
+
+              <div className="text-center border-l border-[#E4E0DC]">
+                <div className="text-[30px] font-playfair text-[#1A1A1A]">
+                  2
+                </div>
+                <div className="text-[11px] tracking-normal text-[#6B6B6B] mt-1">
+                  Active strategies
+                </div>
+              </div>
+
+              <div className="text-center border-l border-[#E4E0DC]">
+                <div className="text-[30px] font-playfair text-[#1A1A1A]">
+                  100%
+                </div>
+                <div className="text-[11px] tracking-normal text-[#6B6B6B] mt-1">
+                  Long-only
+                </div>
+              </div>
+
+              <div className="text-center border-l border-[#E4E0DC]">
+                <div className="text-[30px] font-playfair text-[#1A1A1A]">
+                  1yr
+                </div>
+                <div className="text-[11px] tracking-normal text-[#6B6B6B] mt-1">
+                  Annual liquidity
+                </div>
+              </div>
+
+            </div>
+
+      </div>
+
+      {/* RIGHT CHART CARD */}
+      <div className="bg-white border border-[#E9E5E1] rounded-sm pb-10 px-10 h-full relative overflow-hidden">
+
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 text-center z-10">
+
+          <p className="text-[18px] font-medium text-[#333]">
+            Rational thinking.
+          </p>
+
+          <p className="text-[18px] font-medium text-[#333]">
+            Exceptional returns.
+          </p>
+
+          <div className="flex items-center justify-center gap-4 mt-5">
+            <div className="w-16 h-[1.5px] bg-[#B98E8E]" />
+            <span className="text-[11px] uppercase font-semibold tracking-[1px] text-[#555]">
+              Since 2008
+            </span>
+            <div className="w-16 h-[1.5px] bg-[#B98E8E]" />
+          </div>
+
+        </div>
+
+        {/* CHART */}
         <svg
-          width="100%"
-          height="100%"
-          viewBox="0 0 1400 800"
-          preserveAspectRatio="xMidYMid slice"
-          className="overflow-visible"
+          className="absolute bottom-0 left-0 w-full h-[260px]"
+          viewBox="0 0 700 260"
         >
           <defs>
-            <linearGradient id="barFade" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#9B0000" stopOpacity="1" />
-              <stop offset="100%" stopColor="#9B0000" stopOpacity="0" />
+            <linearGradient id="bars" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#D6A5A5" />
+              <stop offset="100%" stopColor="#D6A5A5" stopOpacity="0" />
             </linearGradient>
           </defs>
 
-          {barHeights.map((h, i) => {
-            const lastIndex = barHeights.length - 1;
-            let customDelay = 0;
-
-            if (i >= lastIndex - 3) {
-              customDelay = (lastIndex - i) * 0.15;
-            } else if (i <= 3) {
-              customDelay = 0.6 + (i * 0.1);
-            } else {
-              customDelay = 1.2 + (i * 0.05);
-            }
-
-            const barWidth = 40;
-            const spacing = 1400 / lastIndex;
-
-            return (
-              <motion.rect
+          {[80, 70, 120, 140, 80, 130, 170, 190, 120, 220, 250, 280].map(
+            (h, i) => (
+              <rect
                 key={i}
-                x={(spacing * i) - (barWidth / 2)}
-                width={barWidth}
-                fill="url(#barFade)"
-                initial={{ height: 0, y: 500, opacity: 0 }}
-                animate={isInView ? { height: h, y: 400 - h / 2, opacity: 1 } : {}}
-                transition={{
-                  duration: 2,
-                  delay: customDelay,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
+                x={20 + i * 55}
+                y={260 - h}
+                width="42"
+                height={h}
+                rx="3"
+                fill="url(#bars)"
               />
-            );
-          })}
+            )
+          )}
 
-          <motion.path
-            d="M0 500 C 400 460, 1000 380, 1400 300"
-            stroke="#800000"
+          <path
+            d="M20 240 C200 200 420 140 680 80"
+            fill="none"
+            stroke="#C97C7C"
+            strokeDasharray="6 6"
             strokeWidth="2"
-            strokeOpacity="0.4"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 3, ease: "easeInOut", delay: 2.2 }}
-          />
-          <motion.path
-            d="M0 450 C 350 420, 950 320, 1400 200"
-            stroke="#800000"
-            strokeWidth="3"
-            strokeOpacity="0.6"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ duration: 2.5, ease: "easeInOut", delay: 2.5 }}
           />
         </svg>
+
       </div>
 
-      {/* 2. CONTENT LAYER */}
-      <Container className="relative z-10 text-center">
-        {/* <div className="flex flex-col gap-0">
-          <AnimatedHeader
-            title="Rational thinking."
-            variant="light"
-            className="!mb-0"
-
-            titleClassName="!text-black text-4xl sm:text-5xl md:text-6xl lg:text-6xl  tracking-tight"
-          />
-          <AnimatedHeader
-            title="Exceptional returns."
-            variant="light"
-            className="!mb-0"
-
-            titleClassName="!text-black text-4xl sm:text-5xl md:text-6xl lg:text-6xl  tracking-tight"
-          />
-        </div> */}
-
-        <div className="flex items-center justify-center gap-4 md:gap-6 my-8 md:my-12">
-          <div className="h-[1.5px] w-12 md:w-20 bg-[#800000] opacity-30" />
-          <span className="font-sans text-body-sm md:text-body-lg tracking-wider text-black/80 uppercase font-bold whitespace-nowrap">
-            Since 2008
-          </span>
-          <div className="h-[1.5px] w-12 md:w-20 bg-[#800000] opacity-30" />
-        </div>
-
-        <div className="max-w-7xl mx-auto mb-12">
-          {/* <AnimatedHeader 
-            title="About Rational"
-            variant="light"
-            className="!mb-0"
-          />
-          <AnimatedHeader 
-            title="Asset Management"
-            subheading="We are a leading asset management company committed to delivering superior risk-adjusted returns through disciplined investment strategies. With over 15 years of excellence, we manage ₹25,000+ Crores for 500,000+ satisfied investors."
-            variant="light"
-            subheadingClassName="!max-w-none  mt-6"
-          /> */}
-
-          <AnimatedHeader
-            title="About Rational"
-            variant="light"
-            className="!mb-0"
-
-            titleClassName="!text-black text-h1  tracking-wide"
-          />
-          <AnimatedHeader
-            title="Asset Management"
-            variant="light"
-            className="!mb-0"
-            subheading="We are a leading asset management company committed to delivering superior risk-adjusted returns through disciplined investment strategies. With over 15 years of excellence, we manage ₹25,000+ Crores for 500,000+ satisfied investors."
-            titleClassName="!text-black text-h1  tracking-wide"
-            subheadingClassName="max-w-5xl mt-8 text-body-lg tracking-wide text-black/80"
-          />
-        </div>
-
-        <div className="flex justify-center">
-          <CTAButton
-            href="/about"
-            text="Explore Our Funds"
-            variant="maroon-bg"
-            iconClassName="invert"
-            className='tracking-wider'
-            borderRadiusClassName='rounded-full'
-          />
-        </div>
-      </Container>
-    </section>
+    </div>
+  </Container>
+</section>
   );
 }

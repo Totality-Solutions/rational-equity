@@ -1,206 +1,304 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CTAButton from '@/components/common/CTAButton';
 import Container from '@/components/common/Container';
-import AnimatedHeader from '@/components/common/AnimatedHeader';
 
 // --- Types ---
 interface RollingDigitProps {
-    digit: number;
+  digit: number;
+  inView: boolean;
 }
 
 interface KBCNumberProps {
-    value: string;
-    inView: boolean;
+  value: string;
+  inView: boolean;
 }
 
 interface StatCard {
-    value: string;
-    suffix: string;
-    label: string;
+  prefix?: string; // Optional Prefix Parameter
+  value: string;
+  suffix?: string; // Optional Suffix Parameter
+  label: string;
+  subLabel?: string; // Optional Sub-Label Parameter (Reduced Font Size)
+  icon: string;
+  bgImage: string;
 }
 
 // --- Sub-Components ---
-
-const RollingDigit: React.FC<RollingDigitProps> = ({ digit }) => {
-    const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    
-    return (
-        <div className="inline-block h-[1em] overflow-hidden leading-none flex-shrink-0">
-            <motion.div
-                initial={{ y: 0 }}
-                animate={{ y: `-${digit * 10}%` }}
-                transition={{ 
-                    duration: 2, 
-                    ease: [0.45, 0.05, 0.55, 0.95], 
-                    delay: Math.random() * 0.3 
-                }}
-                className="flex flex-col will-change-transform"
-                style={{ transform: 'translateZ(0)' }}
-            >
-                {numbers.map((num) => (
-                    <span key={num} className="h-[1em] flex items-center justify-center">
-                        {num}
-                    </span>
-                ))}
-            </motion.div>
-        </div>
-    );
+const RollingDigit: React.FC<RollingDigitProps> = ({ digit, inView }) => {
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  
+  return (
+    <div className="inline-block h-[36px] lg:h-[40px] overflow-hidden flex-shrink-0 relative select-none">
+      <motion.div
+        initial={{ y: 0 }}
+        animate={{ y: inView ? `-${digit * 10}%` : 0 }}
+        transition={{ 
+          duration: 2.2, 
+          ease: [0.16, 1, 0.3, 1], 
+          delay: Math.random() * 0.12 
+        }}
+        className="flex flex-col will-change-transform"
+      >
+        {numbers.map((num) => (
+          <span 
+            key={num} 
+            className="h-[36px] lg:h-[40px] w-full flex items-center justify-center tabular-nums leading-[36px] lg:leading-[40px]"
+          >
+            {num}
+          </span>
+        ))}
+      </motion.div>
+    </div>
+  );
 };
 
 const KBCNumber: React.FC<KBCNumberProps> = ({ value, inView }) => {
-    return (
-        <span className="inline-flex overflow-hidden">
-            {value.split('').map((char, index) => {
-                const parsed = parseInt(char);
-                if (isNaN(parsed)) {
-                    return <span key={index} className="flex-shrink-0">{char}</span>;
-                }
-                return <RollingDigit key={index} digit={inView ? parsed : 0} />;
-            })}
-        </span>
-    );
+  return (
+    <span className="inline-flex overflow-hidden tabular-nums items-center justify-center h-[36px] lg:h-[40px]">
+      {value.split('').map((char, index) => {
+        const parsed = parseInt(char);
+        if (isNaN(parsed)) {
+          return (
+            <span 
+              key={index} 
+              className="flex-shrink-0 select-none px-[0.04em] self-center h-[36px] lg:h-[40px] flex items-center align-baseline"
+            >
+              {char}
+            </span>
+          );
+        }
+        return <RollingDigit key={index} digit={inView ? parsed : 0} inView={inView} />;
+      })}
+    </span>
+  );
 };
 
+// --- Config Data ---
 const STATS_CARDS: StatCard[] = [
-    { value: '25,000', suffix: '+ Cr', label: 'AUM' },
-    { value: '15', suffix: '+ Years', label: 'EXPERIENCE' },
-    { value: '500', suffix: 'K+', label: 'INVESTORS' },
-    { value: '12', suffix: '+', label: 'FUNDS' },
+  { 
+    value: '75', 
+    suffix: '%', 
+    label: 'Return in 1 year', 
+    subLabel: 'Miners Fund', // Example Sub-Label
+    icon: '/icons/grow-up.png', 
+    bgImage: '/images/hero-thought/notes1.jpeg' 
+  },
+  { 
+    value: '30', 
+    suffix: '%', 
+    label: 'CAGR', 
+    subLabel: 'India Long Fund', // Example Sub-Label
+    icon: '/icons/doller.png',
+    bgImage: '/images/hero-thought/notes3.jpeg' 
+  },
+  { 
+    value: '15', 
+    suffix: '+', 
+    label: 'Years of Investing Experience', 
+    // subLabel left out optionally to demonstrate fallback rendering bounds
+    icon: '/icons/clock.png',
+    bgImage: '/images/hero-thought/notes2.jpeg' 
+  },
+  { 
+    prefix: '#',   
+    value: '1', 
+    label: 'AIF of FY24', 
+    subLabel: 'Top Performing AIF', // Example Sub-Label
+    icon: '/icons/taurus.png',
+    bgImage: '/images/hero-thought/notes1.jpeg' 
+  },
+];
+
+const TICKER_LOGOS = [
+  { name: '3Portals', icon: '⧉' },
+  { name: '45 Degrees°', icon: '↗' },
+  { name: 'Acme Corp', icon: '✦' },
+  { name: 'AlphaWave', icon: '⬢' },
+  { name: 'Biosynthesis', icon: '🧬' },
 ];
 
 export default function Hero() {
-    const [mounted, setMounted] = useState(false);
-    
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-    const { ref, inView } = useInView({ 
-        threshold: 0, 
-        triggerOnce: true,
-        fallbackInView: true 
-    });
+  const { ref, inView } = useInView({ 
+    threshold: 0.1, 
+    triggerOnce: true,
+    fallbackInView: true 
+  });
 
-    if (!mounted) return null;
+  if (!mounted) return null;
 
-    return (
-        <section ref={ref} className="bg-black text-white relative overflow-hidden font-sans h-fit flex items-center">
+  return (
+    <section ref={ref} className="bg-[#030303] text-white relative overflow-hidden flex flex-col justify-between h-auto py-12">
+      
+      {/* Background Abstract Vector Wave */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-25">
+        <svg className="w-full h-full" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M-100 450C200 300 450 650 800 500C1150 350 1300 600 1600 400" stroke="url(#waveGradient)" strokeWidth="1.5" strokeLinecap="round"/>
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#7B0000" stopOpacity="0"/>
+              <stop offset="50%" stopColor="#7B0000" stopOpacity="1"/>
+              <stop offset="100%" stopColor="#7B0000" stopOpacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
 
-            {/* --- VIDEO BACKGROUND SECTION --- */}
-            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover opacity-40"
-                >
-                    <source src="/videos/hero-bg.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-                <div className="absolute inset-0 bg-black/40 z-1" />
-            </div>
+      {/* Main Content Grid Wrapper */}
+      <Container className="relative z-10 w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1.2fr_0.9fr] gap-12 lg:gap-16 items-start">
+        
+        {/* Left Column Text Panel */}
+        <div className="space-y-8 flex flex-col justify-center text-left">
+          {/* Tight Spacing Headings */}
+          <div className="flex flex-col space-y-1">
+            <h1 
+              className="text-[44px] sm:text-[52px] lg:text-[56px] font-normal tracking-tight text-white leading-none"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Rational investing.
+            </h1>
+            <h2 
+              className="text-[44px] sm:text-[52px] lg:text-[56px] italic text-gray-300 font-normal leading-tight"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Outsized returns.
+            </h2>
+          </div>
 
-            <Container className="relative z-10 py-10 flex justify-evenly items-center w-full ">
-                {/* Main Header */}
-                <div className="text-center w-full space-y-">
-                    <div className="flex items-center flex-col gap-0">
-                              <AnimatedHeader
-                                title="Rational thinking"
-                                variant="light"
-                                className=""
-                    
-                                titleClassName="text-white text-h3"
-                              />
-                              <AnimatedHeader
-                                title="Exceptional returns"
-                                variant="light"
-                                className=""
-                                titleClassName="!text-white text-h3"
-                                subheading=" Long-only strategies built on conviction, discipline, and long-term value."
-                                subheadingClassName="max-w-sm mt-8 text-body-lg tracking-wider text-white/90"
-                              />
-                            </div>
-                    {/* <motion.p 
-                        initial={{ opacity: 0 }}
-                        animate={inView ? { opacity: 1 } : {}}
-                        transition={{ delay: 0.4, duration: 0.8 }}
-                        className="text-body-md tracking-wider md:text-body-md text-white leading-relaxed mb-12 px-4"
-                    >
-                        Long-only strategies built on conviction, discipline,<br className="hidden md:block" />
-                        and long-term value creation.
-                    </motion.p> */}
-                    </div>
-                
+          <p 
+            className="text-[14px] sm:text-[15px] leading-relaxed text-gray-400 font-normal max-w-2xl"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            A boutique fund focused on long-term wealth creation for its investors through agility in capital allocation, 
+            rigorous investment processes and conviction built on deep insights. Our edge is accurately identifying 
+            mega trends & effectively combining it with our deep fundamental, sentimental & technical analysis to 
+            identify high-return investment opportunities across asset classes, markets and products.
+          </p>
 
-                {/* Statistic Cards */}
-                <div className="w-full">
-                    <div className="text-center  ">
-                    {/* <motion.h1 
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={inView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6 }}
-                        className="font-serif text-xl sm:text-xl md:text-[42px] font-normal text-white tracking-widest "
-                    >
-                        INVESTING
-                    </motion.h1>
-                    <motion.p 
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={inView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ delay: 0.2, duration: 0.6 }}
-                        className="font-sans text-xl sm:text-xl md:text-xl font-normal text-white tracking-widest mb-10"
-                    >
-                        the Rational way.
-                    </motion.p>
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            <CTAButton
+              href="/invest-with-us"
+              text="Explore our funds"
+              variant="maroon-bg"
+              iconClassName="invert"
+            />
+            <CTAButton 
+              href="/contact" 
+              text="Speak to the team" 
+              variant="dark"
+              primaryColor="#7B0000"
+              textColor="#ffffff"
+            />
+          </div>
+        </div>
 
-                    <motion.p 
-                        initial={{ opacity: 0 }}
-                        animate={inView ? { opacity: 1 } : {}}
-                        transition={{ delay: 0.4, duration: 0.8 }}
-                        className="text-base sm:text-lg md:text-h4text-white leading-relaxed mb-12 px-4"
-                    >
-                        Long-only strategies built on conviction, discipline,<br className="hidden md:block" />
-                        and long-term value creation.
-                    </motion.p> */}
+        {/* RIGHT COLUMN PANEL: Clean Isolated Rectangular Grids */}
+        <div className="grid grid-cols-2 gap-4 w-full max-w-[540px] lg:max-w-none mx-auto">
+          {STATS_CARDS.map((stat) => {
+            return (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 25 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ ease: [0.16, 1, 0.3, 1] }}
+                className="relative rounded-[16px] px-4 py-6 flex flex-col justify-center items-center text-center transition-all duration-300 w-full overflow-hidden bg-white/[0.05] group shadow-lg border border-white/[0.1]"
+                style={{
+                  backgroundImage: `url(${stat.bgImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              >
+                {/* Backdrop Filter Glass Overlay */}
+                <div className="absolute inset-0 bg-[#070707]/85 transition-colors duration-300 group-hover:bg-[#070707]/80 z-0" />
 
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-6">
-                    {STATS_CARDS.map((stat, idx) => (
-                        <motion.div
-                            key={stat.label}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={inView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.1 * idx, duration: 0.5 }}
-                            className="group relative bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-sm p-8 md:p-10 text-center transition-all duration-500 hover:bg-white/[0.08]"
-                            style={{ transform: 'translateZ(0)' }}
-                            >
-                            <div className="font-serif text-2xl md:text-3xl font-medium text-white mb-2 tracking-wider flex justify-center items-baseline">
-                                <KBCNumber value={stat.value} inView={inView} />
-                                <span className="ml-1 text-xl md:text-2xl">{stat.suffix}</span>
-                            </div>
-                            
-                            <p className="text-[10px] md:text-body-sm font-medium tracking-[0.2em] text-white uppercase">
-                                {stat.label}
-                            </p>
-                        </motion.div>
-                    ))}
-                </div>
-                    <CTAButton 
-                      href="/funds" 
-                      text="Explore Funds" 
-                      variant="dark"
-                      primaryColor="#7B0000"
-                      textColor="#ffffff"
-                      className="mt-8"
-                    //   borderRadiusClassName="rounded-full"
+                {/* Content Layout Element context */}
+                <div className="relative z-10 flex flex-col items-center justify-center w-full h-auto">
+                  
+                  {/* Image Icon Bounding Box Container */}
+                  <div className="mb-3 h-6 w-6 relative flex items-center justify-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                    <img 
+                      src={stat.icon} 
+                      alt={`${stat.label} icon`} 
+                      className="w-full h-full object-cover invert"
                     />
+                  </div>
+
+                  {/* Clean locked text block elements with optimized metrics */}
+                  <div 
+                    className="text-[20px] lg:text-[28px] font-normal text-white tracking-tight flex items-end justify-center select-none h-[36px] lg:h-[40px]"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    {/* Optional Prefix Node */}
+                    {stat.prefix && (
+                      <span className="text-[18px] lg:text-[22px] font-normal mr-0.5 select-none ">
+                        {stat.prefix}
+                      </span>
+                    )}
+
+                    <KBCNumber value={stat.value} inView={inView} />
+
+                    {/* Optional Suffix Node */}
+                    {stat.suffix && (
+                      <span className="text-[18px] lg:text-[20px] font-normal ml-1 select-none ">
+                        {stat.suffix}
+                      </span>
+                    )}
+                  </div>
+                  
+                  {/* Label & Sub-Label Wrapper Context */}
+                  <div className="mt-2 space-y-0.5">
+                    <p 
+                      className="text-[12px] font-semibold tracking-[0.05em] text-gray-400 uppercase"
+                      style={{ fontFamily: "'DM Sans', sans-serif" }}
+                    >
+                      {stat.label}
+                    </p>
+                    
+                    {/* Render Optional Description string only when defined */}
+                    {stat.subLabel && (
+                      <p 
+                        className="text-[11px] tracking-wide text-gray-500 font-normal lowercase first-letter:uppercase"
+                        style={{ fontFamily: "'DM Sans', sans-serif" }}
+                      >
+                        {stat.subLabel}
+                      </p>
+                    )}
+                  </div>
+
                 </div>
-            </Container>
-        </section>
-    );
+              </motion.div>
+            );
+          })}
+        </div>
+
+      </Container>
+
+      {/* Bottom Footer Ticker Marquee */}
+      <div className="w-full border-t border-white/[0.05] pt-10 mt-16 bg-transparent overflow-hidden">
+        <div className="max-w-[1260px] mx-auto px-6 flex flex-wrap items-center justify-between gap-y-6 gap-x-8 opacity-40 grayscale contrast-200">
+          {TICKER_LOGOS.map((logo, index) => (
+            <div key={index} className="flex items-center gap-2 select-none">
+              <span className="text-2xl font-light text-white">{logo.icon}</span>
+              <span 
+                className="text-[16px] tracking-wider text-white font-medium"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                {logo.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </section>
+  );
 }

@@ -33,7 +33,8 @@ export default function StartInvestingForm() {
                 highlight="Investing"
                 subheading="Fill out the form and our team will reach out within 24 hours"
                 variant="light"
-                className="mb-16"
+                className="mb-6 sm:mb-7 text-h3 text-black"
+          subheadingClassName="text-body-lg tracking-wide text-black"
               />
 
               <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">

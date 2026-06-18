@@ -5,14 +5,14 @@ import CTAButton from "@/components/common/CTAButton";
 
 export default function Strip() {
   return (
-    <section className="group relative w-full bg-[#8B0000] py-6 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-8 transition-all duration-500 ease-in-out hover:bg-white border-t border-brand-maroon/10">
+    <section className="group relative w-full bg-[#9B0000] py-6 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-8 transition-all duration-500 ease-in-out hover:bg-white border-t border-brand-maroon/10">
       
       {/* ─── TEXT SECTION ─── */}
       <p className="text-white text-lg md:text-body-lg max-w-3xl">
         <span className=" font-sans font-normal transition-colors duration-500 group-hover:text-[#000000]">
             Book a quick call with our team and let’s explore how we can{" "}
         </span>
-        <span className="font-bold transition-colors duration-500 group-hover:text-[#8B0000]">
+        <span className="font-bold transition-colors duration-500 group-hover:text-[#9B0000]">
           work together.
         </span>
       </p>
@@ -23,7 +23,7 @@ export default function Strip() {
           href="/invest-with-us" 
           text="Schedule a Call" 
           variant="light"
-          className="h-[40px] transition-all duration-500 group-hover:!bg-[#8B0000] group-hover:!text-white group-hover:border-[#8B0000]" 
+          className="h-[40px] transition-all duration-500 group-hover:!bg-[#9B0000] group-hover:!text-white group-hover:border-[#9B0000]" 
         />
       </div>
 

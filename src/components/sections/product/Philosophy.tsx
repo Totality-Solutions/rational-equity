@@ -17,18 +17,18 @@ interface PhilosophyProps {
 
 export default function Philosophy({ points = [] }: PhilosophyProps) {
   return (
-    <section className="bg-white pb-10">
+    <section className="bg-white py-12">
       <Container className=" space-y-8">
 
         {/* Two-column header: title left, subheading right */}
         <AnimatedHeader
           title="Investment Philosophy"
           highlight="Philosophy"
-          highlightColor="#8B0000"
+          highlightColor="#9B0000"
           subheading="We believe precious metals play a critical role in portfolio construction as a hedge against inflation, currency debasement, and geopolitical uncertainty. Rather than investing in physical gold, we focus on miners who offer operational leverage to rising commodity prices."
           variant="light"
-          className="text-h3 text-black"
-          subheadingClassName="text-body-lg tracking-wide text-black"
+          titleClassName="text-h3-mobile md:text-h3-tab lg:text-h3 text-black mb-2"
+          subheadingClassName="  text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg tracking-wide text-black"
         />
 
         {/* Card grid — single border wraps all 4, divided by 1px gaps */}
@@ -55,13 +55,13 @@ export default function Philosophy({ points = [] }: PhilosophyProps) {
                     height={40}
                   />
                 </div>
-                <span className="font-serif text-h2 font-bold italic text-black/10 leading-none select-none">
+                <span className="font-playfair text-h2 font-bold italic text-black/10 leading-none select-none">
                   {(index + 1).toString().padStart(2, "0")}
                 </span>
               </div>
 
               {/* Title */}
-              <h3 className="font-serif text-body-lg font-bold text-[#1a1a1a] leading-snug ">
+              <h3 className="font-playfair text-body-lg font-bold text-[#1a1a1a] leading-snug ">
                 {point.title}
               </h3>
 

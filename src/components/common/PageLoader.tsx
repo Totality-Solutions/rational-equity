@@ -22,7 +22,7 @@ export default function PageLoader() {
             ease: "linear" 
           }}
           className="absolute h-24 w-24 rounded-full border-t-4 border-r-4 border-brand-maroon border-l-4 border-l-transparent border-b-4 border-b-transparent"
-          style={{ borderColor: "#8B0000 transparent transparent #8B0000" }} // Matches your maroon
+          style={{ borderColor: "#9B0000 transparent transparent #9B0000" }} // Matches your maroon
         />
 
         {/* --- Inner Stationary Logo --- */}   

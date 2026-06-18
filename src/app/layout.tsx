@@ -2,21 +2,23 @@
 import type { Metadata, Viewport } from 'next';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import { EB_Garamond, Lato } from 'next/font/google';
+import { Playfair_Display, DM_Sans } from 'next/font/google';
 import { siteConfig } from '@/lib/seo.config'; // Importing our new config
 import './globals.css';
 import SmartScrollToTop from '@/components/common/ScrollToTop';
 import RouteLoader from '@/components/common/RouteLoader';
 
-const ebGaramond = EB_Garamond({ 
-  variable: '--font-eb-garamond', 
-  subsets: ['latin'] 
+const playfairDisplay = Playfair_Display({
+  variable: '--font-playfair-display',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
 });
 
-const lato = Lato({ 
-  variable: '--font-lato', 
+const dmSans = DM_Sans({
+  variable: '--font-dm-sans',
   subsets: ['latin'],
-  weight: ['300', '400', '700', '900'] 
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
 });
 
 // ─── Global Metadata (Updated for Rational Equity) ───────────────────────────
@@ -95,7 +97,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${ebGaramond.variable} ${lato.variable}`}>
+    <html
+  lang="en"
+  className={`${playfairDisplay.variable} ${dmSans.variable}`}
+>
       <head>
         <script
           type="application/ld+json"

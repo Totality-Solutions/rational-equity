@@ -82,7 +82,7 @@ const stats = [
 
 export default function InvestWithUs() {
   return (
-    <section className="relative w-full min-h-[600px] bg-white font-sans overflow-hidden">
+    <section className="relative w-full  bg-white font-sans overflow-hidden">
       {/* Background Dotted Pattern */}
 
       <div className="relative ">
@@ -102,7 +102,8 @@ export default function InvestWithUs() {
             subheading="Simple, transparent, and efficient investing with Rational AMC — a 
             disciplined, research-driven approach to generating superior long-term returns."
             variant="light"
-            className="mb-16"
+            className="mb-6 sm:mb-7 text-h3 text-black"
+          subheadingClassName="text-body-lg tracking-wide text-black"
           />
 
           {/* Distinct Button Pop */}
@@ -136,10 +137,10 @@ export default function InvestWithUs() {
                 ${index !== stats.length - 1 ? 'lg:border-r' : ''} 
                 ${index % 2 === 0 ? 'md:border-r md:border-b lg:border-r' : 'md:border-r-0 md:border-b lg:border-r'}`}
             >
-              <h3 className="text-h4md:text-[28px] font-semibold font-serif text-gray-900">
+              <h3 className="text-h4 md:text-[28px] font-semibold font-playfair text-gray-900">
                 <Counter value={stat.value} />
               </h3>
-              <p className="text-gray-400 text-[14px]">
+              <p className="text-gray-400 text-body-lg">
                 {stat.label}
               </p>
             </motion.div>

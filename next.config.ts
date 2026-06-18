@@ -14,14 +14,26 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["http://192.168.1.12:3000", "http://localhost:3000"],
 
   images: {
-    domains: ['via.placeholder.com'],
     qualities: [75, 100],
     dangerouslyAllowLocalIP: true,
-    remotePatterns: [
-      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'placehold.co', pathname: '/**' },
-    ],
-  }as any,
+   remotePatterns: [
+    {
+      protocol: 'https',
+      hostname: 'cdn.example.com',
+      pathname: '/**',
+    },
+    {
+      protocol: 'https',
+      hostname: 'images.unsplash.com',
+      pathname: '/**',
+    },
+    {
+      protocol: 'https',
+      hostname: 'placehold.co',
+      pathname: '/**',
+    },
+  ],
+  },
   
   // Keep your other experimental settings if you have them, 
   // but remove allowedDevOrigins from here.

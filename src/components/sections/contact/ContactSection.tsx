@@ -64,7 +64,7 @@ export default function ContactSection() {
         <AnimatedHeader 
           title="Get in Touch"
           highlight="Touch"
-          highlightColor="#8B0000"
+          highlightColor="#9B0000"
           subheading="Have questions about our funds or need help getting started? Our team is ready to assist you."
           variant="light"
           className="mb-16 md:mb-24 !font-semibold"
@@ -87,7 +87,7 @@ export default function ContactSection() {
               className="bg-[#F8F9FA] border border-gray-100 p-8 rounded-2xl flex flex-col items-start text-left shadow-sm hover:shadow-md transition-shadow cursor-default"
             >
               {/* Icon Container */}
-              <div className="bg-[#8B0000]/10 p-3 rounded-xl text-[#8B0000] mb-6">
+              <div className="bg-[#9B0000]/10 p-3 rounded-xl text-[#9B0000] mb-6">
                 {item.icon}
               </div>
 

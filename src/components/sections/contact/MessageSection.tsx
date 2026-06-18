@@ -85,7 +85,7 @@ export default function MessageSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-4xl font-serif font-medium text-gray-900 mb-4"
+            className="text-4xl font-playfair font-medium text-gray-900 mb-4"
           >
             Send Us a <span className="text-brand-maroon">Message</span>
           </motion.h2>
@@ -158,7 +158,7 @@ export default function MessageSection() {
               <Image src="/images/Contact.png" alt="Mumbai Office" fill className="object-cover" />
             </div>
             <div className="p-8 space-y-6">
-              <h3 className="text-body-lg  font-bold font-serif text-gray-900">Mumbai Office</h3>
+              <h3 className="text-body-lg  font-bold font-playfair text-gray-900">Mumbai Office</h3>
               <div className="space-y-4 font-normal">
                 <div className="flex items-start gap-4 text-body-sm  text-[#000000]/50 text-left">
                   <MapPin size={18} className="text-brand-maroon shrink-0 mt-0.5" />

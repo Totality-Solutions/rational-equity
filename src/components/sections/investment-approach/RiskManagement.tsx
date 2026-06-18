@@ -9,17 +9,17 @@ import AnimatedHeader from '@/components/common/AnimatedHeader';
 
 const risks = [
   {
-    icon: <Shield className="w-10 h-10 text-[#8B0000]" />,
+    icon: <Shield className="w-10 h-10 text-[#9B0000]" />,
     title: "Diversification",
     desc: "Appropriate diversification across sectors, market caps, and business models to reduce concentration risk."
   },
   {
-    icon: <BarChart3 className="w-10 h-10 text-[#8B0000]" />,
+    icon: <BarChart3 className="w-10 h-10 text-[#9B0000]" />,
     title: "Position Sizing",
     desc: "Disciplined position sizing based on conviction levels and risk-reward assessment of each investment."
   },
   {
-    icon: <Users className="w-10 h-10  text-[#8B0000]" />,
+    icon: <Users className="w-10 h-10  text-[#9B0000]" />,
     title: "Continuous Review",
     desc: "Regular portfolio reviews and rebalancing to ensure alignment with investment objectives and risk parameters."
   }
@@ -34,7 +34,7 @@ export default function RiskManagement() {
       <AnimatedHeader 
           title="Risk Management Framework"
           highlight="Risk Management"
-          highlightColor="#8B0000"
+          highlightColor="#9B0000"
           subheading="Protecting capital is as important as generating returns"
           titleClassName="leading-tight"
           className="text-h4 sm:text-h3 text-black"
@@ -53,7 +53,7 @@ export default function RiskManagement() {
                 ease: [0.21, 0.47, 0.32, 0.98] 
               }}
               viewport={{ once: true, margin: "-50px" }}
-              className="p-8 lg:p-12 rounded-[24px] border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:border-[#8B0000]/10 transition-all duration-300 ease-out hover:-translate-y-2 sm:hover:-translate-y-3 hover:scale-[1.01] sm:hover:scale-[1.02] flex flex-col items-start group"
+              className="p-8 lg:p-12 rounded-[24px] border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:border-[#9B0000]/10 transition-all duration-300 ease-out hover:-translate-y-2 sm:hover:-translate-y-3 hover:scale-[1.01] sm:hover:scale-[1.02] flex flex-col items-start group"
             >
               <div className="mb-8 transition-transform duration-500 text- group-hover:scale-110">
                 {item.icon}

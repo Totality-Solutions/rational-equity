@@ -2,40 +2,78 @@
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import type { StaticImageData } from "next/image";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
 
-import Image1 from "../../../../public/images/Rational.svg";
+import PlaceholderImage from "../../../../public/images/Rational.png";
+import Container from "@/components/common/Container";
 
 interface TeamMember {
   id: number;
   name: string;
   title: string;
-  image: StaticImageData;
-  linkedin: string;
-  twitter: string;
+  description: string;
+  education: string;
+  image: typeof PlaceholderImage;
 }
 
 const teamMembers: TeamMember[] = [
-  { id: 1, name: "Krish Iyer", title: "Managing Partner", image: Image1, linkedin: "#", twitter: "#" },
-  { id: 2, name: "Vivek Iyer", title: "Partner", image: Image1, linkedin: "#", twitter: "#" },
-  { id: 3, name: "Jaba Misra", title: "COO", image: Image1, linkedin: "#", twitter: "#" },
-];
-
-const teamMembersSmall: TeamMember[] = [
-  { id: 1, name: "Krish Iyer", title: "Managing Partner", image: Image1, linkedin: "#", twitter: "#" },
-  { id: 2, name: "Vivek Iyer", title: "Partner", image: Image1, linkedin: "#", twitter: "#" },
-  { id: 3, name: "Vivek Iyer", title: "Partner", image: Image1, linkedin: "#", twitter: "#" },
-  { id: 4, name: "Jaba Misra", title: "COO", image: Image1, linkedin: "#", twitter: "#" },
+  {
+    id: 1,
+    name: "VIVEK AYER",
+    title: "Founder & CIO",
+    description: "10+ years of investing experience. Former entrepreneur who started the Rational Family Office in 2020 and launched the AIF in 2023. Deployed 100% of the fund on Day 1 with his own net worth alongside investors.",
+    education: "B.Tech (Mechanical), IIT Bombay · MBA, IIM Ahmedabad",
+    image: PlaceholderImage,
+  },
+  {
+    id: 2,
+    name: "VISHAL IYER",
+    title: "Fund Manager, Global Research",
+    description: "~12 years of buy and sell-side investing experience at JP Morgan and RBC BlueBay, both in London. Joined Rational in 2025 to lead the Gold & Silver Miners Fund and global macro research.",
+    education: "B.Tech, VJTI Mumbai · PG Finance, Cranfield University, UK",
+    image: PlaceholderImage,
+  },
+  {
+    id: 3,
+    name: "VIKRAM ADVANI",
+    title: "Chief Business Officer",
+    description: "30 years of experience in asset management including ING, Aditya Birla Capital, and Old Bridge Asset Management. Leads business development, investor relations, and fund operations.",
+    education: "MBA, Edith Cowan University",
+    image: PlaceholderImage,
+  },
+  {
+    id: 4,
+    name: "JABA",
+    title: "Co-Founder & Strategy",
+    description: "Former strategy consultant and macroeconomist with BCG, the World Bank, and Mahindra. Brings deep macro and strategic thinking to Rational's investment and fund structure decisions.",
+    education: "MPhil Economics, Cambridge · MBA, ISB · Maths (Hons), Delhi University",
+    image: PlaceholderImage,
+  },
+  {
+    id: 5,
+    name: "AKSHAT",
+    title: "Investment Analyst",
+    description: "4 years of experience in investment and quantitative research. Previously with Parbhudas Liladhar. Brings rigorous quant discipline and sector analysis to the research team.",
+    education: "Gold Medalist, Economics, Delhi University",
+    image: PlaceholderImage,
+  },
+  {
+    id: 6,
+    name: "KRISH",
+    title: "Co-Founder & Advisor",
+    description: "40 years of experience in retail, banking and finance. Ex-CEO of Walmart India and Watsons across multiple Asian countries. Brings unparalleled operational and boardroom experience.",
+    education: "CA & CS by training",
+    image: PlaceholderImage,
+  },
 ];
 
 const cardVariants: Variants = {
-  hidden: { x: -80, opacity: 0 },
+  hidden: { y: 40, opacity: 0 },
   visible: (i: number) => ({
-    x: 0,
+    y: 0,
     opacity: 1,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
       delay: i * 0.1,
       ease: "easeOut",
     },
@@ -44,21 +82,20 @@ const cardVariants: Variants = {
 
 export default function TeamSection() {
   return (
-    <section className="relative w-full bg-background font-sans overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <section className="w-full px-3 md:px-16 bg-[#FAFAFA]">
+       <Container className="py-8 md:py-16 mx-auto space-y-12">
+        <div className="mb-12">
+          <AnimatedHeader
+            title="People who put their money where their mouth is."
+            highlight="money where their mouth is."
+            highlightColor="#9B0000"
+            variant="light"
+            titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+            subheadingClassName="text-gray-700 font-normal max-w-2xl text-base text-body-lg leading-relaxed"
+          />
+        </div>
 
-        <AnimatedHeader 
-          title="Our Team" 
-          highlight="Team"
-          // highlightColor="var(--color-brand-maroon)"
-          subheading="Analytical minds shaping disciplined investment strategies for long-term growth."
-          variant="light"
-          className='mb-7  text-h3 text-black'
-          subheadingClassName='text-body-lg tracking-wide text-black'
-        />
-
-        {/* ================= MAIN CARDS ================= */}
-        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-8 mb-16 px-4 md:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
           {teamMembers.map((member, i) => (
             <motion.div
               key={member.id}
@@ -67,75 +104,43 @@ export default function TeamSection() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 md:p-10 flex flex-col items-center border border-gray-200 shadow-sm w-full max-w-[450px] mx-auto lg:max-w-none lg:mx-0"
+              className="bg-white rounded-2xl overflow-hidden shadow-sm"
             >
-              <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden mb-6 md:mb-8 border-4 border-white shadow-md">
-                <Image src={member.image} alt={member.name} fill className="object-cover" />
+              <div className="relative w-full aspect-[3/2]">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  className="object-cover"
+                />
               </div>
 
-              {/* NAME */}
-              <h3 className="md:text-body-lg  md:text-h4 font-bold tracking-h2 text-foreground mb-1">
-                {member.name}
-              </h3>
-
-              {/* TITLE */}
-              <p className="text-body-sm  md:text-body-md  text-gray-500 font-medium mb-6 md:mb-8">
-                {member.title}
-              </p>
-
-              {/* SOCIAL */}
-              <div className="flex gap-4">
-                <a
-                  href={member.linkedin}
-                  className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-brand-maroon rounded-full hover:bg-brand-maroon-hover transition"
+              <div className="p-6 md:p-8">
+                <h3
+                  className="text-lg md:text-xl text-[#9B0000] font-medium mb-1 tracking-wide"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
                 >
-                  <span className="text-white text-body-lg  font-medium ">
-                    in
-                  </span>
-                </a>
-
-                <a
-                  href={member.twitter}
-                  className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-brand-maroon rounded-full hover:bg-brand-maroon-hover transition"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.045 4.126H5.078z"/>
-                  </svg>
-                </a>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* ================= SMALL CARDS ================= */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {teamMembersSmall.map((member, i) => (
-            <motion.div
-              key={member.id}
-              custom={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="bg-white/60 backdrop-blur-sm rounded-2xl p-5 md:p-6 flex items-center gap-4 md:gap-5 border border-gray-200 text-left"
-            >
-              <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0 border-2 border-white shadow-sm">
-                <Image src={member.image} alt={member.name} fill className="object-cover" />
-              </div>
-
-              <div>
-                <h4 className="text-body-md  md:text-body-lg  font-bold text-foreground">
                   {member.name}
-                </h4>
-                <p className="text-body-sm  text-gray-500">
-                  {member.title}
+                </h3>
+                <p className="text-sm text-gray-500 mb-5">{member.title}</p>
+
+                <p
+                  className="text-body-mobile md:text-body-tab lg:text-body text-gray-600 leading-relaxed mb-6"
+                  style={{ fontFamily: "'Lato', sans-serif" }}
+                >
+                  {member.description}
                 </p>
+
+                <div className="border-t border-gray-200 pt-5">
+                  <p className="text-xs text-gray-400 leading-relaxed">
+                    {member.education}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-      </div>
+      </Container>
     </section>
   );
 }

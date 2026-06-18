@@ -9,9 +9,51 @@ import AnimatedHeader from '@/components/common/AnimatedHeader';
 import Image from 'next/image';
 
 const FUNDS = [
-  { title: 'India Long-Only Fund', description: 'Focused long-term equity investments in high-quality Indian businesses', returns: '16.5% CAGR', href: '/product/india-long-only', img: '/images/icons/india-long-only-fund.svg' },
-  { title: 'Gold & Silver Miners Fund', description: 'Strategic exposure to precious metals mining companies globally', returns: '18.2% CAGR', href: '/product/gold-silver-miners', img: '/images/icons/gold-&-silver-miners-fund.svg' },
-  { title: 'Absolute Return Fund', description: 'Market-neutral strategies designed for consistent positive returns', returns: '12.8% CAGR', href: '/product/absolute-return', img: '/images/icons/absolute-return-fund.svg' },
+  {
+    title: 'India Long-Only Fund',
+    description:
+      'A high-conviction portfolio of Indian listed equities with a heavy tilt toward small and mid-caps where we see asymmetric reward.',
+    returns: '30% CAGR',
+    returnsLabel: '3 Year Returns',
+    href: '/product/india-long-only',
+    img: '/images/icons/india-long-only-fund.svg',
+    bullets: [
+      'Invests in Indian public markets',
+      'Long-only, no derivatives',
+      'Registered under SEBI',
+      'Heavy tilt toward small & mid-cap',
+    ],
+  },
+  {
+    title: 'Gold & Silver Miners Fund',
+    description:
+      'A focused vehicle for strategic exposure to global gold and silver mining equities — operated from GIFT City.',
+    returns: '~75% CAGR',
+    returnsLabel: '1 Year Returns',
+    href: '/product/gold-silver-miners',
+    img: '/images/icons/gold-&-silver-miners-fund.svg',
+    bullets: [
+      'Invests in gold & silver miners globally',
+      'Long-only, no derivatives',
+      'Operates from GIFT City',
+      'No ETFs, no other commodities',
+    ],
+  },
+  {
+    title: 'Absolute Return Fund',
+    description:
+      'A quant plus discretion model-based Long-Short strategy that focuses on identifying periods of extreme greed and fear to capture significantly large moves while sitting out of sideways choppiness and major drawdowns.',
+    returns: '41% CAGR',
+    returnsLabel: '10-Year Model Net CAGR',
+    href: '/product/absolute-return',
+    img: '/images/icons/absolute-return-fund.svg',
+    bullets: [
+      'Long-short strategy',
+      'Derivatives of publicly listed Indian companies',
+      'Indians invest via SEBI registered fund',
+      'Others invest via GIFT City Fund',
+    ],
+  },
 ];
 
 export default function InvestmentSolutions() {
@@ -48,117 +90,170 @@ export default function InvestmentSolutions() {
   );
 
   return (
-    <section 
-      onMouseMove={handleMouseMove}
-      className="relative bg-[#0a0a0a] py-10 text-white font-sans overflow-hidden"
-    >
-      
-      {/* GRID BACKGROUND */}
-      <motion.div 
-        className="absolute inset-0 z-0 pointer-events-none opacity-100"
-        style={{ WebkitMaskImage: maskImage, maskImage: maskImage }}
-      >
-        <div 
-          className="absolute inset-0" 
-          style={{ 
-            backgroundImage: `linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px)`,
-            backgroundSize: isMobile ? '30px 30px' : '45px 45px' 
+  <section
+    onMouseMove={handleMouseMove}
+    className="relative bg-[#FAFAFA] pt-12 font-sans overflow-hidden"
+  >
+    <Container className="relative z-10">
+
+      {/* Grey Wrapper */}
+      <div className="relative px-8 md:px-16 py-12 overflow-hidden">
+
+        {/* GRID BACKGROUND */}
+        {/* <motion.div
+          className="absolute inset-0 z-0 pointer-events-none opacity-100"
+          style={{
+            WebkitMaskImage: maskImage,
+            maskImage: maskImage,
           }}
-        />
-      </motion.div>
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)
+              `,
+              backgroundSize: isMobile
+                ? '30px 30px'
+                : '45px 45px',
+            }}
+          />
+        </motion.div> */}
 
-      <Container className="relative z-10 space-y-8">
-        <div className="text-center ">
-      <AnimatedHeader 
-      className="m-0"
-          title="Our Investment Solutions"
-          highlight='Solutions'
-          variant="dark" // Use dark to ensure text is white on the black background
-          titleClassName="!text-white text-h3  tracking-wide"
-        />
-          {/* <div className="h-1 w-20 bg-[#800000] mx-auto md:hidden" /> */}
-        </div>
+        {/* Content */}
+        <div className="relative z-10">
 
-        {/* CARDS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10 ">
-          {FUNDS.map((fund, index) => (
-            <motion.div
-              key={fund.title}
-              initial={{ scaleY: 0, opacity: 0 }}
-              whileInView={{ scaleY: 1, opacity: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: isMobile ? index * 0.1 : 0 }}
-              style={{ 
-                originY: isMobile ? 0 : (index === 1 ? 0 : 1),
-                willChange: "transform",
-                backfaceVisibility: "hidden",
-                WebkitFontSmoothing: "antialiased"
-              }}
-              className="relative group h-full will-change-transform"
-            >
-              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl bg-white flex flex-col">
-                
-                {/* MAROON FADE */}
-                <div 
-                  className={`absolute inset-0 z-10 transition-opacity duration-500 pointer-events-none ${
-                    isMobile ? 'opacity-40' : 'opacity-0 group-hover:opacity-100'
-                  }`}
-                  style={{ 
-                    background: "linear-gradient(90deg, rgba(139, 0, 0, 0.15) 0%, rgba(139, 0, 0, 0.05) 40%, transparent 60%)" 
-                  }}
-                />
-
-                {/* CONTENT */}
-                <div className="relative z-20 p-6 md:p-8 flex flex-col flex-1 justify-between">
-                  <div>
-                    <h3 className="text-black font-bold text-h4 mb-4 md:mb-6 transition-colors group-hover:text-[#800000]">
-                      <Image src={fund.img} alt={fund.title} width={100} height={100} className="w-7 h-7 inline-block mr-2" />
-                      {fund.title}
-                    </h3>
-                    <p className="text-black/80 text-body-md  leading-relaxed ">
-                      {fund.description}
-                    </p>
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between items-center mb-6 border-t border-gray-100 pt-6">
-                      <span className="text-black/80 text-[10px] md:text-[11px] font-bold uppercase tracking-wide">3 Year Returns</span>
-                      <span className="text-[#800000] font-bold text-base md:text-lg">{fund.returns}</span>
-                    </div>
-                  <Link href={fund.href} className=''>
-                    <button className="w-full cursor-pointer bg-[#800000] text-white py-3.5 rounded-full font-bold text-body-md tracking-wider transition-all hover:bg-[#600000] active:scale-[0.98]">
-                      View Details
-                    </button>
-                  </Link>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* <div className="text-center">
-          <div className="">
-
-             <AnimatedHeader 
-                      title="Ready to Start Investing?"
-                      subheading=" Join thousands of investors who trust us with their wealth creation journey"
-                      variant="dark"
-                      className='mb-3 text-h4'
-                      subheadingClassName='text-body-lg tracking-wide text-white/80'
-                    />
-          <div className="flex justify-center">
-            <CTAButton
-              href="/invest"
-              text="Invest With Us"
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <AnimatedHeader
+              titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
+              title="Three strategies. One philosophy."
+              highlight="One philosophy."
               variant="light"
-              iconClassName="invert"
+              subheading="Rational ranks among the top asset management companies in India, offering specialized products strategically constructed to maximize returns through deep insights and a research-driven approach and align manager incentives with investor outcomes."
+              subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-md-mobile md:text-body-md-tab lg:text-body-md"
             />
           </div>
-          </div>
 
-        </div> */}
-      </Container>
-    </section>
-  );
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            {FUNDS.map((fund, index) => (
+              <motion.div
+                key={fund.title}
+                initial={{ scaleY: 0, opacity: 0 }}
+                whileInView={{ scaleY: 1, opacity: 1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: isMobile ? index * 0.1 : 0,
+                }}
+                style={{
+                  originY: isMobile
+                    ? 0
+                    : index === 1
+                    ? 0
+                    : 1,
+                  willChange: 'transform',
+                  backfaceVisibility: 'hidden',
+                  WebkitFontSmoothing: 'antialiased',
+                }}
+                className="relative group h-full"
+              >
+                <div
+                  className={`
+                    relative
+                    h-full
+                    rounded-[24px]
+                    overflow-hidden
+                    flex
+                    flex-col
+                    shadow-sm
+                    ${
+                      index === 1
+                        ? 'bg-white'
+                        : 'bg-white'
+                    }
+                  `}
+                >
+                  {/* Hover Maroon Fade */}
+                  <div
+                    className={`absolute inset-0 z-10 transition-opacity duration-500 pointer-events-none ${
+                      isMobile
+                        ? 'opacity-40'
+                        : 'opacity-0 group-hover:opacity-100'
+                    }`}
+                    style={{
+                      background:
+                        'linear-gradient(90deg, rgba(139,0,0,0.12) 0%, rgba(139,0,0,0.04) 40%, transparent 60%)',
+                    }}
+                  />
+
+                  <div className="relative z-20 p-8 flex flex-col flex-1">
+
+                    {/* Header */}
+                    <div className="flex items-center gap-4 mb-8">
+                      <Image
+                        src={fund.img}
+                        alt={fund.title}
+                        width={28}
+                        height={28}
+                      />
+
+                      <h3 className="font-serif text-[20px] leading-tight text-black transition-colors group-hover:text-[#800000]">
+                        {fund.title}
+                      </h3>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-black/75 text-body-md leading-relaxed mb-8">
+                      {fund.description}
+                    </p>
+
+                    {/* Bullets */}
+                    <ul className="space-y-2 text-black/75 text-body-md mb-10">
+                      {fund.bullets.map((bullet) => (
+                        <li key={bullet}>• {bullet}</li>
+                      ))}
+                    </ul>
+
+                    {/* Bottom */}
+                    <div className="mt-auto items-center">
+
+                      {/* <div className="bg-[#E9DEDE] rounded-full px-5 py-2 flex border-l-4 border-brand-maroon-hover items-center gap-4"> */}
+                        <div className="bg-[#E9DEDE] rounded-full px-5 py-2 flex border-l-4 border-brand-maroon-hover items-center gap-2">
+                          <span className="font-serif font-black text-brand-maroon-hover text-[18px]">
+                            {fund.returns}
+                          </span>
+                          <span className="text-[12px] text-[#555]">
+                            {fund.returnsLabel}
+                          </span>
+                        </div>
+
+                        {/* <span className="text-[12px] text-[#555]">
+                          3 Year Returns
+                        </span>
+                      </div> */}
+
+                      <Link href={fund.href}>
+                        <button className="w-full mt-8 py-2 rounded-full bg-brand-maroon text-white text-[16px] font-normal transition-all hover:bg-[#9B0000] cursor-pointer">
+                          Download Investor Presentation
+                        </button>
+                      </Link>
+
+                    </div>
+
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+);
 }

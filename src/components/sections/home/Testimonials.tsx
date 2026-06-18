@@ -8,31 +8,38 @@ import Image from 'next/image';
 
 const TESTIMONIALS = [
   {
-    text: "I appreciate the rational and research-driven approach. No hype, just solid fundamentals and long-term value creation. Highly recommend!",
-    name: "Amit Patel",
-    location: "Bangalore",
-    initial: "A",
-    img: "/images/testimonial/2.jpg"
-  },
-  {
-    text: "The fund managers at Rational are truly exceptional. They understand market dynamics and have consistently delivered superior returns even in volatile markets.",
+    text: "The fund managers at Rational are truly exceptional. They understand market dynamics and have consistently delivered superior returns even in volatile markets. I have never felt more confident about where my wealth is being deployed.",
     name: "Priya Sharma",
-    location: "Delhi",
+    location: "Family Office . Delhi",
     initial: "P",
     img: "/images/testimonial/1.jpg"
   },
   {
-    text: "Rational AMC has been managing my investments for the past 5 years. Their disciplined approach and transparent communication have helped me build substantial wealth.",
+    text: "What truly sets Rational apart is that they invest their own money alongside mine. That alignment of interest is rare in the industry and gives me complete peace of mind. The 80% post-tax return in FY24 spoke for itself.",
+    name: "Amit Patel",
+    location: "HNI Investor · Bangalore",
+    initial: "A",
+    img: "/images/testimonial/2.jpg"
+  },
+  {
+    text: "Rational spotted the Gold & Silver Miners opportunity well before the market consensus shifted. That kind of foresight — backed by genuine research and conviction — is exactly what you want managing your capital.",
     name: "Rajesh Kumar",
-    location: "Mumbai",
+    location: "Entrepreneur · Mumbai",
     initial: "R",
     img: "/images/testimonial/3.jpg"
   },
   {
-    text: "Finding an AMC that prioritizes investor education alongside returns is rare. Their 'Thought Centre' insights are invaluable for any serious investor.",
+    text: "No fixed fees, no fluff — just performance. I appreciate the rational and research-driven approach. No hype, just solid macro thinking and long-term value creation. Their Thought Centre alone is worth following.",
     name: "Vikram Singh",
-    location: "Hyderabad",
+    location: "Angel Investor · Hyderabad",
     initial: "V",
+    img: ""
+  },
+  {
+    text: "Rational managed to deliver exceptional returns precisely because they are willing to think differently — moving capital to global miners when everyone else was crowded into Indian equities. Conviction over consensus, always.",
+    name: "Suresh Mehta",
+    location: "CFO · Pune",
+    initial: "S",
     img: ""
   }
 ];
@@ -56,14 +63,14 @@ export default function Testimonials() {
   const xKeyframes = [0, -shift, -(shift * 2), -(shift * 3), -(shift * 4)];
 
   return (
-    <section className="bg-white overflow-hidden font-sans py-10 space-y-10">
+    <section className="bg-white overflow-hidden space-y-10 py-12">
       <Container className="text-center ">
           <AnimatedHeader 
         title="What Our Investors Say" 
         highlight='Our Investors'
         subheading="Trusted by thousands of investors across India for disciplined wealth creation."
         variant="light"
-        className=" text-black text-h3"
+        titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
       />
       </Container>
@@ -89,7 +96,7 @@ export default function Testimonials() {
               <div className="relative bg-white rounded-2xl shadow-xl shadow-gray-100 flex flex-col h-full overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl hover:border-brand-maroon/20">
 
                 {/* Top Accent Strip */}
-                <div className="absolute top-0 left-0 w-full h-[6px] bg-[#8B0000] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                <div className="absolute top-0 left-0 w-full h-[6px] bg-[#9B0000] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
 
                 <div className="p-6 md:p-8 flex-grow">
                   {/* Rating Stars */}
@@ -112,8 +119,8 @@ export default function Testimonials() {
                 </div>
 
                 {/* Footer Area */}
-                <div className="bg-[#8B0000] p-5 md:p-6 flex items-center gap-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-[#8B0000] font-bold font-sans text-base md:text-lg overflow-hidden">
+                <div className="bg-[#9B0000] p-5 md:p-6 flex items-center gap-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex-shrink-0 flex items-center justify-center text-[#9B0000] font-bold font-sans text-base md:text-lg overflow-hidden">
   {item.img ? (
     <Image
       src={item.img}
