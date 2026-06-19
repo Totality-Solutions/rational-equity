@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  allowedDevOrigins: ["http://192.168.1.12:3000", "http://localhost:3000"],
+  allowedDevOrigins: [
+    "http://192.168.1.12:3000",
+    "http://localhost:3000",
+  ],
 
   images: {
     qualities: [75, 100],
-    dangerouslyAllowLocalIP: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -24,13 +26,7 @@ const nextConfig = {
     ],
   },
 
-  experimental: {},
-optimizeFonts: false,
   reactStrictMode: true,
-
-  turbopack: {
-    resolveAlias: {},
-  },
 
   output: "standalone",
 };
