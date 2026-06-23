@@ -40,10 +40,10 @@ export default function FundOverview({ title, titleItalics, description, stats }
           titleClassName="text-h3-mobile md:text-h3-tab lg:text-h3 text-black mb-6 md:mb-8"
           subheadingClassName="  text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg tracking-wide text-black"
         />
-      <Container className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8 items-stretch">
+      <Container className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-5 md:gap-8 items-stretch">
 
         {/* LEFT SIDE */}
-        <div className="bg-brand-maroon/10 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col gap-6 items-center">
+        <div className="bg-brand-grey rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col gap-6 items-start">
 
         <div>
           <h2 className="text-h3-mobile md:text-h2-mobile lg:text-h1-mobile text-black font-playfair font-medium">

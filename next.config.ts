@@ -11,7 +11,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // MOVE IT HERE (Top Level)
-  allowedDevOrigins: ["http://192.168.1.12:3000", "http://localhost:3000"],
+  allowedDevOrigins: ["http://192.168.1.69:3000", "http://localhost:3000", "http://192.168.1.34:3000"],
 
   images: {
     qualities: [75, 100],

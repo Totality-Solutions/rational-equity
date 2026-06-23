@@ -19,7 +19,7 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: "VIVEK AYER",
+    name: "VIVEK IYER",
     title: "Founder & CIO",
     description: "10+ years of investing experience. Former entrepreneur who started the Rational Family Office in 2020 and launched the AIF in 2023. Deployed 100% of the fund on Day 1 with his own net worth alongside investors.",
     education: "B.Tech (Mechanical), IIT Bombay · MBA, IIM Ahmedabad",
@@ -132,7 +132,7 @@ export default function TeamSection() {
                 </p>
 
                 <div className="border-t border-gray-200 pt-5">
-                  <p className="text-xs text-gray-400 leading-relaxed">
+                  <p className="text-sm text-gray-400 leading-relaxed">
                     {member.education}
                   </p>
                 </div>

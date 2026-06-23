@@ -134,8 +134,8 @@ export default function Journey() {
         {/* ── Header + nav ─────────────────────────────────────────────────── */}
         <div className="">
           <AnimatedHeader
-            title="The Journey So Far"
-            highlight="Journey"
+            title="Built MILESTONE by milestone"
+            highlight="MILESTONE"
             highlightColor={CRIMSON}
             subheading="Over a decade of investing, distilled into a fund that allocates your capital in the best opportunities."
             variant="light"
@@ -179,14 +179,14 @@ export default function Journey() {
                   style={{ width: `${100 / perView}%` }}
                 >
                   {/* Node */}
-                  <div className="flex flex-col items-center mb-4 relative z-10">
+                  <div className="flex flex-col items-center relative z-10">
                     <NodeCircle src={item.img} title={item.title} crimson={CRIMSON} />
                     <div className="w-px h-5" style={{ background: 'rgba(139,0,0,0.18)' }} />
                   </div>
 
                   {/* Year */}
                   <div
-                    className="text-body-md font-semibold tracking-widest uppercase px-3 py-1 rounded-full border mb-4"
+                    className="text-body-md font-semibold tracking-wide capitalize px-3 py-1 rounded-full border mb-4"
                     style={{ color: CRIMSON, background: 'rgba(139,0,0,0.07)', borderColor: 'rgba(139,0,0,0.2)' }}
                   >
                     {item.year}

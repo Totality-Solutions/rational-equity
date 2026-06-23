@@ -48,8 +48,8 @@ export default function TeamShowcase() {
       <Container className="w-full space-y-8">
 
         <AnimatedHeader
-          title="People at the Bench"
-          highlight="Bench"
+          title="Our Team"
+          highlight="Team"
           highlightColor="#9B0000"
           subheading="Our Team of Dedicated Talent Behind the Agency."
           variant="light"
@@ -79,10 +79,10 @@ export default function TeamShowcase() {
                 </div>
                 
                 <div className="pt-4 text-center">
-                  <h3 className="text-xl font-playfair font-bold text-[#9B0000] tracking-wide uppercase">
+                  <h3 className="text-body-md-mobile md:text-body-md-tab lg:text-body-md font-playfair font-bold text-[#9B0000] tracking-wide uppercase">
                     {member.name}
                   </h3>
-                  <p className="text-sm text-gray-500 font-medium mt-0.5">
+                  <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-500 font-medium mt-0.5">
                     {member.role}
                   </p>
                 </div>
@@ -97,9 +97,9 @@ export default function TeamShowcase() {
                       className="overflow-hidden px-2"
                     >
                       <div className="pt-4 space-y-4 text-left">
-                        <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+                        <p className="text-gray-600 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed">{member.bio}</p>
                         <div className="bg-brand-maroon/5 p-4 rounded-xl border border-brand-maroon/10">
-                          <p className="text-sm text-gray-800 leading-relaxed font-medium">{member.philosophy}</p>
+                          <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-800 leading-relaxed font-medium">{member.philosophy}</p>
                         </div>
                         <div className="flex gap-3 pt-1">
                           <a href={member.linkedin} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
@@ -147,11 +147,11 @@ export default function TeamShowcase() {
                       <div className="flex-1 p-6 flex flex-col justify-center space-y-3 overflow-y-auto">
                         <div>
                           <h2 className="text-2xl font-bold text-gray-900 capitalize">{member.name}</h2>
-                          <p className="font-semibold text-xs text-brand-maroon uppercase tracking-wider mt-0.5">{member.role}</p>
+                          <p className="font-semibold text-body-md-mobile md:text-body-md-tab lg:text-body-md text-brand-maroon uppercase tracking-wider mt-0.5">{member.role}</p>
                         </div>
-                        <p className="text-gray-700 text-xs leading-relaxed">{member.bio}</p>
+                        <p className="text-gray-700 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed">{member.bio}</p>
                         <div className="bg-brand-maroon/5 p-3 rounded-lg border border-brand-maroon/10">
-                          <p className="text-xs text-gray-800 leading-relaxed font-medium">{member.philosophy}</p>
+                          <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-800 leading-relaxed font-medium">{member.philosophy}</p>
                         </div>
                         <div className="flex gap-2">
                           <a href={member.linkedin} className="w-8 h-8 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all"><Linkedin size={14} /></a>
@@ -161,7 +161,7 @@ export default function TeamShowcase() {
                     ) : (
                       <div className="pt-4 text-center">
                         <h3 className="text-lg font-playfair font-bold text-[#9B0000] tracking-wide uppercase">{member.name}</h3>
-                        <p className="text-xs text-gray-500 font-medium mt-1">{member.role}</p>
+                        <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-500 font-medium mt-1">{member.role}</p>
                       </div>
                     )}
                   </div>
@@ -174,7 +174,7 @@ export default function TeamShowcase() {
         {/* ========================================================================= */}
         {/* DESKTOP VIEW - Balanced, Ultra-Smooth Performance Component               */}
         {/* ========================================================================= */}
-        <div className="hidden lg:flex h-[500px] items-stretch justify-center mx-auto w-full">
+        <div className="hidden lg:flex h-[600px] items-stretch justify-center mx-auto w-full">
           {teamMembers.map((member) => {
             const isActive = member.id === activeId;
 
@@ -188,14 +188,14 @@ export default function TeamShowcase() {
                 onMouseEnter={() => setActiveId(member.id)}
               >
                 {/* Profile Image Sub-Structure Block */}
-                <div className="relative shrink-0 h-full flex flex-col w-[260px]">
+                <div className="relative shrink-0 h-full rounded-2xl flex flex-col w-[320px]">
                   {/* Photo Frame Container (Maintained exact balanced proportions) */}
-                  <div className="relative flex-1 w-full rounded-2xl overflow-hidden shadow-md border border-gray-100">
+                  <div className="relative flex-1 w-full rounded-2xl shadow-md border border-gray-100">
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover"
+                      className="object-cover rounded-[16px]"
                       priority={member.id === 1}
                     />
                   </div>
@@ -225,11 +225,11 @@ export default function TeamShowcase() {
                     opacity: isActive ? 1 : 0
                   }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col justify-center overflow-hidden bg-white h-full"
+                  className="flex flex-col justify-center  bg-white h-full"
                   style={{ minWidth: 0 }}
                 >
                   {/* Internal fixed layout width wrapper matching the exact container capacity */}
-                  <div className="px-8 py-4 flex flex-col justify-center gap-4 w-[420px] shrink-0 h-full">
+                  <div className="px-8 py-4 flex flex-col justify-start  gap-4 w-[420px] shrink-0 h-full">
                     <div>
                       <h2 className="text-[30px] leading-tight text-gray-900 font-bold font-serif">
                         {member.name}
@@ -245,22 +245,22 @@ export default function TeamShowcase() {
                       </div>
                     </div>
 
-                    <p className="text-[13px] font-semibold text-gray-600">
+                    <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md font-semibold text-gray-600">
                       {member.role}
                     </p>
 
-                    <p className="text-[13px] leading-relaxed italic text-[#800000]">
+                    <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed italic text-[#800000]">
                       {member.bio}
                     </p>
 
                     <div className="rounded-xl p-4 border border-red-100 bg-red-50/30">
-                      <p className="text-[13px] leading-relaxed text-gray-700">
+                      <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed text-gray-700">
                         {member.philosophy}
                       </p>
                     </div>
 
                     <a href="/about" className="block w-fit">
-                      <button className="px-8 py-2.5 rounded-full text-white text-[12px] font-semibold tracking-wide bg-[#800000] hover:opacity-90 active:scale-[0.98] transition-all shadow-sm">
+                      <button className="px-8 py-2.5 rounded-full text-white text-body-md-mobile md:text-body-md-tab lg:text-body-md font-semibold tracking-wide bg-[#800000] hover:opacity-90 active:scale-[0.98] transition-all shadow-sm">
                         More Info
                       </button>
                     </a>

@@ -204,10 +204,11 @@ export default function AnimatedHeader({
     }
 
     // This Regex splits the title but keeps the highlight phrase as its own entry in the array
-    const parts = title.split(new RegExp(`(${highlight})`, 'gi'));
+    const escaped = highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const parts = title.split(new RegExp(`(${escaped})`, 'gi'));
 
     return parts.map((part, index) => {
-      const isMatch = part.toLowerCase() === highlight.toLowerCase();
+      const isMatch = part === highlight;
       
       return isMatch ? (
         <span

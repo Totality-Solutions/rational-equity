@@ -6,25 +6,6 @@ import { motion } from "framer-motion";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
 import CTAButton from "@/components/common/CTAButton";
 
-// 🔹 Move this to a constants file later if it gets too large
-export const FUND_DATA = {
-  "india-long-only": {
-    title: "Indian Long-Only Fund",
-    description: "Concentrated exposure to high-quality Indian equities for long-term growth.",
-    color: "text-brand-maroon",
-  },
-  "gold-miners": {
-    title: "Gold & Silver Miners Fund",
-    description: "Strategic precious metals exposure for portfolio diversification.",
-    color: "text-brand-maroon", // Gold
-  },
-  "absolute-return": {
-    title: "Absolute Return Fund",
-    description: "Market-neutral strategies aiming for consistent positive returns.",
-    color: "text-brand-maroon",
-  }
-};
-
 interface ProductHeroProps {
   title: string;
   description: string;

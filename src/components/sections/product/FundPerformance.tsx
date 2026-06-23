@@ -8,61 +8,15 @@ import {
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import Image from 'next/image';
+import type { ChartDataPoint, KPIItem } from '@/data/Funds';
 
-const PERIODS = ['1M', '3M', '6M', '1Y', '2Y', '3Y', '5Y', 'SI'];
 
-const ALL_DATA: Record<string, { period: string; label: string; fund: number; bench: number }[]> = {
-  '1M': [{ period: '1M', label: '1 Month', fund: 4.20, bench: 3.10 }],
-  '3M': [
-    { period: '1M', label: '1 Month',  fund: 4.20, bench: 3.10 },
-    { period: '3M', label: '3 Months', fund: 8.75, bench: 6.40 },
-  ],
-  '6M': [
-    { period: '1M', label: '1 Month',  fund: 4.20,  bench: 3.10 },
-    { period: '3M', label: '3 Months', fund: 8.75,  bench: 6.40 },
-    { period: '6M', label: '6 Months', fund: 13.42, bench: 9.85 },
-  ],
-  '1Y': [
-    { period: '1M', label: '1 Month',  fund: 4.20,  bench: 3.10  },
-    { period: '3M', label: '3 Months', fund: 8.75,  bench: 6.40  },
-    { period: '6M', label: '6 Months', fund: 13.42, bench: 9.85  },
-    { period: '1Y', label: '1 Year',   fund: 21.68, bench: 15.32 },
-  ],
-  '2Y': [
-    { period: '1M', label: '1 Month',        fund: 4.20,  bench: 3.10  },
-    { period: '3M', label: '3 Months',       fund: 8.75,  bench: 6.40  },
-    { period: '6M', label: '6 Months',       fund: 13.42, bench: 9.85  },
-    { period: '1Y', label: '1 Year',         fund: 21.68, bench: 15.32 },
-    { period: '2Y', label: '2 Yrs (CAGR)',   fund: 22.91, bench: 16.47 },
-  ],
-  '3Y': [
-    { period: '1M', label: '1 Month',       fund: 4.20,  bench: 3.10  },
-    { period: '3M', label: '3 Months',      fund: 8.75,  bench: 6.40  },
-    { period: '6M', label: '6 Months',      fund: 13.42, bench: 9.85  },
-    { period: '1Y', label: '1 Year',        fund: 21.68, bench: 15.32 },
-    { period: '2Y', label: '2 Yrs (CAGR)',  fund: 22.91, bench: 16.47 },
-    { period: '3Y', label: '3 Yrs (CAGR)',  fund: 24.35, bench: 17.98 },
-  ],
-  '5Y': [
-    { period: '1M', label: '1 Month',       fund: 4.20,  bench: 3.10  },
-    { period: '3M', label: '3 Months',      fund: 8.75,  bench: 6.40  },
-    { period: '6M', label: '6 Months',      fund: 13.42, bench: 9.85  },
-    { period: '1Y', label: '1 Year',        fund: 21.68, bench: 15.32 },
-    { period: '2Y', label: '2 Yrs (CAGR)',  fund: 22.91, bench: 16.47 },
-    { period: '3Y', label: '3 Yrs (CAGR)',  fund: 24.35, bench: 17.98 },
-    { period: '5Y', label: '5 Yrs (CAGR)',  fund: 23.17, bench: 16.12 },
-  ],
-  'SI': [
-    { period: '1M', label: '1 Month',             fund: 4.20,  bench: 3.10  },
-    { period: '3M', label: '3 Months',            fund: 8.75,  bench: 6.40  },
-    { period: '6M', label: '6 Months',            fund: 13.42, bench: 9.85  },
-    { period: '1Y', label: '1 Year',              fund: 21.68, bench: 15.32 },
-    { period: '2Y', label: '2 Yrs (CAGR)',        fund: 22.91, bench: 16.47 },
-    { period: '3Y', label: '3 Yrs (CAGR)',        fund: 24.35, bench: 17.98 },
-    { period: '5Y', label: '5 Yrs (CAGR)',        fund: 23.17, bench: 16.12 },
-    { period: 'SI', label: 'Since Inception',     fund: 19.28, bench: 13.14 },
-  ],
-};
+
+interface FundPerformanceProps {
+  chartData: Record<string, ChartDataPoint[]>;
+  kpis: KPIItem[];
+  fundTitle?: string;
+}
 
 const FundLabel = ({ x, y, value }: any) => (
   <text x={x} y={y - 11} fill="#800000" fontSize={10} fontWeight={600} textAnchor="middle">
@@ -133,10 +87,13 @@ const KPICard = ({
   </div>
 );
 
-export default function FundPerformance() {
-  const [active, setActive] = useState('SI');
-  const data = ALL_DATA[active];
-  const activeRow = ALL_DATA['SI'].find((r) => r.period === active) ?? ALL_DATA['SI'].at(-1)!;
+export default function FundPerformance({ chartData, kpis, fundTitle = "RATIONAL India Equity Fund" }: FundPerformanceProps) {
+  const periods = React.useMemo(() => Object.keys(chartData), [chartData]);
+  const lastPeriod = periods[periods.length - 1] ?? 'SI';
+  const [active, setActive] = useState(lastPeriod);
+  const fullData = chartData[lastPeriod] ?? [];
+  const data = chartData[active] ?? [];
+  const activeRow = fullData.find((r) => r.period === active) ?? fullData.at(-1)!;
 
   return (
     <section className="bg-white py-12">
@@ -156,34 +113,35 @@ export default function FundPerformance() {
         </div>
 
         {/* KPI strip */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
-          <KPICard
-            icon="/images/icons/fund-nav.png"
-            label="Current NAV"
-            value="₹ 34.75"
-            sub="As on 31 May 2024"
-          />
-          <KPICard
-            icon="/images/icons/fund-return.png"
-            label={`Return (${activeRow.label})`}
-            value={`+${activeRow.fund.toFixed(2)}%`}
-            valueColor="text-green-700"
-            sub={`Benchmark: +${activeRow.bench.toFixed(2)}%`}
-          />
-          <KPICard
-            icon="/images/icons/fund-category.png"
-            label="Category"
-            value="Equity – Multi Cap"
-            sub="Nifty 500 TRI benchmark"
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          {kpis.map((kpi, i) => {
+            const item = kpi.isPeriodKpi
+              ? {
+                  ...kpi,
+                  label: kpi.label.replace('{period}', activeRow.label),
+                  value: kpi.value.replace('{fund}', `+${activeRow.fund.toFixed(2)}%`),
+                  sub: kpi.sub.replace('{bench}', `+${activeRow.bench.toFixed(2)}%`),
+                }
+              : kpi;
+            return (
+              <KPICard
+                key={i}
+                icon={item.icon}
+                label={item.label}
+                value={item.value}
+                valueColor={item.valueColor}
+                sub={item.sub}
+              />
+            );
+          })}
         </div>
 
         {/* Table + Chart */}
-        <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.4fr_1fr] gap-4">
 
           {/* Returns table */}
           <div className="bg-white border border-[#E8E2D8] rounded-2xl overflow-hidden">
-            <div className="grid grid-cols-[1fr_72px_84px] bg-[#F9F5F5] border-b border-[#EDE8E0] px-4 py-2.5">
+            <div className="grid grid-cols-[1fr_0.6fr_0.6fr] bg-[#F9F5F5] border-b border-[#EDE8E0] px-4 py-2.5">
               {['Period', 'Fund', 'Benchmark'].map((h, i) => (
                 <span
                   key={h}
@@ -193,13 +151,13 @@ export default function FundPerformance() {
                 </span>
               ))}
             </div>
-            {ALL_DATA['SI'].map((row, i) => {
+            {fullData.map((row, i) => {
               const isActive = row.period === active;
               return (
                 <div
                   key={row.period}
                   onClick={() => setActive(row.period)}
-                  className={`grid grid-cols-[1fr_72px_84px] px-4 py-2.5 border-b border-[#F5F1EC] last:border-0 cursor-pointer transition-colors duration-150
+                  className={`grid grid-cols-[1fr_0.6fr_0.6fr] px-4 py-2.5 border-b border-[#F5F1EC] last:border-0 cursor-pointer transition-colors duration-150
                     ${isActive ? 'bg-[#FDF0F0]' : i % 2 === 1 ? 'bg-[#FDFCFB] hover:bg-[#FDF6F6]' : 'hover:bg-[#FDF6F6]'}`}
                 >
                   <span className={`text-[13px] ${isActive ? 'text-brand-maroon font-semibold' : 'text-[#2c2c2a]'}`}>
@@ -227,7 +185,7 @@ export default function FundPerformance() {
               <div className="flex gap-5">
                 <span className="flex items-center gap-2 text-xs text-[#444441]">
                   <span className="w-7 h-[2.5px] bg-brand-maroon rounded-full inline-block" />
-                  RATIONAL India Equity Fund
+                  {fundTitle}
                 </span>
                 <span className="flex items-center gap-2 text-xs text-[#444441]">
                   <span className="w-7 border-t-2 border-dashed border-[#B4B2A9] inline-block" />
@@ -237,7 +195,7 @@ export default function FundPerformance() {
 
               {/* Period buttons */}
               <div className="flex flex-wrap gap-1.5">
-                {PERIODS.map((p) => (
+                {periods.map((p) => (
                   <button
                     key={p}
                     onClick={() => setActive(p)}

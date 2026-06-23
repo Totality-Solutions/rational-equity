@@ -8,7 +8,7 @@ export default function AboutHero() {
         }}
       />
       
-      <div className="relative max-w-4xl mx-auto text-center space-y-6 ">
+      <div className="relative max-w-5xl mx-auto text-center space-y-6 ">
         <h1 className="text-h1-mobile md:text-h1-tab lg:text-h1 leading-tight font-playfair">
           We invest our own{" "} <br/>
           <span className="italic font-playfair text-[#8B0000]">capital first.</span>

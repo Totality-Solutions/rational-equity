@@ -43,8 +43,11 @@ export default function FundPage() {
       </section>
 
       <section id="performance">
-        {/* <FundPerformance data={fund.performance} /> */}
-        <FundPerformance />
+        <FundPerformance
+          chartData={fund.performance.chartData}
+          kpis={fund.performance.kpis}
+          fundTitle={fund.title}
+        />
       </section>
 
       <section id="cta" className='max-w-[90rem] mx-auto'>
@@ -52,7 +55,13 @@ export default function FundPage() {
       </section>
 
       <section id="philosophy">
-        <Philosophy points={fund.philosophyPoints || []} />
+        <Philosophy
+          points={fund.philosophyPoints || []}
+          title={fund.philosophyTitle}
+          highlight={fund.philosophyHighlight}
+          highlightColor={fund.philosophyHighlightColor}
+          subheading={fund.philosophySubheading}
+        />
       </section>
 
       <section id="documents">

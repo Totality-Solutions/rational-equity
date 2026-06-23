@@ -40,7 +40,14 @@ export default function Home() {
         <AboutSection />
         <InvestmentSolutions />
         <div className='max-w-[90rem] mx-auto'>
-          <ReadyToStart />
+           <ReadyToStart
+              title="Ready to Start Investing?"
+              description="Join a community of investors who trust us with their long-term wealth creation journey."
+              primaryCTA={{
+                text: "Invest With Us",
+                href: "/contact",
+              }}
+            />
         </div>
         <TeamShowcase />
         <Journey />
