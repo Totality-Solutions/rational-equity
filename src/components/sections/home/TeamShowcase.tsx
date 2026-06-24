@@ -106,9 +106,9 @@ export default function TeamShowcase() {
                           <a href={member.linkedin} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
                             <Linkedin size={16} />
                           </a>
-                          <a href={member.twitter} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
+                          {/* <a href={member.twitter} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
                             <Twitter size={16} />
-                          </a>
+                          </a> */}
                         </div>
                       </div>
                     </motion.div>
@@ -156,7 +156,7 @@ export default function TeamShowcase() {
                         </div>
                         <div className="flex gap-2">
                           <a href={member.linkedin} className="w-8 h-8 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all"><Linkedin size={14} /></a>
-                          <a href={member.twitter} className="w-8 h-8 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all"><Twitter size={14} /></a>
+                          {/* <a href={member.twitter} className="w-8 h-8 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all"><Twitter size={14} /></a> */}
                         </div>
                       </div>
                     ) : (
@@ -240,9 +240,9 @@ export default function TeamShowcase() {
                         <a href={member.linkedin} className="flex items-center justify-center w-8 h-8 rounded-full border border-red-200 text-[#800000] hover:bg-red-50 transition-colors">
                           <Linkedin size={14} />
                         </a>
-                        <a href={member.twitter} className="flex items-center justify-center w-8 h-8 rounded-full border border-red-200 text-[#800000] hover:bg-red-50 transition-colors">
-                          <Twitter size={14} />
-                        </a>
+                          <a href={member.twitter} className="flex items-center justify-center w-8 h-8 rounded-full border border-red-200 text-[#800000] hover:bg-red-50 transition-colors">
+                            <Twitter size={14} />
+                          </a>
                       </div>
                     </div>
 
