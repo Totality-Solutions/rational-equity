@@ -15,6 +15,8 @@
   ========================= */
   --brand-maroon: #9B0000;
   --brand-maroon-hover: #7B0000;
+  
+  --brand-grey:#f0eeec;
 
   /* =========================
      LETTER SPACING
@@ -72,6 +74,8 @@
   /* Colors */
   --color-brand-maroon: var(--brand-maroon);
   --color-brand-maroon-hover: var(--brand-maroon-hover);
+
+  --color-brand-grey: var(--brand-grey);
 
   /* =========================
      DESKTOP

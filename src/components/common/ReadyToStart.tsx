@@ -18,14 +18,14 @@ export interface ReadyToStartProps {
 }
 
 const defaultPrimaryCTA: CTAConfig = {
-  text: "Invest With Us",
-  href: "/invest-with-us",
+  text: "Get In Touch",
+  href: "/contact",
   iconClassName: "invert",
 };
 
 export default function ReadyToStart({
   title = "Ready to Start Investing?",
-  description = "Join thousands of investors who trust us with their wealth creation journey",
+  description = "Speak to our team to receive the fund presentation and PPM.",
   primaryCTA,
   secondaryCTA,
 }: ReadyToStartProps) {

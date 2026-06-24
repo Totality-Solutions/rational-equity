@@ -100,23 +100,25 @@ export default function Navbar() {
 
                     {/* Desktop Sub Menu Dropdown */}
                     {link.subMenu && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full w-[300px] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-4 transition-all duration-300 z-50">
+                      <div className="absolute left-1/2 -translate-x-1/2 top-full w-[320px] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <ul className="bg-white border border-gray-100 rounded-xl shadow-2xl overflow-hidden p-4">
-                          {link.subMenu.map((sub, index) => (
+                          {link.subMenu.map((sub) => (
+                            <Link
+                                key={sub.href}
+                                href={sub.href}>
                             <li
-                              key={sub.href}
-                              className={`flex items-center justify-start gap-4 hover:scale-102 hover:bg-[#ffe4e6] hover:text-brand-maroon hover:font-weight-bold px-4 py-4 hover:rounded-md ${
+                              className={`flex items-center justify-start gap-4  hover:bg-[#ffe4e6] hover:text-brand-maroon hover:font-weight-bold px-4 py-4 hover:rounded-md ${
                                 isActiveLink(sub) ? 'bg-[#ffe4e6] text-brand-maroon font-weight-bold rounded-md' : ''
-                              } ${index !== link.subMenu.length - 1 ? '' : ''}`}
+                              }`}
                             >
                               <Image src={sub.img} alt="Arrow right" width={100} height={100} className="w-7 h-7" />
-                              <Link
-                                href={sub.href}
+                              <div
                                 className="block text-body-md text-gray-800 font-sans font-weight-medium text-center transition-all duration-300"
                               >
                                 {sub.label}
-                              </Link>
+                              </div>
                             </li>
+                            </Link>
                           ))}
                         </ul>
                       </div>

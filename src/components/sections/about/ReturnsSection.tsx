@@ -42,7 +42,7 @@ export default function ReturnsSection() {
             highlight="speak for themselves."
             highlightColor="#9B0000"
             variant="light"
-            titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+            titleClassName="text-black font-semibold text-h2-mobile md:text-h2-tab lg:text-h2 "
             subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
           />
         </div>
@@ -60,7 +60,7 @@ export default function ReturnsSection() {
 
               <div className="relative px-8 py-4">
                 <p
-                  className="text-5xl md:text-6xl font-light mb-8"
+                  className="text-5xl md:text-6xl font-medium mb-8"
                   style={{
                     fontFamily: "'Playfair Display', serif",
                     color: fund.color,
@@ -69,7 +69,7 @@ export default function ReturnsSection() {
                   {fund.percentage}
                 </p>
 
-                <p className="text-sm text-gray-500 mb-2">{fund.subtitle}</p>
+                <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-500 mb-2">{fund.subtitle}</p>
                 <p
                   className="text-lg font-medium text-gray-900"
                   style={{ fontFamily: "'Playfair Display', serif" }}
@@ -78,7 +78,7 @@ export default function ReturnsSection() {
                 </p>
 
                 <span
-                  className="absolute bottom-0 right-0 text-7xl md:text-8xl font-light opacity-10 select-none"
+                  className="absolute bottom-0 right-0 text-7xl md:text-8xl font-regular opacity-10 select-none"
                   style={{
                     fontFamily: "'Playfair Display', serif",
                     color: fund.color,

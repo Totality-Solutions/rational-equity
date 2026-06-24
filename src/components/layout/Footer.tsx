@@ -48,9 +48,9 @@ export default function Footer() {
                 className="h-[50px] md:h-[65px] w-auto object-contain invert"
               />
             </Link>
+            <h2 className='text-body-lg font-playfair uppercase text-white'>Rational Equity and Asset Managers</h2>
             <p className="text-body-md leading-relaxed max-w-sm text-gray-400 font-sans">
-              A leading asset management company committed to delivering superior risk-adjusted returns
-              through disciplined investment strategies.
+              A SEBI and GIFT City-registered fund based in Mumbai and GIFT City.
             </p>
             <div className="flex gap-4 mt-8">
               {/* Social Icons */}
@@ -113,17 +113,18 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <MapPin className="text-white shrink-0" size={20} />
                 <span className="text-gray-400">
-                  123 Financial District,<br />
-                  Mumbai, Maharashtra 400001
+                  Lower Parel, Mumbai
                 </span>
               </li>
-              <li className="flex gap-3 text-gray-300">
+              <li className="lg:flex gap-3 text-gray-300">
                 <Phone className="text-white shrink-0" size={20} /> 
-                <span>+91 22 1234 5678</span>
+                <span>+91 99119 00096</span>|
+                <span>+91 99872 61105</span>
               </li>
               <li className="flex gap-3 text-gray-300">
                 <Mail className="text-white shrink-0" size={20} /> 
-                <span>info@rationalamc.com</span>
+                <span>jaba@repllp.com</span>|
+                <span>vikram@repllp.com</span>
               </li>
             </ul>
           </div>
@@ -132,7 +133,7 @@ export default function Footer() {
         {/* Legal Bar */}
         <div className="border-t border-gray-900 pt-10 text-center">
           <p className="text-xs md:text-sm tracking-[0.01em] text-gray-300 mb-6 uppercase font-sans">
-            © {year} RATIONAL ASSET MANAGEMENT COMPANY. ALL RIGHTS RESERVED.
+            © {year}  Rational Equity Partners LLP. ALL RIGHTS RESERVED.
           </p>
 
           <div className="flex justify-center flex-wrap gap-6 text-body-md text-gray-400 mb-8 font-sans">
@@ -144,7 +145,7 @@ export default function Footer() {
           </div>
 
           <p className="text-[12px] text-gray-300 max-w-3xl mx-auto leading-relaxed font-sans">
-            Mutual fund investments are subject to market risks. Please read all scheme related documents carefully before investing.
+            Investments are subject to market risk. Read all scheme-related documents carefully. Past performance is not indicative of future results.
           </p>
         </div>
       </Container>

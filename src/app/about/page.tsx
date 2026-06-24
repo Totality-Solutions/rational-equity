@@ -31,7 +31,14 @@ export default function AboutPage() {
       <AboutHero />
       <ReturnsSection />
       <div className='max-w-[90rem] mx-auto'>
-        <ReadyToStart />
+        <ReadyToStart
+        title="Ready to invest alongside us?"
+        description="Our capital is always in the fund before we ask you to invest."
+        primaryCTA={{
+          text: "Invest With Us",
+          href: "/contact",
+        }}
+      />
       </div>
       <StorySection />
       <InvestorStructure />
@@ -39,14 +46,14 @@ export default function AboutPage() {
       <TeamSection />
       <Journey />
       <ReadyToStart
-        title="Ready to Speak With Our Team?"
-        description="Schedule a call with one of our advisors."
+        title="Ready to invest with people who invest with you?"
+        description="Join investors who trust us with their long-term wealth creation — because our capital is always in alongside theirs."
         primaryCTA={{
-          text: "Book a Call",
-          href: "/contact",
+          text: "Invest With Us",
+          href: "/invest-with-us",
         }}
         secondaryCTA={{
-          text: "Learn More",
+          text: "Explore Our Fund",
           href: "/about",
         }}
       />
