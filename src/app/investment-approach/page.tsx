@@ -2,10 +2,15 @@
 import type { Metadata } from 'next';
 // We move the 'use client' parts into a separate view or keep them in the components
 import ApproachHero from '@/components/sections/investment-approach/ApproachHero';
+import ApproachPrinciples from '@/components/sections/investment-approach/ApproachPrinciples';
+import AnalyticalLenses from '@/components/sections/investment-approach/AnalyticalLenses';
+import CapitalAllocation from '@/components/sections/investment-approach/CapitalAllocation';
+import InsightToInvestment from '@/components/sections/investment-approach/InsightToInvestment';
 import ApproachFeatures from '@/components/sections/investment-approach/ApproachFeatures';
 import InvestmentProcess from '@/components/sections/investment-approach/InvestmentProcess';
 import WhatSetsUsApart from '@/components/sections/investment-approach/WhatSetsUsApart';
 import RiskManagement from '@/components/sections/investment-approach/RiskManagement';
+import ReadyToStart from '@/components/common/ReadyToStart';
 
 // ─── PER-PAGE SEO ──────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -27,10 +32,38 @@ export default function InvestmentApproachPage() {
   return (
     <main className="min-h-screen bg-white">
       <ApproachHero />
-      <ApproachFeatures />
+      <ApproachPrinciples />
+      <AnalyticalLenses />
+      <div className='border-t border-[#202020] '>
+        <ReadyToStart
+          title="Convinced by the approach?"
+          description="Speak to our team to explore which fund suits your investment goals"
+          primaryCTA={{
+            text: "Get in touch",
+            href: "/contact",
+          }}
+        />
+      </div>
+      <InsightToInvestment />
+      <CapitalAllocation />
+      <div className='border-t border-[#202020] '>
+        <ReadyToStart
+          title="Ready to invest with rational conviction?"
+          description="Join investors who trust us with their long-term wealth creation — because our capital is always in alongside theirs."
+          primaryCTA={{
+            text: "Invest With Us",
+            href: "/invest-with-us",
+          }}
+          secondaryCTA={{
+            text: "About the team",
+            href: "/about",
+          }}
+        />
+      </div>
+      {/* <ApproachFeatures />
       <InvestmentProcess />
       <WhatSetsUsApart/>
-      <RiskManagement />
+      <RiskManagement /> */}
     </main>
   );
 }

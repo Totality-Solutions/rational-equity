@@ -14,7 +14,7 @@ const NAV_LINKS = [
     subMenu: [
       { label: 'India Long-Only Fund', href: '/product/india-long-only', img: '/images/icons/india-long-only-fund.svg' },
       { label: 'Gold & Silver Miners Fund', href: '/product/gold-silver-miners', img: '/images/icons/gold-&-silver-miners-fund.svg' },
-      { label: 'Absolute Return Funds', href: '/product/absolute-return', img: '/images/icons/absolute-return-fund.svg' },
+      // { label: 'Absolute Return Funds', href: '/product/absolute-return', img: '/images/icons/absolute-return-fund.svg' },
     ]
   },
   { label: 'Investment Approach', href: '/investment-approach' },

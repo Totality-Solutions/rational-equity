@@ -23,7 +23,7 @@ const QUICK_LINKS = [
 const PRODUCTS = [
   { label: 'India Long-Only Fund', href: '/product/india-long-only' },
   { label: 'Gold & Silver Miners Fund', href: '/product/gold-silver-miners' },
-  { label: 'Absolute Return Fund', href: '/product/absolute-return' },
+  // { label: 'Absolute Return Fund', href: '/product/absolute-return' },
   { label: 'Invest With Us', href: '/invest-with-us' },
 ];
 
