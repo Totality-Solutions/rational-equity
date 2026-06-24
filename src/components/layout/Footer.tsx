@@ -70,7 +70,7 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div className="md:col-span-2">
-            <h3 className="text-white font-bold mb-6">Quick Links</h3>
+            <h3 className="text-white font-bold mb-6 uppercase">Explore</h3>
             <ul className="space-y-4">
               {QUICK_LINKS.map((link) => (
                 <li key={link.label}>
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {/* Column 3: Products */}
           <div className="md:col-span-2">
-            <h3 className="text-white  font-bold mb-6">Products</h3>
+            <h3 className="text-white  font-bold mb-6 uppercase">Fund</h3>
             <ul className="space-y-4">
               {PRODUCTS.map((link) => (
                 <li key={link.label}>
@@ -108,7 +108,7 @@ export default function Footer() {
 
           {/* Column 4: Contact */}
           <div className="md:col-span-3">
-            <h3 className="text-white font-bold mb-5 md:mb-6 font-sans">Contact Us</h3>
+            <h3 className="text-white font-bold mb-5 md:mb-6 font-sans uppercase">Contact</h3>
             <ul className="space-y-4 md:space-y-5 text-[16px] font-sans">
               <li className="flex items-center gap-3">
                 <MapPin className="text-white shrink-0" size={20} />
@@ -144,7 +144,7 @@ export default function Footer() {
             <Link href="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
           </div>
 
-          <p className="text-[12px] text-gray-300 max-w-3xl mx-auto leading-relaxed font-sans">
+          <p className="text-sm text-gray-300 max-w-3xl mx-auto leading-relaxed font-sans">
             Investments are subject to market risk. Read all scheme-related documents carefully. Past performance is not indicative of future results.
           </p>
         </div>

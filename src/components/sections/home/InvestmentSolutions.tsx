@@ -138,119 +138,83 @@ export default function InvestmentSolutions() {
 
           {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+  {FUNDS.map((fund, index) => (
+    <motion.div
+      key={fund.title}
+      initial={{ scaleY: 0, opacity: 0 }}
+      whileInView={{ scaleY: 1, opacity: 1 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
+        delay: index * 0.1,
+      }}
+      style={{
+        originY: 0, // all cards animate from top — consistent across all
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+        WebkitFontSmoothing: 'antialiased',
+      }}
+      className="relative group h-full"
+    >
+      <div className="relative h-full rounded-[24px] overflow-hidden flex flex-col shadow-sm bg-white">
+        
+        {/* Hover Maroon Fade */}
+        <div
+          className={`absolute inset-0 z-10 transition-opacity duration-500 pointer-events-none ${
+            isMobile ? 'opacity-40' : 'opacity-0 group-hover:opacity-100'
+          }`}
+          style={{
+            background:
+              'linear-gradient(90deg, rgba(139,0,0,0.12) 0%, rgba(139,0,0,0.04) 40%, transparent 60%)',
+          }}
+        />
 
-            {FUNDS.map((fund, index) => (
-              <motion.div
-                key={fund.title}
-                initial={{ scaleY: 0, opacity: 0 }}
-                whileInView={{ scaleY: 1, opacity: 1 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: isMobile ? index * 0.1 : 0,
-                }}
-                style={{
-                  originY: isMobile
-                    ? 0
-                    : index === 1
-                    ? 0
-                    : 1,
-                  willChange: 'transform',
-                  backfaceVisibility: 'hidden',
-                  WebkitFontSmoothing: 'antialiased',
-                }}
-                className="relative group h-full"
-              >
-                <div
-                  className={`
-                    relative
-                    h-full
-                    rounded-[24px]
-                    overflow-hidden
-                    flex
-                    flex-col
-                    shadow-sm
-                    ${
-                      index === 1
-                        ? 'bg-white'
-                        : 'bg-white'
-                    }
-                  `}
-                >
-                  {/* Hover Maroon Fade */}
-                  <div
-                    className={`absolute inset-0 z-10 transition-opacity duration-500 pointer-events-none ${
-                      isMobile
-                        ? 'opacity-40'
-                        : 'opacity-0 group-hover:opacity-100'
-                    }`}
-                    style={{
-                      background:
-                        'linear-gradient(90deg, rgba(139,0,0,0.12) 0%, rgba(139,0,0,0.04) 40%, transparent 60%)',
-                    }}
-                  />
+        <div className="relative z-20 p-8 flex flex-col flex-1">
 
-                  <div className="relative z-20 p-8 flex flex-col flex-1">
-
-                    {/* Header */}
-                    <div className="flex items-center gap-4 mb-8">
-                      <Image
-                        src={fund.img}
-                        alt={fund.title}
-                        width={28}
-                        height={28}
-                      />
-
-                      <h3 className="font-serif text-[20px] leading-tight text-black transition-colors group-hover:text-[#800000]">
-                        {fund.title}
-                      </h3>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-black/75 text-body-md leading-relaxed mb-8">
-                      {fund.description}
-                    </p>
-
-                    {/* Bullets */}
-                    <ul className="space-y-2 text-black/75 text-body-md mb-10">
-                      {fund.bullets.map((bullet) => (
-                        <li key={bullet}>• {bullet}</li>
-                      ))}
-                    </ul>
-
-                    {/* Bottom */}
-                    <div className="mt-auto items-center">
-
-                      {/* <div className="bg-[#E9DEDE] rounded-full px-5 py-2 flex border-l-4 border-brand-maroon-hover items-center gap-4"> */}
-                        <div className="bg-[#E9DEDE] rounded-full px-5 py-2 flex border-l-4 border-brand-maroon-hover items-center gap-2">
-                          <span className="font-serif font-black text-brand-maroon-hover text-[18px]">
-                            {fund.returns}
-                          </span>
-                          <span className="text-[12px] text-[#555]">
-                            {fund.returnsLabel}
-                          </span>
-                        </div>
-
-                        {/* <span className="text-[12px] text-[#555]">
-                          3 Year Returns
-                        </span>
-                      </div> */}
-
-                      <Link href={fund.href}>
-                        <button className="w-full mt-8 py-2 rounded-full bg-brand-maroon text-white text-[16px] font-normal transition-all hover:bg-[#9B0000] cursor-pointer">
-                          Download Investor Presentation
-                        </button>
-                      </Link>
-
-                    </div>
-
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-
+          {/* Header */}
+          <div className="flex items-center gap-4 mb-8">
+            <Image src={fund.img} alt={fund.title} width={28} height={28} />
+            <h3 className="font-serif text-[20px] leading-tight text-black transition-colors group-hover:text-[#800000]">
+              {fund.title}
+            </h3>
           </div>
+
+          {/* Description */}
+          <p className="text-black/75 text-body-md leading-relaxed mb-8">
+            {fund.description}
+          </p>
+
+          {/* Bullets */}
+          <ul className="space-y-2 text-black/75 text-body-md mb-10">
+            {fund.bullets.map((bullet) => (
+              <li key={bullet}>• {bullet}</li>
+            ))}
+          </ul>
+
+          {/* Bottom */}
+          <div className="mt-auto items-center">
+            <div className="bg-[#E9DEDE] rounded-full px-5 py-2 flex border-l-4 border-brand-maroon-hover items-center gap-2">
+              <span className="font-serif font-black text-brand-maroon-hover text-[18px]">
+                {fund.returns}
+              </span>
+              <span className="text-[12px] text-[#555]">
+                {fund.returnsLabel}
+              </span>
+            </div>
+
+            <Link href={fund.href}>
+              <button className="w-full mt-8 py-2 rounded-full bg-brand-maroon text-white text-[16px] font-normal transition-all hover:bg-[#9B0000] cursor-pointer">
+                Download Investor Presentation
+              </button>
+            </Link>
+          </div>
+
+        </div>
+      </div>
+    </motion.div>
+  ))}
+</div>
         </div>
       </div>
     </Container>
