@@ -144,7 +144,7 @@ export default function Footer() {
             <Link href="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
           </div>
 
-          <p className="text-sm text-gray-300 max-w-3xl mx-auto leading-relaxed font-sans">
+          <p className="text-sm text-gray-300 max-w-4xl mx-auto leading-relaxed font-sans">
             Investments are subject to market risk. Read all scheme-related documents carefully. Past performance is not indicative of future results.
           </p>
         </div>
