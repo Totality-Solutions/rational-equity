@@ -9,28 +9,28 @@ const contactDetails = [
   {
     icon: <MapPin className="w-5 h-5" />,
     label: "Visit Us",
-    value: "123 Financial District",
-    subValue: "Mumbai, Maharashtra 400001",
+    value: "Lower Parel",
+    subValue: "Mumbai, Maharashtra 400013",
   },
   {
     icon: <Phone className="w-5 h-5" />,
     label: "Call Us",
-    value: "+91 22 1234 5678",
+    value: "+91 99119 00096 | +91 99872 61105",
     
     subValue: "Mon – Fri, 9:30 AM – 6:00 PM",
   },
   {
     icon: <Mail className="w-5 h-5" />,
     label: "Email Us",
-    value: "info@rationalamc.com",
+    value: "jaba@repllp.com | vikram@repllp.com",
     subValue: "We reply within 24 hours",
   },
-  {
-    icon: <Clock className="w-5 h-5" />,
-    label: "Office Hours",
-    value: "Mon – Fri: 9:30 AM – 6:00 PM",
-    subValue: "Sat: 10:00 AM – 2:00 PM",
-  },
+  // {
+  //   icon: <Clock className="w-5 h-5" />,
+  //   label: "Office Hours",
+  //   value: "Mon – Fri: 9:30 AM – 6:00 PM",
+  //   subValue: "Sat: 10:00 AM – 2:00 PM",
+  // },
 ];
 
 const cardVariants: Variants = {
@@ -52,13 +52,13 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto">
         
         {/* Top Navigation */}
-        <Link 
+        {/* <Link 
           href="/" 
           className="flex items-center gap-2 text-[#000000]/50 hover:text-gray-600 transition-colors text-sm mb-12 md:mb-20"
         >
           <ArrowLeft size={16} />
           Back to Home
-        </Link>
+        </Link> */}
 
         {/* --- INTEGRATED ANIMATED HEADER --- */}
         <AnimatedHeader 
@@ -66,12 +66,14 @@ export default function ContactSection() {
           highlight="Touch"
           highlightColor="#9B0000"
           subheading="Have questions about our funds or need help getting started? Our team is ready to assist you."
+          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
           variant="light"
-          className="mb-16 md:mb-24 !font-semibold"
+          className="mb-16 md:mb-24"
+          titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
         />
 
         {/* Info Cards Grid - Animated Staggered */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {contactDetails.map((item, index) => (
             <motion.div 
               key={index} 

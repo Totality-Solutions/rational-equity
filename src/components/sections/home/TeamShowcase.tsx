@@ -7,35 +7,36 @@ import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import { Linkedin, Twitter } from 'lucide-react';
 
+
 export const teamMembers = [
   {
     id: 1,
-    role: 'Managing Partner',
-    image: '/images/team/krish.jpg',
-    name: 'Krish Iyer',
-    bio: 'Krish Iyer was the Founder of Aequitas Investments',
-    philosophy: 'Krish Iyer is a global executive with over four decades of experience across six countries in retail, banking & finance and consumption sectors. He is currently the Managing Partner of Rational Equity Partners LLP & also an Independent Director on the Board of Proctor & Gamble Health & Hygiene Limited.',
-    linkedin: '#',
+    role: 'Chief Investment Officer',
+    image: '/images/team/vivek.jpeg',
+    name: 'Vivek Iyer',
+    bio: 'Chief Investment Officer',
+    philosophy: 'Vivek is the Founder and Partner at Rational - With over 10 years of experience in investment management and prior to that leading two start-ups, Vivek founded Rational with the aim of providing other investors the same opportunity of compunding wealth through dedicated capital allocation as he would create for himself. Vivek is diligent about creating opportunities for investors, is principled about safeguarding capital and compounding without unnecessary risks.',
+    linkedin: 'https://www.linkedin.com/in/vivek-iyer-69145824?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
     twitter: '#',
   },
   {
     id: 2,
-    role: 'Partner',
-    image: '/images/team/vivek.png',
-    name: 'Vivek Iyer',
-    bio: 'Vivek Iyer is a Partner at Rational Equity',
-    philosophy: 'Vivek Iyer is an active equity investor with 7 years of experience investing in equity markets.',
-    linkedin: '#',
+    role: 'Fund Manager & Head of Research',
+    image: '/images/team/vishal.jpeg',
+    name: 'Vishal Iyer',
+    bio: 'Fund Manager & Head of Research',
+    philosophy: 'Vishal is a Partner at Rational - With over 12 years of experience in investment management across both sell and buy side, Vishal brings with him a deep & rich understanding of equities, commodities & credit. Vishal has spent time with JP Morgan and RBC BlueBay creating a solid foundation of building thesis in assets and equities based on deep research, discplined process and pursuit of less-known opportunities',
+    linkedin: 'https://www.linkedin.com/in/vishaliyer?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
     twitter: '#',
   },
   {
     id: 3,
-    role: 'COO',
-    image: '/images/team/jaba.jpg',
-    name: 'Jaba Misra',
-    bio: 'Jaba Misra is the Chief Operating Officer at Rational Equity',
-    philosophy: 'Jaba Misra is an ex-strategy consultant & macroeconomist with 8+ years of experience.',
-    linkedin: '#',
+    role: 'Chief Business Officer',
+    image: '/images/team/vikram.jpeg',
+    name: 'Vikram Advani',
+    bio: 'Chief Business Officer',
+    philosophy: "With over 20 years of experience in the financial services industry, Vikram is among the most seasoned professionals in India's asset management space. He has held leadership positions at some of the country's largest financial institutions, including Aditya Birla AMC and Old Bridge where he led sales and distribution and built a strong book for them. Vikram is taking Rational to its next level of growth while maintaining long-term partnerships with clients keeping an investor-first philosophy.",
+    linkedin: 'https://www.linkedin.com/in/vikram-advani-41a50117?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
     twitter: '#',
   },
 ];
@@ -51,7 +52,7 @@ export default function TeamShowcase() {
           title="Our Team"
           highlight="Team"
           highlightColor="#9B0000"
-          subheading="Our Team of Dedicated Talent Behind the Agency."
+          subheading="Our team of dedicated talent."
           variant="light"
           titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
@@ -97,7 +98,7 @@ export default function TeamShowcase() {
                       className="overflow-hidden px-2"
                     >
                       <div className="pt-4 space-y-4 text-left">
-                        <p className="text-gray-600 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed">{member.bio}</p>
+                        {/* <p className="text-gray-600 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed">{member.bio}</p> */}
                         <div className="bg-brand-maroon/5 p-4 rounded-xl border border-brand-maroon/10">
                           <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-800 leading-relaxed font-medium">{member.philosophy}</p>
                         </div>
@@ -149,7 +150,7 @@ export default function TeamShowcase() {
                           <h2 className="text-2xl font-bold text-gray-900 capitalize">{member.name}</h2>
                           <p className="font-semibold text-body-md-mobile md:text-body-md-tab lg:text-body-md text-brand-maroon uppercase tracking-wider mt-0.5">{member.role}</p>
                         </div>
-                        <p className="text-gray-700 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed">{member.bio}</p>
+                        {/* <p className="text-gray-700 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed">{member.bio}</p> */}
                         <div className="bg-brand-maroon/5 p-3 rounded-lg border border-brand-maroon/10">
                           <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-800 leading-relaxed font-medium">{member.philosophy}</p>
                         </div>
@@ -211,7 +212,7 @@ export default function TeamShowcase() {
                     <h3 className="text-[16px] font-playfair font-semibold tracking-wide uppercase text-center text-[#9B0000] truncate w-full">
                       {member.name}
                     </h3>
-                    <p className="text-[12px] mt-1 text-center text-gray-500 font-medium truncate w-full">
+                    <p className="text-sm mt-1 text-center text-gray-500 font-medium truncate w-full">
                       {member.role}
                     </p>
                   </motion.div>
@@ -249,9 +250,9 @@ export default function TeamShowcase() {
                       {member.role}
                     </p>
 
-                    <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed italic text-[#800000]">
+                    {/* <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed italic text-[#800000]">
                       {member.bio}
-                    </p>
+                    </p> */}
 
                     <div className="rounded-xl p-4 border border-red-100 bg-red-50/30">
                       <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed text-gray-700">
