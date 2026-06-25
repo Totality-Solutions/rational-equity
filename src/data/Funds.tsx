@@ -66,6 +66,7 @@ export interface FundDetails {
   title: string;
   description: string;
   color: string;
+  ctaTitle1:string;
 
   overviewTitle?: string;
   overviewTitleItalics?: string;
@@ -114,6 +115,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
     title: "Indian Long-Only Fund",
     description: "A multi-cap long-only Category III open-ended AIF to invest in the undervalued and under-priced listed equities in the public Indian markets with a heavy tilt towards the mid and small cap market. This is a good investment for Indians and NRIs who believe in the India story and are looking to invest with a long-term horizon in the Indian market.",
     color: "text-brand-maroon",
+    ctaTitle1:"Ready to Start Investing?",
     overviewTitle:"Conviction-driven investing",
     overviewTitleItalics:"in India's growth story.",
     overviewDesc: ["Our India Long-Only Fund is designed to capture the highest-return opportunities within this theme — primarily in small and mid-cap companies that are under-researched and mispriced by the market. We are sector-agnostic. We go where the conviction is strongest and hold positions through the inevitable volatility that comes with high-conviction investing."],
@@ -243,6 +245,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
     title: "Gold & Silver Miners' Fund",
     description: "A focused vehicle for strategic exposure to globally listed gold and silver mining companies — operated from GIFT City. No ETFs, no other commodities. Pure miners, pure conviction. Open to Indian residents and global investors.",
     color: "text-brand-maroon",
+    ctaTitle1:"Ready to invest in the gold cycle?",
     overviewTitle:"Strategic exposure to the global",
     overviewTitleItalics:"precious metals opportunity.",
     overviewDesc: ["In late 2023, we identified a structural shift in the global monetary order — central banks, led by China, were quietly but decisively selling their holdings of the US Treasury and replacing that with gold reserves. Fundamentally, the US economy was struggling and amidst the global political uncertainty, the faith in the US$ was declining. We realised gold would be a great bet in such time. Simultaneously, gold and silver mining equities were trading at multi-decade lows relative to the underlying commodity price, creating an extraordinary asymmetric opportunity. Which led us to use miners as a proxy for gold and silver to ensure our returns are exponential vs the commodities itself. We invested personally first. After validating the thesis with our own capital, we launched the GIFT City Fund in June 2025 to give investors structured access to this opportunity. The fund invests exclusively in listed mining companies globally — no ETFs, no physical gold, no other commodities."],
@@ -355,6 +358,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
     title: "Absolute Return Fund",
     description: "A regime-aware long-short derivatives strategy on Indian listed equities — designed to systematically capture large directional moves at sentimental extremes while sitting out sideways choppiness. Open to Indian investors via SEBI AIF and to global investors via GIFT City.",
     color: "text-brand-maroon",
+    ctaTitle1:"Ready to invest in the Absolute Return Fund?",
     overviewTitle:"Enter at peak fear.",
     overviewTitleItalics:"Exit at peak greed.",
     overviewDesc: [
@@ -385,9 +389,9 @@ export const FUND_DATA: Record<string, FundDetails> = {
     ],
     philosophySubheading: "Three reasons the Absolute Return Fund belongs alongside long-only equity in a sophisticated investor's portfolio.",
     finalCTA: {
-      title: "Ready to Invest in India's Growth?",
+      title: "Invest in absolute returns.",
       description:
-        "Partner with us to capture long-term opportunities in India's most promising businesses.",
+        "Request the investor deck, model details and onboarding information from our team.",
       primaryCTA: {
         text: "Get in touch",
         href: "/contact",
@@ -448,20 +452,20 @@ export const FUND_DATA: Record<string, FundDetails> = {
         {
           value: "2.6",
           label: "Sharpe Ratio",
-          description: "Risk-adjusted return measure",
+          description: "Risk-adjusted return — well above industry benchmarks",
           color: "#FFD448",
         },
         {
-          value: "-5.3%",
-          label: "Max Drawdown",
-          description: "Largest peak-to-trough decline in 10 years",
+          value: "16.4%",
+          label: "Annual Volatility",
+          description: "Lower volatility than most long-only equity funds",
           color: "#009B58",
         },
         {
-          value: "0.33",
-          label: "Beta",
+          value: "15%",
+          label: "Max Drawdown",
           description: "Full-period beta to NIFTY 500",
-          color: "#3CC3DF",
+          color: "Peak-to-trough decline across the full 10-year period",
         },
       ],
       // chartData: {

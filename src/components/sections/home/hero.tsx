@@ -200,7 +200,7 @@ export default function Hero() {
         </div>
 
         {/* RIGHT COLUMN PANEL: Clean Isolated Rectangular Grids */}
-        <div className="grid grid-cols-2 gap-4 w-full max-w-[540px] lg:max-w-none mx-auto">
+        <div className="grid grid-cols-2 gap-4 w-full max-w-none mx-auto">
           {STATS_CARDS.map((stat) => {
             return (
               <motion.div
@@ -279,9 +279,10 @@ export default function Hero() {
 
       </Container>
 
-      {/* Bottom Footer Ticker Marquee */}
+      {/* Bottom Footer Ticker — Desktop: static, Mobile/Tablet: marquee */}
       <div className="w-full border-t border-white/[0.05] pt-10 mt-16 bg-transparent overflow-hidden">
-        <div className="max-w-[1260px] mx-auto px-6 flex flex-wrap items-center justify-between gap-y-6 gap-x-8 opacity-40 grayscale contrast-200">
+        {/* Desktop: static logo strip */}
+        <Container className="hidden lg:flex mx-auto px-6 items-center justify-between opacity-40 grayscale contrast-200">
           {TICKER_LOGOS.map((logo, index) => (
             <div key={index} className="flex items-center gap-2 select-none">
               <span className="text-2xl font-light text-white">{logo.icon}</span>
@@ -293,6 +294,35 @@ export default function Hero() {
               </span>
             </div>
           ))}
+        </ Container>
+
+        {/* Mobile/Tablet: infinite marquee */}
+        <div className="flex lg:hidden overflow-hidden opacity-40 grayscale contrast-200">
+          <motion.div
+            className="flex shrink-0 gap-8 pr-8"
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: 'loop',
+                duration: 25,
+                ease: 'linear',
+              },
+            }}
+            style={{ willChange: 'transform' }}
+          >
+            {[...TICKER_LOGOS, ...TICKER_LOGOS].map((logo, index) => (
+              <div key={index} className="flex items-center gap-2 select-none shrink-0">
+                <span className="text-2xl font-light text-white">{logo.icon}</span>
+                <span 
+                  className="text-[16px] tracking-wider text-white font-medium whitespace-nowrap"
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  {logo.name}
+                </span>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
 

@@ -45,7 +45,7 @@ export default function TeamShowcase() {
   const [activeId, setActiveId] = useState(1);
 
   return (
-    <section className="w-full pt-16 pb-8 bg-white">
+    <section className="w-full pt-8 pb-4 lg:pt-16 lg:pb-8 bg-white">
       <Container className="w-full space-y-8">
 
         <AnimatedHeader
@@ -54,23 +54,23 @@ export default function TeamShowcase() {
           highlightColor="#9B0000"
           subheading="Our team of dedicated talent."
           variant="light"
-          titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
+          titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
         />
 
         {/* ========================================================================= */}
         {/* MOBILE VIEW                                                               */}
         {/* ========================================================================= */}
-        <div className="md:hidden space-y-8">
+        <div className="lg:hidden space-y-8">
           {teamMembers.map((member) => {
             const isActive = activeId === member.id;
             return (
               <div
                 key={member.id}
                 onClick={() => setActiveId(member.id)}
-                className="flex flex-col cursor-pointer"
+                className="flex flex-col items-center justify-between cursor-pointer"
               >
-                <div className="relative w-full h-80 rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                <div className="relative w-full max-w-[400px] lg:max-w-none h-80  aspect-2/3 rounded-2xl overflow-hidden shadow-sm border border-gray-100">
                   <Image
                     src={member.image}
                     alt={member.name}
@@ -122,8 +122,8 @@ export default function TeamShowcase() {
         {/* ========================================================================= */}
         {/* TABLET VIEW                                                               */}
         {/* ========================================================================= */}
-        <div className="hidden md:block lg:hidden">
-          <div className="grid grid-cols-2 gap-6 items-start">
+        {/* <div className="hidden md:block lg:hidden">
+          <div className="grid grid-cols-1 gap-6 items-start">
             {teamMembers.map((member) => {
               const isActive = activeId === member.id;
               return (
@@ -150,13 +150,11 @@ export default function TeamShowcase() {
                           <h2 className="text-2xl font-bold text-gray-900 capitalize">{member.name}</h2>
                           <p className="font-semibold text-body-md-mobile md:text-body-md-tab lg:text-body-md text-brand-maroon uppercase tracking-wider mt-0.5">{member.role}</p>
                         </div>
-                        {/* <p className="text-gray-700 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed">{member.bio}</p> */}
                         <div className="bg-brand-maroon/5 p-3 rounded-lg border border-brand-maroon/10">
                           <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-800 leading-relaxed font-medium">{member.philosophy}</p>
                         </div>
                         <div className="flex gap-2">
                           <a href={member.linkedin} className="w-8 h-8 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all"><Linkedin size={14} /></a>
-                          {/* <a href={member.twitter} className="w-8 h-8 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all"><Twitter size={14} /></a> */}
                         </div>
                       </div>
                     ) : (
@@ -170,7 +168,7 @@ export default function TeamShowcase() {
               );
             })}
           </div>
-        </div>
+        </div> */}
 
         {/* ========================================================================= */}
         {/* DESKTOP VIEW - Balanced, Ultra-Smooth Performance Component               */}

@@ -57,7 +57,7 @@ export default function AboutPage() {
           href: "/about",
         }}
       />
-      <FAQ />
+      {/* <FAQ /> */}
     </>
   );
 }

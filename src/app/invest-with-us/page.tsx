@@ -34,7 +34,7 @@ export default function StartInvestingPage() {
       <AvailableFunds />
       <StartInvestingForm />
       <ResourcesSection />
-      <FAQ />
+      {/* <FAQ /> */}
     </main>
   );
 }

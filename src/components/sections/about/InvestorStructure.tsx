@@ -10,7 +10,7 @@ const principles = [
     title: 'Impeccable Capital Allocation',
     description:
       "Agility and foresightedness to identify the prime asset class, market & product to provide the highest returns to you. We don't anchor to one market — we go where the opportunity is greatest.",
-    quote: '"We allocate to the best opportunity, wherever it lives."',
+    quote: `"We allocate to the best opportunity, wherever it lives."`,
     borderColor: '#9B0000',
     icon: (
       <svg className="w-8 h-8 text-[#9B0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -23,7 +23,7 @@ const principles = [
     title: 'High Skin in the Game',
     description:
       'We always begin funds by moving our own personal wealth into the same assets. So when we advise you to invest, it means we have already invested our own net worth in it.',
-    quote: '"We allocate to the best opportunity, wherever it lives."',
+    quote: `"We only ask you to go where we've already gone."`,
     borderColor: '#C5A55A',
     icon: (
       <svg className="w-8 h-8 text-[#9B0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -36,7 +36,7 @@ const principles = [
     title: 'Investor-Aligned Fee Structure',
     description:
       "We create structures which help us benefit only when you benefit. We aren't playing the fee game — we are in the compounding game. No fixed fees. No quarterly charges.",
-    quote: '"We allocate to the best opportunity, wherever it lives."',
+    quote: `"We make money only when you make money."`,
     borderColor: '#2E7D5B',
     icon: (
       <svg className="w-8 h-8 text-[#9B0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -49,7 +49,7 @@ const principles = [
     title: 'Global Perspective',
     description:
       "We track macro trends worldwide and move capital across borders when the opportunity demands it. From India's manufacturing renaissance to the global gold re-monetisation cycle.",
-    quote: '"We allocate to the best opportunity, wherever it lives."',
+    quote: `"Borders are irrelevant. Opportunity is not."`,
     borderColor: '#3B6FA0',
     icon: (
       <svg className="w-8 h-8 text-[#9B0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
