@@ -7,6 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TrendingUp, X, Shield, Calendar, Wallet, BarChart3 } from "lucide-react";
 import CTAButton from "@/components/common/CTAButton";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
+import ReadyToStart from "@/components/common/ReadyToStart";
+import Container from "@/components/common/Container";
+import { ScheduleCallModal } from "@/components/common/ScheduleCallModal";
 
 const CRIMSON = "#9B0000";
 
@@ -53,6 +56,7 @@ type Fund = typeof FUNDS[0];
 
 export default function InvestLinksSection() {
   const [selectedFund, setSelectedFund] = useState<Fund | null>(null);
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = selectedFund ? "hidden" : "unset";
@@ -60,43 +64,11 @@ export default function InvestLinksSection() {
   }, [selectedFund]);
 
   return (
-    <section className="w-full overflow-hidden">
+    <div>
+    <section className="w-full px-3 md:px-16 bg-[#FAFAFA] ">
+      <Container className="py-8 md:py-16 mx-auto space-y-12 relative">
 
-      {/* ── Strip ── */}
-      <div className="group relative w-full bg-[#9B0000] py-6 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-500 hover:bg-white border-b border-white/10">
-        <p className="text-white text-lg md:text-body-lg max-w-3xl transition-colors duration-500 group-hover:text-black">
-          <span className="font-normal">
-            Book a quick call with our team and let's explore how we can{" "}
-          </span>
-          <span className="font-bold transition-colors duration-500 group-hover:text-[#9B0000]">
-            work together.
-          </span>
-        </p>
-        <div className="flex-shrink-0 transition-transform duration-500 group-hover:scale-105">
-          <CTAButton
-            href="/invest-with-us"
-            text="Schedule a Call"
-            variant="light"
-            className="h-[40px] transition-all duration-500 group-hover:text-white group-hover:border-[#9B0000]"
-          />
-        </div>
-      </div>
-
-      {/* ── Invest links ── */}
-      <div className="flex flex-col items-center justify-center text-center text-black px-6 pt-12 pb-14">
-
-        {/* Eyebrow */}
-        {/* <div className="flex items-center gap-2 mb-5">
-          <span className="block h-px w-5 bg-[#9B0000]" />
-          <span className="text-xs font-medium tracking-widest uppercase text-[#9B0000]">
-            Our funds
-          </span>
-          <span className="block h-px w-5 bg-[#9B0000]" />
-        </div> */}
-
-        {/* Headline */}
-
-        <AnimatedHeader 
+        <AnimatedHeader
           title="Leading asset management committed to you"
           highlight="committed"
           subheading="Speak with our investment advisors to understand how our funds can help you achieve your long-term financial goals."
@@ -169,116 +141,37 @@ export default function InvestLinksSection() {
                 </div>
 
                 {/* CTA */}
-                <button
-                  onClick={() => setSelectedFund(fund)}
-                  className="w-full cursor-pointer bg-[#9B0000] text-white py-2.5 rounded-full text-[13px] font-semibold tracking-wide transition-all hover:bg-[#600000] active:scale-[0.98]"
-                >
-                  View Details
-                </button>
+                <Link href={fund.href}>
+                  <button
+                    className="w-full cursor-pointer bg-[#9B0000] text-white py-2.5 rounded-full text-[13px] font-semibold tracking-wide transition-all hover:bg-[#600000] active:scale-[0.98]"
+                  >
+                    View Details
+                  </button>
+                </Link>
 
               </div>
             </motion.div>
           ))}
         </div>
 
-      </div>
-
-      {/* ── Detail Modal ── */}
-      <AnimatePresence>
-        {selectedFund && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedFund(null)}
-              className="fixed inset-0 bg-black/60 z-[99] backdrop-blur-sm"
-            />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
-              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[92%] max-w-[440px] bg-white rounded-2xl z-[100] overflow-hidden border border-brand-maroon/20"
-            >
-              {/* Accent bar */}
-              <div className="h-[3px] w-full" style={{ background: CRIMSON }} />
-
-              {/* Header */}
-              <div className="p-6 pb-3 flex justify-between items-start">
-                <div>
-                  <div className="flex items-center gap-1.5 text-emerald-600 font-semibold text-sm mb-1.5">
-                    <TrendingUp size={15} />
-                    <span>{selectedFund.annualReturn}</span>
-                    <span className="text-[10px] text-gray-400 uppercase tracking-widest ml-1">
-                      1Y return
-                    </span>
-                  </div>
-                  <h3 className="text-gray-900 font-semibold text-lg leading-snug flex items-center gap-2">
-                    <Image
-                      src={selectedFund.img}
-                      alt={selectedFund.title}
-                      width={22}
-                      height={22}
-                      className="w-5 h-5 shrink-0"
-                    />
-                    {selectedFund.title}
-                  </h3>
-                </div>
-                <button
-                  onClick={() => setSelectedFund(null)}
-                  className="w-8 h-8 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-900 transition-colors cursor-pointer shrink-0 ml-3"
-                >
-                  <X size={16} />
-                </button>
-              </div>
-
-              {/* Description */}
-              <p className="px-6 pb-4 text-[13px] text-gray-500 leading-relaxed">
-                {selectedFund.description}
-              </p>
-
-              {/* Stats box */}
-              <div className="mx-6 mb-5 bg-gray-50 rounded-xl p-4 flex flex-col gap-3">
-                <StatRow icon={<BarChart3 size={14} />} label="AUM" value={selectedFund.aum} />
-                <StatRow icon={<Shield size={14} />} label="Risk level" value={selectedFund.risk} />
-                <StatRow icon={<Calendar size={14} />} label="Since" value={selectedFund.since} />
-                <StatRow icon={<Wallet size={14} />} label="Min. investment" value={selectedFund.minInvestment} />
-              </div>
-
-              {/* Footer CTA */}
-              <div className="px-6 pb-6">
-                <Link href={selectedFund.href} className="block w-full">
-                  <button className="w-full bg-[#9B0000] text-white py-3 rounded-full text-[13px] font-semibold tracking-wide transition-all hover:bg-[#600000] active:scale-[0.98] cursor-pointer">
-                    Invest in this fund →
-                  </button>
-                </Link>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      </Container>
     </section>
-  );
-}
+    <ReadyToStart
+        title="Book a quick call with our team and let's explore how we can work together."
+        description=""
+        primaryCTA={{
+          text: "Schedule a Call",
+          // Intercept routing by executing the state hook action directly
+          onClick: () => setIsCallModalOpen(true),
+        }}
+        titleClassName="tracking-normal leading-[1.1]"
+      />
 
-function StatRow({
-  icon,
-  label,
-  value,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="flex justify-between items-center">
-      <div className="flex items-center gap-2.5 text-gray-400 text-[12px]">
-        <span className="opacity-70">{icon}</span>
-        <span>{label}</span>
-      </div>
-      <span className="text-[12px] font-semibold text-gray-900">{value}</span>
+      {/* The Target Call Modal Overlay Layer */}
+      <ScheduleCallModal 
+        isOpen={isCallModalOpen} 
+        onClose={() => setIsCallModalOpen(false)} 
+      />
     </div>
   );
 }

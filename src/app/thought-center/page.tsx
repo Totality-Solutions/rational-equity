@@ -1,3 +1,4 @@
+import ReadyToStart from '@/components/common/ReadyToStart';
 import HeadingSection from '@/components/sections/thought-center/HeadingSection';
 import Hero from '@/components/sections/thought-center/Hero';
 import InvestCTASection from '@/components/sections/thought-center/InvestCTASection';
@@ -31,8 +32,18 @@ export default function ThoughtCenterPage() {
         <Hero />
         <HeadingSection />
         <ThoughtCenterArticles />
-        {/* <MediaPage /> */}
-        <InvestCTASection />
+        {/* <InvestCTASection /> */}
+        <MediaPage />
+         <div className='max-w-[90rem] mx-auto'>
+                    <ReadyToStart
+                    title="Ready to Start Investing?"
+                    description="Join thousands of investors who trust us with their wealth creation journey"
+                    primaryCTA={{
+                      text: "Invest With Us",
+                      href: "/contact",
+                    }}
+                  />
+                  </div>
         <InvestLinksSection />
         {/* <Strip /> */}
     </main>

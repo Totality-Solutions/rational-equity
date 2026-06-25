@@ -1,12 +1,22 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import CTAButton from '@/components/common/CTAButton';
+import { DynamicArticleModal } from '@/components/common/DynamicArticleModal'; // Adjust import path if needed
 
-const articles = [
+// Unified structural mapping schema
+interface ArticleItem {
+  id: number;
+  date: string;
+  title: string;
+  description: string;
+  img: string;
+}
+
+const articles: ArticleItem[] = [
   {
     id: 1,
     date: 'October 12, 2025',
@@ -31,20 +41,23 @@ const articles = [
 ];
 
 export default function ThoughtCentre() {
+  // Modal tracking instance state
+  const [activeArticle, setActiveArticle] = useState<ArticleItem | null>(null);
+
   return (
     <section className="w-full pt-12 pb-16 bg-[#FAFAFA]">
       <Container className="mx-auto px-4 space-y-12">
 
         <div className="mb-12">
-        <AnimatedHeader
-          title="Notes from the Desk."
-          highlight="the Desk."
-          highlightColor="#9B0000"
-          subheading="Long-form views on markets, philosophy, and the businesses we own."
-          variant="light"
-          titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
-          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
-        />
+          <AnimatedHeader
+            title="Notes from the Desk."
+            highlight="the Desk."
+            highlightColor="#9B0000"
+            subheading="Long-form views on markets, philosophy, and the businesses we own."
+            variant="light"
+            titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
+            subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
+          />
         </div>
 
         {/* Card Grid Setup */}
@@ -94,14 +107,16 @@ export default function ThoughtCentre() {
                   </p>
                 </div>
 
-                {/* Micro Action Trigger Link */}
+                {/* Micro Action Trigger Link — Enhanced into an accessible button hook */}
                 <div className="pt-2">
-                  <span 
-                    className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-wider font-bold text-[#9B0000] transition-all duration-200"
+                  <button 
+                    type="button"
+                    onClick={() => setActiveArticle(item)}
+                    className="inline-flex items-center gap-1.5 text-[12px] uppercase tracking-wider font-bold text-[#9B0000] transition-all duration-200 cursor-pointer hover:opacity-80 active:translate-x-0.5"
                     style={{ fontFamily: "'Lato', sans-serif" }}
                   >
                     Read More <span>→</span>
-                  </span>
+                  </button>
                 </div>
               </div>
 
@@ -112,7 +127,7 @@ export default function ThoughtCentre() {
         {/* Global Action Trigger using CTAButton Component */}
         <div className="w-full flex justify-center">
           <CTAButton 
-            href="/notes" 
+            href="/thought-center" 
             text="View all Notes" 
             variant="light"
             primaryColor="#9B0000"
@@ -122,6 +137,38 @@ export default function ThoughtCentre() {
         </div>
 
       </Container>
+
+      {/* ── MODAL LAYERING INTERACTIVE INSTANCE ─────────────────────── */}
+      <DynamicArticleModal
+        isOpen={activeArticle !== null}
+        onClose={() => setActiveArticle(null)}
+        title={activeArticle?.title || ""}
+        subtitle={activeArticle?.date || ""}
+        heroImageUrl={activeArticle?.img}
+        heroImageAlt={activeArticle?.title}
+      >
+        <div className="space-y-6 text-gray-700 leading-relaxed text-[15px]">
+          {activeArticle?.description && (
+            <p className="font-serif text-lg text-neutral-900 italic border-l-2 border-[#9B0000] pl-4 my-4">
+              {activeArticle.description}
+            </p>
+          )}
+          
+          {/* Content conditional fallback block splits */}
+          {activeArticle?.id === 1 ? (
+            <>
+              <p>Gold asset velocities have scaled inflection margins over current cycles. Miner operations maintain a high operational leverage framework compared to simple gold spot alternatives.</p>
+              <p>As macro liquidity pipelines continue expanding across institutional targets, strategic allocations emphasize production margins and long-term asset security frameworks.</p>
+            </>
+          ) : (
+            <>
+              <p>Comprehensive research brief publication from the internal desk. Long-term positions capitalize on fundamental market pricing inefficiencies and high operational discipline metrics.</p>
+              <p>Our analysis framework avoids shifting trends, focusing instead on sustainable capital allocation routines across individual market cycles.</p>
+            </>
+          )}
+        </div>
+      </DynamicArticleModal>
+
     </section>
   );
 }

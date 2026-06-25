@@ -14,6 +14,7 @@ interface CTAButtonProps {
   iconClassName?: string;
   iconSrc?: string;
   borderRadiusClassName?: string;
+  onClick?: () => void;
 }
 
 const CTAButton: React.FC<CTAButtonProps> = ({
@@ -26,7 +27,8 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   paddingClassName = "px-4 py-2", // 🔹 Default padding
   iconClassName = "",
   iconSrc = "/images/arrowbtn.png",
-  borderRadiusClassName = "rounded-full"
+  borderRadiusClassName = "rounded-full",
+  onClick
 }) => {
   
   const isMaroonBg = variant === 'maroon-bg';
@@ -36,6 +38,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
       <Link 
         href={href} 
         className={`${borderRadiusClassName} group flex items-stretch border-2 border-brand-maroon overflow-hidden transition-all duration-500 w-full sm:w-auto hover:shadow-lg hover:shadow-brand-maroon-hover/27`}
+        onClick={onClick}
       >
         {/* TEXT AREA */}
         <div 

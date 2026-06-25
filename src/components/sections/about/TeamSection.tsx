@@ -13,41 +13,41 @@ interface TeamMember {
   title: string;
   description: string;
   education: string;
-  image: typeof PlaceholderImage;
+  image: string;
 }
 
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: "VIVEK IYER",
-    title: "Founder & CIO",
-    description: "10+ years of investing experience. Former entrepreneur who started the Rational Family Office in 2020 and launched the AIF in 2023. Deployed 100% of the fund on Day 1 with his own net worth alongside investors.",
+    name: "Vivek Iyer",
+    title: "Chief Investment Officer",
+    description: "Vivek is the Founder and Partner at Rational - With over 10 years of experience in investment management and prior to that leading two start-ups, Vivek founded Rational with the aim of providing other investors the same opportunity of compunding wealth through dedicated capital allocation as he would create for himself. Vivek is diligent about creating opportunities for investors, is principled about safeguarding capital and compounding without unnecessary risks.",
     education: "B.Tech (Mechanical), IIT Bombay · MBA, IIM Ahmedabad",
-    image: PlaceholderImage,
+    image: '/images/team/vivek.jpeg ',
   },
   {
     id: 2,
-    name: "VISHAL IYER",
-    title: "Fund Manager, Global Research",
-    description: "~12 years of buy and sell-side investing experience at JP Morgan and RBC BlueBay, both in London. Joined Rational in 2025 to lead the Gold & Silver Miners Fund and global macro research.",
+    name: "Vishal Iyer",
+    title: "Fund Manager & Head of Research",
+    description: "Vishal is a Partner at Rational - With over 12 years of experience in investment management across both sell and buy side, Vishal brings with him a deep & rich understanding of equities, commodities & credit. Vishal has spent time with JP Morgan and RBC BlueBay creating a solid foundation of building thesis in assets and equities based on deep research, discplined process and pursuit of less-known opportunities",
     education: "B.Tech, VJTI Mumbai · PG Finance, Cranfield University, UK",
-    image: PlaceholderImage,
+    image: '/images/team/vishal.jpeg',
   },
   {
     id: 3,
-    name: "VIKRAM ADVANI",
+    name: "Vikram Advani",
     title: "Chief Business Officer",
-    description: "30 years of experience in asset management including ING, Aditya Birla Capital, and Old Bridge Asset Management. Leads business development, investor relations, and fund operations.",
+    description: "With over 20 years of experience in the financial services industry, Vikram is among the most seasoned professionals in India's asset management space. He has held leadership positions at some of the country's largest financial institutions, including Aditya Birla AMC and Old Bridge where he led sales and distribution and built a strong book for them. Vikram is taking Rational to its next level of growth while maintaining long-term partnerships with clients keeping an investor-first philosophy.",
     education: "MBA, Edith Cowan University",
-    image: PlaceholderImage,
+    image: '/images/team/vikram.jpeg',
   },
   {
     id: 4,
     name: "JABA",
     title: "Co-Founder & Strategy",
-    description: "Former strategy consultant and macroeconomist with BCG, the World Bank, and Mahindra. Brings deep macro and strategic thinking to Rational's investment and fund structure decisions.",
+    description: "Jaba Misra is an ex-strategy consultant & macroeconomist with 8+ years of experience. As a strategy consultant with BCG & Mahindra Group, she has worked on financial services projects including building digital journeys, collections transformation, cost reduction, buy-side due diligence & investment projects.",
     education: "MPhil Economics, Cambridge · MBA, ISB · Maths (Hons), Delhi University",
-    image: PlaceholderImage,
+    image: '/images/team/jaba.jpg',
   },
   {
     id: 5,
@@ -55,7 +55,7 @@ const teamMembers: TeamMember[] = [
     title: "Investment Analyst",
     description: "4 years of experience in investment and quantitative research. Previously with Parbhudas Liladhar. Brings rigorous quant discipline and sector analysis to the research team.",
     education: "Gold Medalist, Economics, Delhi University",
-    image: PlaceholderImage,
+    image: '/images/team/akshat.jpeg',
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ const teamMembers: TeamMember[] = [
     title: "Co-Founder & Advisor",
     description: "40 years of experience in retail, banking and finance. Ex-CEO of Walmart India and Watsons across multiple Asian countries. Brings unparalleled operational and boardroom experience.",
     education: "CA & CS by training",
-    image: PlaceholderImage,
+    image: '/images/team/krish.jpg',
   },
 ];
 
@@ -106,12 +106,12 @@ export default function TeamSection() {
               viewport={{ once: true, amount: 0.2 }}
               className="bg-white rounded-2xl overflow-hidden shadow-sm"
             >
-              <div className="relative w-full aspect-[3/2]">
+              <div className="relative w-full aspect-5/4">
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
-                  className="object-cover"
+                  className="object-cover object-center"
                 />
               </div>
 
