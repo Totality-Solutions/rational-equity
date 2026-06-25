@@ -25,7 +25,7 @@ interface StatItem {
 interface FundOverviewProps {
   title?: string;
   titleItalics?: string;
-  description: string;
+  description: string[];
   stats: StatItem[];
 }
 
@@ -51,10 +51,15 @@ export default function FundOverview({ title, titleItalics, description, stats }
           </h2>
         </div>
 
-        <div>
-          <p className="text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg tracking-wide text-black">
-            {description}
-          </p>
+        <div className="space-y-6">
+          {description.map((paragraph, index) => (
+            <p
+              key={index}
+              className="text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg tracking-wide text-black"
+            >
+              {paragraph}
+            </p>
+          ))}
         </div>
 
         </div>

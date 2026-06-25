@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Linkedin, Twitter, MapPin, Phone, Mail } from 'lucide-react';
 import Container from '../common/Container';
+import { label } from 'framer-motion/client';
 
 interface FooterLink {
   label: string;
@@ -17,13 +18,14 @@ const QUICK_LINKS = [
   { label: 'About Us', href: '/about' },
   { label: 'Investment Approach', href: '/investment-approach' },
   { label: 'Thought Center', href: '/thought-center' },
-  { label: 'Call Us', href: '/contact' }
+  { label: 'Call Us', href: '/contact' },
+  { label:'Privacy Policy', href: '/privacy-policy'}
 ];
 
 const PRODUCTS = [
   { label: 'India Long-Only Fund', href: '/product/india-long-only' },
   { label: 'Gold & Silver Miners Fund', href: '/product/gold-silver-miners' },
-  // { label: 'Absolute Return Fund', href: '/product/absolute-return' },
+  { label: 'Absolute Return Fund', href: '/product/absolute-return' },
   { label: 'Invest With Us', href: '/invest-with-us' },
 ];
 
@@ -35,13 +37,13 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-gray-300 font-sans border-t border-gray-900 px-6 md:px-8">
-      <Container className="py-12">
-        <div className="flex flex-col lg:flex-row gap-12 md:gap-8 mb-16">
+      <Container className="pt-12 pb-6">
+        <div className="flex flex-col lg:flex-row gap-12 md:gap-8 mb-4">
 
           {/* Left Side: Brand + Links */}
           <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Brand */} 
-            <div className="sm:col-span-2 md:col-span-1">
+            <div className="col-span-2">
               <Link href="/" className="inline-block pb-6">
                 <img
                   src="/images/logo.png"
@@ -73,6 +75,7 @@ export default function Footer() {
           </div>
 
           {/* Right Side: Explore + Fund + Contact */}
+          <div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
             {/* Explore */}
             <div>
@@ -137,25 +140,21 @@ export default function Footer() {
               </ul>
             </div>
           </div>
+          </div>
         </div>
 
         {/* Legal Bar */}
-        <div className="border-t border-gray-900 pt-10 text-center">
-          <p className="text-xs md:text-sm tracking-[0.01em] text-gray-300 mb-6 uppercase font-sans">
-            &copy; {year} Rational Equity Partners LLP. ALL RIGHTS RESERVED.
-          </p>
-
-          <div className="flex justify-center flex-wrap gap-4 sm:gap-6 text-body-md text-gray-400 mb-8 font-sans">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <span className="text-gray-300 hidden sm:inline">|</span>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-            <span className="text-gray-300 hidden sm:inline">|</span>
-            <Link href="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
+        <div className="flex justify-between border-t border-gray-900 pt-4 ">
+          <div className=' max-w-[600px]'>
+            <p className="text-sm text-gray-300 max-w-4xl mx-auto leading-relaxed font-sans">
+              Investments are subject to market risk. Read all scheme-related documents carefully. Past performance is not indicative of future results.
+            </p>
           </div>
-
-          <p className="text-sm text-gray-300 max-w-4xl mx-auto leading-relaxed font-sans">
-            Investments are subject to market risk. Read all scheme-related documents carefully. Past performance is not indicative of future results.
-          </p>
+          <div>
+            <p className="text-xs md:text-sm tracking-[0.01em] text-gray-300 uppercase font-sans">
+              &copy; {year} Rational Equity Partners LLP. ALL RIGHTS RESERVED.
+            </p>
+          </div>          
         </div>
       </Container>
     </footer>

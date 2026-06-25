@@ -92,8 +92,7 @@ export default function InvestorStructure() {
                     <div className="flex items-center gap-4 mb-6">
                       {item.icon}
                       <h3
-                        className="text-xl md:text-2xl text-gray-900"
-                        style={{ fontFamily: "'Playfair Display', serif" }}
+                        className="text-xl md:text-2xl font-playfair text-gray-900"
                       >
                         {item.title}
                       </h3>

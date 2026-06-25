@@ -92,8 +92,7 @@ export default function ThoughtCentre() {
 
                   {/* Title */}
                   <h3 
-                    className="text-[24px] md:text-[26px] leading-snug text-gray-900 font-normal tracking-tight group-hover:text-[#9B0000] transition-colors duration-200"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
+                    className="text-[24px] md:text-[26px] leading-snug font-playfair text-gray-900 font-normal tracking-tight group-hover:text-[#9B0000] transition-colors duration-200"
                   >
                     {item.title}
                   </h3>

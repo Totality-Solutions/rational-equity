@@ -60,9 +60,8 @@ export default function ReturnsSection() {
 
               <div className="relative px-8 py-4">
                 <p
-                  className="text-5xl md:text-6xl font-medium mb-8"
+                  className="text-5xl md:text-6xl font-medium mb-8 font-playfair"
                   style={{
-                    fontFamily: "'Playfair Display', serif",
                     color: fund.color,
                   }}
                 >
@@ -71,16 +70,14 @@ export default function ReturnsSection() {
 
                 <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-500 mb-2">{fund.subtitle}</p>
                 <p
-                  className="text-lg font-medium text-gray-900"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
+                  className="text-lg font-medium text-gray-900 font-playfair"
                 >
                   {fund.name}
                 </p>
 
                 <span
-                  className="absolute bottom-0 right-0 text-7xl md:text-8xl font-regular opacity-10 select-none"
+                  className="absolute bottom-0 right-0 text-7xl font-playfair md:text-8xl font-regular opacity-10 select-none"
                   style={{
-                    fontFamily: "'Playfair Display', serif",
                     color: fund.color,
                   }}
                 >

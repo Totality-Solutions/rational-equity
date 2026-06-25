@@ -35,7 +35,7 @@ const sublineVariants: Variants = {
 
 export default function ResourcesSection() {
   return (
-    <section className="relative w-full bg-white font-sans pb-12 overflow-hidden">
+    <section className="relative w-full bg-white font-sans py-12 overflow-hidden">
       
       {/* Background Pattern */}
       <div 

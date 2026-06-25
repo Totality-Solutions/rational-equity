@@ -117,8 +117,7 @@ export default function TeamSection() {
 
               <div className="p-6 md:p-8">
                 <h3
-                  className="text-lg md:text-xl text-[#9B0000] font-medium mb-1 tracking-wide"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
+                  className="text-lg font-playfair md:text-xl text-[#9B0000] font-medium mb-1 tracking-wide"
                 >
                   {member.name}
                 </h3>

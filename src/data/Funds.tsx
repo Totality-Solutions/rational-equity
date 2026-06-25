@@ -1,7 +1,8 @@
 // src/constants/funds.tsx
 import { 
   Wallet, Calendar, BarChart3, ShieldCheck, Percent, 
-  AlertCircle, Target, Clock, User, Tag 
+  AlertCircle, Target, Clock, User, Tag, 
+  UserIcon
 } from "lucide-react";
 import { ReactNode } from "react";
 import type { ReadyToStartProps } from "@/components/common/ReadyToStart";
@@ -54,6 +55,13 @@ export interface KPIItem {
   isPeriodKpi?: boolean;
 }
 
+export interface BacktestKPIItem {
+  value: string;
+  label: string;
+  description: string;
+  color: string;
+}
+
 export interface FundDetails {
   title: string;
   description: string;
@@ -61,7 +69,7 @@ export interface FundDetails {
 
   overviewTitle?: string;
   overviewTitleItalics?: string;
-  overviewDesc: string;
+  overviewDesc: string[];
 
   stats: StatItem[];
   documents: PdfItem[];
@@ -74,11 +82,16 @@ export interface FundDetails {
   finalCTA?: ReadyToStartProps;
 
   performance: {
+    variant: "chart" | "backtest";
+    heading: string;
+    headingHighlight: string;
+    subheading?: string;
     weekly?: GraphPoint[];
     monthly?: GraphPoint[];
     yearly?: GraphPoint[];
-    chartData: Record<string, ChartDataPoint[]>;
+    chartData?: Record<string, ChartDataPoint[]>;
     kpis: KPIItem[];
+    backtestKpis?: BacktestKPIItem[];
   };
 }
 
@@ -103,7 +116,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
     color: "text-brand-maroon",
     overviewTitle:"Conviction-driven investing",
     overviewTitleItalics:"in India's growth story.",
-    overviewDesc: "Our India Long-Only Fund is designed to capture the highest-return opportunities within this theme — primarily in small and mid-cap companies that are under-researched and mispriced by the market. We are sector-agnostic. We go where the conviction is strongest and hold positions through the inevitable volatility that comes with high-conviction investing.",
+    overviewDesc: ["Our India Long-Only Fund is designed to capture the highest-return opportunities within this theme — primarily in small and mid-cap companies that are under-researched and mispriced by the market. We are sector-agnostic. We go where the conviction is strongest and hold positions through the inevitable volatility that comes with high-conviction investing."],
     stats: [
       { icon: <Wallet size={16} />, label: "Min. Investment", value: "₹1 Crore" },
       { icon: <Calendar size={16} />, label: "Risk Level", value: "High" },
@@ -142,6 +155,10 @@ export const FUND_DATA: Record<string, FundDetails> = {
       },
     },
     performance: {
+      variant: "chart",
+      heading: "Fund",
+      headingHighlight: "Performance",
+      subheading: "Historical returns versus benchmark.",
       weekly: [
         { name: "Week 1", fund: 1.2, bench: 0.8, status: 0.5 },
         { name: "Week 2", fund: -0.5, bench: 0.2, status: -0.2 },
@@ -228,7 +245,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
     color: "text-brand-maroon",
     overviewTitle:"Strategic exposure to the global",
     overviewTitleItalics:"precious metals opportunity.",
-    overviewDesc: "In late 2023, we identified a structural shift in the global monetary order — central banks, led by China, were quietly but decisively selling their holdings of the US Treasury and replacing that with gold reserves. Fundamentally, the US economy was struggling and amidst the global political uncertainty, the faith in the US$ was declining. We realised gold would be a great bet in such time. Simultaneously, gold and silver mining equities were trading at multi-decade lows relative to the underlying commodity price, creating an extraordinary asymmetric opportunity. Which led us to use miners as a proxy for gold and silver to ensure our returns are exponential vs the commodities itself. We invested personally first. After validating the thesis with our own capital, we launched the GIFT City Fund in June 2025 to give investors structured access to this opportunity. The fund invests exclusively in listed mining companies globally — no ETFs, no physical gold, no other commodities.",
+    overviewDesc: ["In late 2023, we identified a structural shift in the global monetary order — central banks, led by China, were quietly but decisively selling their holdings of the US Treasury and replacing that with gold reserves. Fundamentally, the US economy was struggling and amidst the global political uncertainty, the faith in the US$ was declining. We realised gold would be a great bet in such time. Simultaneously, gold and silver mining equities were trading at multi-decade lows relative to the underlying commodity price, creating an extraordinary asymmetric opportunity. Which led us to use miners as a proxy for gold and silver to ensure our returns are exponential vs the commodities itself. We invested personally first. After validating the thesis with our own capital, we launched the GIFT City Fund in June 2025 to give investors structured access to this opportunity. The fund invests exclusively in listed mining companies globally — no ETFs, no physical gold, no other commodities."],
     stats: [
       { icon: <Wallet size={16} />, label: "Min. Investment", value: "US$ 150,000" },
       { icon: <Calendar size={16} />, label: "Fund Type", value: "Cat III AIF" },
@@ -242,12 +259,8 @@ export const FUND_DATA: Record<string, FundDetails> = {
       // { icon: <Tag size={16} />, label: "Category", value: "Thematic — Metals" },
     ],
     documents: [
-      { title: "Fund Factsheets", size: "2.4 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "Application Forms", size: "1.1 MB",description: "Strategy guide", fileUrl: "/pdfs/pdf-1.pdf" },
-      { title: "Scheme Documents", size: "3.8 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "Annual Reports", size: "5.2 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "Investment Brochures", size: "1.6 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "KYC Documents", size: "0.8 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
+      { title: "Investor Deck", size: "1.1 MB",description: "Fund strategy & thesis", fileUrl: "/pdf/pdf-1.pdf" },
+      { title: "Fund Factsheets", size: "2.4 MB",description: "Monthly performance summary", fileUrl: "/pdf/pdf-1.pdf" },
     ],
     philosophyTitle:"Why invest in the Miners' Fund?",
     philosophyHighlight:"Miners' Fund?",
@@ -272,6 +285,10 @@ export const FUND_DATA: Record<string, FundDetails> = {
       },
     },
     performance: {
+      variant: "chart",
+      heading: "Fund",
+      headingHighlight: "Performance",
+      subheading: "Historical returns versus benchmark.",
       weekly: [
         { name: "Week 1", fund: 1.2, bench: 0.8, status: 0.5 },
         { name: "Week 2", fund: -0.5, bench: 0.2, status: -0.2 },
@@ -336,39 +353,37 @@ export const FUND_DATA: Record<string, FundDetails> = {
   },
   "absolute-return": {
     title: "Absolute Return Fund",
-    description: "Market-neutral strategies aiming for consistent positive returns.",
+    description: "A regime-aware long-short derivatives strategy on Indian listed equities — designed to systematically capture large directional moves at sentimental extremes while sitting out sideways choppiness. Open to Indian investors via SEBI AIF and to global investors via GIFT City.",
     color: "text-brand-maroon",
-    overviewTitle:"",
-    overviewTitleItalics:"",
-    overviewDesc: "Our Absolute Return Fund employs market-neutral strategies and arbitrage to generate steady returns with low correlation to broader equity markets, focusing on capital preservation.",
+    overviewTitle:"Enter at peak fear.",
+    overviewTitleItalics:"Exit at peak greed.",
+    overviewDesc: [
+      "In this long-short fund we wait for sentimental extremes to build up, then act decisively with concentrated directional positions. At peak fear we go long. At peak greed we go short or move to cash. In between, we sit out sideways choppiness entirely.",
+      "The strategy trades in the Indian listed futures universe by creating a composite model based on multiple factors which identifies the regime before each trade. The result is a portfolio with low beta (0.33 full-period), strong convexity, and returns that are structurally uncorrelated to traditional long-only equity."
+    ],
     stats: [
-      { icon: <Wallet size={16} />, label: "Min. Investment", value: "₹25,000" },
-      { icon: <Calendar size={16} />, label: "Min. SIP", value: "₹10,000/month" },
-      { icon: <BarChart3 size={16} />, label: "AUM", value: "₹195 Cr" },
-      { icon: <ShieldCheck size={16} />, label: "Risk Level", value: "Low to Moderate" },
-      { icon: <Percent size={16} />, label: "Expense Ratio", value: "1.50%" },
-      { icon: <AlertCircle size={16} />, label: "Exit Load", value: "Nil" },
-      { icon: <Target size={16} />, label: "Benchmark", value: "Nifty 50 Arbitrage" },
-      { icon: <Clock size={16} />, label: "Inception", value: "October 2018" },
-      { icon: <User size={16} />, label: "Fund Manager", value: "Sanjay Mehta" },
+      { icon: <Wallet size={16} />, label: "Strategy", value: "Long-Short" },
+      { icon: <Tag size={16} />, label: "Fund Type", value: "2 Cat III AIFs — India & GIFT City" },
+      { icon: <Target size={16} />, label: "Universe", value: "Indian Listed Futures" },
+      { icon: <ShieldCheck size={16} />, label: "Model", value: "Quant + Discretion" },
+      { icon: <Calendar size={16} />, label: "Launch", value: "July 2026" },
+      { icon: <UserIcon size={16} />, label: "Eligible", value: "Indians & Global" },
+      // { icon: <Target size={16} />, label: "Benchmark", value: "Nifty 50 Arbitrage" },
+      // { icon: <Clock size={16} />, label: "Inception", value: "October 2018" },
+      // { icon: <User size={16} />, label: "Fund Manager", value: "Sanjay Mehta" },
       // { icon: <Tag size={16} />, label: "Category", value: "Hybrid — Arbitrage" },
     ],
     documents: [
-      { title: "Fund Factsheets", size: "2.4 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "Application Forms", size: "1.1 MB",description: "Strategy guide", fileUrl: "/pdfs/pdf-1.pdf" },
-      { title: "Scheme Documents", size: "3.8 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "Annual Reports", size: "5.2 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "Investment Brochures", size: "1.6 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "KYC Documents", size: "0.8 MB",description: "Strategy guide", fileUrl: "/pdf/pdf-1.pdf" },
+      { title: "Investor Deck", size: "1.1 MB",description: "Fund strategy & thesis", fileUrl: "/pdf/pdf-1.pdf" },
+      { title: "Fund Factsheets", size: "2.4 MB",description: "Monthly performance summary", fileUrl: "/pdf/pdf-1.pdf" },
     ],
     philosophyTitle:"Why invest in the Absolute Returns Fund",
     philosophyPoints: [
-      { title: "Market Neutrality", description: "Strategies designed to perform regardless of market direction.", icon: "/images/icons/philosophy-capital.png" },
-      { title: "Risk Arbitrage", description: "Capturing price inefficiencies between related financial instruments.", icon: "/images/icons/philosophy-governance.png" },
-      { title: "Capital Preservation", description: "Focusing on low-volatility returns to protect investor principal.", icon: "/images/icons/philosophy-growth.png" },
-      { title: "Low Correlation", description: "Providing returns that don't move in sync with traditional equities.", icon: "/images/icons/philosophy-conviction.png" },
+      { title: "Returns in Both Directions", description: "A long-only portfolio only makes money when markets go up. This strategy is built to capture directional moves in both directions — profiting from the full bull run on the long side and from market corrections on the short side. The 10-year backtest includes years where markets fell sharply, and the model still delivered positive returns.", icon: "/images/icons/philosophy-capital.png" },
+      { title: "Structural Diversification", description: "With a full-period beta of 0.33 and a near-zero to negative beta during corrections, the Absolute Return Fund provides genuine diversification that a second long-only fund cannot. It earns returns when long-only strategies struggle — making it a natural complement to the India Long-Only Fund in the same portfolio.", icon: "/images/icons/philosophy-governance.png" },
+      { title: "Asymmetric Payoff Profile", description: "The strategy does not trades frequently targeting deep dislocations with asymmetric payoffs. The worst year in the 10-year backtest was -5.3% and the best year was +97.4%. A Sharpe ratio of 2.6 reflects exceptional risk-adjusted performance relative to the return generated.", icon: "/images/icons/philosophy-growth.png" },
     ],
-    philosophySubheading: "We believe precious metals play a critical role in portfolio construction as a hedge against inflation, currency debasement, and geopolitical uncertainty. Rather than investing in physical gold, we focus on miners who offer operational leverage to rising commodity prices.",
+    philosophySubheading: "Three reasons the Absolute Return Fund belongs alongside long-only equity in a sophisticated investor's portfolio.",
     finalCTA: {
       title: "Ready to Invest in India's Growth?",
       description:
@@ -383,11 +398,15 @@ export const FUND_DATA: Record<string, FundDetails> = {
       },
     },
     performance: {
+      variant: "backtest",
+      heading: "10-year backtested model results.",
+      headingHighlight: "model results.",
+      subheading: "With minimal leverage and inclusive of transaction costs NAV grows from 100 to 3,505 over 10 years.",
       weekly: [
         { name: "Week 1", fund: 1.2, bench: 0.8, status: 0.5 },
         { name: "Week 2", fund: -0.5, bench: 0.2, status: -0.2 },
         { name: "Week 3", fund: 2.1, bench: 1.5, status: 0.8 },
-        { name: "Week 4", fund: 0.8, bench: 1.2, status: 1.1 },
+        // { name: "Week 4", fund: 0.8, bench: 1.1 },
       ],
       monthly: [
         { name: "Jan", fund: 4.2, bench: 3.1, status: 2.0 },
@@ -419,58 +438,84 @@ export const FUND_DATA: Record<string, FundDetails> = {
           isPeriodKpi: true,
         },
       ],
-      chartData: {
-        '1M': [{ period: '1M', label: '1 Month', fund: 4.20, bench: 3.10 }],
-        '3M': [
-          { period: '1M', label: '1 Month',  fund: 4.20, bench: 3.10 },
-          { period: '3M', label: '3 Months', fund: 8.75, bench: 6.40 },
-        ],
-        '6M': [
-          { period: '1M', label: '1 Month',  fund: 4.20,  bench: 3.10 },
-          { period: '3M', label: '3 Months', fund: 8.75,  bench: 6.40 },
-          { period: '6M', label: '6 Months', fund: 13.42, bench: 9.85 },
-        ],
-        '1Y': [
-          { period: '1M', label: '1 Month',  fund: 4.20,  bench: 3.10  },
-          { period: '3M', label: '3 Months', fund: 8.75,  bench: 6.40  },
-          { period: '6M', label: '6 Months', fund: 13.42, bench: 9.85  },
-          { period: '1Y', label: '1 Year',   fund: 21.68, bench: 15.32 },
-        ],
-        '2Y': [
-          { period: '1M', label: '1 Month',        fund: 4.20,  bench: 3.10  },
-          { period: '3M', label: '3 Months',       fund: 8.75,  bench: 6.40  },
-          { period: '6M', label: '6 Months',       fund: 13.42, bench: 9.85  },
-          { period: '1Y', label: '1 Year',         fund: 21.68, bench: 15.32 },
-          { period: '2Y', label: '2 Yrs (CAGR)',   fund: 22.91, bench: 16.47 },
-        ],
-        '3Y': [
-          { period: '1M', label: '1 Month',       fund: 4.20,  bench: 3.10  },
-          { period: '3M', label: '3 Months',      fund: 8.75,  bench: 6.40  },
-          { period: '6M', label: '6 Months',      fund: 13.42, bench: 9.85  },
-          { period: '1Y', label: '1 Year',        fund: 21.68, bench: 15.32 },
-          { period: '2Y', label: '2 Yrs (CAGR)',  fund: 22.91, bench: 16.47 },
-          { period: '3Y', label: '3 Yrs (CAGR)',  fund: 24.35, bench: 17.98 },
-        ],
-        '5Y': [
-          { period: '1M', label: '1 Month',       fund: 4.20,  bench: 3.10  },
-          { period: '3M', label: '3 Months',      fund: 8.75,  bench: 6.40  },
-          { period: '6M', label: '6 Months',      fund: 13.42, bench: 9.85  },
-          { period: '1Y', label: '1 Year',        fund: 21.68, bench: 15.32 },
-          { period: '2Y', label: '2 Yrs (CAGR)',  fund: 22.91, bench: 16.47 },
-          { period: '3Y', label: '3 Yrs (CAGR)',  fund: 24.35, bench: 17.98 },
-          { period: '5Y', label: '5 Yrs (CAGR)',  fund: 23.17, bench: 16.12 },
-        ],
-        'SI': [
-          { period: '1M', label: '1 Month',             fund: 4.20,  bench: 3.10  },
-          { period: '3M', label: '3 Months',            fund: 8.75,  bench: 6.40  },
-          { period: '6M', label: '6 Months',            fund: 13.42, bench: 9.85  },
-          { period: '1Y', label: '1 Year',              fund: 21.68, bench: 15.32 },
-          { period: '2Y', label: '2 Yrs (CAGR)',        fund: 22.91, bench: 16.47 },
-          { period: '3Y', label: '3 Yrs (CAGR)',        fund: 24.35, bench: 17.98 },
-          { period: '5Y', label: '5 Yrs (CAGR)',        fund: 23.17, bench: 16.12 },
-          { period: 'SI', label: 'Since Inception',     fund: 19.28, bench: 13.14 },
-        ],
-      }
+      backtestKpis: [
+        {
+          value: "41.7%",
+          label: "Net CAGR",
+          description: "Compounded Annual Growth Rate over 10 years",
+          color: "#9B0000",
+        },
+        {
+          value: "2.6",
+          label: "Sharpe Ratio",
+          description: "Risk-adjusted return measure",
+          color: "#FFD448",
+        },
+        {
+          value: "-5.3%",
+          label: "Max Drawdown",
+          description: "Largest peak-to-trough decline in 10 years",
+          color: "#009B58",
+        },
+        {
+          value: "0.33",
+          label: "Beta",
+          description: "Full-period beta to NIFTY 500",
+          color: "#3CC3DF",
+        },
+      ],
+      // chartData: {
+      //   '1M': [{ period: '1M', label: '1 Month', fund: 4.20, bench: 3.10 }],
+      //   '3M': [
+      //     { period: '1M', label: '1 Month',  fund: 4.20, bench: 3.10 },
+      //     { period: '3M', label: '3 Months', fund: 8.75, bench: 6.40 },
+      //   ],
+      //   '6M': [
+      //     { period: '1M', label: '1 Month',  fund: 4.20,  bench: 3.10 },
+      //     { period: '3M', label: '3 Months', fund: 8.75,  bench: 6.40 },
+      //     { period: '6M', label: '6 Months', fund: 13.42, bench: 9.85 },
+      //   ],
+      //   '1Y': [
+      //     { period: '1M', label: '1 Month',  fund: 4.20,  bench: 3.10  },
+      //     { period: '3M', label: '3 Months', fund: 8.75,  bench: 6.40  },
+      //     { period: '6M', label: '6 Months', fund: 13.42, bench: 9.85  },
+      //     { period: '1Y', label: '1 Year',   fund: 21.68, bench: 15.32 },
+      //   ],
+      //   '2Y': [
+      //     { period: '1M', label: '1 Month',        fund: 4.20,  bench: 3.10  },
+      //     { period: '3M', label: '3 Months',       fund: 8.75,  bench: 6.40  },
+      //     { period: '6M', label: '6 Months',       fund: 13.42, bench: 9.85  },
+      //     { period: '1Y', label: '1 Year',         fund: 21.68, bench: 15.32 },
+      //     { period: '2Y', label: '2 Yrs (CAGR)',   fund: 22.91, bench: 16.47 },
+      //   ],
+      //   '3Y': [
+      //     { period: '1M', label: '1 Month',       fund: 4.20,  bench: 3.10  },
+      //     { period: '3M', label: '3 Months',      fund: 8.75,  bench: 6.40  },
+      //     { period: '6M', label: '6 Months',      fund: 13.42, bench: 9.85  },
+      //     { period: '1Y', label: '1 Year',        fund: 21.68, bench: 15.32 },
+      //     { period: '2Y', label: '2 Yrs (CAGR)',  fund: 22.91, bench: 16.47 },
+      //     { period: '3Y', label: '3 Yrs (CAGR)',  fund: 24.35, bench: 17.98 },
+      //   ],
+      //   '5Y': [
+      //     { period: '1M', label: '1 Month',       fund: 4.20,  bench: 3.10  },
+      //     { period: '3M', label: '3 Months',      fund: 8.75,  bench: 6.40  },
+      //     { period: '6M', label: '6 Months',      fund: 13.42, bench: 9.85  },
+      //     { period: '1Y', label: '1 Year',        fund: 21.68, bench: 15.32 },
+      //     { period: '2Y', label: '2 Yrs (CAGR)',  fund: 22.91, bench: 16.47 },
+      //     { period: '3Y', label: '3 Yrs (CAGR)',  fund: 24.35, bench: 17.98 },
+      //     { period: '5Y', label: '5 Yrs (CAGR)',  fund: 23.17, bench: 16.12 },
+      //   ],
+      //   'SI': [
+      //     { period: '1M', label: '1 Month',             fund: 4.20,  bench: 3.10  },
+      //     { period: '3M', label: '3 Months',            fund: 8.75,  bench: 6.40  },
+      //     { period: '6M', label: '6 Months',            fund: 13.42, bench: 9.85  },
+      //     { period: '1Y', label: '1 Year',              fund: 21.68, bench: 15.32 },
+      //     { period: '2Y', label: '2 Yrs (CAGR)',        fund: 22.91, bench: 16.47 },
+      //     { period: '3Y', label: '3 Yrs (CAGR)',        fund: 24.35, bench: 17.98 },
+      //     { period: '5Y', label: '5 Yrs (CAGR)',        fund: 23.17, bench: 16.12 },
+      //     { period: 'SI', label: 'Since Inception',     fund: 19.28, bench: 13.14 },
+      //   ],
+      // }
     }
   }
 };

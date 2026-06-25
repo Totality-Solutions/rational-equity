@@ -11,6 +11,7 @@ import Philosophy from "@/components/sections/product/Philosophy";
 import FundPerformance from "@/components/sections/product/FundPerformance";
 import ProductNav from "@/components/sections/product/ProductNav";
 import ReadyToStart from "@/components/common/ReadyToStart";
+import Container from "@/components/common/Container";
 
 export default function FundPage() {
   const params = useParams();
@@ -46,13 +47,25 @@ export default function FundPage() {
         <FundPerformance
           chartData={fund.performance.chartData}
           kpis={fund.performance.kpis}
+          variant={fund.performance.variant}
+          heading={fund.performance.heading}
+          headingHighlight={fund.performance.headingHighlight}
+          subheading={fund.performance.subheading}
+          backtestKpis={fund.performance.backtestKpis}
           fundTitle={fund.title}
         />
       </section>
 
-      <section id="cta" className='max-w-[90rem] mx-auto'>
-        <ReadyToStart />
-      </section>
+      <Container className='mx-auto'>
+        <ReadyToStart
+          title={`Ready to invest in the ${fund.title}`}
+          description="Request the investor deck and speak to our team about onboarding."
+          primaryCTA={{
+            text: "Get In Touch",
+            href: "/contact",
+          }}
+        />
+      </Container>
 
       <section id="philosophy">
         <Philosophy
