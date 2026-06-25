@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { FUND_DATA } from "@/data/Funds";
 import Container from "@/components/common/Container";
+import AnimatedHeader from "@/components/common/AnimatedHeader";
 
 interface FundCard {
   slug: string;
@@ -77,10 +78,10 @@ const headerVariants: Variants = {
 function StatItem({ stat }: { stat: { label: string; value: string } }) {
   return (
     <div className="flex flex-col gap-1">
-      <span className="text-gray-400 text-[9px] md:text-[10px] font-bold uppercase tracking-wide">
+      <span className="text-black/60 text-xs md:text-xs font-medium uppercase tracking-wide">
         {stat.label}
       </span>
-      <span className="text-gray-900 text-[13px] md:text-[14px] lg:text-[15px] font-bold leading-snug">
+      <span className="text-gray-900 text-sm md:text-sm lg:text-base font-semibold leading-snug">
         {stat.value}
       </span>
     </div>
@@ -89,7 +90,7 @@ function StatItem({ stat }: { stat: { label: string; value: string } }) {
 
 export default function AvailableFunds() {
   return (
-    <section className="bg-white py-16 ">
+    <section className="bg-white py-12 ">
       <Container className="mx-auto w-full">
         {/* Header */}
         <motion.div
@@ -97,15 +98,17 @@ export default function AvailableFunds() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col gap-4 md:gap-6 mb-10 md:mb-12 lg:mb-16"
+          className="flex flex-col items-start gap-4 md:gap-6 mb-10 md:mb-12 lg:mb-16 "
         >
-          <h2 className="text-h3-mobile md:text-h3-tab lg:text-h1 font-playfair font-normal leading-tight tracking-tight">
-            <span className="text-black">Choose the right </span>
-            <span className="text-brand-maroon-hover italic">fund for you.</span>
-          </h2>
-          <p className="w-full max-w-[800px] text-gray-400 text-body-md-mobile md:text-body-lg-tab lg:text-body-lg leading-relaxed">
-            Three distinct strategies, each addressing a different macro opportunity and investor profile. You can invest in one or more.
-          </p>
+          <AnimatedHeader
+                    title="Choose the right fund for you."
+                    highlight="fund for you."
+                    subheading="Three distinct strategies, each addressing a different macro opportunity and investor profile. You can invest in one or more."
+                    className=""
+                    highlightClassName="italic"
+                    titleClassName="text-start text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"
+                    subheadingClassName="text-start text-black/60 text-body-md-mobile md:text-body-lg-tab lg:text-body-lg leading-relaxed"
+                  />
         </motion.div>
 
         {/* Fund Cards — CSS Grid for equal-height columns */}
@@ -129,16 +132,16 @@ export default function AvailableFunds() {
                 />
 
                 {/* Card Content — flex column with fixed-height sections */}
-                <div className="flex flex-col flex-1 p-6 md:p-8 lg:p-10">
+                <div className="flex flex-col flex-1 ">
                   {/* Header Section — fixed height so divider aligns across all cards */}
-                  <div className="h-[110px] md:h-[115px] lg:h-[119px] shrink-0 flex flex-col gap-1.5 md:gap-2 overflow-hidden">
-                    <span className="text-gray-400 text-[10px] md:text-[11px] font-bold uppercase tracking-wide leading-none">
+                  <div className="h-fit p-6 md:p-8 lg:p-10 md:h-fit lg:h-fit shrink-0 flex flex-col gap-1.5 md:gap-2 overflow-hidden">
+                    <span className="text-black/60 text-[10px] md:text-[11px] font-semibold uppercase tracking-wide leading-none">
                       {card.label}
                     </span>
-                    <h3 className="text-black text-xl md:text-[26px] lg:text-[28px] font-playfair font-bold leading-tight line-clamp-2">
+                    <h3 className="text-black text-xl md:text-[26px] lg:text-[28px] font-playfair font-semibold leading-tight line-clamp-2">
                       {fund?.title ?? card.slug}
                     </h3>
-                    <span className="text-gray-500 text-xs md:text-[13px] leading-snug mt-auto">
+                    <span className="text-gray-500 text-xs md:text-[13px] leading-snug">
                       {card.subtitle}
                     </span>
                   </div>
@@ -147,16 +150,17 @@ export default function AvailableFunds() {
                   <div className="h-px w-full bg-gray-200 shrink-0" />
 
                   {/* Statistics Section — CSS Grid for equal row/column alignment */}
-                  <div className="grid grid-cols-2 gap-y-4 md:gap-y-5 gap-x-4 md:gap-x-6 py-6 md:py-8 shrink-0">
+                  <div className="grid grid-cols-2 p-6 md:p-8 lg:p-10 gap-y-4 md:gap-y-5 gap-x-4 md:gap-x-6 py-6 md:py-6 shrink-0">
                     {card.stats.map((stat) => (
                       <StatItem key={stat.label} stat={stat} />
                     ))}
                   </div>
 
                   {/* Flexible spacer — pushes badge + button to consistent position */}
-                  <div className="flex-1 min-h-4 md:min-h-6" />
+                  {/* <div className="flex-1 min-h-4 md:min-h-6" /> */}
 
                   {/* Performance Badge */}
+                  <div className="p-6 md:p-8 lg:p-10">
                   <div
                     className="flex items-center gap-3 md:gap-4 px-4 py-3 md:px-5 md:py-3.5 rounded-full shrink-0 border-l-4 border-brand-maroon-hover"
                     style={{
@@ -179,6 +183,7 @@ export default function AvailableFunds() {
                   >
                     View Details
                   </Link>
+                  </div>
                 </div>
               </motion.div>
             );
