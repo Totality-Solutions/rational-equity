@@ -2,6 +2,7 @@ import HeadingSection from '@/components/sections/thought-center/HeadingSection'
 import Hero from '@/components/sections/thought-center/Hero';
 import InvestCTASection from '@/components/sections/thought-center/InvestCTASection';
 import InvestLinksSection from '@/components/sections/thought-center/InvestLinksSection';
+import MediaPage from '@/components/sections/thought-center/MediaPage';
 import Strip from '@/components/sections/thought-center/Strip';
 import ThoughtCenterArticles from '@/components/sections/thought-center/ThoughtCenterArticles';
 import type { Metadata } from 'next';
@@ -30,6 +31,7 @@ export default function ThoughtCenterPage() {
         <Hero />
         <HeadingSection />
         <ThoughtCenterArticles />
+        {/* <MediaPage /> */}
         <InvestCTASection />
         <InvestLinksSection />
         {/* <Strip /> */}
