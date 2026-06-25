@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import CTAButton from '@/components/common/CTAButton';
@@ -59,21 +59,146 @@ const FUNDS = [
   },
 ];
 
+const BREAKPOINT = 1024; // below lg = carousel
+
+// ─── Nav Button ───────────────────────────────────────────────────────────────
+function NavButton({
+  direction,
+  disabled,
+  onClick,
+}: {
+  direction: 'prev' | 'next';
+  disabled: boolean;
+  onClick: () => void;
+}) {
+  const isPrev = direction === 'prev';
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={isPrev ? 'Previous fund' : 'Next fund'}
+      className="w-9 h-9 rounded-full border border-[#9B0000]/25 flex items-center justify-center text-[#9B0000] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#9B0000]/5"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d={isPrev ? 'M15 18l-6-6 6-6' : 'M9 18l6-6-6-6'} />
+      </svg>
+    </button>
+  );
+}
+
+// ─── Fund Card (shared) ──────────────────────────────────────────────────────
+function FundCard({ fund }: { fund: (typeof FUNDS)[number] }) {
+  return (
+    <div className="relative h-full rounded-[24px] overflow-hidden flex flex-col shadow-sm bg-white">
+      <div className="relative z-20 p-8 flex flex-col flex-1">
+        <div className="flex items-center gap-4 mb-8">
+          <Image src={fund.img} alt={fund.title} width={28} height={28} />
+          <h3 className="font-serif text-[20px] leading-tight text-black transition-colors group-hover:text-[#800000]">
+            {fund.title}
+          </h3>
+        </div>
+
+        <p className="text-black/75 text-body-md leading-relaxed mb-8">
+          {fund.description}
+        </p>
+
+        <ul className="space-y-2 text-black/75 text-body-md mb-10">
+          {fund.bullets.map((bullet) => (
+            <li key={bullet}>&bull; {bullet}</li>
+          ))}
+        </ul>
+
+        <div className="mt-auto items-center">
+          <div className="bg-[#E9DEDE] rounded-full px-5 py-2 flex border-l-4 border-[#7B0000] font-playfair items-center gap-2">
+            <span className="font-serif font-black text-[#7B0000] text-[14px] md:text-[18px]">
+              {fund.returns}
+            </span>
+            <span className="text-[12px] text-[#555]">
+              {fund.returnsLabel}
+            </span>
+          </div>
+
+          <Link href={fund.downloadpdf} target="_blank">
+            <button className="w-full mt-8 py-2 rounded-full bg-[#9B0000] text-white text-[16px] font-normal transition-all hover:bg-[#7B0000] cursor-pointer">
+              Download Investor Presentation
+            </button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Main Component ───────────────────────────────────────────────────────────
 export default function InvestmentSolutions() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isCarousel, setIsCarousel] = useState(false);
 
-  // Check for mobile to handle spotlight differently
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [slideWidth, setSlideWidth] = useState(0);
+  const [index, setIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+
+  const maxIndex = FUNDS.length - 1;
+
+  // Detect viewport
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const mq = window.matchMedia;
+    const mCarousel = mq(`(max-width: ${BREAKPOINT - 1}px)`);
+
+    function recalc() {
+      setIsCarousel(mCarousel.matches);
+      setIsMobile(window.innerWidth < 768);
+    }
+
+    recalc();
+    mCarousel.addEventListener('change', recalc);
+    window.addEventListener('resize', recalc);
+    return () => {
+      mCarousel.removeEventListener('change', recalc);
+      window.removeEventListener('resize', recalc);
+    };
   }, []);
 
+  // Measure card width
+  useEffect(() => {
+    if (!isCarousel || !trackRef.current) return;
+    const container = trackRef.current.parentElement;
+    if (!container) return;
+
+    function measure() {
+      setSlideWidth(container!.getBoundingClientRect().width);
+    }
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(container!);
+    return () => ro.disconnect();
+  }, [isCarousel]);
+
+  // Clamp on resize
+  useEffect(() => {
+    setIndex((prev) => Math.min(prev, maxIndex));
+  }, [isCarousel]);
+
+  const prev = useCallback(() => setIndex((i) => Math.max(0, i - 1)), []);
+  const next = useCallback(() => setIndex((i) => Math.min(maxIndex, i + 1)), [maxIndex]);
+
+  // Swipe — moves exactly 1 card
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) delta > 0 ? next() : prev();
+    touchStartX.current = null;
+  };
+
+  // Spotlight (desktop only)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
   const smoothX = useSpring(mouseX, { stiffness: 500, damping: 50 });
   const smoothY = useSpring(mouseY, { stiffness: 500, damping: 50 });
 
@@ -84,144 +209,120 @@ export default function InvestmentSolutions() {
     mouseY.set(clientY - top);
   }
 
-  // Spotlight Mask - Larger on desktop, subtle static fade on mobile
   const maskImage = useTransform(
     [smoothX, smoothY],
-    ([x, y]) => isMobile 
-      ? `radial-gradient(circle at center, black, transparent)` 
-      : `radial-gradient(350px circle at ${x}px ${y}px, black, transparent)`
+    ([x, y]) => isMobile
+      ? `radial-gradient(circle at center, black, transparent)`
+      : `radial-gradient(350px circle at ${x}px ${y}px, black, transparent)`,
   );
 
+  const translatePx = isCarousel ? -(index * slideWidth) : 0;
+
   return (
-  <section
-    onMouseMove={handleMouseMove}
-    className="relative bg-[#FAFAFA] pt-12 font-sans overflow-hidden"
-  >
-    <Container className="relative z-10">
-
-      {/* Grey Wrapper */}
-      <div className="relative px-8 md:px-16 py-12 overflow-hidden">
-
-        {/* GRID BACKGROUND */}
-        {/* <motion.div
-          className="absolute inset-0 z-0 pointer-events-none opacity-100"
-          style={{
-            WebkitMaskImage: maskImage,
-            maskImage: maskImage,
-          }}
-        >
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)
-              `,
-              backgroundSize: isMobile
-                ? '30px 30px'
-                : '45px 45px',
-            }}
-          />
-        </motion.div> */}
-
-        {/* Content */}
-        <div className="relative z-10">
-
-          {/* Heading */}
-          <div className="text-center mb-12">
-            <AnimatedHeader
-              titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
-              title="Three strategies. One philosophy."
-              highlight="One philosophy."
-              variant="light"
-              subheading="Rational ranks among the top asset management companies in India, offering specialized products strategically constructed to maximize returns through deep insights and a research-driven approach and align manager incentives with investor outcomes."
-              subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-md-mobile md:text-body-md-tab lg:text-body-md"
-            />
-          </div>
-
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-  {FUNDS.map((fund, index) => (
-    <motion.a
-    href={fund.href}
-      key={fund.title}
-      initial={{ scaleY: 0, opacity: 0 }}
-      whileInView={{ scaleY: 1, opacity: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1],
-        delay: index * 0.1,
-      }}
-      style={{
-        originY: 0, // all cards animate from top — consistent across all
-        willChange: 'transform',
-        backfaceVisibility: 'hidden',
-        WebkitFontSmoothing: 'antialiased',
-      }}
-      className="relative group h-full"
+    <section
+      onMouseMove={handleMouseMove}
+      className="relative bg-[#FAFAFA] py-8 lg:py-12 font-sans overflow-hidden"
     >
-      <div className="relative h-full rounded-[24px] overflow-hidden flex flex-col shadow-sm bg-white">
-        
-        {/* Hover Maroon Fade */}
-        <div
-          className={`absolute inset-0 z-10 transition-opacity duration-500 pointer-events-none ${
-            isMobile ? 'opacity-40' : 'opacity-0 group-hover:opacity-100'
-          }`}
-          style={{
-            background:
-              'linear-gradient(90deg, rgba(139,0,0,0.12) 0%, rgba(139,0,0,0.04) 40%, transparent 60%)',
-          }}
-        />
+      <Container className="relative z-10">
+        <div className="relative lg:px-16 lg:py-12 overflow-hidden">
 
-        <div className="relative z-20 p-8 flex flex-col flex-1">
-
-          {/* Header */}
-          <div className="flex items-center gap-4 mb-8">
-            <Image src={fund.img} alt={fund.title} width={28} height={28} />
-            <h3 className="font-serif text-[20px] leading-tight text-black transition-colors group-hover:text-[#800000]">
-              {fund.title}
-            </h3>
-          </div>
-
-          {/* Description */}
-          <p className="text-black/75 text-body-md leading-relaxed mb-8">
-            {fund.description}
-          </p>
-
-          {/* Bullets */}
-          <ul className="space-y-2 text-black/75 text-body-md mb-10">
-            {fund.bullets.map((bullet) => (
-              <li key={bullet}>• {bullet}</li>
-            ))}
-          </ul>
-
-          {/* Bottom */}
-          <div className="mt-auto items-center">
-            <div className="bg-[#E9DEDE] rounded-full px-5 py-2 flex border-l-4 border-brand-maroon-hover items-center gap-2">
-              <span className="font-serif font-black text-brand-maroon-hover text-[18px]">
-                {fund.returns}
-              </span>
-              <span className="text-[12px] text-[#555]">
-                {fund.returnsLabel}
-              </span>
+          <div className="relative z-10">
+            {/* Heading */}
+            <div className="text-center mb-12">
+              <AnimatedHeader
+                titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
+                title="Three strategies. One philosophy."
+                highlight="One philosophy."
+                variant="light"
+                subheading="Rational ranks among the top asset management companies in India, offering specialized products strategically constructed to maximize returns through deep insights and a research-driven approach and align manager incentives with investor outcomes."
+                subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-md-mobile md:text-body-md-tab lg:text-body-md"
+              />
             </div>
 
-            <Link href={fund.downloadpdf} target="_blank">
-              <button className="w-full mt-8 py-2 rounded-full bg-brand-maroon text-white text-[16px] font-normal transition-all hover:bg-[#9B0000] cursor-pointer">
-                Download Investor Presentation
-              </button>
-            </Link>
-          </div>
+            {/* Cards — Desktop grid, Mobile/Tablet carousel */}
+            {isCarousel ? (
+              <>
+                <div
+                  className="overflow-hidden"
+                  onTouchStart={onTouchStart}
+                  onTouchEnd={onTouchEnd}
+                >
+                  <div
+                    ref={trackRef}
+                    className="flex"
+                    style={{
+                      transform: `translateX(${translatePx}px)`,
+                      transition: 'transform 0.5s cubic-bezier(0.16,1,0.3,1)',
+                    }}
+                  >
+                    {FUNDS.map((fund) => (
+                      <motion.a
+                        href={fund.href}
+                        key={fund.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.15 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                        className="shrink-0 px-3 group"
+                        style={{ width: '100%' }}
+                      >
+                        <FundCard fund={fund} />
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
 
+                {/* Nav + dots */}
+                <div className="flex justify-center items-center gap-3 pt-8">
+                  {/* <NavButton direction="prev" disabled={index === 0} onClick={prev} /> */}
+                  <div className="flex gap-1.5">
+                    {FUNDS.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setIndex(i)}
+                        aria-label={`Go to fund ${i + 1}`}
+                        className="transition-all duration-300 rounded-full"
+                        style={{
+                          width: i === index ? 20 : 6,
+                          height: 6,
+                          background: i === index ? '#9B0000' : 'rgba(155,0,0,0.2)',
+                        }}
+                      />
+                    ))}
+                  </div>
+                  {/* <NavButton direction="next" disabled={index >= maxIndex} onClick={next} /> */}
+                </div>
+              </>
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {FUNDS.map((fund, index) => (
+                  <motion.a
+                    href={fund.href}
+                    key={fund.title}
+                    initial={{ scaleY: 0, opacity: 0 }}
+                    whileInView={{ scaleY: 1, opacity: 1 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: index * 0.1,
+                    }}
+                    style={{
+                      originY: 0,
+                      willChange: 'transform',
+                      backfaceVisibility: 'hidden',
+                      WebkitFontSmoothing: 'antialiased',
+                    }}
+                    className="relative group h-full"
+                  >
+                    <FundCard fund={fund} />
+                  </motion.a>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    </motion.a>
-  ))}
-</div>
-        </div>
-      </div>
-    </Container>
-  </section>
-);
+      </Container>
+    </section>
+  );
 }

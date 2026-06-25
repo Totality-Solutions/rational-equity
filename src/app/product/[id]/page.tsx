@@ -58,7 +58,7 @@ export default function FundPage() {
 
       <Container className='mx-auto'>
         <ReadyToStart
-          title={`Ready to invest in the ${fund.title}`}
+          title= {fund.ctaTitle1}
           description="Request the investor deck and speak to our team about onboarding."
           primaryCTA={{
             text: "Get In Touch",
@@ -87,9 +87,9 @@ export default function FundPage() {
         <ReadyToStart {...fund.finalCTA} />
       </section>
 
-      <section id="faqs">
+      {/* <section id="faqs">
         <FAQ />
-      </section>
+      </section> */}
     </main>
   );
 } 

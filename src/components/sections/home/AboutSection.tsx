@@ -20,7 +20,7 @@ export default function AboutSection() {
   ];
 
   return (
-   <section className="bg-[#ffffff] py-12">
+   <section className="bg-[#ffffff] py-6 md:py-12">
   <Container>
     <div className="grid lg:grid-cols-2 gap-16 items-center">
 
@@ -35,45 +35,45 @@ export default function AboutSection() {
           </em>
         </h2>
 
-        <p className="mt-10 text-[#4A4A4A] leading-relaxed max-w-xl text-[16px]">
+        <p className="mt-3 md:mt-6 text-[#4A4A4A] leading-relaxed max-w-xl text-[14px] sm:text-[16px]">
           Rational is an investment house with a singular focus: identifying global mega-trends and durable mispricings in the system, then holding them long enough for compounding to do its work. We invest alongside our investors and structure our economics so we only make money when they do.
         </p>
 
         {/* STATS */}
-            <div className="mt-14 grid grid-cols-4 gap-2 pt-4">
+            <div className="mt-6 md:mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-2 md:pt-4">
 
               <div className="text-center">
-                <div className="text-[30px] font-playfair text-[#1A1A1A]">
+                <div className="text-[24px] sm:text-[30px] font-playfair text-[#1A1A1A]">
                   3+
                 </div>
-                <div className="text-[11px] tracking-normal text-[#6B6B6B] mt-1">
+                <div className="text-[14px] sm:text-[10px] tracking-normal text-[#6B6B6B] mt-1">
                   Years building multibaggers
                 </div>
               </div>
 
               <div className="text-center border-l border-[#E4E0DC]">
-                <div className="text-[30px] font-playfair text-[#1A1A1A]">
+                <div className="text-[24px] sm:text-[30px] font-playfair text-[#1A1A1A]">
                   2
                 </div>
-                <div className="text-[11px] tracking-normal text-[#6B6B6B] mt-1">
+                <div className="text-[14px] sm:text-[10px] tracking-normal text-[#6B6B6B] mt-1">
                   Active strategies
                 </div>
               </div>
 
-              <div className="text-center border-l border-[#E4E0DC]">
-                <div className="text-[30px] font-playfair text-[#1A1A1A]">
+              <div className="text-center md:border-l border-[#E4E0DC]">
+                <div className="text-[24px] sm:text-[30px] font-playfair text-[#1A1A1A]">
                   100%
                 </div>
-                <div className="text-[11px] tracking-normal text-[#6B6B6B] mt-1">
+                <div className="text-[14px] sm:text-[10px] tracking-normal text-[#6B6B6B] mt-1">
                   Long-only
                 </div>
               </div>
 
               <div className="text-center border-l border-[#E4E0DC]">
-                <div className="text-[30px] font-playfair text-[#1A1A1A]">
+                <div className="text-[24px] sm:text-[30px] font-playfair text-[#1A1A1A]">
                   1yr
                 </div>
-                <div className="text-[11px] tracking-normal text-[#6B6B6B] mt-1">
+                <div className="text-[14px] sm:text-[10px] tracking-normal text-[#6B6B6B] mt-1">
                   Annual liquidity
                 </div>
               </div>
@@ -83,32 +83,33 @@ export default function AboutSection() {
       </div>
 
       {/* RIGHT CHART CARD */}
-      <div className="bg-white border border-[#E9E5E1] rounded-sm pb-10 px-10 h-full relative overflow-hidden">
+      <div className="bg-white border border-[#E9E5E1] rounded-sm pb-10 px-4 sm:px-10 h-[360px] lg:h-full relative overflow-hidden">
 
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 text-center z-10">
+        <div className="absolute top-6 sm:top-10 left-1/2 -translate-x-1/2 text-center z-10 w-full px-4">
 
-          <p className="text-[18px] font-medium text-[#333]">
+          <p className="text-[15px] sm:text-[18px] font-medium text-[#333]">
             Rational thinking.
           </p>
 
-          <p className="text-[18px] font-medium text-[#333]">
+          <p className="text-[15px] sm:text-[18px] font-medium text-[#333]">
             Exceptional returns.
           </p>
 
-          <div className="flex items-center justify-center gap-4 mt-5">
-            <div className="w-16 h-[1.5px] bg-[#B98E8E]" />
-            <span className="text-[11px] uppercase font-semibold tracking-[1px] text-[#555]">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mt-3 sm:mt-5">
+            <div className="w-10 sm:w-16 h-[1.5px] bg-[#B98E8E]" />
+            <span className="text-[10px] sm:text-[11px] uppercase font-semibold tracking-[1px] text-[#555]">
               Since 2008
             </span>
-            <div className="w-16 h-[1.5px] bg-[#B98E8E]" />
+            <div className="w-10 sm:w-16 h-[1.5px] bg-[#B98E8E]" />
           </div>
 
         </div>
 
         {/* CHART */}
         <svg
-          className="absolute bottom-0 left-0 w-full h-[260px]"
+          className="absolute bottom-0 left-0 w-full h-[180px] sm:h-[220px] lg:h-[260px]"
           viewBox="0 0 700 260"
+          preserveAspectRatio="xMidYMax meet"
         >
           <defs>
             <linearGradient id="bars" x1="0" y1="0" x2="0" y2="1">

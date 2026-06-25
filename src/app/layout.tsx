@@ -7,6 +7,7 @@ import { siteConfig } from '@/lib/seo.config'; // Importing our new config
 import './globals.css';
 import SmartScrollToTop from '@/components/common/ScrollToTop';
 import RouteLoader from '@/components/common/RouteLoader';
+import FAQ from '@/components/sections/home/FAQ';
 
 const playfairDisplay = Playfair_Display({
   variable: '--font-playfair-display',
@@ -113,6 +114,7 @@ export default function RootLayout({
 
         <Navbar />
         <main>{children}</main>
+        <FAQ />
         <Footer />
         <SmartScrollToTop />
       </body>

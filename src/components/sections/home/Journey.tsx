@@ -32,7 +32,7 @@ export const MILESTONES = [
     num: '01',
     title: 'Rational Family Office Launched',
     description:
-      'Wound down the entire real estate portfolio within 6 months and moved everything decisively into the equity market.',
+      'Entire real estate portfolio moved to Indian equities in 4–5 months at the pandemic bottom.',
     img: '/images/journey/1.svg',
   },
   {
@@ -89,9 +89,42 @@ const cardVariants: Variants = {
 };
 
 // ─── Hook: cards per viewport ─────────────────────────────────────────────────
-function useCardsPerView() {
-  const [perView, setPerView] = useState(CARDS_PER_VIEW.wide);
+function getCardsPerView(width: number): number {
+  if (width < BREAKPOINTS.mobile) return CARDS_PER_VIEW.mobile;
+  if (width < BREAKPOINTS.tablet) return CARDS_PER_VIEW.tablet;
+  if (width < BREAKPOINTS.desktop) return CARDS_PER_VIEW.desktop;
+  return CARDS_PER_VIEW.wide;
+}
 
+function useCardsPerView() {
+  const [perView, setPerView] = useState<number>(CARDS_PER_VIEW.wide);
+
+  useEffect(() => {
+    const mq = window.matchMedia;
+
+    const mMobile  = mq(`(max-width: ${BREAKPOINTS.mobile - 1}px)`);
+    const mTablet  = mq(`(min-width: ${BREAKPOINTS.mobile}px) and (max-width: ${BREAKPOINTS.tablet - 1}px)`);
+    const mDesktop = mq(`(min-width: ${BREAKPOINTS.tablet}px) and (max-width: ${BREAKPOINTS.desktop - 1}px)`);
+    const mWide    = mq(`(min-width: ${BREAKPOINTS.desktop}px)`);
+
+    function recalc() {
+      const w = window.innerWidth;
+      setPerView(getCardsPerView(w));
+    }
+
+    recalc();
+    mMobile.addEventListener('change', recalc);
+    mTablet.addEventListener('change', recalc);
+    mDesktop.addEventListener('change', recalc);
+    mWide.addEventListener('change', recalc);
+
+    return () => {
+      mMobile.removeEventListener('change', recalc);
+      mTablet.removeEventListener('change', recalc);
+      mDesktop.removeEventListener('change', recalc);
+      mWide.removeEventListener('change', recalc);
+    };
+  }, []);
 
   return perView;
 }
@@ -128,7 +161,7 @@ export default function Journey() {
   const translatePct = needsCarousel ? -(index * (100 / perView)) : 0;
 
   return (
-    <section className="bg-white py-10 overflow-hidden">
+    <section className="bg-white py-8 lg:py-10 overflow-hidden">
       <Container className="space-y-10">
 
         {/* ── Header + nav ─────────────────────────────────────────────────── */}

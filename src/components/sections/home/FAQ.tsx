@@ -114,7 +114,7 @@ export default function FAQ() {
         />
 
         {/* Accordion List - Two Independent Columns */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid lg:grid-cols-2 gap-4">
           {/* Left Column */}
           <div className="space-y-4">
             {leftColumn.map((faq, index) => renderFAQ(faq, index * 2))}

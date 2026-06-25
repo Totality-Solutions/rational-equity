@@ -36,7 +36,7 @@ export default function Footer() {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <footer className="bg-black text-gray-300 font-sans border-t border-gray-900 px-6 md:px-8">
+    <footer className="bg-black text-gray-300 font-sans border-t border-gray-900 md:px-8">
       <Container className="pt-12 pb-6">
         <div className="flex flex-col lg:flex-row gap-12 md:gap-8 mb-4">
 
@@ -79,7 +79,7 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
             {/* Explore */}
             <div>
-              <h3 className="text-white font-bold mb-6 uppercase">Explore</h3>
+              <h3 className="text-gray-600 font-semibold mb-6 uppercase">Explore</h3>
               <ul className="space-y-4">
                 {QUICK_LINKS.map((link) => (
                   <li key={link.label}>
@@ -98,7 +98,7 @@ export default function Footer() {
 
             {/* Fund */}
             <div>
-              <h3 className="text-white font-bold mb-6 uppercase">Fund</h3>
+              <h3 className="text-gray-600 font-semibold mb-6 uppercase">Fund</h3>
               <ul className="space-y-4">
                 {PRODUCTS.map((link) => (
                   <li key={link.label}>
@@ -117,7 +117,7 @@ export default function Footer() {
 
             {/* Contact */}
             <div>
-              <h3 className="text-white font-bold mb-6 uppercase">Contact</h3>
+              <h3 className="text-gray-600 font-semibold mb-6 uppercase">Contact</h3>
               <ul className="space-y-4 text-[16px] font-sans">
                 <li className="flex items-start gap-3">
                   <MapPin className="text-white shrink-0 mt-0.5" size={20} />
@@ -144,7 +144,7 @@ export default function Footer() {
         </div>
 
         {/* Legal Bar */}
-        <div className="flex justify-between border-t border-gray-900 pt-4 ">
+        <div className="lg:flex lg:justify-between border-t border-gray-900 pt-4 space-y-6 ">
           <div className=' max-w-[600px]'>
             <p className="text-sm text-gray-300 max-w-4xl mx-auto leading-relaxed font-sans">
               Investments are subject to market risk. Read all scheme-related documents carefully. Past performance is not indicative of future results.

@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   allowedDevOrigins: [
-    "http://192.168.1.12:3000",
     "http://localhost:3000",
+    "http://192.168.1.12:3000",
+    "http://192.168.1.69:3000",
   ],
 
   images: {
