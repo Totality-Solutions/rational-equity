@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import Container from '@/components/common/Container';
+import AnimatedHeader from '@/components/common/AnimatedHeader';
 
 const slideUpVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -30,32 +31,32 @@ const steps: Step[] = [
   {
     img: '/icons/macroeconomics.png',
     category: 'Macro Screening',
-    title: 'Identify the Mega-Trend.',
+    title: 'Identify the Mega-Trend',
     desc: 'Scan for structural shifts large enough to sustain multi-year tailwinds. What is the market mispricing, and why?'
   },
   {
     img: '/images/journey/2.svg',
     category: 'Instrument Selection',
-    title: 'Choose the Most Powerful Proxy.',
-    desc: 'Identify the instrument with the most asymmetric exposure to the thesis \u2014 not always the most obvious one.'
+    title: 'Choose the Most Powerful Proxy',
+    desc: 'Identify the instrument with the most asymmetric exposure to the thesis — not always the most obvious one.'
   },
   {
     img: '/images/journey/3.svg',
-    category: 'Conviction',
-    title: 'Deep Research on Each Name.',
+    category: 'Fundamental Research',
+    title: 'Build Conviction on Each Name',
     desc: 'Primary research on every position. Strong FCF, clean balance sheet, credible management, attractive valuation.'
   },
   {
     img: '/images/journey/4.svg',
-    category: 'Technical Setup',
-    title: 'Wait for the Right Entry.',
+    category: 'Technical & Sentiment',
+    title: 'Wait for the Right Entry',
     desc: 'Price action and sentiment must confirm the thesis before capital is deployed. Entry is as important as the idea.'
   },
   {
     img: '/icons/risk.png',
-    category: 'Sizing & Execution',
-    title: 'Build, then Exit Decisively.',
-    desc: 'Hold through volatility as long as the thesis is intact. Exit when it has played out \u2014 no anchoring, no attachment.'
+    category: 'Portfolio Management',
+    title: 'Hold. Then Exit Decisively.',
+    desc: 'Hold through volatility as long as the thesis is intact. Exit when it has played out — no anchoring, no attachment.'
   }
 ];
 
@@ -63,43 +64,27 @@ export default function InsightToInvestment() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-white py-[120px]">
+    <section className="bg-white py-16">
       <Container>
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-10">
           {/* Header */}
-          <div className="flex flex-col items-center gap-4 max-w-[768px] mx-auto">
-            <motion.h2
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.4 }}
-              className="font-playfair text-[44px] leading-[52px] text-center"
-            >
-              <span className="text-black">How we go from</span>
-              <span style={{ color: '#9B0000' }}> </span>
-              <span className="italic" style={{ color: '#9B0000' }}>
-                insight to investment.
-              </span>
-            </motion.h2>
-
-            <motion.p
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideUpVariants}
-              custom={0.3}
-              className="font-sans text-[18px] leading-[28px] tracking-[0.04em] text-center"
-              style={{ color: '#3A3A3A' }}
-            >
-              A rigorous, repeatable 5-step process that we have followed across
-              every fund and every major capital allocation decision since 2008.
-            </motion.p>
+          <div className="flex flex-col items-center gap-4 mx-auto">
+            <AnimatedHeader
+              title="How we go from insight to investment."
+              highlight="insight to investment."
+              subheading="A rigorous, repeatable 5-step process that we have followed across every fund and every major capital allocation decision since 2008."
+              className=""
+              highlightClassName="italic"
+              titleClassName="text-center text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"
+              subheadingClassName="text-center text-black/60 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed"
+            />
           </div>
 
           {/* Steps Row */}
           <div className="relative">
             {/* Horizontal line */}
             <div
-              className="absolute left-0 right-0 h-[1px]"
+              className="absolute left-0 right-0 h-px"
               style={{ top: 24, background: 'rgba(0, 0, 0, 0.50)' }}
             />
 

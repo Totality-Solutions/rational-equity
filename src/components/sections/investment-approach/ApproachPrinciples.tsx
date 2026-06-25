@@ -4,6 +4,7 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
+import AnimatedHeader from '@/components/common/AnimatedHeader';
 
 const slideUpVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -30,18 +31,18 @@ const letterVariants: Variants = {
 const principles = [
   {
     num: '1',
-    title: 'Identify Asset Class First',
-    desc: 'We start at the macro level; broad ideas and market selection come before stock selection \u2014 always.'
+    title: 'Identify the Right Asset Class First',
+    desc: 'We start at the macro level. Asset class and market selection come before stock selection — always.'
   },
   {
     num: '2',
     title: 'Marry Fundamentals with Technicals',
-    desc: 'All four analytical lenses \u2014 fundamentals, macro, technicals, sentiment \u2014 must align before we deploy capital.'
+    desc: 'All four analytical lenses — fundamentals, macro, technicals, sentiment — must align before we deploy capital.'
   },
   {
     num: '3',
     title: 'Be Flexible & Asset-Class Agnostic',
-    desc: 'We have no permanent home \u2014 India, global equities, miners, derivatives. We go where the evidence is strongest.'
+    desc: 'We have no permanent home — India, global equities, miners, derivatives. We go where the evidence is strongest.'
   },
   {
     num: '4',
@@ -52,11 +53,11 @@ const principles = [
 
 export default function ApproachPrinciples() {
   return (
-    <section className="bg-white py-[120px]">
+    <section className="bg-white py-12">
       <Container>
         <div className="flex flex-col lg:flex-row gap-20">
           {/* Left Column */}
-          <div className="flex-1 space-y-10">
+          <div className="flex-1 space-y-7">
             {/* Title */}
             <motion.h2
               initial="hidden"
@@ -64,30 +65,24 @@ export default function ApproachPrinciples() {
               viewport={{ once: true, amount: 0.4 }}
               className="font-playfair text-[44px] leading-[52px]"
             >
-              <motion.span
-                variants={slideUpVariants}
-                custom={0}
-                className="block text-black"
-              >
-                Safety of capital.
-              </motion.span>
-              <motion.span
-                variants={slideUpVariants}
-                custom={0.05}
-                className="block italic"
-                style={{ color: '#7B0000' }}
-              >
-                {'Alpha above everything.'.split('').map((char, i) => (
-                  <motion.span
-                    key={i}
-                    custom={i}
-                    variants={letterVariants}
-                    className="inline-block"
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
-              </motion.span>
+              <AnimatedHeader
+                                title="Safety of capital."
+                                highlight=""
+                                subheading=""
+                                className=""
+                                highlightClassName="italic"
+                                titleClassName="text-start text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"
+                                subheadingClassName="text-start text-black/60 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed"
+                              />
+              <AnimatedHeader
+                                title="Alpha above everything."
+                                highlight="Alpha above everything."
+                                subheading=""
+                                className=""
+                                highlightClassName="italic"
+                                titleClassName="text-start text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"
+                                subheadingClassName="text-start text-black/60 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed"
+                              />
             </motion.h2>
 
             {/* Description */}
@@ -97,8 +92,7 @@ export default function ApproachPrinciples() {
               viewport={{ once: true }}
               variants={slideUpVariants}
               custom={0.2}
-              className="font-sans text-[18px] leading-[28px] tracking-[0.04em]"
-              style={{ color: '#3A3A3A' }}
+              className="font-sans text-[18px] leading-[28px] tracking-[0.04em] text-black/60"
             >
               At Rational, we believe that the highest returns come from making
               the correct wealth allocation decisions at the right time. We always
@@ -106,6 +100,16 @@ export default function ApproachPrinciples() {
               and product gives us the best risk-adjusted opportunity and when
               should we enter? And then, we deep dive into which stocks to buy,
               at what time and valuation.
+            </motion.p>
+            <motion.p
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideUpVariants}
+              custom={0.2}
+              className="font-sans text-[18px] leading-[28px] tracking-[0.04em] text-black/60"
+            >
+              This is what we call disciplined capital allocation — the willingness and agility to move capital decisively from one asset class to another when the evidence is overwhelming
             </motion.p>
 
             {/* Quote Block */}
@@ -118,7 +122,7 @@ export default function ApproachPrinciples() {
               className="p-8"
               style={{
                 background: '#F9F9F9',
-                borderLeft: '4px solid #9B0000'
+                borderLeft: '3px solid #9B0000'
               }}
             >
               <p
@@ -143,7 +147,7 @@ export default function ApproachPrinciples() {
                   duration: 0.7,
                   ease: [0.22, 1, 0.36, 1]
                 }}
-                className="relative flex items-center"
+                className="relative flex items-center border-l-3 border-brand-maroon"
                 style={{
                   padding: '13px 15px 13px 70px',
                   background: '#F8F8F8',
@@ -155,7 +159,7 @@ export default function ApproachPrinciples() {
               >
                 {/* Number */}
                 <span
-                  className="absolute font-playfair text-[50px] leading-[44.72px] uppercase"
+                  className="absolute font-playfair text-[36px] leading-[44.72px] uppercase"
                   style={{
                     left: 24,
                     top: 13,
