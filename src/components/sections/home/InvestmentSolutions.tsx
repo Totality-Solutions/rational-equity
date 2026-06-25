@@ -17,6 +17,7 @@ const FUNDS = [
     returnsLabel: '3 Year Returns',
     href: '/product/india-long-only',
     img: '/images/icons/india-long-only-fund.svg',
+    downloadpdf:'/pdf/india-long-only-fund.pdf',
     bullets: [
       'Invests in Indian public markets',
       'Long-only, no derivatives',
@@ -32,6 +33,7 @@ const FUNDS = [
     returnsLabel: '1 Year Returns',
     href: '/product/gold-silver-miners',
     img: '/images/icons/gold-&-silver-miners-fund.svg',
+    downloadpdf:'/pdf/gold-silver-miners-fund.pdf',
     bullets: [
       'Invests in gold & silver miners globally',
       'Long-only, no derivatives',
@@ -47,6 +49,7 @@ const FUNDS = [
     returnsLabel: '10-Year Model Net CAGR',
     href: '/product/absolute-return',
     img: '/images/icons/absolute-return-fund.svg',
+    downloadpdf:'/pdf/absolute-return-fund.pdf',
     bullets: [
       'Long-short strategy',
       'Derivatives of publicly listed Indian companies',
@@ -139,7 +142,8 @@ export default function InvestmentSolutions() {
           {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
   {FUNDS.map((fund, index) => (
-    <motion.div
+    <motion.a
+    href={fund.href}
       key={fund.title}
       initial={{ scaleY: 0, opacity: 0 }}
       whileInView={{ scaleY: 1, opacity: 1 }}
@@ -203,7 +207,7 @@ export default function InvestmentSolutions() {
               </span>
             </div>
 
-            <Link href={fund.href}>
+            <Link href={fund.downloadpdf} target="_blank">
               <button className="w-full mt-8 py-2 rounded-full bg-brand-maroon text-white text-[16px] font-normal transition-all hover:bg-[#9B0000] cursor-pointer">
                 Download Investor Presentation
               </button>
@@ -212,7 +216,7 @@ export default function InvestmentSolutions() {
 
         </div>
       </div>
-    </motion.div>
+    </motion.a>
   ))}
 </div>
         </div>
