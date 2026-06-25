@@ -40,7 +40,7 @@ export default function ThoughtCenterPage() {
                     description="Join thousands of investors who trust us with their wealth creation journey"
                     primaryCTA={{
                       text: "Invest With Us",
-                      href: "/contact",
+                      href: "/invest-with-us",
                     }}
                   />
                   </div>
