@@ -12,8 +12,7 @@ export default function StorySection() {
           <div className="w-full md:w-[35%] pb-8 md:pb-0 md:pr-12 mb-8 md:mb-0">
             <div className="md:sticky md:top-32">
               <h2
-                className="text-h2-mobile md:text-h2-tab lg:text-h2 leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', serif" }}
+                className="text-h2-mobile md:text-h2-tab lg:text-h2 leading-tight mb-6 font-playfair"
               >
                 From family office
                 <br />

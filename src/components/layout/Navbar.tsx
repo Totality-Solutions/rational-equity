@@ -14,7 +14,7 @@ const NAV_LINKS = [
     subMenu: [
       { label: 'India Long-Only Fund', href: '/product/india-long-only', img: '/images/icons/india-long-only-fund.svg' },
       { label: 'Gold & Silver Miners Fund', href: '/product/gold-silver-miners', img: '/images/icons/gold-&-silver-miners-fund.svg' },
-      // { label: 'Absolute Return Funds', href: '/product/absolute-return', img: '/images/icons/absolute-return-fund.svg' },
+      { label: 'Absolute Return Funds', href: '/product/absolute-return', img: '/images/icons/absolute-return-fund.svg' },
     ]
   },
   { label: 'Investment Approach', href: '/investment-approach' },
@@ -58,7 +58,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`sticky top-0 left-0 right-0 z-55 transition-all duration-300 bg-white border-b px-3 md:px-8 border-b-gray-200 ${scrolled ? 'py-2' : 'py-3'}`}>
+    <header className={`sticky top-0 left-0 right-0 z-55 transition-all duration-300 bg-white border-b px-3 md:px-4 lg:px-8 border-b-gray-200 ${scrolled ? 'py-2' : 'py-3'}`}>
       <nav>
         <Container className="flex items-center justify-between">
           

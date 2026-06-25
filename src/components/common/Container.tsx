@@ -15,7 +15,7 @@ export default function Container({ children, className = "" }: ContainerProps) 
         mx-auto 
         w-full 
         px-6           /* Mobile Base (default) */
-        md:px-16
+        lg:px-16
         2xl:px-0       /* Medium screens and up (Tablets) */
         ${className}
       `}

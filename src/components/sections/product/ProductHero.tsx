@@ -14,7 +14,7 @@ interface ProductHeroProps {
 
 export default function ProductHero({ title, description, titleColor = "text-brand-maroon" }: ProductHeroProps) {
   return (
-    <section className="bg-black text-white py-16 mb-12 overflow-hidden">
+    <section className="bg-black text-white py-20 mb-12 overflow-hidden">
       <div className="max-w-4xl mx-auto px-8 md:px-16 ">
 
           <AnimatedHeader

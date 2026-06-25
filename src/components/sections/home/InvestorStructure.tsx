@@ -58,8 +58,7 @@ export default function InvestorStructure() {
               {/* Main Contents */}
               <div className="space-y-6 flex-1 flex flex-col">
                 <h3 
-                  className="text-h4-tab md:text-h4 leading-[38px] text-gray-900 font-normal tracking-tight"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
+                  className="text-h4-tab md:text-h4 leading-[38px] font-playfair text-gray-900 font-normal tracking-tight"
                 >
                   {item.title}
                 </h3>

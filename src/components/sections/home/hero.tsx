@@ -161,14 +161,12 @@ export default function Hero() {
           {/* Tight Spacing Headings */}
           <div className="flex flex-col space-y-1">
             <h1 
-              className="text-[44px] sm:text-[52px] lg:text-[56px] font-normal tracking-tight text-white leading-none"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-[44px] sm:text-[52px] lg:text-[56px] font-playfair font-normal tracking-tight text-white leading-none"
             >
               Rational investing.
             </h1>
             <h2 
-              className="text-[44px] sm:text-[52px] lg:text-[56px] italic text-gray-300 font-normal leading-tight"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+              className="text-[44px] sm:text-[52px] lg:text-[56px] font-playfair italic text-gray-300 font-normal leading-tight"
             >
               Outsized returns.
             </h2>
@@ -234,8 +232,7 @@ export default function Hero() {
 
                   {/* Clean locked text block elements with optimized metrics */}
                   <div 
-                    className="text-[20px] lg:text-[28px] font-normal text-white tracking-tight flex items-end justify-center select-none h-[36px] lg:h-[40px]"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
+                    className="text-[20px] lg:text-[28px] font-normal font-playfair text-white tracking-tight flex items-end justify-center select-none h-[36px] lg:h-[40px]"
                   >
                     {/* Optional Prefix Node */}
                     {stat.prefix && (

@@ -28,7 +28,7 @@ interface Step {
 
 const steps: Step[] = [
   {
-    img: '/images/journey/1.svg',
+    img: '/icons/macroeconomics.png',
     category: 'Macro Screening',
     title: 'Identify the Mega-Trend.',
     desc: 'Scan for structural shifts large enough to sustain multi-year tailwinds. What is the market mispricing, and why?'

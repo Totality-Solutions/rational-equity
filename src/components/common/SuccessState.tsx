@@ -18,7 +18,7 @@ export function SuccessState({ onReset, variant = "page" }: SuccessStateProps) {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.5 }}
       className={`relative flex flex-col items-center justify-center text-center space-y-8 p-12 ${
-        variant === "page" ? "py-12" : "py-8"
+        variant === "page" ? "py-16" : "py-8"
       }`}
     >
       {/* Close Button */}

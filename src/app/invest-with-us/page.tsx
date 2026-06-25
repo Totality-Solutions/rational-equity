@@ -30,7 +30,7 @@ export default function StartInvestingPage() {
   return (
     <main>
       <InvestWithUs />
-      <ChooseYourPath />
+      {/* <ChooseYourPath /> */}
       <AvailableFunds />
       <StartInvestingForm />
       <ResourcesSection />
