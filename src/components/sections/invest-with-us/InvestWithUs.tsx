@@ -43,9 +43,9 @@ const stats = [
 
 export default function InvestWithUs() {
   return (
-    <section className="bg-black py-12 px-8 md:px-20">
+    <section className="bg-black py-6 lg:py-12 ">
       <Container>
-        <div className="flex flex-col lg:flex-row gap-20 items-center">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 items-center">
           {/* Left Side */}
           <div className="flex-1 flex flex-col gap-8">
             <motion.h1
@@ -87,7 +87,7 @@ export default function InvestWithUs() {
                 style={{ background: '#1A1A1A' }}
               >
                 <span
-                  className="font-playfair text-h3-mobile md:text-h3-tab lg:text-[35px] font-semibold shrink-0 w-[100px]"
+                  className="font-playfair text-h3-mobile md:text-h3-tab lg:text-[35px] font-semibold shrink-0 lg:w-[100px]"
                   style={{ color: fund.color }}
                 >
                   {fund.value}

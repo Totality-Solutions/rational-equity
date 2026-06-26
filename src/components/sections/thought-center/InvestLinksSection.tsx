@@ -65,19 +65,20 @@ export default function InvestLinksSection() {
 
   return (
     <div>
-    <section className="w-full px-3 md:px-16 bg-[#FAFAFA] ">
-      <Container className="py-6 md:py-12 mx-auto space-y-12 relative">
+    <section className="w-full bg-[#FAFAFA] ">
+      <Container className="py-6 lg:py-12 mx-auto space-y-12 relative">
 
         <AnimatedHeader
           title="Leading asset management committed to you"
           highlight="committed"
           subheading="Speak with our investment advisors to understand how our funds can help you achieve your long-term financial goals."
           className="mb-6 sm:mb-7 text-h3 text-black"
-          subheadingClassName="text-body-lg tracking-wide text-black"
+          subheadingClassName="text-body-md-mobile md:text-body-md-tab lg:text-body-md tracking-wide text-black"
+          titleClassName="text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"
         />
 
         {/* Fund cards */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-7">
           {FUNDS.map((fund, index) => (
             <motion.div
               key={fund.title}

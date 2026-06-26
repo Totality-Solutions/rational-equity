@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
 import { DynamicArticleModal } from '../../common/DynamicArticleModal';
@@ -8,16 +8,37 @@ import Container from "@/components/common/Container";
 import { articles, Article } from "@/data/thoughtCenterData";
 
 const CRIMSON = "#9B0000";
-const PAGE_SIZE = 6;
+
+function usePageSize() {
+  const [size, setSize] = useState(6);
+
+  useEffect(() => {
+    function update() {
+      if (window.innerWidth < 600) setSize(2);
+      else if (window.innerWidth < 1024) setSize(4);
+      else setSize(6);
+    }
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return size;
+}
 
 export default function ThoughtCenterArticles() {
+  const pageSize = usePageSize();
   const [page, setPage] = useState(1);
   
-  // 1. Changed state type to dynamically reference the specific Article data item object
+  // Reset page when page size changes
+  useEffect(() => {
+    setPage(1);
+  }, [pageSize]);
+
   const [activeModal, setActiveModal] = useState<Article | null>(null);
   
-  const totalPages = Math.ceil(articles.length / PAGE_SIZE);
-  const paginated = articles.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const totalPages = Math.ceil(articles.length / pageSize);
+  const paginated = articles.slice((page - 1) * pageSize, page * pageSize);
 
   const handlePage = (p: number) => {
     setPage(p);
@@ -86,7 +107,7 @@ export default function ThoughtCenterArticles() {
 /* ── Article card ─────────────────────────────────────────── */
 function ArticleCard({ item, onClick }: { item: Article; onClick: () => void }) {
   return (
-    <div className="group bg-white rounded-2xl border border-brand-maroon/20 overflow-hidden flex flex-col transition-all duration-300 ease-out hover:-translate-y-2 sm:hover:-translate-y-3 hover:scale-[1.01] sm:hover:scale-[1.02]">
+    <div className="group bg-white rounded-2xl border border-brand-maroon/20 overflow-hidden flex flex-col ease-out hover:-translate-y-2 md:hover:-translate-y-3 hover:scale-[1.01] md:hover:scale-[1.02]">
       <div className="h-40 sm:h-44 relative overflow-hidden bg-brand-maroon/10 shrink-0">
         <Image
           src={item.thumbnail}
@@ -102,7 +123,7 @@ function ArticleCard({ item, onClick }: { item: Article; onClick: () => void }) 
           {item.category} · {item.readTime}
         </p>
 
-        <h3 className="text-black font-semibold text-base sm:text-[17px] leading-snug transition-colors group-hover:text-brand-maroon">
+        <h3 className="text-black font-semibold text-base sm:text-[17px] leading-snug group-hover:text-brand-maroon">
           {item.title}
         </h3>
 

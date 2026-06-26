@@ -20,7 +20,7 @@ export default function AboutSection() {
   ];
 
   return (
-   <section className="bg-[#ffffff] py-6 md:py-12">
+   <section className="bg-[#ffffff] py-6 lg:py-12">
   <Container>
     <div className="grid lg:grid-cols-2 gap-16 items-center">
 

@@ -1,7 +1,6 @@
-
 'use client';
 
-import React from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
 
@@ -26,6 +25,32 @@ const letterVariants: Variants = {
     transition: { delay: i * 0.04, duration: 0.35, ease: 'easeOut' }
   })
 };
+
+const BREAKPOINTS = {
+  mobile: 600,
+  tablet: 1024,
+} as const;
+
+function getCardsPerView(width: number): number {
+  if (width < BREAKPOINTS.mobile) return 1;
+  if (width < BREAKPOINTS.tablet) return 2;
+  return 4;
+}
+
+function useCardsPerView() {
+  const [perView, setPerView] = useState<number>(4);
+
+  useEffect(() => {
+    function recalc() {
+      setPerView(getCardsPerView(window.innerWidth));
+    }
+    recalc();
+    window.addEventListener('resize', recalc);
+    return () => window.removeEventListener('resize', recalc);
+  }, []);
+
+  return perView;
+}
 
 interface Lens {
   title: string;
@@ -71,36 +96,121 @@ const lenses: Lens[] = [
   }
 ];
 
+function LensCard({ lens, index }: { lens: Lens; index: number }) {
+  return (
+    <div
+      className="relative flex flex-col lg:px-6 lg:pt-10 lg:pb-8 py-4 overflow-hidden border-b border-[#262626] lg:border-b-0 lg:border-l lg:first:border-l-0 h-full"
+      style={{
+        borderTop: `2px solid ${lens.color}`
+      }}
+    >
+      {/* Icon Area */}
+      <div className=" pb-2 lg:pb-0 lg:h-25 flex items-start">
+        <div
+          className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden"
+          style={{
+            background: '#0A0A0A',
+            border: '1px solid rgba(255,255,255,0.08)'
+          }}
+        >
+          <img src={lens.icon} alt={lens.title} className="w-8 h-8 object-contain" />
+        </div>
+      </div>
+
+      {/* Title */}
+      <div className="h-[30px] md:h-[40px]">
+        <h3 className="font-playfair text-h3-mobile md:text-h3-tab lg:text-h4 leading-none text-white">
+          {lens.title}
+        </h3>
+      </div>
+
+      {/* Accent Line */}
+      <div
+        className="w-10 h-[2px] mb-2 lg:mb-5"
+        style={{ background: lens.color }}
+      />
+
+      {/* Description */}
+      <div className="md:min-h-60">
+        <p
+          className="font-sans text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-[1.75] tracking-[0.02em]"
+          style={{ color: '#B0B0B0' }}
+        >
+          {lens.desc}
+        </p>
+      </div>
+
+      {/* Divider */}
+      <div className="mt-4 mb-6">
+        <div className="w-full h-px bg-[#363636]" />
+      </div>
+
+      {/* Quote */}
+      <div className="lg:min-h-28">
+        <p className="font-playfair italic text-[16px] leading-[1.7]" style={{ color: '#8E8E8E' }}>
+          {lens.quote}
+        </p>
+      </div>
+
+      {/* Background Letter */}
+      <span
+        className="absolute right-6 bottom-2 font-playfair text-[95px] leading-none pointer-events-none select-none"
+        style={{ color: '#FFFFFF', opacity: 0.03 }}
+      >
+        {lens.letter}
+      </span>
+    </div>
+  );
+}
+
 export default function AnalyticalLenses() {
+  const perView = useCardsPerView();
+  const total = lenses.length;
+  const maxIndex = Math.max(0, total - perView);
+
+  const [index, setIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+
+  useEffect(() => {
+    setIndex((prev) => Math.min(prev, maxIndex));
+  }, [maxIndex]);
+
+  const prev = useCallback(() => setIndex((i) => Math.max(0, i - 1)), []);
+  const next = useCallback(() => setIndex((i) => Math.min(maxIndex, i + 1)), [maxIndex]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) delta > 0 ? next() : prev();
+    touchStartX.current = null;
+  };
+
+  const cardSizePct = 100 / perView;
+  const translatePct = total > perView ? -(index * cardSizePct) : 0;
+
   return (
     <section className="bg-black py-12">
       <Container>
-        <div className="flex flex-col gap-15">
+        <div className="flex flex-col gap-6 lg:gap-15">
           {/* Header */}
           <div className="flex flex-col items-center gap-6 mx-auto">
             <motion.h2
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.4 }}
-              className="font-playfair text-h2 leading-13 text-center"
+              className="text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight text-center"
             >
               {'Marrying Macro, Fundamentals, Sentiment & Technicals.'.split(
                 /(Macro|Fundamentals|Sentiment|Technicals)/
               ).map((part, i) => {
                 const isHighlight = ['Macro', 'Fundamentals', 'Sentiment', 'Technicals'].includes(part);
                 return isHighlight ? (
-                  <span
-                    key={i}
-                    className="inline-block"
-                    style={{ color: '#9B0000' }}
-                  >
+                  <span key={i} className="inline-block" style={{ color: '#9B0000' }}>
                     {part.split('').map((char, ci) => (
-                      <motion.span
-                        key={ci}
-                        custom={ci}
-                        variants={letterVariants}
-                        className="inline-block"
-                      >
+                      <motion.span key={ci} custom={ci} variants={letterVariants} className="inline-block">
                         {char === ' ' ? '\u00A0' : char}
                       </motion.span>
                     ))}
@@ -108,12 +218,7 @@ export default function AnalyticalLenses() {
                 ) : (
                   <span key={i} className="inline-block text-white">
                     {part.split('').map((char, ci) => (
-                      <motion.span
-                        key={ci}
-                        custom={ci}
-                        variants={letterVariants}
-                        className="inline-block"
-                      >
+                      <motion.span key={ci} custom={ci} variants={letterVariants} className="inline-block">
                         {char === ' ' ? '\u00A0' : char}
                       </motion.span>
                     ))}
@@ -128,15 +233,65 @@ export default function AnalyticalLenses() {
               viewport={{ once: true }}
               variants={slideUpVariants}
               custom={0.3}
-              className="font-sans text-[18px] leading-[28px] tracking-[0.04em] text-start"
+              className="font-sans text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-[28px] tracking-[0.04em] text-start"
               style={{ color: '#E3DFDB' }}
             >
               Every position we take is the product of all four analytical lenses working in alignment. We never act on one dimension alone.
             </motion.p>
           </div>
 
-          {/* Lenses Grid — Figma match */}
-          <div className="grid grid-cols-1 lg:grid-cols-4">
+          {/* Carousel — mobile & tablet */}
+          {total > perView && (
+            <div className="lg:hidden">
+              <div className="overflow-hidden" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+                <div
+                  className="flex"
+                  style={{
+                    transform: `translateX(${translatePct}%)`,
+                    transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1)',
+                  }}
+                >
+                  {lenses.map((lens, i) => (
+                    <div
+                      key={lens.title}
+                      className="shrink-0 px-3"
+                      style={{ width: `${cardSizePct}%` }}
+                    >
+                      <LensCard lens={lens} index={i} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex justify-center items-center gap-2 pt-8">
+                <button
+                  onClick={prev}
+                  disabled={index === 0}
+                  className="w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10"
+                  style={{ borderColor: 'rgba(255,255,255,0.25)', color: '#fff' }}
+                  aria-label="Previous"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+                <button
+                  onClick={next}
+                  disabled={index >= maxIndex}
+                  className="w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10"
+                  style={{ borderColor: 'rgba(255,255,255,0.25)', color: '#fff' }}
+                  aria-label="Next"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Grid — desktop and fallback when all fit */}
+          <div className={`${total > perView ? 'hidden lg:grid' : 'grid'} grid-cols-1 lg:grid-cols-4`}>
             {lenses.map((lens, i) => (
               <motion.div
                 key={lens.title}
@@ -148,91 +303,8 @@ export default function AnalyticalLenses() {
                   duration: 0.7,
                   ease: [0.22, 1, 0.36, 1]
                 }}
-                className="relative flex flex-col px-6 pt-10 pb-8 overflow-hidden border-b border-[#262626] lg:border-b-0 lg:border-l lg:first:border-l-0"
-                style={{
-                  borderTop: `2px solid ${lens.color}`
-                }}
               >
-                {/* Icon Area */}
-                <div className="h-[110px] flex items-start">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden"
-                    style={{
-                      background: '#0A0A0A',
-                      border: '1px solid rgba(255,255,255,0.08)'
-                    }}
-                  >
-                    <img src={lens.icon} alt={lens.title} className="w-8 h-8 object-contain" />
-                  </div>
-                </div>
-
-                {/* Title */}
-                <div className="h-[60px]">
-                  <h3 className="font-playfair text-[28px] leading-none text-white">
-                    {lens.title}
-                  </h3>
-                </div>
-
-                {/* Accent Line */}
-                <div
-                  className="w-10 h-[2px] mb-5"
-                  style={{ background: lens.color }}
-                />
-
-                {/* Description */}
-                <div className="min-h-[230px]">
-                  <p
-                    className="
-                      font-sans
-                      text-[16px]
-                      leading-[1.75]
-                      tracking-[0.02em]
-                    "
-                    style={{ color: '#B0B0B0' }}
-                  >
-                    {lens.desc}
-                  </p>
-                </div>
-
-                {/* Divider */}
-                <div className="mt-4 mb-6">
-                  <div className="w-full h-px bg-[#363636]" />
-                </div>
-
-                {/* Quote */}
-                <div className="min-h-[110px]">
-                  <p
-                    className="
-                      font-playfair
-                      italic
-                      text-[16px]
-                      leading-[1.7]
-                    "
-                    style={{ color: '#8E8E8E' }}
-                  >
-                    {lens.quote}
-                  </p>
-                </div>
-
-                {/* Background Letter */}
-                <span
-                  className="
-                    absolute
-                    right-6
-                    bottom-2
-                    font-playfair
-                    text-[95px]
-                    leading-none
-                    pointer-events-none
-                    select-none
-                  "
-                  style={{
-                    color: '#FFFFFF',
-                    opacity: 0.03
-                  }}
-                >
-                  {lens.letter}
-                </span>
+                <LensCard lens={lens} index={i} />
               </motion.div>
             ))}
           </div>

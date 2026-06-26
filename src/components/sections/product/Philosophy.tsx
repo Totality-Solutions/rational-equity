@@ -118,7 +118,7 @@ export default function Philosophy({ points = [], title = "Investment Philosophy
   const translatePct = needsCarousel ? -(index * cardSizePct) : 0;
 
   return (
-    <section className="bg-white py-12 overflow-hidden">
+    <section className="bg-white py-6 lg:py-12 overflow-hidden">
       <Container className="space-y-8">
         <AnimatedHeader
           title={title}

@@ -93,12 +93,12 @@ export default function StartInvestingForm() {
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.4 }}
         >
-          <Container className="py-10">
-            <div className="grid lg:grid-cols-[520px_1fr] gap-20 items-start">
+          <Container className="py-6 lg:py-12">
+            <div className="grid lg:grid-cols-[520px_1fr] gap-8 lg:gap-20 items-start">
 
               {/* LEFT */}
 
-              <div className="flex flex-col items-start gap-4 md:gap-6 mb-10 md:mb-12 lg:mb-16 "
+              <div className="flex flex-col items-start gap-4 md:gap-6 mb-6 lg:mb-16 "
               >
                 <AnimatedHeader
                   title="Start the conversation."
@@ -110,17 +110,16 @@ export default function StartInvestingForm() {
                   subheadingClassName="text-start text-black/60 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed"
                 />
 
-                <div className="space-y-6">
+                <div className="w-full space-y-6">
 
                   {/* WhatsApp */}
-
                   <a
                     href="https://wa.me/919911900096"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-5 rounded-lg border border-black/15 p-5"
+                    className="flex items-center gap-5 rounded-lg border border-black/15 p-3 lg:p-5"
                   >
-                    <div className="h-12 w-12 rounded-full bg-[#F3F3F3] flex items-center justify-center">
+                    <div className="lg:h-12 lg:w-12 w-6 h-6 rounded-full bg-[#F3F3F3] flex items-center justify-center">
                       <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={36} height={36} />
                     </div>
 
@@ -129,7 +128,7 @@ export default function StartInvestingForm() {
                         Whatsapp
                       </p>
 
-                      <p className="mt-2 text-[18px] font-medium text-black">
+                      <p className="mt-1 lg:mt-2 text-body-md-mobile md:text-body-md-tab lg:text-body-md font-medium text-black">
                         +91 99119 00096
                       </p>
                     </div>
@@ -139,9 +138,9 @@ export default function StartInvestingForm() {
 
                   <a
                     href="mailto:jaba@repllp.com,vikram@repllp.com"
-                    className="flex items-center gap-5 rounded-lg border border-black/15 p-5"
+                    className="flex items-center gap-5 rounded-lg border border-black/15 p-3 lg:p-5"
                   >
-                    <div className="h-12 w-12 rounded-full bg-[#F3F3F3] flex items-center justify-center">
+                    <div className="lg:h-12 lg:w-12 w-6 h-6 rounded-full bg-[#F3F3F3] flex items-center justify-center">
                       <Image src="/icons/mail.svg" alt="Email" width={36} height={36} />
                     </div>
 
@@ -150,7 +149,7 @@ export default function StartInvestingForm() {
                         Email
                       </p>
 
-                      <p className="mt-2 text-[18px] font-medium text-black break-words">
+                      <p className="mt-1 lg:mt-2 text-body-md-mobile md:text-body-md-tab lg:text-body-md font-medium text-black break-words">
                         jaba@repllp.com · vikram@repllp.com
                       </p>
                     </div>
@@ -160,9 +159,9 @@ export default function StartInvestingForm() {
 
                   <a
                     href="tel:+919987261105"
-                    className="flex items-center gap-5 rounded-lg border border-black/15 p-5"
+                    className="flex items-center gap-5 rounded-lg border border-black/15 p-3 lg:p-5"
                   >
-                    <div className="h-12 w-12 rounded-full bg-[#F3F3F3] flex items-center justify-center">
+                    <div className="lg:h-12 lg:w-12 w-6 h-6 rounded-full bg-[#F3F3F3] flex items-center justify-center">
                       <Image src="/icons/phone.svg" alt="Phone" width={36} height={36} />
                     </div>
 
@@ -171,7 +170,7 @@ export default function StartInvestingForm() {
                         Phone
                       </p>
 
-                      <p className="mt-2 text-[18px] leading-7 font-medium text-black">
+                      <p className="mt-1 lg:mt-2 text-body-md-mobile md:text-body-md-tab lg:text-body-md font-medium text-black">
                         +91 99872 61105
                       </p>
                     </div>
@@ -182,28 +181,28 @@ export default function StartInvestingForm() {
 
               {/* RIGHT */}
 
-              <div className="rounded-3xl border border-[#E7E7E7] bg-white p-12 shadow-[0_12px_48px_rgba(0,0,0,0.05)]">
+              <div className="rounded-3xl border border-[#E7E7E7] bg-white px-4 py-8 lg:p-12 shadow-[0_12px_48px_rgba(0,0,0,0.05)]">
 
-                <div className="space-y-3">
+                <div className="space-y-2 lg:space-y-3">
 
-                  <h3 className="font-playfair text-[34px] font-semibold text-black">
+                  <h3 className="font-playfair text-h3-mobile md:text-h3-tab lg:text-h3 font-semibold text-black">
                     Request Fund Materials
                   </h3>
 
-                  <p className="text-black/60 text-lg leading-7">
+                  <p className="text-black/60 text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg lg:leading-7">
                     Share a few details and we will send you the relevant investor
                     deck, PPM and set up a call.
                   </p>
 
                 </div>
 
-                <div className="mt-10 space-y-7">
-                  <form className="space-y-6" onSubmit={handleSubmit}>
+                <div className="mt-5 lg:mt-10 space-y-7">
+                  <form className="space-y-3 lg:space-y-6" onSubmit={handleSubmit}>
 
                     {/* Row 1: Name + Email */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="name" className="text-body-md font-semibold  text-black/60 capitalize">
+                        <label htmlFor="name" className="text-body-md-mobile lg:text-body-md md:text-body-md-tab  font-semibold  text-black/60 capitalize">
                           Full Name <Asterisk />
                         </label>
                         <input
@@ -217,7 +216,7 @@ export default function StartInvestingForm() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="email" className="text-body-md font-semibold  text-black/60 capitalize">
+                        <label htmlFor="email" className="text-body-md-mobile lg:text-body-md md:text-body-md-tab  font-semibold  text-black/60 capitalize">
                           Email <Asterisk />
                         </label>
                         <input
@@ -235,7 +234,7 @@ export default function StartInvestingForm() {
                     {/* Row 2: Phone + Interested Fund Dropdown */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="phone" className="text-body-md font-semibold  text-black/60 capitalize">
+                        <label htmlFor="phone" className="text-body-md-mobile lg:text-body-md md:text-body-md-tab  font-semibold  text-black/60 capitalize">
                           Phone <Asterisk />
                         </label>
                         <input
@@ -250,7 +249,7 @@ export default function StartInvestingForm() {
                       </div>
 
                       <div className="space-y-2">
-                        <label htmlFor="category" className="text-body-md font-semibold  text-black/60 capitalize">
+                        <label htmlFor="category" className="text-body-md-mobile lg:text-body-md md:text-body-md-tab  font-semibold  text-black/60 capitalize">
                           Interested Fund (optional)
                         </label>
                         <div className="relative">
@@ -287,7 +286,7 @@ export default function StartInvestingForm() {
                           className=""
                         >
                           <div className="space-y-2">
-                            <label htmlFor="other" className="text-body-md font-semibold  text-black/60 capitalize">
+                            <label htmlFor="other" className="text-body-md-mobile lg:text-body-md md:text-body-md-tab  font-semibold  text-black/60 capitalize">
                               Please specify <Asterisk />
                             </label>
                             <input
@@ -306,7 +305,7 @@ export default function StartInvestingForm() {
 
                     {/* Row 4: Message */}
                     <div className="space-y-2">
-                      <label htmlFor="message" className="text-body-md font-semibold  text-black/60 capitalize">
+                      <label htmlFor="message" className="text-body-md-mobile lg:text-body-md md:text-body-md-tab  font-semibold  text-black/60 capitalize">
                         Message (optional)
                       </label>
                       <textarea

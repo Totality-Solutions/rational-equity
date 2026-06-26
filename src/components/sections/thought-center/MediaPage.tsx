@@ -69,8 +69,8 @@ export default function UnifiedInsightsAndMedia() {
       
 
       {/* ── SECTION 2: MEDIA & COVERAGE ───────────────────────────── */}
-      <section className="w-full px-3 md:px-16 bg-[#FAFAFA]">
-        <Container className="py-6 md:py-12 mx-auto space-y-12 relative">
+      <section className="w-full bg-[#FAFAFA]">
+        <Container className="py-6 lg:py-12 mx-auto space-y-4 lg:space-y-12 relative">
           <AnimatedHeader
             title="Media & Coverage"
             highlight="Media & Coverage"
@@ -80,7 +80,7 @@ export default function UnifiedInsightsAndMedia() {
             subheadingClassName="text-gray-700 font-normal max-w-2xl text-base text-body-lg leading-relaxed"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {mediaItems.map((item, index) => (
               <MediaCard 
                 key={index} 

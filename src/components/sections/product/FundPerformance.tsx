@@ -452,7 +452,7 @@ export default function FundPerformance({
 }: FundPerformanceProps) {
   if (variant === 'backtest') {
     return (
-      <section className="bg-white py-12">
+      <section className="bg-white py-6 lg:py-12">
         <Container>
           <AbsoluteBacktestSection
             chartData={chartData}
@@ -467,7 +467,7 @@ export default function FundPerformance({
   }
 
   return (
-    <section className="bg-white py-12">
+    <section className="bg-white py-6 lg:py-12">
       <Container>
         <StandardPerformance
           chartData={chartData}

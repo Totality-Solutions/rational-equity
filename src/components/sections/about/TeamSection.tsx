@@ -171,7 +171,7 @@ export default function TeamSection() {
 
   return (
     <section className="w-full bg-[#FAFAFA]">
-      <Container className="py-6 md:py-12 mx-auto lg:space-y-12">
+      <Container className="py-6 lg:py-12 mx-auto lg:space-y-12">
         <div className="mb-6 lg:mb-12">
           <AnimatedHeader
             title="People who put their money where their mouth is."

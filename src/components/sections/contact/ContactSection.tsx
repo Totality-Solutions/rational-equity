@@ -49,7 +49,7 @@ const cardVariants: Variants = {
 
 export default function ContactSection() {
   return (
-    <section className="bg-white py-6 md:py-12 px-6 font-sans overflow-hidden">
+    <section className="bg-white py-6 lg:py-12 px-6 font-sans overflow-hidden">
       <Container>
         
         {/* Top Navigation */}

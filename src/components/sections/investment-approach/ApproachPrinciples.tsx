@@ -53,11 +53,11 @@ const principles = [
 
 export default function ApproachPrinciples() {
   return (
-    <section className="bg-white py-12">
+    <section className="bg-white py-6 lg:py-12">
       <Container>
-        <div className="flex flex-col lg:flex-row gap-20">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-20">
           {/* Left Column */}
-          <div className="flex-1 space-y-7">
+          <div className="flex-1 space-y-5 lg:space-y-7">
             {/* Title */}
             <motion.h2
               initial="hidden"
@@ -66,23 +66,23 @@ export default function ApproachPrinciples() {
               className="font-playfair text-[44px] leading-[52px]"
             >
               <AnimatedHeader
-                                title="Safety of capital."
-                                highlight=""
-                                subheading=""
-                                className=""
-                                highlightClassName="italic"
-                                titleClassName="text-start text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"
-                                subheadingClassName="text-start text-black/60 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed"
-                              />
+                title="Safety of capital."
+                highlight=""
+                subheading=""
+                className=""
+                highlightClassName="italic"
+                titleClassName="text-start text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"
+                subheadingClassName="text-start text-black/60 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed"
+              />
               <AnimatedHeader
-                                title="Alpha above everything."
-                                highlight="Alpha above everything."
-                                subheading=""
-                                className=""
-                                highlightClassName="italic"
-                                titleClassName="text-start text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"
-                                subheadingClassName="text-start text-black/60 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed"
-                              />
+                title="Alpha above everything."
+                highlight="Alpha above everything."
+                subheading=""
+                className=""
+                highlightClassName="italic"
+                titleClassName="text-start text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"
+                subheadingClassName="text-start text-black/60 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed"
+              />
             </motion.h2>
 
             {/* Description */}
@@ -92,7 +92,7 @@ export default function ApproachPrinciples() {
               viewport={{ once: true }}
               variants={slideUpVariants}
               custom={0.2}
-              className="font-sans text-[18px] leading-[28px] tracking-[0.04em] text-black/60"
+              className="font-sans text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg  leading-[20px] lg:leading-[28px] tracking-[0.04em] text-black/60"
             >
               At Rational, we believe that the highest returns come from making
               the correct wealth allocation decisions at the right time. We always
@@ -107,7 +107,7 @@ export default function ApproachPrinciples() {
               viewport={{ once: true }}
               variants={slideUpVariants}
               custom={0.2}
-              className="font-sans text-[18px] leading-[28px] tracking-[0.04em] text-black/60"
+              className="font-sans text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg leading-[20px] lg:leading-[28px] tracking-[0.04em] text-black/60"
             >
               This is what we call disciplined capital allocation — the willingness and agility to move capital decisively from one asset class to another when the evidence is overwhelming
             </motion.p>
@@ -119,14 +119,14 @@ export default function ApproachPrinciples() {
               viewport={{ once: true }}
               variants={slideUpVariants}
               custom={0.35}
-              className="p-8"
+              className="p-4 lg:p-8"
               style={{
                 background: '#F9F9F9',
                 borderLeft: '3px solid #9B0000'
               }}
             >
               <p
-                className="font-playfair italic text-[22px] leading-[32px] text-black"
+                className="font-playfair italic text-h4-mobile md:text-h4-tab lg:text-h4 lg:leading-8 text-black"
               >
                 &ldquo;Safety of capital remains the primary goal. Alpha focus is
                 what we do with the capital we protect.&rdquo;
@@ -171,14 +171,14 @@ export default function ApproachPrinciples() {
                 </span>
 
                 {/* Content */}
-                <div className="flex flex-col gap-2.5">
+                <div className="flex flex-col gap-1 lg:gap-2.5">
                   <h4
                     className="font-playfair text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg font-semibold leading-[24px] tracking-[0.14px] text-black"
                   >
                     {item.title}
                   </h4>
                   <p
-                    className="font-sans text-body-md-mobile md:text-body-md-tab lg:text-body-md font-medium leading-[24px] tracking-[0.04em] py-1 text-black/60">
+                    className="font-sans text-body-md-mobile md:text-body-md-tab lg:text-body-md font-medium leading-4 lg:leading-[24px] tracking-[0.04em] lgpy-1 text-black/60">
                     {item.desc}
                   </p>
                 </div>
