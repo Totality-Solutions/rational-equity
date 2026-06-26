@@ -121,7 +121,7 @@ export default function PdfGrid({ data }: Props) {
         isComplete={isComplete}
       />
 
-      <div className={`${pdfData.length >= 3 ? "grid grid-cols-3" : "flex justify-center"} gap-6`}>
+      <div className={`${pdfData.length >= 3 ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "flex flex-wrap justify-center"} gap-6`}>
         {pdfData.map((doc, index) => (
           <motion.div
             key={index}
@@ -131,8 +131,7 @@ export default function PdfGrid({ data }: Props) {
             viewport={{ once: true, amount: 0.1 }}
             whileHover={{ scale: 1.01 }}
             onClick={() => handlePdfDownload(doc.fileUrl, doc.title)}
-            className="group flex items-center justify-between p-6 bg-white border-2 border-gray-100 rounded-2xl cursor-pointer"
-            style={pdfData.length < 3 ? { width: 'calc(33.333% - 1rem)', flex: '0 0 auto' } : undefined}
+            className={`group flex items-center justify-between p-6 bg-white border-2 border-gray-100 rounded-2xl cursor-pointer ${pdfData.length < 3 ? "w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]" : ""}`}
           >
             <div className="flex items-center gap-5">
               <div className="bg-brand-maroon/5 p-4 rounded-xl text-brand-maroon group-hover:bg-brand-maroon group-hover:text-white transition-colors duration-300">

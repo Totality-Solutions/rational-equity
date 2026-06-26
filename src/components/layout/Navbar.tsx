@@ -102,9 +102,9 @@ export default function Navbar() {
                     {link.subMenu && (
                       <div className="absolute left-1/2 -translate-x-1/2 top-full w-[320px] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <ul className="bg-white border border-gray-100 rounded-xl shadow-2xl overflow-hidden p-4">
-                          {link.subMenu.map((sub) => (
+                          {link.subMenu.map((sub,ind) => (
                             <Link
-                                key={sub.href}
+                                key={ind}
                                 href={sub.href}>
                             <li
                               className={`flex items-center justify-start gap-4  hover:bg-[#ffe4e6] hover:text-brand-maroon hover:font-weight-bold px-4 py-4 hover:rounded-md ${

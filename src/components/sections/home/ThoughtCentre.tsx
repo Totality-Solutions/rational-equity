@@ -208,7 +208,7 @@ export default function ThoughtCentre() {
     <section className="w-full py-8 lg:pt-12 lg:pb-16 bg-[#FAFAFA]">
       <Container className="mx-auto px-4">
 
-        <div className="mb-12">
+        <div className="mb-6 lg:mb-12">
           <AnimatedHeader
             title="Notes from the Desk."
             highlight="the Desk."

@@ -61,10 +61,10 @@ const principles = [
 
 export default function InvestorStructure() {
   return (
-    <section className="w-full py-4 bg-white">
+    <section className="w-full py-6 md:py-12 bg-white">
       <Container className="px-3 md:px-12">
-        <div className='md:px-20' >
-          <div className="mb-12">
+        <div className='lg:px-20' >
+          <div className="mb-6 lg:mb-12">
             <AnimatedHeader
               title="An Investor-first structure, by design."
               highlight="Investor-first structure,"

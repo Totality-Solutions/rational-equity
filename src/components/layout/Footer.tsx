@@ -79,7 +79,7 @@ export default function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
             {/* Explore */}
             <div>
-              <h3 className="text-gray-600 font-semibold mb-6 uppercase">Explore</h3>
+              <h3 className="text-white/60 font-semibold mb-6 uppercase">Explore</h3>
               <ul className="space-y-4">
                 {QUICK_LINKS.map((link) => (
                   <li key={link.label}>
@@ -98,7 +98,7 @@ export default function Footer() {
 
             {/* Fund */}
             <div>
-              <h3 className="text-gray-600 font-semibold mb-6 uppercase">Fund</h3>
+              <h3 className="text-white/60 font-semibold mb-6 uppercase">Fund</h3>
               <ul className="space-y-4">
                 {PRODUCTS.map((link) => (
                   <li key={link.label}>
@@ -117,7 +117,7 @@ export default function Footer() {
 
             {/* Contact */}
             <div>
-              <h3 className="text-gray-600 font-semibold mb-6 uppercase">Contact</h3>
+              <h3 className="text-white/60 font-semibold mb-6 uppercase">Contact</h3>
               <ul className="space-y-4 text-[16px] font-sans">
                 <li className="flex items-start gap-3">
                   <MapPin className="text-white shrink-0 mt-0.5" size={20} />

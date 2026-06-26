@@ -62,7 +62,7 @@ export default function InvestorStructure() {
     <section className="w-full py-12 bg-[#FAFAFA]">
       <Container className="max-w-[1216px] mx-auto px-4 space-y-16">
 
-        <div className="mb-12">
+        <div className="mb-6 lg:mb-12">
           <AnimatedHeader
             title="An Investor-First Structure, by Design."
             highlight="Investor-First Structure"

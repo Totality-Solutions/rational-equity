@@ -34,16 +34,16 @@ const funds = [
 
 export default function ReturnsSection() {
   return (
-    <section className="w-full px-3 md:px-16 bg-[#FAFAFA]">
-      <Container className="py-8 md:py-16  mx-auto px-4 space-y-12">
+    <section className="w-full px-3 lg:px-16 bg-[#FAFAFA]">
+      <Container className="py-6 lg:py-12 mx-auto px-4 space-y-12">
         <div className="mb-8">
           <AnimatedHeader
             title="Returns that speak for themselves."
             highlight="speak for themselves."
             highlightColor="#9B0000"
             variant="light"
-            titleClassName="text-black font-semibold text-h2-mobile md:text-h2-tab lg:text-h2 "
-            subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
+            titleClassName="text-black font-semibold text-h2-mobile lg:text-h2-tab lg:text-h2 "
+            subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile lg:text-body-lg-tab lg:text-body-lg"
           />
         </div>
 
@@ -60,7 +60,7 @@ export default function ReturnsSection() {
 
               <div className="relative px-8 py-4">
                 <p
-                  className="text-5xl md:text-6xl font-medium mb-8 font-playfair"
+                  className="text-5xl lg:text-6xl font-medium mb-8 font-playfair"
                   style={{
                     color: fund.color,
                   }}
@@ -68,7 +68,7 @@ export default function ReturnsSection() {
                   {fund.percentage}
                 </p>
 
-                <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-500 mb-2">{fund.subtitle}</p>
+                <p className="text-body-md-mobile lg:text-body-md-tab lg:text-body-md text-gray-500 mb-2">{fund.subtitle}</p>
                 <p
                   className="text-lg font-medium text-gray-900 font-playfair"
                 >
@@ -76,7 +76,7 @@ export default function ReturnsSection() {
                 </p>
 
                 <span
-                  className="absolute bottom-0 right-0 text-7xl font-playfair md:text-8xl font-regular opacity-10 select-none"
+                  className="absolute bottom-0 right-0 text-7xl font-playfair lg:text-8xl font-regular opacity-10 select-none"
                   style={{
                     color: fund.color,
                   }}
@@ -88,7 +88,7 @@ export default function ReturnsSection() {
           ))}
         </div>
 
-        <div className="flex items-center gap-6 pt-2 md:px-16">
+        <div className="flex items-center gap-6 pt-2 lg:px-16">
           <CTAButton
             href="/contact"
             text="Get Expert Assistance"

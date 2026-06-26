@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, ArrowLeft } from "lucide-react";
 import AnimatedHeader from "@/components/common/AnimatedHeader"; // Adjust path as needed
+import Container from "@/components/common/Container";
 
 const contactDetails = [
   {
@@ -48,8 +49,8 @@ const cardVariants: Variants = {
 
 export default function ContactSection() {
   return (
-    <section className="bg-white py-16 px-6 font-sans overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-white py-6 md:py-12 px-6 font-sans overflow-hidden">
+      <Container>
         
         {/* Top Navigation */}
         {/* <Link 
@@ -68,7 +69,7 @@ export default function ContactSection() {
           subheading="Have questions about our funds or need help getting started? Our team is ready to assist you."
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
           variant="light"
-          className="mb-16 md:mb-24"
+          className="mb-8 lg:mb-16"
           titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
         />
 
@@ -97,7 +98,7 @@ export default function ContactSection() {
                   {item.label}
                 </p>
               <div className="space-y-1">
-                <h3 className="text-body-md -tab font-bold text-black">
+                <h3 className="text-body-md -tab font-semibold text-black">
                   {item.value}
                 </h3>
                 <p className="text-body-sm -mobile text-[#000000]/50 font-normal leading-relaxed">
@@ -107,7 +108,7 @@ export default function ContactSection() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

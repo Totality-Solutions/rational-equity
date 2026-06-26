@@ -35,9 +35,9 @@ const principles = [
 
 export default function TwoPrinciples() {
   return (
-    <section className="w-full py-12 bg-white">
+    <section className="w-full pb-6 md:pb-12 bg-white">
           <Container className="px-3 md:px-12">
-            <div className='md:px-20' >
+            <div className='lg:px-20' >
               <div className="mb-8">
                 <AnimatedHeader
                   title="Two principles. One conviction."

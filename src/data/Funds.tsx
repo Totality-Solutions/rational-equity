@@ -158,7 +158,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
     },
     performance: {
       variant: "chart",
-      heading: "Fund",
+      heading: "Fund Performance",
       headingHighlight: "Performance",
       subheading: "Historical returns versus benchmark.",
       weekly: [
@@ -289,7 +289,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
     },
     performance: {
       variant: "chart",
-      heading: "Fund",
+      heading: "Fund Performance",
       headingHighlight: "Performance",
       subheading: "Historical returns versus benchmark.",
       weekly: [

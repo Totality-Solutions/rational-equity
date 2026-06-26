@@ -39,7 +39,7 @@ const stats = [
 
 export default function InvestWithUs() {
   return (
-    <section className="bg-black py-[100px] px-8 md:px-20">
+    <section className="bg-black py-12 px-8 md:px-20">
       <Container>
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           {/* Left Side */}

@@ -7,12 +7,12 @@ export default function StorySection() {
   return (
     <section className="w-full bg-white">
       <Container className="px-4">
-        <div className="flex flex-col md:flex-row py-6 md:py-24 px-6 md:px-12">
+        <div className="flex flex-col lg:flex-row py-6 lg:py-24 lg:px-12">
           {/* Left Side - Sticky on desktop, normal on mobile */}
-          <div className="w-full md:w-[35%] pb-8 md:pb-0 md:pr-12 mb-8 md:mb-0">
+          <div className="w-full lg:w-[35%] pb-8 md:pb-0 md:pr-12 mb-8 lg:mb-0">
             <div className="md:sticky md:top-32">
               <h2
-                className="text-h2-mobile md:text-h2-tab lg:text-h2 leading-tight mb-6 font-playfair"
+                className="text-h2-mobile md:text-h2-tab lg:text-h2 leading-tight mb-2 lg:mb-6 font-playfair"
               >
                 From family office
                 <br />
@@ -25,7 +25,7 @@ export default function StorySection() {
           </div>
 
           {/* Right Side - Scrolling */}
-          <div className="w-full md:w-[65%] space-y-8 font-sans md:pl-12">
+          <div className="w-full lg:w-[65%] space-y-4 lg:space-y-8 font-sans lg:pl-12">
             <p
               className="text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg text-gray-700 leading-relaxed"
             >
@@ -43,7 +43,7 @@ export default function StorySection() {
               next 3 years.
             </p>
 
-            <blockquote className="border-l-3 border-[#9B0000] bg-brand-grey rounded-tr-lg rounded-br-lg  px-6 py-5 my-8">
+            <blockquote className="border-l-3 border-[#9B0000] bg-brand-grey rounded-tr-lg rounded-br-lg  px-6 py-5 my-4 lg:my-8">
               <p
                 className="text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg text-gray-800 leading-[1.8] font-medium -tracking-h1 font-playfair italic"
               >

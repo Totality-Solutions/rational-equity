@@ -66,7 +66,7 @@ export default function InvestLinksSection() {
   return (
     <div>
     <section className="w-full px-3 md:px-16 bg-[#FAFAFA] ">
-      <Container className="py-8 md:py-16 mx-auto space-y-12 relative">
+      <Container className="py-6 md:py-12 mx-auto space-y-12 relative">
 
         <AnimatedHeader
           title="Leading asset management committed to you"

@@ -7,6 +7,7 @@ import { MapPin, Phone, ArrowRight, ChevronDown } from "lucide-react";
 import { SuccessState } from "@/components/common/SuccessState";
 import CTAButton from "@/components/common/CTAButton";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
+import Container from "@/components/common/Container";
 
 // 🔹 Animation Variants
 const cardVariants: Variants = {
@@ -96,8 +97,8 @@ export default function MessageSection() {
   const isOther = formData.category === "other";
 
   return (
-    <section className="bg-[#F8F9FA] py-20 px-6 font-sans overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-[#F8F9FA] py-6 lg:py-20 font-sans overflow-hidden">
+      <Container>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
 
           {/* LEFT: Contact Form Card */}
@@ -115,6 +116,7 @@ export default function MessageSection() {
                 highlight="Message"
                 subheading="Fill out the form and our team will get back to you within 24 hours."
                 className="text-left"
+                titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
                 subheadingClassName="!mx-0"
               />
             </div>
@@ -288,7 +290,7 @@ export default function MessageSection() {
             </div>
           </motion.div>
         </div>
-      </div>
+      </Container>
 
       {/* 🔹 Success Modal */}
       <AnimatePresence>

@@ -1,12 +1,36 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
 import Container from "@/components/common/Container";
 import Image from "next/image";
 
-const CARD_SIZE_PCT = 100 / 3;
+const BREAKPOINTS = {
+  mobile: 600,
+  tablet: 1024,
+} as const;
+
+function getCardsPerView(width: number) {
+  if (width < BREAKPOINTS.mobile) return 1;
+  if (width < BREAKPOINTS.tablet) return 2;
+  return 3;
+}
+
+function useCardsPerView() {
+  const [perView, setPerView] = useState(3);
+
+  useEffect(() => {
+    const update = () => setPerView(getCardsPerView(window.innerWidth));
+
+    update();
+    window.addEventListener("resize", update);
+
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return perView;
+}
 
 interface PhilosophyPoint {
   title: string;
@@ -51,7 +75,7 @@ function Card({ point, index }: { point: PhilosophyPoint; index: number }) {
         Learn more
       </a> */}
     </div>
-  );
+  );  
 }
 
 function NavButton({
@@ -77,16 +101,21 @@ function NavButton({
 }
 
 export default function Philosophy({ points = [], title = "Investment Philosophy", highlight = "Philosophy", highlightColor = "#9B0000", subheading }: PhilosophyProps) {
-  const perView = 3;
+  const perView = useCardsPerView();
   const total = points.length;
   const needsCarousel = total > perView;
-  const maxIndex = needsCarousel ? total - perView : 0;
+  const maxIndex = Math.max(0, total - perView);
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    setIndex((prev) => Math.min(prev, maxIndex));
+  }, [maxIndex]);
 
   const prev = useCallback(() => setIndex((i) => Math.max(0, i - 1)), []);
   const next = useCallback(() => setIndex((i) => Math.min(maxIndex, i + 1)), [maxIndex]);
 
-  const translatePct = needsCarousel ? -(index * CARD_SIZE_PCT) : 0;
+  const cardSizePct = 100 / perView;
+  const translatePct = needsCarousel ? -(index * cardSizePct) : 0;
 
   return (
     <section className="bg-white py-12 overflow-hidden">
@@ -120,7 +149,7 @@ export default function Philosophy({ points = [], title = "Investment Philosophy
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.15 }}
                     className="shrink-0 px-2"
-                    style={{ width: `${CARD_SIZE_PCT}%` }}
+                    style={{ width: `${cardSizePct}%` }}
                   >
                     <Card point={point} index={i} />
                   </motion.div>
@@ -145,7 +174,7 @@ export default function Philosophy({ points = [], title = "Investment Philosophy
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.15 }}
                   className="shrink-0 px-2"
-                  style={{ width: `${CARD_SIZE_PCT}%` }}
+                  style={{ width: `${cardSizePct}%` }}
                 >
                   <Card point={point} index={i} />
                 </motion.div>
