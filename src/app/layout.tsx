@@ -2,7 +2,7 @@
 import type { Metadata, Viewport } from 'next';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import { Playfair_Display, DM_Sans, Lato, EB_Garamond } from 'next/font/google';
+import { Playfair_Display, DM_Sans } from 'next/font/google';
 import { siteConfig } from '@/lib/seo.config'; // Importing our new config
 import './globals.css';
 import SmartScrollToTop from '@/components/common/ScrollToTop';
