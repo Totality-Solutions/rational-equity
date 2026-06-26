@@ -40,42 +40,42 @@ const lenses: Lens[] = [
   {
     title: 'Macro',
     color: '#9B0000',
-    icon: '/icons/macroeconomics.png',
-    desc: 'Top-down identification of inflection points in macro indicators like global monetary cycles, commodity cycles and central bank behavior. Through these structural macro shifts we develop actionable investment themes ahead of market consensus.',
+    icon: '/images/icons/macro-white.png',
+    desc: 'Top-down identification of inflection points in macro indicators like global monetary cycles, commodity cycles and central bank behaviour. Through these structural macro shifts we develop actionable investment themes ahead of market consensus.',
     quote: '\u201CTranslating macro inflection points into actionable, high-conviction investment themes.\u201D',
     letter: 'M'
   },
   {
     title: 'Fundamentals',
     color: '#FFD448',
-    icon: '/icons/risk.png',
-    desc: 'Deep intrinsic research on every position \u2014 we look for businesses with strong free cash flow, cheap valuations, and a clear re-rating catalyst. No position enters the portfolio without a complete fundamental case.',
+    icon: '/images/icons/fundamentals-white.png',
+    desc: 'Deep primary research on every position — We look for businesses with strong free cash flow, cheap valuations, and a clear re-rating catalyst. No position enters the portfolio without a complete fundamental case.',
     quote: '\u201CValue-based research to identify the correct proxies for each macro theme.\u201D',
     letter: 'F'
   },
   {
     title: 'Sentiment',
     color: '#009B58',
-    icon: '/icons/indicator.png',
-    desc: 'Market sentiment = crowd positioning, put-call ratios, institutional flows \u2014 tells us where and when there is extreme fear and extreme greed. We look for extreme fear so our entry signal can achieve euphoria as our exit signal.',
+    icon: '/images/icons/sentiment-white.png',
+    desc: 'Market sentiment — crowd positioning, put-call ratios, institutional flows — tells us where and when there is extreme fear and extreme greed. We look for extreme fear as our entry signal and extreme euphoria as our exit signal. Sentiment is often the final confirmation before we act.',
     quote: '\u201CWe buy when others are fearful. We exit when conviction becomes consensus.\u201D',
     letter: 'S'
   },
   {
     title: 'Technicals',
     color: '#3CC3DF',
-    icon: '/icons/technical-analysis.png',
-    desc: 'Price action analysis across multiple time frames to determine the optimal entry and exit. A fundamentally sound thesis in a technically broken structure remains a value trap until the chart confirms. We wait for price to align.',
-    quote: '\u201CThe right thesis at the right price \u2014 entry timing is as important as stock selection.\u201D',
+    icon: '/images/icons/technicals-white.png',
+    desc: 'Price action analysis across multiple time frames to determine the optimal entry and exit. A fundamentally sound thesis in a technically broken structure remains a value trap until the chart confirms. We wait for the price action to align before deploying capital with conviction.',
+    quote: '\u201CThe right thesis at the right price — entry timing is as important as stock selection.\u201D',
     letter: 'T'
   }
 ];
 
 export default function AnalyticalLenses() {
   return (
-    <section className="bg-black py-20">
+    <section className="bg-black py-12">
       <Container>
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-15">
           {/* Header */}
           <div className="flex flex-col items-center gap-6 mx-auto">
             <motion.h2
@@ -131,8 +131,7 @@ export default function AnalyticalLenses() {
               className="font-sans text-[18px] leading-[28px] tracking-[0.04em] text-start"
               style={{ color: '#E3DFDB' }}
             >
-              Every position we take is the product of all four analytical lenses
-              working in alignment. We never act on one dimension alone.
+              Every position we take is the product of all four analytical lenses working in alignment. We never act on one dimension alone.
             </motion.p>
           </div>
 

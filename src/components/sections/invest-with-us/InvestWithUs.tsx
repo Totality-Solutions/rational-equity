@@ -2,6 +2,7 @@
 
 import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
+import Link from 'next/link';
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -21,18 +22,21 @@ const stats = [
     value: '30%',
     color: '#9B0000',
     name: 'India Long-Only Fund',
+    slug: 'india-long-only',
     subtitle: 'CAGR Since Inception \u00B7 SEBI Cat III AIF'
   },
   {
     value: '~75%',
     color: '#FFD448',
     name: 'Gold & Silver Miners\u2019 Fund',
+    slug: 'gold-silver-miners',
     subtitle: '1-Year Return \u00B7 Gift City \u00B7 IFSC'
   },
   {
     value: '41%',
     color: '#009B58',
     name: 'Absolute Return Fund',
+    slug: 'absolute-return',
     subtitle: '10 Yr Model Net CAGR \u00B7 Long-Short'
   }
 ];
@@ -63,8 +67,8 @@ export default function InvestWithUs() {
               className="text-body-lg-mobile md:text-body-lg-tab lg:text-[20px] lg:leading-[32px] max-w-[640px]"
               style={{ color: '#E3DFDB', fontFamily: "'Lato', sans-serif" }}
             >
-              We run three funds across India equities, global gold and silver
-              miners, and an absolute return strategy. Every fund began with our
+              We run three funds across <Link href="/product/india-long-only" className="hover:underline">India equities</Link>, <Link href="/product/gold-silver-miners" className="hover:underline">global gold and silver
+              miners</Link>, and an <Link href="/product/absolute-return" className="hover:underline">absolute return strategy</Link>. Every fund began with our
               own capital. It still is — alongside yours.
             </motion.p>
           </div>
@@ -89,12 +93,14 @@ export default function InvestWithUs() {
                   {fund.value}
                 </span>
                 <div className="flex flex-col gap-1">
+                  <Link href={`/product/${fund.slug}`}>
                   <span
                     className="text-body-lg-mobile md:text-body-lg-tab lg:text-[22px] font-medium text-white"
                     style={{ fontFamily: "'EB Garamond', serif" }}
                   >
                     {fund.name}
                   </span>
+                  </Link>
                   <span
                     className="text-body-sm-mobile md:text-body-sm-tab lg:text-[13px]"
                     style={{ color: '#A3A3A3', fontFamily: "'Lato', sans-serif" }}

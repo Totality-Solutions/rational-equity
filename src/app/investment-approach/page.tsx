@@ -34,6 +34,7 @@ export default function InvestmentApproachPage() {
       <ApproachHero />
       <ApproachPrinciples />
       <AnalyticalLenses />
+      <InsightToInvestment />
       <div className='border-t border-[#202020] '>
         <ReadyToStart
           title="Convinced by the approach?"
@@ -44,7 +45,6 @@ export default function InvestmentApproachPage() {
           }}
         />
       </div>
-      <InsightToInvestment />
       <CapitalAllocation />
       <div className='border-t border-[#202020] '>
         <ReadyToStart

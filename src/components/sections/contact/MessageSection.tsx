@@ -208,7 +208,7 @@ export default function MessageSection() {
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="overflow-hidden"
+                      className=""
                     >
                       <div className="space-y-2">
                         <label htmlFor="other" className="text-body-lg font-bold font-playfair text-gray-900 capitalize">
