@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import CTAButton from '@/components/common/CTAButton';
-import AnimatedHeader from '@/components/common/AnimatedHeader';
+import { useInView } from 'framer-motion';
 import Container from '@/components/common/Container';
 
 export default function AboutSection() {

@@ -65,7 +65,7 @@ export default function ContactSection() {
         <AnimatedHeader 
           title="Get in Touch"
           highlight="Touch"
-          highlightColor="#9B0000"
+          highlightColor="brand-maroon"
           subheading="Have questions about our funds or need help getting started? Our team is ready to assist you."
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
           variant="light"

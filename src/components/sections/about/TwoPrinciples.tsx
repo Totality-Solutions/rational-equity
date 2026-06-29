@@ -42,7 +42,7 @@ export default function TwoPrinciples() {
                 <AnimatedHeader
                   title="Two principles. One conviction."
                   highlight="One conviction."
-                  highlightColor="#9B0000"
+                  highlightColor="brand-maroon"
                   variant="light"
                   titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
                   subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"

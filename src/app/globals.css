@@ -12,6 +12,16 @@
   
   --brand-grey:#f0eeec;
 
+ 
+   /* =========================
+     SECONDARY COLORS
+  ========================= */
+  --secondary-yellow: #B8860B;
+  --secondary-green: #2E7D5B;
+  --secondary-blue: #2563EB;
+
+
+
   /* =========================
      LETTER SPACING
   ========================= */
@@ -71,6 +81,10 @@
 
   --color-brand-grey: var(--brand-grey);
 
+  --color-secondary-yellow: var(--secondary-yellow);
+  --color-secondary-green: var(--secondary-green);
+  --color-secondary-blue: var(--secondary-blue);
+  
   /* =========================
      DESKTOP
   ========================= */

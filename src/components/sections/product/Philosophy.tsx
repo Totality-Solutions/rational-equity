@@ -100,7 +100,7 @@ function NavButton({
   );
 }
 
-export default function Philosophy({ points = [], title = "Investment Philosophy", highlight = "Philosophy", highlightColor = "#9B0000", subheading }: PhilosophyProps) {
+export default function Philosophy({ points = [], title = "Investment Philosophy", highlight = "Philosophy", highlightColor = "brand-maroon", subheading }: PhilosophyProps) {
   const perView = useCardsPerView();
   const total = points.length;
   const needsCarousel = total > perView;

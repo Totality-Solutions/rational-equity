@@ -35,7 +35,7 @@ export default function FundOverview({ title, titleItalics, description, stats }
       <AnimatedHeader 
           title="Fund Overview"
           highlight="Overview"
-          highlightColor="#9B0000"
+          highlightColor="brand-maroon"
           variant="light"
           titleClassName="text-h3-mobile md:text-h3-tab lg:text-h3 text-black mb-6 md:mb-8"
           subheadingClassName="  text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg tracking-wide text-black"

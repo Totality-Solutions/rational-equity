@@ -165,7 +165,7 @@ export default function InvestmentProcess() {
           title="Our Investment Process"
           highlight="Investment"
           subheading='A disciplined path to superior returns'
-          highlightColor="#9B0000"
+          highlightColor="brand-maroon"
           className="text-h4 sm:text-h3 text-black"
           subheadingClassName="text-sm sm:text-base md:text-body-lg tracking-wide text-black"
           titleClassName="leading-tight"

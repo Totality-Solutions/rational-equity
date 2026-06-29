@@ -308,7 +308,7 @@ function StandardPerformance({
         <AnimatedHeader
           title={heading}
           highlight={headingHighlight}
-          highlightColor="#9B0000"
+          highlightColor="brand-maroon"
           subheading={subheading}
           variant="light"
           titleClassName="text-h3-mobile md:text-h3-tab lg:text-h3 text-black mb-2"
@@ -396,7 +396,7 @@ function AbsoluteBacktestSection({
         <AnimatedHeader
           title={heading}
           highlight={headingHighlight}
-          highlightColor="#9B0000"
+          highlightColor="brand-maroon"
           subheading={subheading}
           variant="light"
           titleClassName="text-h3-mobile md:text-h3-tab lg:text-h3 text-black mb-2"

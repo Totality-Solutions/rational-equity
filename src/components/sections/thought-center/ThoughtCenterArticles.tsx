@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import AnimatedHeader from "@/components/common/AnimatedHeader";
 import { DynamicArticleModal } from '../../common/DynamicArticleModal';
 import Container from "@/components/common/Container";
 import { articles, Article } from "@/data/thoughtCenterData";

@@ -51,7 +51,7 @@ export default function TeamShowcase() {
         <AnimatedHeader
           title="Our Team"
           highlight="Team"
-          highlightColor="#9B0000"
+          highlightColor="brand-maroon"
           subheading="Our team of dedicated talent."
           variant="light"
           titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
@@ -106,9 +106,9 @@ export default function TeamShowcase() {
                           <a href={member.linkedin} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
                             <Linkedin size={16} />
                           </a>
-                          {/* <a href={member.twitter} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
+                          <a href={member.twitter} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
                             <Twitter size={16} />
-                          </a> */}
+                          </a>
                         </div>
                       </div>
                     </motion.div>

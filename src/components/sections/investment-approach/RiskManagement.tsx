@@ -34,7 +34,7 @@ export default function RiskManagement() {
       <AnimatedHeader 
           title="Risk Management Framework"
           highlight="Risk Management"
-          highlightColor="#9B0000"
+          highlightColor="brand-maroon"
           subheading="Protecting capital is as important as generating returns"
           titleClassName="leading-tight"
           className="text-h4 sm:text-h3 text-black"

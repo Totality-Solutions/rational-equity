@@ -40,7 +40,7 @@ export default function ReturnsSection() {
           <AnimatedHeader
             title="Returns that speak for themselves."
             highlight="speak for themselves."
-            highlightColor="#9B0000"
+            highlightColor="brand-maroon"
             variant="light"
             titleClassName="text-black font-semibold text-h2-mobile lg:text-h2-tab lg:text-h2 "
             subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile lg:text-body-lg-tab lg:text-body-lg"

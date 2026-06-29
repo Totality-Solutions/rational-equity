@@ -176,7 +176,7 @@ export default function TeamSection() {
           <AnimatedHeader
             title="People who put their money where their mouth is."
             highlight="money where their mouth is."
-            highlightColor="#9B0000"
+            highlightColor="brand-maroon"
             variant="light"
             titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
             subheadingClassName="text-gray-700 font-normal max-w-2xl text-base text-body-lg leading-relaxed"

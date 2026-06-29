@@ -66,7 +66,7 @@ export default function InvestorStructure() {
           <AnimatedHeader
             title="An Investor-First Structure, by Design."
             highlight="Investor-First Structure"
-            highlightColor="#9B0000"
+            highlightColor="brand-maroon"
             subheading="Three principles that shape every decision we make — from how we invest to how we get paid."
             variant="light"
             titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"

@@ -155,7 +155,7 @@ interface AnimatedHeaderProps {
 export default function AnimatedHeader({
   title,
   highlight,
-  highlightColor = "#9B0000",
+  highlightColor = "brand-maroon",
   highlightClassName,
   subheading,
   variant = 'light',
@@ -213,8 +213,8 @@ export default function AnimatedHeader({
       return isMatch ? (
         <span
           key={index}
-          style={{ color: highlightColor }}
-          className={`inline-block ${highlightClassName}`}
+          // style={{ color: highlightColor }}
+          className={`inline-block ${highlightClassName} text-${highlightColor}`}
         >
           {part.split("").map((char, charIndex) => (
             <motion.span

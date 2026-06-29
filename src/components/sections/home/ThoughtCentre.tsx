@@ -212,7 +212,7 @@ export default function ThoughtCentre() {
           <AnimatedHeader
             title="Notes from the Desk."
             highlight="the Desk."
-            highlightColor="#9B0000"
+            highlightColor="brand-maroon"
             subheading="Long-form views on markets, philosophy, and the businesses we own."
             variant="light"
             titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"

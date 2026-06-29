@@ -6,7 +6,7 @@ import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import Image from 'next/image';
 
-const CRIMSON = '#9B0000';
+const CRIMSON = 'brand-maroon';
 
 // ─── Breakpoint thresholds ────────────────────────────────────────────────────
 const BREAKPOINTS = {
