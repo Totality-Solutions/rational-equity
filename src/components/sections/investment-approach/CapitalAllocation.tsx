@@ -47,7 +47,7 @@ const funds: Fund[] = [
     icon: (
       <img src="/images/icons/india-long-only-fund-white.svg" alt="India Long-Only Fund" className="w-10 h-10" />
     ),
-    desc: "India\u2019s structural multi-decade growth story \u2014 captured through high-conviction small and mid-cap equities. Long-only, no derivatives. Launched at a market bottom in March 2023.",
+    desc: "A high-conviction portfolio of Indian listed equities with a heavy tilt toward small and mid-caps where we see asymmetric reward.",
     statValue: '30%',
     statColor: '#FFD448',
     statLabel: 'CAGR since inception'
@@ -59,7 +59,7 @@ const funds: Fund[] = [
     icon: (
       <img src="/images/icons/gold-&-silver-miners-fund-white.svg" alt="Gold & Silver Miners Fund" className="w-10 h-10" />
     ),
-    desc: 'The global gold and silver re-monetisation cycle \u2014 captured through listed junior miners offering 3\u20135x leverage to the underlying commodity. Operated from GIFT City, open to Indians and global investors.',
+    desc: 'A focused vehicle for strategic exposure to global gold and silver mining equities — operated from GIFT City.',
     statValue: '~75%',
     statColor: '#9B0000',
     statLabel: '1-year return'
@@ -71,7 +71,7 @@ const funds: Fund[] = [
     icon: (
       <img src="/images/icons/absolute-return-fund-white.svg" alt="Absolute Return Fund" className="w-10 h-10" />
     ),
-    desc: 'A quant-plus-discretion Long-Short strategy designed to capture large directional moves in Indian derivatives while sitting out sideways choppiness.',
+    desc: 'A quant plus discretion model-based Long-Short strategy that focuses on identifying periods of extreme greed and fear to capture significantly large moves while sitting out of sideways choppiness and major drawdowns.',
     statValue: '41%',
     statColor: '#009B58',
     statLabel: '10-yr model net CAGR'

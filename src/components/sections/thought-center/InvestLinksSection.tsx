@@ -11,38 +11,36 @@ import ReadyToStart from "@/components/common/ReadyToStart";
 import Container from "@/components/common/Container";
 import { ScheduleCallModal } from "@/components/common/ScheduleCallModal";
 
-const CRIMSON = "#9B0000";
-
 const FUNDS = [
   {
     title: "India Long-Only Fund",
-    description: "Focused long-term equity investments in high-quality Indian businesses with strong competitive moats.",
-    returns: "16.5% CAGR",
-    annualReturn: "+18.5%",
+    description: "A high-conviction portfolio of Indian listed equities with a heavy tilt toward small and mid-caps where we see asymmetric reward.",
+    returns: "30% CAGR",
+    annualReturn: "30%",
     href: "/product/india-long-only",
     img: "/images/icons/india-long-only-fund.svg",
-    minInvestment: "₹10,000",
+    minInvestment: "₹1 Crore",
     risk: "Moderate-High",
     aum: "₹340 Cr",
     since: "2014",
   },
   {
     title: "Gold & Silver Miners Fund",
-    description: "Strategic exposure to precious metals mining companies globally, providing inflation and volatility hedge.",
-    returns: "18.2% CAGR",
-    annualReturn: "+12.3%",
+    description: "A focused vehicle for strategic exposure to global gold and silver mining equities — operated from GIFT City.",
+    returns: "75% CAGR",
+    annualReturn: "75%",
     href: "/product/gold-silver-miners",
     img: "/images/icons/gold-&-silver-miners-fund.svg",
-    minInvestment: "₹10,000",
+    minInvestment: "US$ 150,000",
     risk: "Moderate",
     aum: "₹180 Cr",
     since: "2018",
   },
   {
     title: "Absolute Return Fund",
-    description: "Market-neutral strategies designed for consistent positive returns across all market conditions.",
-    returns: "12.8% CAGR",
-    annualReturn: "+15.7%",
+    description: "A quant plus discretion model-based Long-Short strategy that focuses on identifying periods of extreme greed and fear to capture significantly large moves while sitting out of sideways choppiness and major drawdowns.",
+    returns: "45% CAGR",
+    annualReturn: "45%",
     href: "/product/absolute-return",
     img: "/images/icons/absolute-return-fund.svg",
     minInvestment: "₹10,000",
@@ -86,10 +84,10 @@ export default function InvestLinksSection() {
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
-              className="group relative bg-white rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,0,0,0.15)]"
+              className="group relative border-t-4 border-brand-maroon bg-white rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,0,0,0.15)]"
             >
               {/* Top accent bar */}
-              <div className="h-[3px] w-full shrink-0" style={{ background: CRIMSON }} />
+              {/* <div className={`h-2 w-full shrink-0 bg-${CRIMSON}`}/> */}
 
               <div className="p-6 md:p-7 flex flex-col flex-1 gap-4 text-left">
 
