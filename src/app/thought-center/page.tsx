@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function ThoughtCenterPage() {
   return (
     <main className="bg-white">
-        <Hero />
+        {/* <Hero /> */}
         <HeadingSection />
         <ThoughtCenterArticles />
         {/* <InvestCTASection /> */}
