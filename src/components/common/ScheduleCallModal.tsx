@@ -93,7 +93,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
       
       {/* Scrollbar layout customization metrics style rules */}
       <style dangerouslySetInnerHTML={{__html: `
@@ -103,20 +103,22 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
       `}} />
 
       {/* Main Modal Card Container */}
-      <div className="modal-form-scroll relative w-full max-w-4xl max-h-[95vh] overflow-y-auto bg-white rounded-[1rem] p-8 md:p-12 shadow-2xl font-sans text-gray-800 border border-neutral-100">
-        
-        {/* Close Button Layout Frame */}
-        <button 
-          onClick={onClose}
-          type="button"
-          className="absolute top-6 right-6 md:top-8 md:right-8 text-neutral-400 hover:text-black transition-colors p-1 cursor-pointer"
-          aria-label="Close modal"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-7 h-7">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-          </svg>
-        </button>
+      <div className="modal-form-scroll relative w-full max-w-4xl max-h-[95vh] overflow-y-auto bg-white rounded-[1rem] shadow-2xl font-sans text-gray-800 border border-neutral-100">
 
+        <div className="sticky top-0 z-10 flex justify-end px-4 pt-4 bg-white rounded-t-[1rem]">
+    <button 
+      onClick={onClose}
+      className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-gray-800 hover:text-black hover:scale-105 shadow-xl transition-all duration-200 border border-neutral-200/50 cursor-pointer group"
+      aria-label="Close modal"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-4 h-4 transition-transform group-hover:rotate-90">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+        {/* Scrollable Content */}
+        <div className="px-8 md:px-12 pb-12">
         {/* Header Content Wrapper */}
         <div className="space-y-2 mb-10">
           <AnimatedHeader 
@@ -275,6 +277,9 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
           </div>
 
         </form>
+          
+        </div>
+
 
       </div>
     </div>

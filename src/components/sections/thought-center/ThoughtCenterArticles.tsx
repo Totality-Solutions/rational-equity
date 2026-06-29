@@ -73,7 +73,7 @@ export default function ThoughtCenterArticles() {
         onClose={() => setActiveModal(null)}
         title={activeModal?.title || ""}
         subtitle={`${activeModal?.category || ""} · ${activeModal?.readTime || ""}`}
-        heroImageUrl={activeModal?.thumbnail}
+        // heroImageUrl={activeModal?.thumbnail}
         heroImageAlt={activeModal?.title}
       >
         <div className="space-y-6 text-gray-700 leading-relaxed text-[15px]">
