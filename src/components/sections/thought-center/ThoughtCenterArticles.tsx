@@ -115,6 +115,7 @@ function ArticleCard({ item, onClick }: { item: Article; onClick: () => void }) 
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
+        <div className="absolute inset-0 bg-[#2f3e46]/45" />
       </div>
 
       <div className="p-5 sm:p-6 flex flex-col flex-1 gap-3">

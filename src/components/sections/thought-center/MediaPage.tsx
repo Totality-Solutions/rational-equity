@@ -70,11 +70,11 @@ export default function UnifiedInsightsAndMedia() {
 
       {/* ── SECTION 2: MEDIA & COVERAGE ───────────────────────────── */}
       <section className="w-full bg-[#FAFAFA]">
-        <Container className="py-6 lg:py-12 mx-auto space-y-4 lg:space-y-12 relative">
+        <Container className="py-6 lg:py-6 mx-auto space-y-4 lg:space-y-12 relative">
           <AnimatedHeader
             title="Media & Coverage"
-            highlight="Media & Coverage"
-            highlightColor=""
+            highlight="&"
+            highlightColor="brand-maroon"
             variant="light"
             titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
             subheadingClassName="text-gray-700 font-normal max-w-2xl text-base text-body-lg leading-relaxed"

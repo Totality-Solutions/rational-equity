@@ -13,12 +13,12 @@ export default function HeadingSection({ titleColor = "text-brand-maroon" }) {
         <div className="w-full pt-5 lg:pt-10 flex flex-col justify-center items-center">
           <AnimatedHeader 
             title="Thought Center"
-            highlight="Thought Center"
-            titleClassName="!font-bold text-h2-mobile md:text-h2-tab lg:text-h2 font-playfair"
+            highlight="Center"
             subheading="A disciplined, research-driven approach to generating superior long-term returns"
             variant="light"
-            className="mb-6 sm:mb-7 text-h3 text-black"
-            subheadingClassName="text-body-md-mobile md:text-body-md-tab lg:text-body-md tracking-wide text-black"
+            className="mb-12 sm:mb-12 text-h3 text-black"
+            titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
+            subheadingClassName="text-gray-700 font-normal max-w-2xl text-base text-body-lg leading-relaxed"
           />
         </div>
       </div>
