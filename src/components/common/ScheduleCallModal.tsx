@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Plus, X } from 'lucide-react';
+import AnimatedHeader from './AnimatedHeader';
 
 interface ScheduleCallModalProps {
   isOpen: boolean;
@@ -102,7 +103,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
       `}} />
 
       {/* Main Modal Card Container */}
-      <div className="modal-form-scroll relative w-full max-w-4xl max-h-[95vh] overflow-y-auto bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl font-sans text-gray-800 border border-neutral-100">
+      <div className="modal-form-scroll relative w-full max-w-4xl max-h-[95vh] overflow-y-auto bg-white rounded-[1rem] p-8 md:p-12 shadow-2xl font-sans text-gray-800 border border-neutral-100">
         
         {/* Close Button Layout Frame */}
         <button 
@@ -117,14 +118,23 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
         </button>
 
         {/* Header Content Wrapper */}
-        <div className="space-y-4 mb-8">
-          <h2 className="text-4xl md:text-[44px] font-semibold text-neutral-900 tracking-tight">
+        <div className="space-y-2 mb-10">
+          <AnimatedHeader 
+                      title="Schedule a Call"
+                      highlight="Call"
+                      subheading="Talk to our investment team — we will walk you through our funds, strategy, and how to get started."
+                      variant="light"
+                      className="text-h3 text-black space-y-2"
+                      titleClassName="text-start text-black text-h3-mobile md:text-h3-tab lg:text-h3"
+                      subheadingClassName="text-start text-gray-700 font-normal w-full ml-0 text-base text-body-lg leading-relaxed"
+                    />
+          {/* <h2 className="text-4xl md:text-[44px] font-semibold text-neutral-900 tracking-tight">
             Schedule a <span className="font-serif italic text-brand-maroon">Call</span>
           </h2>
           
           <p className="text-[15px] md:text-base text-neutral-500 max-w-3xl leading-relaxed font-normal">
             Talk to our investment team — we will walk you through our funds, strategy, and how to get started.
-          </p>
+          </p> */}
 
           {/* Key Value Propositions Row */}
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-[13px] font-medium text-neutral-500">
@@ -178,13 +188,23 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
               />
             </div>
 
-            {/* Preferred Date Multi-Option Dynamic Custom Block */}
-            <div className="col-span-1 md:col-span-2">
-              <PreferredDatesBlock dates={dates} setDates={setDates} />
+            <div className="flex flex-col gap-2">
+              <label htmlFor="emailOrPhone" className="text-[13px] font-bold font-sans text-gray-900 capitalize tracking-wide">
+                Email / Phone <span className="text-brand-maroon ml-0.5">*</span>
+              </label>
+              <input 
+                id="emailOrPhone"
+                type="text" 
+                required
+                value={formData.emailOrPhone}
+                onChange={handleChange}
+                placeholder="you@example.com or +91 99872 61105"
+                className="w-full h-13 px-4 rounded-xl bg-gray-50 text-[15px] border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon focus:bg-white transition-all text-gray-900" 
+              />
             </div>
 
             {/* Investment Interest Dropdown Field */}
-            <div className="flex flex-col gap-2 relative col-span-1 md:col-span-2">
+            <div className="flex flex-col gap-2 ">
               <label htmlFor="category" className="text-[13px] font-bold font-sans text-gray-900 capitalize tracking-wide">
                 Investment Interest
               </label>
@@ -208,10 +228,16 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
               </div>
             </div>
 
+            {/* Preferred Date Multi-Option Dynamic Custom Block */}
+            <div className="col-span-1 md:col-span-2">
+              <PreferredDatesBlock dates={dates} setDates={setDates} />
+            </div>
+
+
           </div>
 
           {/* Full Width Message/Requirements Textarea */}
-          <div className="flex flex-col gap-2 pt-1">
+          {/* <div className="flex flex-col gap-2 pt-1">
             <label htmlFor="message" className="text-[13px] font-bold font-sans text-gray-900 capitalize tracking-wide">
               Message / Requirements (optional)
             </label>
@@ -223,7 +249,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
               placeholder="Tell us about your investment goals..."
               className="w-full p-4 rounded-xl bg-gray-50 text-[15px] border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon focus:bg-white transition-all text-gray-900 resize-none"
             />
-          </div>
+          </div> */}
 
           {/* Dynamic feedback state logging row updates */}
           {status.type === 'error' && (
