@@ -63,8 +63,7 @@ function BacktestKPICard({ value, label, description, color }: BacktestKPIItem) 
   return (
     <div className="rounded-2xl border border-neutral-200 bg-[#FCFBFA] p-8 md:p-10 text-center flex flex-col items-center">
       <h3
-        className="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold"
-        style={{ color }}
+        className={`font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold ${color}`}
       >
         {value}
       </h3>

@@ -64,7 +64,7 @@ interface Lens {
 const lenses: Lens[] = [
   {
     title: 'Macro',
-    color: '#9B0000',
+    color: 'brand-maroon',
     icon: '/images/icons/macro-white.png',
     desc: 'Top-down identification of inflection points in macro indicators like global monetary cycles, commodity cycles and central bank behaviour. Through these structural macro shifts we develop actionable investment themes ahead of market consensus.',
     quote: '\u201CTranslating macro inflection points into actionable, high-conviction investment themes.\u201D',
@@ -72,7 +72,7 @@ const lenses: Lens[] = [
   },
   {
     title: 'Fundamentals',
-    color: '#FFD448',
+    color: 'secondary-ylw',
     icon: '/images/icons/fundamentals-white.png',
     desc: 'Deep primary research on every position — We look for businesses with strong free cash flow, cheap valuations, and a clear re-rating catalyst. No position enters the portfolio without a complete fundamental case.',
     quote: '\u201CValue-based research to identify the correct proxies for each macro theme.\u201D',
@@ -80,7 +80,7 @@ const lenses: Lens[] = [
   },
   {
     title: 'Sentiment',
-    color: '#009B58',
+    color: 'secondary-grn',
     icon: '/images/icons/sentiment-white.png',
     desc: 'Market sentiment — crowd positioning, put-call ratios, institutional flows — tells us where and when there is extreme fear and extreme greed. We look for extreme fear as our entry signal and extreme euphoria as our exit signal. Sentiment is often the final confirmation before we act.',
     quote: '\u201CWe buy when others are fearful. We exit when conviction becomes consensus.\u201D',
@@ -88,7 +88,7 @@ const lenses: Lens[] = [
   },
   {
     title: 'Technicals',
-    color: '#3CC3DF',
+    color: 'secondary-blu',
     icon: '/images/icons/technicals-white.png',
     desc: 'Price action analysis across multiple time frames to determine the optimal entry and exit. A fundamentally sound thesis in a technically broken structure remains a value trap until the chart confirms. We wait for the price action to align before deploying capital with conviction.',
     quote: '\u201CThe right thesis at the right price — entry timing is as important as stock selection.\u201D',
@@ -99,10 +99,7 @@ const lenses: Lens[] = [
 function LensCard({ lens, index }: { lens: Lens; index: number }) {
   return (
     <div
-      className="relative flex flex-col lg:px-6 lg:pt-10 lg:pb-8 py-4 overflow-hidden border-b border-[#262626] lg:border-b-0 lg:border-l lg:first:border-l-0 h-full"
-      style={{
-        borderTop: `2px solid ${lens.color}`
-      }}
+      className={`relative flex flex-col lg:px-6 lg:pt-10 lg:pb-8 py-4 overflow-hidden border-b border-[#262626] lg:border-b-0 lg:border-l lg:first:border-l-0 h-full border-t-4 border-${lens.color}`}
     >
       {/* Icon Area */}
       <div className=" pb-2 lg:pb-0 lg:h-25 flex items-start">
@@ -126,8 +123,7 @@ function LensCard({ lens, index }: { lens: Lens; index: number }) {
 
       {/* Accent Line */}
       <div
-        className="w-10 h-[2px] mb-2 lg:mb-5"
-        style={{ background: lens.color }}
+        className={`w-10 h-[2px] mb-2 lg:mb-5 bg-${lens.color}`}
       />
 
       {/* Description */}

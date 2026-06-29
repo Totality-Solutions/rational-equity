@@ -11,7 +11,7 @@ const funds = [
     percentage: '30%',
     subtitle: 'Post-tax return since 2023',
     name: 'India Long-Only Fund',
-    color: '#C5A55A',
+    color: 'secondary-ylw',
     fadedNumber: '30',
   },
   {
@@ -19,7 +19,7 @@ const funds = [
     percentage: '79%',
     subtitle: '1-year return',
     name: "Gold & Silver Miners' Fund",
-    color: '#9B0000',
+    color: 'secondary-grn',
     fadedNumber: '79',
   },
   {
@@ -27,7 +27,7 @@ const funds = [
     percentage: '41%',
     subtitle: '10-year model net CAGR',
     name: 'Absolute Return Fund',
-    color: '#2E7D5B',
+    color: 'secondary-blu',
     fadedNumber: '41',
   },
 ];
@@ -42,7 +42,7 @@ export default function ReturnsSection() {
             highlight="speak for themselves."
             highlightColor="brand-maroon"
             variant="light"
-            titleClassName="text-black font-semibold text-h2-mobile lg:text-h2-tab lg:text-h2 "
+            titleClassName="text-black font-medium text-h2-mobile lg:text-h2-tab lg:text-h2 "
             subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile lg:text-body-lg-tab lg:text-body-lg"
           />
         </div>
@@ -54,16 +54,12 @@ export default function ReturnsSection() {
               className="relative bg-white rounded-xl overflow-hidden shadow-sm"
             >
               <div
-                className="absolute top-0 left-0 right-0 h-[4px]"
-                style={{ backgroundColor: fund.color }}
+                className={`absolute top-0 left-0 right-0 h-[4px] bg-${fund.color}`}
               />
 
               <div className="relative px-8 py-4">
                 <p
-                  className="text-5xl lg:text-6xl font-medium mb-8 font-playfair"
-                  style={{
-                    color: fund.color,
-                  }}
+                  className={`text-5xl lg:text-6xl font-medium mb-8 font-playfair text-${fund.color}`}
                 >
                   {fund.percentage}
                 </p>
@@ -76,10 +72,7 @@ export default function ReturnsSection() {
                 </p>
 
                 <span
-                  className="absolute bottom-0 right-0 text-7xl font-playfair lg:text-8xl font-regular opacity-10 select-none"
-                  style={{
-                    color: fund.color,
-                  }}
+                  className={`absolute bottom-0 right-0 text-7xl font-playfair lg:text-8xl font-regular opacity-10 select-none text-${fund.color}`}
                 >
                   {fund.fadedNumber}
                 </span>

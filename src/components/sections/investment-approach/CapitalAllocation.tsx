@@ -43,7 +43,7 @@ const funds: Fund[] = [
   {
     label: 'Fund I \u00B7 SEBI AIF',
     name: 'India Long-Only Fund',
-    color: '#FFDC6B',
+    color: 'secondary-ylw',
     icon: (
       <img src="/images/icons/india-long-only-fund-white.svg" alt="India Long-Only Fund" className="w-10 h-10" />
     ),
@@ -55,7 +55,7 @@ const funds: Fund[] = [
   {
     label: 'Fund II \u00B7 GIFT City',
     name: 'Gold & Silver Miners\u2019 Fund',
-    color: '#9B0000',
+    color: 'secondary-grn',
     icon: (
       <img src="/images/icons/gold-&-silver-miners-fund-white.svg" alt="Gold & Silver Miners Fund" className="w-10 h-10" />
     ),
@@ -67,7 +67,7 @@ const funds: Fund[] = [
   {
     label: 'Fund III \u00B7 SEBI + GIFT City',
     name: 'Absolute Return Fund',
-    color: '#00BC7D',
+    color: 'secondary-blu',
     icon: (
       <img src="/images/icons/absolute-return-fund-white.svg" alt="Absolute Return Fund" className="w-10 h-10" />
     ),
@@ -110,19 +110,14 @@ export default function CapitalAllocation() {
                   duration: 0.7,
                   ease: [0.22, 1, 0.36, 1]
                 }}
-                className="flex-1 flex flex-col overflow-hidden rounded-[20px]"
+                className={`flex-1 flex flex-col overflow-hidden rounded-[20px] border-t-4 border-${fund.color}`}
                 style={{
                   background: '#111111',
                   boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.03)'
                 }}
               >
                 {/* Top Color Bar */}
-                <div className="w-full h-[2px] overflow-hidden">
-                  <div
-                    className="h-[4px] -mt-[1px]"
-                    style={{ background: fund.color }}
-                  />
-                </div>
+                
 
                 {/* Card Content */}
                 <div className="flex flex-col p-10">
@@ -153,8 +148,7 @@ export default function CapitalAllocation() {
                       className="inline-flex items-center gap-2.5 px-5 py-[15px] rounded-full w-fit bg-white/10"
                     >
                       <span
-                        className="font-playfair text-h4-mobile md:text-h4-tab lg:text-h4 font-semibold leading-[32px]"
-                        style={{ color: fund.statColor }}
+                        className={`font-playfair text-h4-mobile md:text-h4-tab lg:text-h4 font-semibold leading-[32px] text-${fund.color}`}
                       >
                         {fund.statValue}
                       </span>
