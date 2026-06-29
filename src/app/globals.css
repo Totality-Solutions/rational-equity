@@ -16,9 +16,9 @@
    /* =========================
      SECONDARY COLORS
   ========================= */
-  --secondary-yellow: #B8860B;
-  --secondary-green: #2E7D5B;
-  --secondary-blue: #2563EB;
+  --secondary-ylw: #B8860B;
+  --secondary-grn: #2E7D5B;
+  --secondary-blu: #2563EB;
 
 
 
@@ -81,9 +81,9 @@
 
   --color-brand-grey: var(--brand-grey);
 
-  --color-secondary-yellow: var(--secondary-yellow);
-  --color-secondary-green: var(--secondary-green);
-  --color-secondary-blue: var(--secondary-blue);
+  --color-secondary-ylw: var(--secondary-ylw);
+  --color-secondary-grn: var(--secondary-grn);
+  --color-secondary-blu: var(--secondary-blu);
   
   /* =========================
      DESKTOP
