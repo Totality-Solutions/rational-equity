@@ -152,8 +152,8 @@ export const FUND_DATA: Record<string, FundDetails> = {
         href: "/contact",
       },
       secondaryCTA: {
-        text: "View other funds",
-        href: "/pdf/pdf-1.pdf",
+        text: "Schedule a call",
+        href: "/contact",
       },
     },
     performance: {
@@ -283,8 +283,8 @@ export const FUND_DATA: Record<string, FundDetails> = {
         href: "/contact",
       },
       secondaryCTA: {
-        text: "View other funds",
-        href: "/pdf/pdf-1.pdf",
+        text: "Schedule a call",
+        href: "/contact",
       },
     },
     performance: {
@@ -397,8 +397,8 @@ export const FUND_DATA: Record<string, FundDetails> = {
         href: "/contact",
       },
       secondaryCTA: {
-        text: "View other funds",
-        href: "/pdf/pdf-1.pdf",
+        text: "Schedule a call",
+        href: "/contact",
       },
     },
     performance: {

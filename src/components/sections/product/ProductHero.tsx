@@ -48,13 +48,13 @@ export default function ProductHero({ title, description, titleColor = "text-bra
               iconClassName="invert"
             />
 
-            <CTAButton
+            {/* <CTAButton
               href="#overview"
               text="Learn More"
               variant="dark"
               primaryColor="#000000"
               textColor="#ffffff"
-            />
+            /> */}
           </div>
         </div>
     </section>

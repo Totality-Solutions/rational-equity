@@ -99,7 +99,7 @@ const lenses: Lens[] = [
 function LensCard({ lens, index }: { lens: Lens; index: number }) {
   return (
     <div
-      className={`relative flex flex-col lg:px-6 lg:pt-10 lg:pb-8 py-4 overflow-hidden border-b border-[#262626] lg:border-b-0 lg:border-l lg:first:border-l-0 h-full border-t-4 border-${lens.color}`}
+      className={`relative flex flex-col lg:px-6 lg:pt-10 lg:pb-8 py-4 overflow-hidden h-full border-t-4 border-${lens.color}`}
     >
       {/* Icon Area */}
       <div className=" pb-2 lg:pb-0 lg:h-25 flex items-start">
