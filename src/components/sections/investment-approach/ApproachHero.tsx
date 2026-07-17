@@ -4,6 +4,7 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
+import type { SanityApproachPage } from '@/sanity/queries';
 
 const slideUpVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -27,7 +28,13 @@ const letterVariants: Variants = {
   })
 };
 
-export default function ApproachHero() {
+export default function ApproachHero({ hero }: { hero?: SanityApproachPage['hero'] }) {
+  const title = hero?.title || 'How we think';
+  const titleItalic = hero?.titleItalic || 'about capital.';
+  const subheading =
+    hero?.subheading ||
+    'Our investment approach is built on one conviction: the best returns come from identifying the right macro theme, selecting the most powerful instrument to capture it, and holding with discipline through the inevitable volatility.';
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -90,14 +97,14 @@ export default function ApproachHero() {
               custom={0}
               className="block"
             >
-              How we think
+              {title}
             </motion.span>
             <motion.span
               variants={slideUpVariants}
               custom={0.05}
               className="block italic"
             >
-              {'about capital.'.split('').map((char, i) => (
+              {titleItalic.split('').map((char, i) => (
                 <motion.span
                   key={i}
                   custom={i}
@@ -119,10 +126,7 @@ export default function ApproachHero() {
             custom={0.4}
             className="font-sans text-[18px] leading-[28px] tracking-[0.04em] text-[#E3DFDB] max-w-[640px] mx-auto"
           >
-            Our investment approach is built on one conviction: the best returns
-            come from identifying the right macro theme, selecting the most
-            powerful instrument to capture it, and holding with discipline
-            through the inevitable volatility.
+            {subheading}
           </motion.p>
         </div>
       </Container>

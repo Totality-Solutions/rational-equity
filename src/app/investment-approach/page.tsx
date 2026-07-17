@@ -6,11 +6,8 @@ import ApproachPrinciples from '@/components/sections/investment-approach/Approa
 import AnalyticalLenses from '@/components/sections/investment-approach/AnalyticalLenses';
 import CapitalAllocation from '@/components/sections/investment-approach/CapitalAllocation';
 import InsightToInvestment from '@/components/sections/investment-approach/InsightToInvestment';
-import ApproachFeatures from '@/components/sections/investment-approach/ApproachFeatures';
-import InvestmentProcess from '@/components/sections/investment-approach/InvestmentProcess';
-import WhatSetsUsApart from '@/components/sections/investment-approach/WhatSetsUsApart';
-import RiskManagement from '@/components/sections/investment-approach/RiskManagement';
 import ReadyToStart from '@/components/common/ReadyToStart';
+import { getApproachPage } from '@/sanity/queries';
 
 // ─── PER-PAGE SEO ──────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -28,42 +25,40 @@ export const metadata: Metadata = {
   },
 };
 
-export default function InvestmentApproachPage() {
+export default async function InvestmentApproachPage() {
+  const approach = await getApproachPage();
+
   return (
     <main className="min-h-screen bg-white">
-      <ApproachHero />
-      <ApproachPrinciples />
-      <AnalyticalLenses />
-      <InsightToInvestment />
+      <ApproachHero hero={approach.hero ?? undefined} />
+      <ApproachPrinciples principlesData={approach.principles ?? undefined} />
+      <AnalyticalLenses lensesData={approach.lenses ?? undefined} />
+      <InsightToInvestment insight={approach.insight ?? undefined} />
       <div className='border-t border-[#202020] '>
         <ReadyToStart
-          title="Convinced by the approach?"
-          description="Speak to our team to explore which fund suits your investment goals"
+          title={approach.ctaTop?.title || "Convinced by the approach?"}
+          description={approach.ctaTop?.description || "Speak to our team to explore which fund suits your investment goals"}
           primaryCTA={{
-            text: "Get in touch",
-            href: "/contact",
+            text: approach.ctaTop?.primaryBtnText || "Get in touch",
+            href: approach.ctaTop?.primaryBtnLink || "/contact",
           }}
         />
       </div>
-      <CapitalAllocation />
+      <CapitalAllocation allocation={approach.allocation ?? undefined} />
       <div className='border-t border-[#202020] '>
         <ReadyToStart
-          title="Ready to invest with rational conviction?"
-          description="Join investors who trust us with their long-term wealth creation — because our capital is always in alongside theirs."
+          title={approach.ctaBottom?.title || "Ready to invest with rational conviction?"}
+          description={approach.ctaBottom?.description || "Join investors who trust us with their long-term wealth creation — because our capital is always in alongside theirs."}
           primaryCTA={{
-            text: "Invest With Us",
-            href: "/invest-with-us",
+            text: approach.ctaBottom?.primaryBtnText || "Invest With Us",
+            href: approach.ctaBottom?.primaryBtnLink || "/invest-with-us",
           }}
           secondaryCTA={{
-            text: "About the team",
-            href: "/about",
+            text: approach.ctaBottom?.secondaryBtnText || "About the team",
+            href: approach.ctaBottom?.secondaryBtnLink || "/about",
           }}
         />
       </div>
-      {/* <ApproachFeatures />
-      <InvestmentProcess />
-      <WhatSetsUsApart/>
-      <RiskManagement /> */}
     </main>
   );
 }

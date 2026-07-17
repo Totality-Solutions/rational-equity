@@ -3,8 +3,16 @@
 import React from 'react';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
+import type { SanityHomePage } from '@/sanity/queries';
 
-const principles = [
+interface PrincipleDisplay {
+  id: number;
+  title: string;
+  description: string;
+  quote: string;
+}
+
+const defaultPrinciples: PrincipleDisplay[] = [
   {
     id: 1,
     title: 'Impeccable Capital Allocation',
@@ -28,9 +36,7 @@ const principles = [
   },
 ];
 
-const DUPLICATED = [...principles, ...principles];
-
-function PrincipleCard({ item }: { item: (typeof principles)[number] }) {
+function PrincipleCard({ item }: { item: PrincipleDisplay }) {
   return (
     <div className="relative bg-white border border-gray-100 rounded-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.03)] px-6 sm:px-8 py-8 sm:py-10 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)] group h-full">
       <div className="absolute top-0 left-0 right-0 h-[5px] bg-[#9B0000] w-full" />
@@ -57,17 +63,28 @@ function PrincipleCard({ item }: { item: (typeof principles)[number] }) {
   );
 }
 
-export default function InvestorStructure() {
+export default function InvestorStructure({ principles: principlesData }: { principles?: SanityHomePage['principles'] }) {
+  const heading = principlesData?.heading || 'An Investor-First Structure, by Design.';
+  const highlightText = principlesData?.highlightText || 'Investor-First Structure';
+  const subheading =
+    principlesData?.subheading ||
+    'Three principles that shape every decision we make — from how we invest to how we get paid.';
+  const principles: PrincipleDisplay[] =
+    principlesData?.principles && principlesData.principles.length > 0
+      ? principlesData.principles.map((p, i) => ({ id: i + 1, title: p.title, description: p.description, quote: p.quote }))
+      : defaultPrinciples;
+  const DUPLICATED = [...principles, ...principles];
+
   return (
     <section className="w-full py-12 bg-[#FAFAFA]">
       <Container className="max-w-[1216px] mx-auto px-4 space-y-16">
 
         <div className="mb-6 lg:mb-12">
           <AnimatedHeader
-            title="An Investor-First Structure, by Design."
-            highlight="Investor-First Structure"
+            title={heading}
+            highlight={highlightText}
             highlightColor="brand-maroon"
-            subheading="Three principles that shape every decision we make — from how we invest to how we get paid."
+            subheading={subheading}
             variant="light"
             titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
             subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"

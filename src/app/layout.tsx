@@ -8,6 +8,7 @@ import './globals.css';
 import SmartScrollToTop from '@/components/common/ScrollToTop';
 import RouteLoader from '@/components/common/RouteLoader';
 import FAQ from '@/components/sections/home/FAQ';
+import { getSiteHeader, getSiteFooter, getSiteFaq } from '@/sanity/queries';
 
 const playfairDisplay = Playfair_Display({
   variable: '--font-playfair-display',
@@ -92,11 +93,13 @@ const jsonLd = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [header, footer, faq] = await Promise.all([getSiteHeader(), getSiteFooter(), getSiteFaq()]);
+
   return (
     <html
   lang="en"
@@ -112,10 +115,10 @@ export default function RootLayout({
 
         <RouteLoader />
 
-        <Navbar />
+        <Navbar header={header ?? undefined} />
         <main>{children}</main>
-        <FAQ />
-        <Footer />
+        <FAQ faq={faq ?? undefined} />
+        <Footer footer={footer ?? undefined} />
         <SmartScrollToTop />
       </body>
     </html>

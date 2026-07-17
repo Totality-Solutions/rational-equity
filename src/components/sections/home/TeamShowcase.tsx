@@ -6,53 +6,62 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import { Linkedin, Twitter } from 'lucide-react';
+import { urlFor } from '@/sanity/image';
+import type { SanityHomePage } from '@/sanity/queries';
 
-
-export const teamMembers = [
+const defaultTeamMembers = [
   {
     id: 1,
     role: 'Chief Investment Officer',
     image: '/images/team/vivek.jpeg',
     name: 'Vivek Iyer',
-    bio: 'Chief Investment Officer',
     philosophy: 'Vivek is the Founder and Partner at Rational - With over 10 years of experience in investment management and prior to that leading two start-ups, Vivek founded Rational with the aim of providing other investors the same opportunity of compunding wealth through dedicated capital allocation as he would create for himself. Vivek is diligent about creating opportunities for investors, is principled about safeguarding capital and compounding without unnecessary risks.',
     linkedin: 'https://www.linkedin.com/in/vivek-iyer-69145824?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
-    twitter: '#',
   },
   {
     id: 2,
     role: 'Fund Manager & Head of Research',
     image: '/images/team/vishal.jpeg',
     name: 'Vishal Iyer',
-    bio: 'Fund Manager & Head of Research',
     philosophy: 'Vishal is a Partner at Rational - With over 12 years of experience in investment management across both sell and buy side, Vishal brings with him a deep & rich understanding of equities, commodities & credit. Vishal has spent time with JP Morgan and RBC BlueBay creating a solid foundation of building thesis in assets and equities based on deep research, discplined process and pursuit of less-known opportunities',
     linkedin: 'https://www.linkedin.com/in/vishaliyer?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
-    twitter: '#',
   },
   {
     id: 3,
     role: 'Chief Business Officer',
     image: '/images/team/vikram.jpeg',
     name: 'Vikram Advani',
-    bio: 'Chief Business Officer',
     philosophy: "With over 20 years of experience in the financial services industry, Vikram is among the most seasoned professionals in India's asset management space. He has held leadership positions at some of the country's largest financial institutions, including Aditya Birla AMC and Old Bridge where he led sales and distribution and built a strong book for them. Vikram is taking Rational to its next level of growth while maintaining long-term partnerships with clients keeping an investor-first philosophy.",
     linkedin: 'https://www.linkedin.com/in/vikram-advani-41a50117?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
-    twitter: '#',
   },
 ];
 
-export default function TeamShowcase() {
+export default function TeamShowcase({ team }: { team?: SanityHomePage['team'] }) {
   const [activeId, setActiveId] = useState(1);
+
+  const heading = team?.heading || 'Our Team';
+  const subheading = team?.subheading || 'Our team of dedicated talent.';
+  const teamMembers =
+    team?.members && team.members.length > 0
+      ? team.members.map((member, i) => ({
+          id: i + 1,
+          role: member.role,
+          image: member.image ? urlFor(member.image).width(640).url() : '/images/team/vivek.jpeg',
+          name: member.name,
+          philosophy: member.philosophy || '',
+          linkedin: member.linkedin || '#',
+        }))
+      : defaultTeamMembers;
 
   return (
     <section className="w-full pt-8 pb-4 lg:pt-16 lg:pb-8 bg-white">
       <Container className="w-full space-y-8">
 
         <AnimatedHeader
-          title="Our Team"
+          title={heading}
           highlight="Team"
           highlightColor="brand-maroon"
-          subheading="Our team of dedicated talent."
+          subheading={subheading}
           variant="light"
           titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"
@@ -105,9 +114,6 @@ export default function TeamShowcase() {
                         <div className="flex gap-3 pt-1">
                           <a href={member.linkedin} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
                             <Linkedin size={16} />
-                          </a>
-                          <a href={member.twitter} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
-                            <Twitter size={16} />
                           </a>
                         </div>
                       </div>

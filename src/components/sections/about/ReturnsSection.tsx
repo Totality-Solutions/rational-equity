@@ -4,42 +4,43 @@ import React from 'react';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import CTAButton from '@/components/common/CTAButton';
+import type { SanityAboutPage } from '@/sanity/queries';
 
-const funds = [
+const defaultFunds = [
   {
-    id: 1,
     percentage: '30%',
     subtitle: 'Post-tax return since 2023',
     name: 'India Long-Only Fund',
     color: 'secondary-ylw',
-    fadedNumber: '30',
   },
   {
-    id: 2,
     percentage: '79%',
     subtitle: '1-year return',
     name: "Gold & Silver Miners' Fund",
     color: 'secondary-grn',
-    fadedNumber: '79',
   },
   {
-    id: 3,
     percentage: '41%',
     subtitle: '10-year model net CAGR',
     name: 'Absolute Return Fund',
     color: 'secondary-blu',
-    fadedNumber: '41',
   },
 ];
 
-export default function ReturnsSection() {
+export default function ReturnsSection({ returns: returnsData }: { returns?: SanityAboutPage['returns'] }) {
+  const heading = returnsData?.heading || 'Returns that speak for themselves.';
+  const highlightText = returnsData?.highlightText || 'speak for themselves.';
+  const funds = returnsData?.funds && returnsData.funds.length > 0 ? returnsData.funds : defaultFunds;
+  const ctaText = returnsData?.ctaText || 'Get Expert Assistance';
+  const ctaLink = returnsData?.ctaLink || '/contact';
+
   return (
     <section className="w-full px-3 lg:px-16 bg-[#FAFAFA]">
       <Container className="py-6 lg:py-12 mx-auto px-4 space-y-12">
         <div className="mb-8">
           <AnimatedHeader
-            title="Returns that speak for themselves."
-            highlight="speak for themselves."
+            title={heading}
+            highlight={highlightText}
             highlightColor="brand-maroon"
             variant="light"
             titleClassName="text-black font-medium text-h2-mobile lg:text-h2-tab lg:text-h2 "
@@ -50,7 +51,7 @@ export default function ReturnsSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {funds.map((fund) => (
             <div
-              key={fund.id}
+              key={fund.name}
               className="relative bg-white rounded-xl overflow-hidden shadow-sm"
             >
               <div
@@ -74,7 +75,7 @@ export default function ReturnsSection() {
                 <span
                   className={`absolute bottom-0 right-0 text-7xl font-playfair lg:text-8xl font-regular opacity-10 select-none text-${fund.color}`}
                 >
-                  {fund.fadedNumber}
+                  {fund.percentage.replace('%', '')}
                 </span>
               </div>
             </div>
@@ -83,8 +84,8 @@ export default function ReturnsSection() {
 
         <div className="flex items-center gap-6 pt-2 lg:px-16">
           <CTAButton
-            href="/contact"
-            text="Get Expert Assistance"
+            href={ctaLink}
+            text={ctaText}
             variant="maroon-bg"
             borderRadiusClassName="rounded-full"
           />

@@ -5,6 +5,8 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
 import Container from "@/components/common/Container";
+import { urlFor } from '@/sanity/image';
+import type { SanityAboutPage } from '@/sanity/queries';
 
 interface TeamMember {
   id: number;
@@ -15,7 +17,7 @@ interface TeamMember {
   image: string;
 }
 
-const teamMembers: TeamMember[] = [
+const defaultTeamMembers: TeamMember[] = [
   {
     id: 1,
     name: "Vivek Iyer",
@@ -142,7 +144,21 @@ function TeamCard({ member }: { member: TeamMember }) {
   );
 }
 
-export default function TeamSection() {
+export default function TeamSection({ team }: { team?: SanityAboutPage['team'] }) {
+  const heading = team?.heading || 'People who put their money where their mouth is.';
+  const highlightText = team?.highlightText || 'money where their mouth is.';
+  const teamMembers: TeamMember[] =
+    team?.members && team.members.length > 0
+      ? team.members.map((m, i) => ({
+          id: i + 1,
+          name: m.name,
+          title: m.title,
+          description: m.description,
+          education: m.education,
+          image: m.image ? urlFor(m.image).width(640).url() : '/images/team/vivek.jpeg',
+        }))
+      : defaultTeamMembers;
+
   const perView = useCardsPerView();
   const total = teamMembers.length;
   const maxIndex = total - perView;
@@ -174,8 +190,8 @@ export default function TeamSection() {
       <Container className="py-6 lg:py-12 mx-auto lg:space-y-12">
         <div className="mb-6 lg:mb-12">
           <AnimatedHeader
-            title="People who put their money where their mouth is."
-            highlight="money where their mouth is."
+            title={heading}
+            highlight={highlightText}
             highlightColor="brand-maroon"
             variant="light"
             titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"

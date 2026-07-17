@@ -6,6 +6,7 @@ import InvestLinksSection from '@/components/sections/thought-center/InvestLinks
 import MediaPage from '@/components/sections/thought-center/MediaPage';
 import Strip from '@/components/sections/thought-center/Strip';
 import ThoughtCenterArticles from '@/components/sections/thought-center/ThoughtCenterArticles';
+import { getAllArticles, getLegalDisclaimer } from '@/sanity/queries';
 import type { Metadata } from 'next';
 
 
@@ -26,12 +27,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ThoughtCenterPage() {
+export default async function ThoughtCenterPage() {
+  const [articles, disclaimer] = await Promise.all([getAllArticles(), getLegalDisclaimer()]);
+
   return (
     <main className="bg-white">
         {/* <Hero /> */}
         <HeadingSection />
-        <ThoughtCenterArticles />
+        <ThoughtCenterArticles articles={articles} disclaimer={disclaimer} />
         {/* <InvestCTASection /> */}
         <MediaPage />
          <div className='max-w-[90rem] mx-auto'>

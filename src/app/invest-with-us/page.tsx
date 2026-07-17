@@ -2,12 +2,11 @@
 
 
 import type { Metadata } from 'next';
-import FAQ from '@/components/sections/home/FAQ';
 import AvailableFunds from '@/components/sections/invest-with-us/AvailableFunds';
-import ChooseYourPath from '@/components/sections/invest-with-us/ChooseYourPath';
 import InvestWithUs from '@/components/sections/invest-with-us/InvestWithUs';
 import ResourcesSection from '@/components/sections/invest-with-us/ResourceSection';
 import StartInvestingForm from '@/components/sections/invest-with-us/StartInvestingForm';
+import { getInvestWithUsPage } from '@/sanity/queries';
 
 // ─── INVEST WITH US SEO ─────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -26,15 +25,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function StartInvestingPage() {
+export default async function StartInvestingPage() {
+  const investWithUs = await getInvestWithUsPage();
+
   return (
     <main>
-      <InvestWithUs />
-      {/* <ChooseYourPath /> */}
-      <AvailableFunds />
-      <StartInvestingForm />
-      <ResourcesSection />
-      {/* <FAQ /> */}
+      <InvestWithUs hero={investWithUs.hero ?? undefined} />
+      <AvailableFunds fundList={investWithUs.fundList ?? undefined} />
+      <StartInvestingForm contact={investWithUs.contact ?? undefined} />
+      <ResourcesSection resources={investWithUs.resources ?? undefined} />
     </main>
   );
 }

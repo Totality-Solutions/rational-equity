@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CTAButton from '@/components/common/CTAButton';
 import Container from '@/components/common/Container';
+import { urlFor } from '@/sanity/image';
+import type { SanityHomePage } from '@/sanity/queries';
 
 // --- Types ---
 interface RollingDigitProps {
@@ -78,42 +80,46 @@ const KBCNumber: React.FC<KBCNumberProps> = ({ value, inView }) => {
 };
 
 // --- Config Data ---
-const STATS_CARDS: StatCard[] = [
-  { 
-    value: '75', 
-    suffix: '%', 
-    label: 'Return in 1 year', 
-    subLabel: 'Miners Fund', // Example Sub-Label
-    icon: '/icons/grow-up.png', 
-    bgImage: '/images/hero-thought/notes1.jpeg' 
+const defaultTitleLine1 = 'Rational investing.';
+const defaultTitleLine2 = 'Outsized returns.';
+const defaultDescription =
+  'A boutique fund focused on long-term wealth creation for its investors through agility in capital allocation, rigorous investment processes and conviction built on deep insights. Our edge is accurately identifying mega trends & effectively combining it with our deep fundamental, sentimental & technical analysis to identify high-return investment opportunities across asset classes, markets and products.';
+
+const defaultStatsCards: StatCard[] = [
+  {
+    value: '75',
+    suffix: '%',
+    label: 'Return in 1 year',
+    subLabel: 'Miners Fund',
+    icon: '/icons/grow-up.png',
+    bgImage: '/images/hero-thought/notes1.jpeg',
   },
-  { 
-    value: '30', 
-    suffix: '%', 
-    label: 'CAGR', 
-    subLabel: 'India Long Fund', // Example Sub-Label
+  {
+    value: '30',
+    suffix: '%',
+    label: 'CAGR',
+    subLabel: 'India Long Fund',
     icon: '/icons/doller.png',
-    bgImage: '/images/hero-thought/notes3.jpeg' 
+    bgImage: '/images/hero-thought/notes3.jpeg',
   },
-  { 
-    value: '15', 
-    suffix: '+', 
-    label: 'Years of Investing Experience', 
-    // subLabel left out optionally to demonstrate fallback rendering bounds
+  {
+    value: '15',
+    suffix: '+',
+    label: 'Years of Investing Experience',
     icon: '/icons/clock.png',
-    bgImage: '/images/hero-thought/notes2.jpeg' 
+    bgImage: '/images/hero-thought/notes2.jpeg',
   },
-  { 
-    prefix: '#',   
-    value: '1', 
-    label: 'AIF of FY24', 
-    subLabel: 'Top Performing AIF', // Example Sub-Label
+  {
+    prefix: '#',
+    value: '1',
+    label: 'AIF of FY24',
+    subLabel: 'Top Performing AIF',
     icon: '/icons/taurus.png',
-    bgImage: '/images/hero-thought/notes1.jpeg' 
+    bgImage: '/images/hero-thought/notes1.jpeg',
   },
 ];
 
-const TICKER_LOGOS = [
+const defaultTickerLogos = [
   { name: '3Portals', icon: '⧉' },
   { name: '45 Degrees°', icon: '↗' },
   { name: 'Acme Corp', icon: '✦' },
@@ -121,8 +127,31 @@ const TICKER_LOGOS = [
   { name: 'Biosynthesis', icon: '🧬' },
 ];
 
-export default function Hero() {
+export default function Hero({ hero }: { hero?: SanityHomePage['hero'] }) {
   const [mounted, setMounted] = useState(false);
+
+  const titleLine1 = hero?.titleLine1 || defaultTitleLine1;
+  const titleLine2 = hero?.titleLine2 || defaultTitleLine2;
+  const description = hero?.description || defaultDescription;
+  const primaryCtaText = hero?.primaryCtaText || 'Explore our funds';
+  const primaryCtaLink = hero?.primaryCtaLink || '/invest-with-us';
+  const secondaryCtaText = hero?.secondaryCtaText || 'Speak to the team';
+  const secondaryCtaLink = hero?.secondaryCtaLink || '/contact';
+
+  const STATS_CARDS: StatCard[] =
+    hero?.statsCards && hero.statsCards.length > 0
+      ? hero.statsCards.map((card) => ({
+          prefix: card.prefix || undefined,
+          value: card.value,
+          suffix: card.suffix || undefined,
+          label: card.label,
+          subLabel: card.subLabel || undefined,
+          icon: card.icon ? urlFor(card.icon).width(48).url() : '',
+          bgImage: card.bgImage ? urlFor(card.bgImage).width(600).url() : '',
+        }))
+      : defaultStatsCards;
+
+  const TICKER_LOGOS = hero?.tickerLogos && hero.tickerLogos.length > 0 ? hero.tickerLogos : defaultTickerLogos;
   
   useEffect(() => {
     setMounted(true);
@@ -160,38 +189,35 @@ export default function Hero() {
         <div className="space-y-8 flex flex-col justify-center text-left">
           {/* Tight Spacing Headings */}
           <div className="flex flex-col space-y-1">
-            <h1 
+            <h1
               className="text-[44px] sm:text-[52px] lg:text-[56px] font-playfair font-normal tracking-tight text-white leading-none"
             >
-              Rational investing.
+              {titleLine1}
             </h1>
-            <h2 
+            <h2
               className="text-[44px] sm:text-[52px] lg:text-[56px] font-playfair italic text-gray-300 font-normal leading-tight"
             >
-              Outsized returns.
+              {titleLine2}
             </h2>
           </div>
 
-          <p 
+          <p
             className="text-[14px] sm:text-[15px] leading-relaxed text-gray-400 font-normal max-w-2xl"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
-            A boutique fund focused on long-term wealth creation for its investors through agility in capital allocation, 
-            rigorous investment processes and conviction built on deep insights. Our edge is accurately identifying 
-            mega trends & effectively combining it with our deep fundamental, sentimental & technical analysis to 
-            identify high-return investment opportunities across asset classes, markets and products.
+            {description}
           </p>
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <CTAButton
-              href="/invest-with-us"
-              text="Explore our funds"
+              href={primaryCtaLink}
+              text={primaryCtaText}
               variant="maroon-bg"
               iconClassName="invert"
             />
-            <CTAButton 
-              href="/contact" 
-              text="Speak to the team" 
+            <CTAButton
+              href={secondaryCtaLink}
+              text={secondaryCtaText}
               variant="dark"
               primaryColor="#7B0000"
               textColor="#ffffff"

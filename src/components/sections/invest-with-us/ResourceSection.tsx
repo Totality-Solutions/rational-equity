@@ -1,11 +1,12 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import PdfGrid, { PdfItem } from "@/components/common/PdfGrid"; 
+import PdfGrid, { PdfItem } from "@/components/common/PdfGrid";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
+import type { SanityInvestWithUsPage } from '@/sanity/queries';
 
 // 🔹 Now includes fileUrl (important for download)
-const documents: PdfItem[] = [
+const defaultDocuments: PdfItem[] = [
   { title: "Fund Factsheets", size: "2.4 MB", type: "PDF", fileUrl: "/pdfs/factsheet.pdf" },
   { title: "Application Forms", size: "1.1 MB", type: "PDF", fileUrl: "/pdfs/application.pdf" },
   { title: "Scheme Documents", size: "3.8 MB", type: "PDF", fileUrl: "/pdfs/scheme.pdf" },
@@ -13,6 +14,10 @@ const documents: PdfItem[] = [
   { title: "Investment Brochures", size: "1.6 MB", type: "PDF", fileUrl: "/pdfs/brochure.pdf" },
   { title: "KYC Documents", size: "0.8 MB", type: "PDF", fileUrl: "/pdfs/kyc.pdf" },
 ];
+
+function formatSize(bytes: number): string {
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
 
 // 🔹 Animations (same as yours)
 const titleVariants: Variants = {
@@ -33,7 +38,22 @@ const sublineVariants: Variants = {
   },
 };
 
-export default function ResourcesSection() {
+export default function ResourcesSection({ resources }: { resources?: SanityInvestWithUsPage['resources'] }) {
+  const heading = resources?.heading || 'Resources & Documents';
+  const highlightText = resources?.highlightText || 'Documents';
+  const subheading = resources?.subheading || 'Download important documents and reports';
+  const documents: PdfItem[] =
+    resources?.documents && resources.documents.length > 0
+      ? resources.documents
+          .filter((d) => d.file)
+          .map((d) => ({
+            title: d.title,
+            size: formatSize(d.file!.asset.size),
+            type: 'PDF',
+            fileUrl: d.file!.asset.url,
+          }))
+      : defaultDocuments;
+
   return (
     <section className="relative w-full bg-white font-sans py-12 overflow-hidden">
       
@@ -50,9 +70,9 @@ export default function ResourcesSection() {
         
         {/* ✅ SAME HEADER (unchanged) */}
           <AnimatedHeader
-            title="Resources & Documents"
-            highlight="Documents"
-            subheading="Download important documents and reports"
+            title={heading}
+            highlight={highlightText}
+            subheading={subheading}
             variant="light"
             className="mb-6 sm:mb-7 text-h3 text-black"
           subheadingClassName="text-body-lg tracking-wide text-black"

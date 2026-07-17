@@ -5,6 +5,7 @@ import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
+import type { SanityApproachPage } from '@/sanity/queries';
 
 const BREAKPOINTS = {
   mobile: 640,
@@ -39,7 +40,7 @@ interface Step {
   desc: string;
 }
 
-const steps: Step[] = [
+const defaultSteps: Step[] = [
   {
     img: '/icons/macroeconomics.png',
     category: 'Macro Screening',
@@ -71,6 +72,9 @@ const steps: Step[] = [
     desc: 'Hold through volatility as long as the thesis is intact. Exit when it has played out — no anchoring, no attachment.'
   }
 ];
+
+// Icons are fixed brand design, matched to CMS content by position.
+const STEP_ICONS = defaultSteps.map((s) => s.img);
 
 function StepCard({ step, index, hoveredIndex, setHoveredIndex }: {
   step: Step;
@@ -130,7 +134,21 @@ function StepCard({ step, index, hoveredIndex, setHoveredIndex }: {
   );
 }
 
-export default function InsightToInvestment() {
+export default function InsightToInvestment({ insight }: { insight?: SanityApproachPage['insight'] }) {
+  const heading = insight?.heading || 'How we go from insight to investment.';
+  const subheading =
+    insight?.subheading ||
+    'A rigorous, repeatable 5-step process that we have followed across every fund and every major capital allocation decision since 2008.';
+  const steps: Step[] =
+    insight?.steps && insight.steps.length > 0
+      ? insight.steps.map((s, i) => ({
+          category: s.category,
+          title: s.title,
+          desc: s.description,
+          img: STEP_ICONS[i % STEP_ICONS.length],
+        }))
+      : defaultSteps;
+
   const perView = useCardsPerView();
   const total = steps.length;
   const needsCarousel = total > perView;
@@ -167,9 +185,9 @@ export default function InsightToInvestment() {
           {/* Header */}
           <div className="flex flex-col items-center gap-4 mx-auto">
             <AnimatedHeader
-              title="How we go from insight to investment."
-              highlight="insight to investment."
-              subheading="A rigorous, repeatable 5-step process that we have followed across every fund and every major capital allocation decision since 2008."
+              title={heading}
+              highlight={heading}
+              subheading={subheading}
               className=""
               highlightClassName="italic"
               titleClassName="text-center text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"

@@ -3,7 +3,6 @@
 import type { Metadata } from 'next';
 import TopInfoBar from '@/components/layout/TopInfoBar';
 import AboutSection from '@/components/sections/home/AboutSection';
-import FAQ from '@/components/sections/home/FAQ';
 import Hero from '@/components/sections/home/hero';
 import InvestmentSolutions from '@/components/sections/home/InvestmentSolutions';
 import Journey from '@/components/sections/home/Journey';
@@ -12,6 +11,7 @@ import ReadyToStart from '@/components/common/ReadyToStart';
 import TeamShowcase from '@/components/sections/home/TeamShowcase';
 import ThoughtCentre from '@/components/sections/home/ThoughtCentre';
 import InvestorStructure from '@/components/sections/home/InvestorStructure';
+import { getFeaturedArticles, getLegalDisclaimer, getHomePage } from '@/sanity/queries';
 
 // ─── HOME PAGE SEO ──────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -31,30 +31,35 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const [articles, disclaimer, home] = await Promise.all([
+    getFeaturedArticles(3),
+    getLegalDisclaimer(),
+    getHomePage(),
+  ]);
+
   return (
     <>
-      <TopInfoBar />
+      <TopInfoBar segments={home.topBanner?.segments} />
       {/* <main className="min-h-screen"> */}
-        <Hero />
-        <AboutSection />
-        <InvestmentSolutions />
+        <Hero hero={home.hero ?? undefined} />
+        <AboutSection intro={home.intro ?? undefined} />
+        <InvestmentSolutions solutions={home.solutions ?? undefined} />
         <div className='max-w-[90rem] mx-auto'>
            <ReadyToStart
-              title="Ready to Start Investing?"
-              description="Join a community of investors who trust us with their long-term wealth creation journey."
+              title={home.cta?.title || "Ready to Start Investing?"}
+              description={home.cta?.description || "Join a community of investors who trust us with their long-term wealth creation journey."}
               primaryCTA={{
-                text: "Invest With Us",
-                href: "/contact",
+                text: home.cta?.primaryBtnText || "Invest With Us",
+                href: home.cta?.primaryBtnLink || "/contact",
               }}
             />
         </div>
-        <TeamShowcase />
-        <Journey />
-        <InvestorStructure />
-        <Testimonials />
-        <ThoughtCentre />
-        {/* <FAQ /> */}
+        <TeamShowcase team={home.team ?? undefined} />
+        <Journey journey={home.journey ?? undefined} />
+        <InvestorStructure principles={home.principles ?? undefined} />
+        <Testimonials testimonials={home.testimonials ?? undefined} />
+        <ThoughtCentre articles={articles} disclaimer={disclaimer} />
       {/* </main> */}
     </>
   );

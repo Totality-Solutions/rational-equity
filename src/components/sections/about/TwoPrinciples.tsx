@@ -3,14 +3,10 @@
 import React from 'react';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
+import type { SanityAboutPage } from '@/sanity/queries';
 
-const principles = [
+const CARD_STYLES = [
   {
-    id: 1,
-    title: 'Identify the Mega-Trend First',
-    description:
-      "Before picking a stock, we ask: which macro force is large enough to create multi-year tailwinds? We invest in the intersection of structural change and mispriced assets — India's manufacturing renaissance, global gold re-monetisation, volatility regimes.",
-    quote: '"Trend identification is 80% of the work."',
     borderColor: 'bg-secondary-ylw',
     icon: (
       <svg className="w-8 h-8 text-[#9B0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -19,11 +15,6 @@ const principles = [
     ),
   },
   {
-    id: 2,
-    title: 'Combine All Dimensions of Analysis',
-    description:
-      'We run fundamental, sentimental and technical analysis in parallel. A cheap stock that the market hates and is technically breaking down is a trap. We look for all three to align before committing capital.',
-    quote: '"Conviction is earned, not assumed."',
     borderColor: 'bg-secondary-grn',
     icon: (
       <svg className="w-8 h-8 text-[#9B0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -33,15 +24,36 @@ const principles = [
   },
 ];
 
-export default function TwoPrinciples() {
+const defaultPrinciples = [
+  {
+    title: 'Identify the Mega-Trend First',
+    description:
+      "Before picking a stock, we ask: which macro force is large enough to create multi-year tailwinds? We invest in the intersection of structural change and mispriced assets — India's manufacturing renaissance, global gold re-monetisation, volatility regimes.",
+    quote: '"Trend identification is 80% of the work."',
+  },
+  {
+    title: 'Combine All Dimensions of Analysis',
+    description:
+      'We run fundamental, sentimental and technical analysis in parallel. A cheap stock that the market hates and is technically breaking down is a trap. We look for all three to align before committing capital.',
+    quote: '"Conviction is earned, not assumed."',
+  },
+];
+
+export default function TwoPrinciples({ principlesTwo }: { principlesTwo?: SanityAboutPage['principlesTwo'] }) {
+  const heading = principlesTwo?.heading || 'Two principles. One conviction.';
+  const highlightText = principlesTwo?.highlightText || 'One conviction.';
+  const principles = (
+    principlesTwo?.principles && principlesTwo.principles.length > 0 ? principlesTwo.principles : defaultPrinciples
+  ).map((p, i) => ({ ...p, id: i + 1, ...CARD_STYLES[i % CARD_STYLES.length] }));
+
   return (
     <section className="w-full pb-6 md:pb-12 bg-white">
           <Container className="px-3 md:px-12">
             <div className='lg:px-20' >
               <div className="mb-8">
                 <AnimatedHeader
-                  title="Two principles. One conviction."
-                  highlight="One conviction."
+                  title={heading}
+                  highlight={highlightText}
                   highlightColor="brand-maroon"
                   variant="light"
                   titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"

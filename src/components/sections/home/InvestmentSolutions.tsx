@@ -7,8 +7,21 @@ import CTAButton from '@/components/common/CTAButton';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import Image from 'next/image';
+import { urlFor } from '@/sanity/image';
+import type { SanityHomePage } from '@/sanity/queries';
 
-const FUNDS = [
+interface FundDisplay {
+  title: string;
+  description: string;
+  returns: string;
+  returnsLabel: string;
+  href: string;
+  img: string;
+  downloadpdf: string;
+  bullets: string[];
+}
+
+const defaultFunds: FundDisplay[] = [
   {
     title: 'India Long-Only Fund',
     description:
@@ -87,12 +100,12 @@ function NavButton({
 }
 
 // ─── Fund Card (shared) ──────────────────────────────────────────────────────
-function FundCard({ fund }: { fund: (typeof FUNDS)[number] }) {
+function FundCard({ fund }: { fund: FundDisplay }) {
   return (
     <div className="relative h-full rounded-[24px] overflow-hidden flex flex-col shadow-sm bg-white">
       <div className="relative z-20 p-8 flex flex-col flex-1">
         <div className="flex items-center gap-4 mb-8">
-          <Image src={fund.img} alt={fund.title} width={28} height={28} />
+          {fund.img && <Image src={fund.img} alt={fund.title} width={28} height={28} />}
           <h3 className="font-serif text-[20px] leading-tight text-black transition-colors group-hover:text-[#800000]">
             {fund.title}
           </h3>
@@ -130,7 +143,7 @@ function FundCard({ fund }: { fund: (typeof FUNDS)[number] }) {
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
-export default function InvestmentSolutions() {
+export default function InvestmentSolutions({ solutions }: { solutions?: SanityHomePage['solutions'] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isCarousel, setIsCarousel] = useState(false);
@@ -139,6 +152,26 @@ export default function InvestmentSolutions() {
   const [slideWidth, setSlideWidth] = useState(0);
   const [index, setIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);
+
+  const heading = solutions?.heading || 'Three strategies. One philosophy.';
+  const highlightText = solutions?.highlightText || 'One philosophy.';
+  const subheading =
+    solutions?.subheading ||
+    'Rational ranks among the top asset management companies in India, offering specialized products strategically constructed to maximize returns through deep insights and a research-driven approach and align manager incentives with investor outcomes.';
+
+  const FUNDS: FundDisplay[] =
+    solutions?.funds && solutions.funds.length > 0
+      ? solutions.funds.map((fund) => ({
+          title: fund.title,
+          description: fund.description,
+          returns: fund.returns,
+          returnsLabel: fund.returnsLabel,
+          href: fund.href,
+          img: fund.icon ? urlFor(fund.icon).width(56).url() : '',
+          downloadpdf: fund.pdfFile?.asset.url || '#',
+          bullets: fund.bullets || [],
+        }))
+      : defaultFunds;
 
   const maxIndex = FUNDS.length - 1;
 
@@ -231,10 +264,10 @@ export default function InvestmentSolutions() {
             <div className="text-center mb-12">
               <AnimatedHeader
                 titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
-                title="Three strategies. One philosophy."
-                highlight="One philosophy."
+                title={heading}
+                highlight={highlightText}
                 variant="light"
-                subheading="Rational ranks among the top asset management companies in India, offering specialized products strategically constructed to maximize returns through deep insights and a research-driven approach and align manager incentives with investor outcomes."
+                subheading={subheading}
                 subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-md-mobile md:text-body-md-tab lg:text-body-md"
               />
             </div>

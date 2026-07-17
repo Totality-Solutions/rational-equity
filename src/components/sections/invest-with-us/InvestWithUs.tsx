@@ -3,6 +3,7 @@
 import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
 import Link from 'next/link';
+import type { SanityInvestWithUsPage } from '@/sanity/queries';
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -17,7 +18,7 @@ const cardVariants: Variants = {
   })
 };
 
-const stats = [
+const defaultStats = [
   {
     value: '30%',
     color: '#9B0000',
@@ -41,7 +42,25 @@ const stats = [
   }
 ];
 
-export default function InvestWithUs() {
+// Accent color per stat is fixed brand design, matched to CMS content by position.
+const STAT_COLORS = defaultStats.map((s) => s.color);
+
+const defaultDescription = (
+  <>
+    We run three funds across <Link href="/product/india-long-only" className="hover:underline">India equities</Link>, <Link href="/product/gold-silver-miners" className="hover:underline">global gold and silver
+    miners</Link>, and an <Link href="/product/absolute-return" className="hover:underline">absolute return strategy</Link>. Every fund began with our
+    own capital. It still is — alongside yours.
+  </>
+);
+
+export default function InvestWithUs({ hero }: { hero?: SanityInvestWithUsPage['hero'] }) {
+  const titleLine1 = hero?.titleLine1 || 'Your capital.';
+  const titleLine2 = hero?.titleLine2 || 'Our conviction.';
+  const stats =
+    hero?.stats && hero.stats.length > 0
+      ? hero.stats.map((s, i) => ({ ...s, color: STAT_COLORS[i % STAT_COLORS.length] }))
+      : defaultStats;
+
   return (
     <section className="bg-black py-6 lg:py-12 ">
       <Container>
@@ -55,8 +74,8 @@ export default function InvestWithUs() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="font-playfair text-h3-mobile md:text-h3-tab lg:text-[56px] lg:leading-[58.8px] text-white font-normal"
             >
-              <span className="block">Your capital.</span>
-              <span className="block italic">Our conviction.</span>
+              <span className="block">{titleLine1}</span>
+              <span className="block italic">{titleLine2}</span>
             </motion.h1>
 
             <motion.p
@@ -67,9 +86,7 @@ export default function InvestWithUs() {
               className="text-body-lg-mobile md:text-body-lg-tab lg:text-[20px] lg:leading-[32px] max-w-[640px]"
               style={{ color: '#E3DFDB', fontFamily: "'Lato', sans-serif" }}
             >
-              We run three funds across <Link href="/product/india-long-only" className="hover:underline">India equities</Link>, <Link href="/product/gold-silver-miners" className="hover:underline">global gold and silver
-              miners</Link>, and an <Link href="/product/absolute-return" className="hover:underline">absolute return strategy</Link>. Every fund began with our
-              own capital. It still is — alongside yours.
+              {hero?.description || defaultDescription}
             </motion.p>
           </div>
 

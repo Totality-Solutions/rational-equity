@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FUND_DATA } from "@/data/Funds";
 import Container from "@/components/common/Container";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
+import type { SanityInvestWithUsPage } from '@/sanity/queries';
 
 const BREAKPOINTS = {
   mobile: 640,
@@ -40,7 +41,7 @@ interface FundCard {
   performance: { value: string; label: string };
 }
 
-const FUND_CARDS: FundCard[] = [
+const defaultFundCards: FundCard[] = [
   {
     slug: "india-long-only",
     accentColor: "#9B0000",
@@ -81,6 +82,9 @@ const FUND_CARDS: FundCard[] = [
     performance: { value: "41%", label: "10-yr Model Net CAGR" },
   },
 ];
+
+// Accent color per fund is fixed brand design, matched to CMS content by position.
+const FUND_ACCENT_COLORS = defaultFundCards.map((f) => f.accentColor);
 
 const cardVariants: Variants = {
   hidden: { y: 30, opacity: 0 },
@@ -184,7 +188,24 @@ function NavButton({
   );
 }
 
-export default function AvailableFunds() {
+export default function AvailableFunds({ fundList }: { fundList?: SanityInvestWithUsPage['fundList'] }) {
+  const heading = fundList?.heading || 'Choose the right fund for you.';
+  const highlightText = fundList?.highlightText || 'fund for you.';
+  const subheading =
+    fundList?.subheading ||
+    'Three distinct strategies, each addressing a different macro opportunity and investor profile. You can invest in one or more.';
+  const FUND_CARDS: FundCard[] =
+    fundList?.funds && fundList.funds.length > 0
+      ? fundList.funds.map((f, i) => ({
+          slug: f.slug,
+          accentColor: FUND_ACCENT_COLORS[i % FUND_ACCENT_COLORS.length],
+          label: f.label,
+          subtitle: f.subtitle,
+          stats: f.stats || [],
+          performance: { value: f.performanceValue, label: f.performanceLabel },
+        }))
+      : defaultFundCards;
+
   const perView = useCardsPerView();
   const total = FUND_CARDS.length;
   const needsCarousel = total > perView;
@@ -212,9 +233,9 @@ export default function AvailableFunds() {
           className="flex flex-col items-start gap-4 md:gap-6 mb-10 md:mb-12 lg:mb-16"
         >
           <AnimatedHeader
-            title="Choose the right fund for you."
-            highlight="fund for you."
-            subheading="Three distinct strategies, each addressing a different macro opportunity and investor profile. You can invest in one or more."
+            title={heading}
+            highlight={highlightText}
+            subheading={subheading}
             className=""
             highlightClassName="italic"
             titleClassName="text-start text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"

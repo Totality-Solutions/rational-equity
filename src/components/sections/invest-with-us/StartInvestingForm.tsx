@@ -8,8 +8,31 @@ import AnimatedHeader from "@/components/common/AnimatedHeader";
 import Container from "@/components/common/Container";
 import Image from "next/image";
 import CTAButton from "@/components/common/CTAButton";
+import type { SanityInvestWithUsPage } from '@/sanity/queries';
 
-export default function StartInvestingForm() {
+const toSlug = (label: string) => label.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+
+export default function StartInvestingForm({ contact }: { contact?: SanityInvestWithUsPage['contact'] }) {
+  const heading = contact?.heading || 'Start the conversation.';
+  const highlightText = contact?.highlightText || 'conversation.';
+  const whatsappNumber = contact?.whatsappNumber || '+91 99119 00096';
+  const whatsappLink = contact?.whatsappLink || 'https://wa.me/919911900096';
+  const email1 = contact?.email1 || 'jaba@repllp.com';
+  const email2 = contact?.email2 || 'vikram@repllp.com';
+  const phone = contact?.phone || '+91 99872 61105';
+  const phoneLink = contact?.phoneLink || 'tel:+919987261105';
+  const formHeading = contact?.formHeading || 'Request Fund Materials';
+  const formDescription =
+    contact?.formDescription || 'Share a few details and we will send you the relevant investor deck, PPM and set up a call.';
+  const submitLabel = contact?.submitLabel || 'Send Request';
+  const fundOptions = [
+    ...(contact?.fundOptions && contact.fundOptions.length > 0
+      ? contact.fundOptions
+      : ['India Long-Only Fund', 'Gold & Silver Miners Fund', 'Absolute Return Fund']
+    ).map((label) => ({ value: toSlug(label), label })),
+    { value: 'other', label: 'Other' },
+  ];
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -37,13 +60,6 @@ export default function StartInvestingForm() {
   }, [isSubmitted]);
 
   const Asterisk = () => <span className="text-red-500">*</span>;
-
-  const FUND_OPTIONS = [
-    { value: "india_long_only", label: "India Long-Only Fund" },
-    { value: "gold_silver_miners", label: "Gold & Silver Miners Fund" },
-    { value: "absolute_return", label: "Absolute Return Fund" },
-    { value: "other", label: "Other" },
-  ];
 
 
   const handleChange = (
@@ -101,8 +117,8 @@ export default function StartInvestingForm() {
               <div className="flex flex-col items-start gap-4 md:gap-6 mb-6 lg:mb-16 "
               >
                 <AnimatedHeader
-                  title="Start the conversation."
-                  highlight="conversation."
+                  title={heading}
+                  highlight={highlightText}
                   subheading=""
                   className=""
                   highlightClassName="italic"
@@ -114,7 +130,7 @@ export default function StartInvestingForm() {
 
                   {/* WhatsApp */}
                   <a
-                    href="https://wa.me/919911900096"
+                    href={whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-5 rounded-lg border border-black/15 p-3 lg:p-5"
@@ -129,7 +145,7 @@ export default function StartInvestingForm() {
                       </p>
 
                       <p className="mt-1 lg:mt-2 text-body-md-mobile md:text-body-md-tab lg:text-body-md font-medium text-black">
-                        +91 99119 00096
+                        {whatsappNumber}
                       </p>
                     </div>
                   </a>
@@ -137,7 +153,7 @@ export default function StartInvestingForm() {
                   {/* Email */}
 
                   <a
-                    href="mailto:jaba@repllp.com,vikram@repllp.com"
+                    href={`mailto:${email1},${email2}`}
                     className="flex items-center gap-5 rounded-lg border border-black/15 p-3 lg:p-5"
                   >
                     <div className="lg:h-12 lg:w-12 w-6 h-6 rounded-full bg-[#F3F3F3] flex items-center justify-center">
@@ -150,7 +166,7 @@ export default function StartInvestingForm() {
                       </p>
 
                       <p className="mt-1 lg:mt-2 text-body-md-mobile md:text-body-md-tab lg:text-body-md font-medium text-black break-words">
-                        jaba@repllp.com · vikram@repllp.com
+                        {email1} · {email2}
                       </p>
                     </div>
                   </a>
@@ -158,7 +174,7 @@ export default function StartInvestingForm() {
                   {/* Office */}
 
                   <a
-                    href="tel:+919987261105"
+                    href={phoneLink}
                     className="flex items-center gap-5 rounded-lg border border-black/15 p-3 lg:p-5"
                   >
                     <div className="lg:h-12 lg:w-12 w-6 h-6 rounded-full bg-[#F3F3F3] flex items-center justify-center">
@@ -171,7 +187,7 @@ export default function StartInvestingForm() {
                       </p>
 
                       <p className="mt-1 lg:mt-2 text-body-md-mobile md:text-body-md-tab lg:text-body-md font-medium text-black">
-                        +91 99872 61105
+                        {phone}
                       </p>
                     </div>
                   </a>
@@ -186,12 +202,11 @@ export default function StartInvestingForm() {
                 <div className="space-y-2 lg:space-y-3">
 
                   <h3 className="font-playfair text-h3-mobile md:text-h3-tab lg:text-h3 font-semibold text-black">
-                    Request Fund Materials
+                    {formHeading}
                   </h3>
 
                   <p className="text-black/60 text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg lg:leading-7">
-                    Share a few details and we will send you the relevant investor
-                    deck, PPM and set up a call.
+                    {formDescription}
                   </p>
 
                 </div>
@@ -260,7 +275,7 @@ export default function StartInvestingForm() {
                             className="w-full px-4 py-3 rounded-xl bg-gray-50 text-body-md border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all appearance-none pr-10 text-[#000000]/70"
                           >
                             <option value="" disabled>Select a fund</option>
-                            {FUND_OPTIONS.map((opt) => (
+                            {fundOptions.map((opt) => (
                               <option key={opt.value} value={opt.value}>
                                 {opt.label}
                               </option>
@@ -326,7 +341,7 @@ export default function StartInvestingForm() {
                     <button type="submit" className="w-full sm:w-auto" disabled={isSubmitting}>
                       <CTAButton
                         href="#"
-                        text={isSubmitting ? "Sending..." : "Send Request"}
+                        text={isSubmitting ? "Sending..." : submitLabel}
                         variant="light"
                         className="pointer-events-none"
                       />

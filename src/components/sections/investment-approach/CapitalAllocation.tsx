@@ -5,6 +5,7 @@ import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
+import type { SanityApproachPage } from '@/sanity/queries';
 
 const slideUpVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -39,7 +40,7 @@ interface Fund {
   statLabel: string;
 }
 
-const funds: Fund[] = [
+const defaultFunds: Fund[] = [
   {
     label: 'Fund I \u00B7 SEBI AIF',
     name: 'India Long-Only Fund',
@@ -78,7 +79,26 @@ const funds: Fund[] = [
   }
 ];
 
-export default function CapitalAllocation() {
+// Icon/color/statColor are fixed brand design, matched to CMS content by position.
+const FUND_STYLES = defaultFunds.map(({ color, icon, statColor }) => ({ color, icon, statColor }));
+
+export default function CapitalAllocation({ allocation }: { allocation?: SanityApproachPage['allocation'] }) {
+  const heading = allocation?.heading || 'Capital allocation across themes.';
+  const subheading =
+    allocation?.subheading ||
+    'Each fund applies the same investment philosophy to a different macro theme, instrument, and investor profile.';
+  const funds: Fund[] =
+    allocation?.funds && allocation.funds.length > 0
+      ? allocation.funds.map((f, i) => ({
+          label: f.label,
+          name: f.name,
+          desc: f.description,
+          statValue: f.statValue,
+          statLabel: f.statLabel,
+          ...FUND_STYLES[i % FUND_STYLES.length],
+        }))
+      : defaultFunds;
+
   return (
     <section className="bg-brand-grey py-12">
       <Container>
@@ -86,9 +106,9 @@ export default function CapitalAllocation() {
           {/* Header */}
           <div className="flex flex-col items-center gap-4">
             <AnimatedHeader
-                          title="Capital allocation across themes."
-                          highlight="across themes."
-                          subheading="Each fund applies the same investment philosophy to a different macro theme, instrument, and investor profile."
+                          title={heading}
+                          highlight=""
+                          subheading={subheading}
                           className=""
                           highlightClassName="italic"
                           titleClassName="text-center text-black text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"

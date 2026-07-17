@@ -8,6 +8,8 @@ import { SuccessState } from "@/components/common/SuccessState";
 import CTAButton from "@/components/common/CTAButton";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
 import Container from "@/components/common/Container";
+import { urlFor } from "@/sanity/image";
+import type { SanityContactPage } from "@/sanity/queries";
 
 // 🔹 Animation Variants
 const cardVariants: Variants = {
@@ -23,16 +25,47 @@ const cardVariants: Variants = {
   }),
 };
 
-const FUND_OPTIONS = [
-  { value: "india_long_only", label: "India Long-Only Fund" },
-  { value: "gold_silver_miners", label: "Gold & Silver Miners Fund" },
-  { value: "absolute_return", label: "Absolute Return Fund" },
-  { value: "other", label: "Other" },
-];
+const defaultFundOptions = ["India Long-Only Fund", "Gold & Silver Miners Fund", "Absolute Return Fund"];
+
+const defaultFormSection = {
+  heading: "Send Us a Message",
+  highlightText: "Message",
+  subtext: "Fill out the form and our team will get back to you within 24 hours.",
+  fundOptions: defaultFundOptions,
+  submitLabel: "Send Message",
+};
+
+const defaultOffice = {
+  title: "Mumbai Office",
+  image: null,
+  address: "Lower Parel, Mumbai\nMaharashtra 400013",
+  phone1: "+91 99119 00096",
+  phone2: "+91 99872 61105",
+  mapLink:
+    "https://www.bing.com/maps?where=Dr+Annie+Besant+Road+Worli+400030+Maharashtra+IN&trk=org-locations_url",
+  mapLinkText: "View on Google Maps",
+};
+
+const toSlug = (label: string) => label.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
 
 const Asterisk = () => <span className="text-red-500">*</span>;
 
-export default function MessageSection() {
+export default function MessageSection({
+  formSection,
+  office,
+}: {
+  formSection?: SanityContactPage['formSection'];
+  office?: SanityContactPage['office'];
+}) {
+  const resolvedForm = formSection ?? defaultFormSection;
+  const resolvedOffice = office ?? defaultOffice;
+  const fundOptions = [
+    ...(resolvedForm.fundOptions && resolvedForm.fundOptions.length > 0
+      ? resolvedForm.fundOptions
+      : defaultFundOptions
+    ).map((label) => ({ value: toSlug(label), label })),
+    { value: "other", label: "Other" },
+  ];
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -112,9 +145,9 @@ export default function MessageSection() {
           >
             <div className="mb-6">
               <AnimatedHeader
-                title="Send Us a Message"
-                highlight="Message"
-                subheading="Fill out the form and our team will get back to you within 24 hours."
+                title={resolvedForm.heading}
+                highlight={resolvedForm.highlightText}
+                subheading={resolvedForm.subtext}
                 className="text-left"
                 titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
                 subheadingClassName="!mx-0"
@@ -185,7 +218,7 @@ export default function MessageSection() {
                         className="w-full px-4 py-3 rounded-xl bg-gray-50 text-body-md border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all appearance-none pr-10 text-[#000000]/70"
                       >
                         <option value="" disabled>Select a fund</option>
-                        {FUND_OPTIONS.map((opt) => (
+                        {fundOptions.map((opt) => (
                           <option key={opt.value} value={opt.value}>
                             {opt.label}
                           </option>
@@ -251,7 +284,7 @@ export default function MessageSection() {
                 <button type="submit" className="w-full sm:w-auto" disabled={isSubmitting}>
                   <CTAButton
                     href="#"
-                    text={isSubmitting ? "Sending..." : "Send Message"}
+                    text={isSubmitting ? "Sending..." : resolvedForm.submitLabel}
                     variant="light"
                     className="pointer-events-none"
                   />
@@ -270,22 +303,27 @@ export default function MessageSection() {
             className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full"
           >
             <div className="relative flex-grow min-h-[250px] w-full">
-              <Image src="/images/contact/contact-page.png" alt="Mumbai Office" fill className="object-cover" />
+              <Image
+                src={resolvedOffice.image ? urlFor(resolvedOffice.image).width(800).height(600).url() : "/images/contact/contact-page.png"}
+                alt={resolvedOffice.image?.alt || resolvedOffice.title}
+                fill
+                className="object-cover"
+              />
             </div>
             <div className="p-8 space-y-6">
-              <h3 className="text-body-lg font-bold font-playfair text-gray-900">Mumbai Office</h3>
+              <h3 className="text-body-lg font-bold font-playfair text-gray-900">{resolvedOffice.title}</h3>
               <div className="space-y-4 font-normal">
                 <div className="flex items-start gap-4 text-body-sm text-[#000000]/50 text-left">
                   <MapPin size={18} className="text-brand-maroon shrink-0 mt-0.5" />
-                  <p>Lower Parel, Mumbai<br />Maharashtra 400013</p>
+                  <p className="whitespace-pre-line">{resolvedOffice.address}</p>
                 </div>
                 <div className="flex items-center gap-4 text-body-sm text-[#000000]/50 text-left">
                   <Phone size={18} className="text-brand-maroon shrink-0" />
-                  <p>+91 99119 00096<br />+91 99872 61105</p>
+                  <p>{resolvedOffice.phone1}<br />{resolvedOffice.phone2}</p>
                 </div>
               </div>
-              <a href="https://www.bing.com/maps?where=Dr+Annie+Besant+Road+Worli+400030+Maharashtra+IN&trk=org-locations_url" className="inline-flex items-center gap-2 text-brand-maroon font-normal text-body-sm pt-4 hover:gap-3 transition-all">
-                View on Google Maps <ArrowRight size={14} />
+              <a href={resolvedOffice.mapLink} className="inline-flex items-center gap-2 text-brand-maroon font-normal text-body-sm pt-4 hover:gap-3 transition-all">
+                {resolvedOffice.mapLinkText} <ArrowRight size={14} />
               </a>
             </div>
           </motion.div>

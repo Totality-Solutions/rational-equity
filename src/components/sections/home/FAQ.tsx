@@ -4,13 +4,18 @@ import AnimatedHeader from '@/components/common/AnimatedHeader';
 import Container from '@/components/common/Container';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import type { SanityFaq } from '@/sanity/queries';
 
 type FAQItem = {
   question: string;
   answer: string | string[];
 };
 
-const FAQ_DATA = [
+const defaultHeading = 'Questions we get asked.';
+const defaultHighlight = 'get asked.';
+const defaultSubtext = "Everything you need to know before investing with us. Can't find an answer? Reach out directly.";
+
+const defaultFaqData: FAQItem[] = [
   {
     question: "What are the asset management services offered by Rational?",
     answer: [
@@ -45,14 +50,22 @@ const FAQ_DATA = [
   }
 ];
 
-export default function FAQ() {
+export default function FAQ({ faq }: { faq?: SanityFaq }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const heading = faq?.heading || defaultHeading;
+  const highlight = faq?.highlightText || defaultHighlight;
+  const subtext = faq?.subtext || defaultSubtext;
+  const FAQ_DATA: FAQItem[] =
+    faq?.faqs && faq.faqs.length > 0
+      ? faq.faqs.map((item) => ({ question: item.question, answer: item.answer || [] }))
+      : defaultFaqData;
 
   // Split FAQs into two columns
   const leftColumn = FAQ_DATA.filter((_, index) => index % 2 === 0);
   const rightColumn = FAQ_DATA.filter((_, index) => index % 2 === 1);
 
-  const renderFAQ = (faq: typeof FAQ_DATA[0], actualIndex: number) => (
+  const renderFAQ = (faq: FAQItem, actualIndex: number) => (
     <div 
       key={actualIndex} 
       className="group border rounded-lg border-white/10 transition-colors duration-200 hover:bg-black/10 cursor-pointer"

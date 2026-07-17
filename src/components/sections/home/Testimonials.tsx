@@ -4,49 +4,50 @@ import React from 'react';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import Image from 'next/image';
+import { urlFor } from '@/sanity/image';
+import type { SanityHomePage } from '@/sanity/queries';
 
-const TESTIMONIALS = [
+interface TestimonialDisplay {
+  text: string;
+  name: string;
+  location: string;
+  img: string;
+}
+
+const defaultTestimonials: TestimonialDisplay[] = [
   {
     text: "The fund managers at Rational are truly exceptional. They understand market dynamics and have consistently delivered superior returns even in volatile markets. I have never felt more confident about where my wealth is being deployed.",
     name: "Priya Sharma",
     location: "Family Office . Delhi",
-    initial: "P",
     img: "/images/testimonial/1.jpg"
   },
   {
     text: "What truly sets Rational apart is that they invest their own money alongside mine. That alignment of interest is rare in the industry and gives me complete peace of mind. The 80% post-tax return in FY24 spoke for itself.",
     name: "Amit Patel",
     location: "HNI Investor · Bangalore",
-    initial: "A",
     img: "/images/testimonial/2.jpg"
   },
   {
     text: "Rational spotted the Gold & Silver Miners opportunity well before the market consensus shifted. That kind of foresight — backed by genuine research and conviction — is exactly what you want managing your capital.",
     name: "Rajesh Kumar",
     location: "Entrepreneur · Mumbai",
-    initial: "R",
     img: "/images/testimonial/3.jpg"
   },
   {
     text: "No fixed fees, no fluff — just performance. I appreciate the rational and research-driven approach. No hype, just solid macro thinking and long-term value creation. Their Thought Centre alone is worth following.",
     name: "Vikram Singh",
     location: "Angel Investor · Hyderabad",
-    initial: "V",
     img: ""
   },
   {
     text: "Rational managed to deliver exceptional returns precisely because they are willing to think differently — moving capital to global miners when everyone else was crowded into Indian equities. Conviction over consensus, always.",
     name: "Suresh Mehta",
     location: "CFO · Pune",
-    initial: "S",
     img: ""
   }
 ];
 
-// Two copies for seamless infinite loop
-const DUPLICATED = [...TESTIMONIALS, ...TESTIMONIALS];
-
-function TestimonialCard({ item }: { item: (typeof TESTIMONIALS)[number] }) {
+function TestimonialCard({ item }: { item: TestimonialDisplay }) {
   return (
     <div className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[400px] group">
       <div className="relative bg-white rounded-2xl shadow-xl shadow-gray-100 flex flex-col h-full overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl hover:border-[#9B0000]/20">
@@ -98,14 +99,30 @@ function TestimonialCard({ item }: { item: (typeof TESTIMONIALS)[number] }) {
   );
 }
 
-export default function Testimonials() {
+export default function Testimonials({ testimonials: testimonialsData }: { testimonials?: SanityHomePage['testimonials'] }) {
+  const heading = testimonialsData?.heading || 'What Our Investors Say';
+  const highlightText = testimonialsData?.highlightText || 'Our Investors';
+  const subheading =
+    testimonialsData?.subheading || 'Trusted by thousands of investors across India for disciplined wealth creation.';
+  const TESTIMONIALS: TestimonialDisplay[] =
+    testimonialsData?.testimonials && testimonialsData.testimonials.length > 0
+      ? testimonialsData.testimonials.map((t) => ({
+          text: t.text,
+          name: t.name,
+          location: t.location,
+          img: t.image ? urlFor(t.image).width(96).url() : '',
+        }))
+      : defaultTestimonials;
+  // Two copies for seamless infinite loop
+  const DUPLICATED = [...TESTIMONIALS, ...TESTIMONIALS];
+
   return (
     <section className="bg-white overflow-hidden space-y-10 py-12">
       <Container className="text-center">
         <AnimatedHeader
-          title="What Our Investors Say"
-          highlight="Our Investors"
-          subheading="Trusted by thousands of investors across India for disciplined wealth creation."
+          title={heading}
+          highlight={highlightText}
+          subheading={subheading}
           variant="light"
           titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
           subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"

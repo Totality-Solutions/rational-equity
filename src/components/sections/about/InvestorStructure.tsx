@@ -3,14 +3,10 @@
 import React from 'react';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
+import type { SanityAboutPage } from '@/sanity/queries';
 
-const principles = [
+const CARD_STYLES = [
   {
-    id: 1,
-    title: 'Impeccable Capital Allocation',
-    description:
-      "Agility and foresightedness to identify the prime asset class, market & product to provide the highest returns to you. We don't anchor to one market — we go where the opportunity is greatest.",
-    quote: `"We allocate to the best opportunity, wherever it lives."`,
     borderColor: 'bg-brand-maroon',
     icon: (
       <svg className="w-8 h-8 text-[#9B0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -19,11 +15,6 @@ const principles = [
     ),
   },
   {
-    id: 2,
-    title: 'High Skin in the Game',
-    description:
-      'We always begin funds by moving our own personal wealth into the same assets. So when we advise you to invest, it means we have already invested our own net worth in it.',
-    quote: `"We only ask you to go where we've already gone."`,
     borderColor: 'bg-secondary-ylw',
     icon: (
       <svg className="w-8 h-8 text-[#9B0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -32,11 +23,6 @@ const principles = [
     ),
   },
   {
-    id: 3,
-    title: 'Investor-Aligned Fee Structure',
-    description:
-      "We create structures which help us benefit only when you benefit. We aren't playing the fee game — we are in the compounding game. No fixed fees. No quarterly charges.",
-    quote: `"We make money only when you make money."`,
     borderColor: 'bg-secondary-grn',
     icon: (
       <svg className="w-8 h-8 text-[#9B0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -45,11 +31,6 @@ const principles = [
     ),
   },
   {
-    id: 4,
-    title: 'Global Perspective',
-    description:
-      "We track macro trends worldwide and move capital across borders when the opportunity demands it. From India's manufacturing renaissance to the global gold re-monetisation cycle.",
-    quote: `"Borders are irrelevant. Opportunity is not."`,
     borderColor: 'bg-secondary-blu',
     icon: (
       <svg className="w-8 h-8 text-[#9B0000]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -59,17 +40,52 @@ const principles = [
   },
 ];
 
-export default function InvestorStructure() {
+const defaultPrinciples = [
+  {
+    title: 'Impeccable Capital Allocation',
+    description:
+      "Agility and foresightedness to identify the prime asset class, market & product to provide the highest returns to you. We don't anchor to one market — we go where the opportunity is greatest.",
+    quote: `"We allocate to the best opportunity, wherever it lives."`,
+  },
+  {
+    title: 'High Skin in the Game',
+    description:
+      'We always begin funds by moving our own personal wealth into the same assets. So when we advise you to invest, it means we have already invested our own net worth in it.',
+    quote: `"We only ask you to go where we've already gone."`,
+  },
+  {
+    title: 'Investor-Aligned Fee Structure',
+    description:
+      "We create structures which help us benefit only when you benefit. We aren't playing the fee game — we are in the compounding game. No fixed fees. No quarterly charges.",
+    quote: `"We make money only when you make money."`,
+  },
+  {
+    title: 'Global Perspective',
+    description:
+      "We track macro trends worldwide and move capital across borders when the opportunity demands it. From India's manufacturing renaissance to the global gold re-monetisation cycle.",
+    quote: `"Borders are irrelevant. Opportunity is not."`,
+  },
+];
+
+export default function InvestorStructure({ principlesFour }: { principlesFour?: SanityAboutPage['principlesFour'] }) {
+  const heading = principlesFour?.heading || 'An Investor-first structure, by design.';
+  const highlightText = principlesFour?.highlightText || 'Investor-first structure,';
+  const subheading =
+    principlesFour?.subheading || 'Four principles that shape every decision we make — from how we invest to how we get paid.';
+  const principles = (
+    principlesFour?.principles && principlesFour.principles.length > 0 ? principlesFour.principles : defaultPrinciples
+  ).map((p, i) => ({ ...p, id: i + 1, ...CARD_STYLES[i % CARD_STYLES.length] }));
+
   return (
     <section className="w-full py-6 lg:pt-0 lg:pb-12 bg-white">
       <Container className="px-3 md:px-12">
         <div className='lg:px-20' >
           <div className="mb-6 lg:mb-12">
             <AnimatedHeader
-              title="An Investor-first structure, by design."
-              highlight="Investor-first structure,"
+              title={heading}
+              highlight={highlightText}
               highlightColor="brand-maroon"
-              subheading="Four principles that shape every decision we make — from how we invest to how we get paid."
+              subheading={subheading}
               variant="light"
               titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3"
               subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg"

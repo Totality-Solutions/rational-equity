@@ -2,11 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import type { PortableTextBlock } from "@portabletext/react";
 import { DynamicArticleModal } from '../../common/DynamicArticleModal';
+import ArticleContent from '@/components/common/ArticleContent';
 import Container from "@/components/common/Container";
-import { articles, Article } from "@/data/thoughtCenterData";
+import { urlFor } from "@/sanity/image";
+import type { SanityArticle } from "@/sanity/queries";
 
 const CRIMSON = "#9B0000";
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
 
 function usePageSize() {
   const [size, setSize] = useState(6);
@@ -25,17 +32,23 @@ function usePageSize() {
   return size;
 }
 
-export default function ThoughtCenterArticles() {
+export default function ThoughtCenterArticles({
+  articles,
+  disclaimer,
+}: {
+  articles: SanityArticle[];
+  disclaimer: PortableTextBlock[] | null;
+}) {
   const pageSize = usePageSize();
   const [page, setPage] = useState(1);
-  
+
   // Reset page when page size changes
   useEffect(() => {
     setPage(1);
   }, [pageSize]);
 
-  const [activeModal, setActiveModal] = useState<Article | null>(null);
-  
+  const [activeModal, setActiveModal] = useState<SanityArticle | null>(null);
+
   const totalPages = Math.ceil(articles.length / pageSize);
   const paginated = articles.slice((page - 1) * pageSize, page * pageSize);
 
@@ -49,12 +62,11 @@ export default function ThoughtCenterArticles() {
       <Container>
         {/* Articles grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8">
-          {paginated.map((item: Article) => (
-            <ArticleCard 
-              key={item.id} 
-              item={item} 
-              // 2. Direct click event mapping passes item data cleanly to the frame
-              onClick={() => setActiveModal(item)} 
+          {paginated.map((item) => (
+            <ArticleCard
+              key={item._id}
+              item={item}
+              onClick={() => setActiveModal(item)}
             />
           ))}
         </div>
@@ -72,31 +84,18 @@ export default function ThoughtCenterArticles() {
         isOpen={activeModal !== null}
         onClose={() => setActiveModal(null)}
         title={activeModal?.title || ""}
-        subtitle={`${activeModal?.category || ""} · ${activeModal?.readTime || ""}`}
-        // heroImageUrl={activeModal?.thumbnail}
-        heroImageAlt={activeModal?.title}
+        subtitle={[activeModal?.series?.title, activeModal?.readTime].filter(Boolean).join(" · ")}
+        heroImageUrl={activeModal?.mainImage ? urlFor(activeModal.mainImage).width(1600).height(700).url() : undefined}
+        heroImageAlt={activeModal?.mainImage?.alt || activeModal?.title}
       >
-        <div className="space-y-6 text-gray-700 leading-relaxed text-[15px]">
-          {activeModal?.excerpt && <p className="font-medium text-neutral-950 text-base">{activeModal.excerpt}</p>}
-          
-          {activeModal?.category.toLowerCase().includes('gold') ? (
-            <>
-              <p>Gold has once again captured investor attention. After many years of underperforming against traditional asset classes, macro liquidity cycles have reached an inflection point.</p>
-              <h3 className="text-lg font-bold text-neutral-900 pt-2">1. Central Banks Accumulation</h3>
-              <p>One of the strongest indicators supporting gold's long-term outlook is the steady and heavy purchasing from central banks around the world.</p>
-              <div className="bg-neutral-50 p-4 rounded-xl border border-gray-100 my-4 text-center">
-                <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider">Key Takeaway</span>
-                <p className="text-neutral-800 font-medium mt-1">Sustained demand acts as a solid floor foundation for gold prices.</p>
-              </div>
-            </>
-          ) : (
-            <>
-              {/* Default structural fallback text for normal letters / articles info */}
-              <p>This is the full publication text framework for the chosen insight piece. Macroeconomic trends continue to shift regulatory frameworks across traditional assets classes.</p>
-              <p>Review standard portfolio allocations relative to individual investment goals, risk metrics parameters, and strategic cash thresholds over long horizons.</p>
-            </>
-          )}
-        </div>
+        {activeModal?.subtitle && (
+          <p className="font-medium text-neutral-950 text-base mb-6">{activeModal.subtitle}</p>
+        )}
+        <ArticleContent
+          content={activeModal?.content ?? null}
+          disclaimer={disclaimer}
+          showDisclaimer={activeModal?.showDisclaimer}
+        />
       </DynamicArticleModal>
 
     </section>
@@ -104,23 +103,25 @@ export default function ThoughtCenterArticles() {
 }
 
 /* ── Article card ─────────────────────────────────────────── */
-function ArticleCard({ item, onClick }: { item: Article; onClick: () => void }) {
+function ArticleCard({ item, onClick }: { item: SanityArticle; onClick: () => void }) {
   return (
     <div className="group bg-white rounded-2xl border border-brand-maroon/20 overflow-hidden flex flex-col ease-out hover:-translate-y-2 md:hover:-translate-y-3 hover:scale-[1.01] md:hover:scale-[1.02]">
       <div className="h-40 sm:h-44 relative overflow-hidden bg-brand-maroon/10 shrink-0">
-        <Image
-          src={item.thumbnail}
-          alt={item.title}
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+        {item.mainImage && (
+          <Image
+            src={urlFor(item.mainImage).width(600).height(360).url()}
+            alt={item.mainImage.alt || item.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        )}
         <div className="absolute inset-0 bg-[#2f3e46]/45" />
       </div>
 
       <div className="p-5 sm:p-6 flex flex-col flex-1 gap-3">
         <p className="text-[10px] tracking-[0.18em] uppercase text-[#8A7A60]">
-          {item.category} · {item.readTime}
+          {[item.series?.title, item.readTime].filter(Boolean).join(" · ")}
         </p>
 
         <h3 className="text-black font-semibold text-base sm:text-[17px] leading-snug group-hover:text-brand-maroon">
@@ -128,12 +129,12 @@ function ArticleCard({ item, onClick }: { item: Article; onClick: () => void }) 
         </h3>
 
         <p className="text-black/60 text-[13px] leading-relaxed line-clamp-3 flex-1">
-          {item.excerpt}
+          {item.subtitle}
         </p>
 
         <div className="flex items-center justify-between text-[11px] text-gray-400 pt-1">
-          <span>{item.author}</span>
-          <span>{item.date}</span>
+          <span>{item.author?.name}</span>
+          <span>{formatDate(item.publishedAt)}</span>
         </div>
 
         <button

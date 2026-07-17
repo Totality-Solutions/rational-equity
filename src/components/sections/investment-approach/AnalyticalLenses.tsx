@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
+import type { SanityApproachPage } from '@/sanity/queries';
 
 const slideUpVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -61,7 +62,7 @@ interface Lens {
   letter: string;
 }
 
-const lenses: Lens[] = [
+const defaultLenses: Lens[] = [
   {
     title: 'Macro',
     color: 'brand-maroon',
@@ -95,6 +96,9 @@ const lenses: Lens[] = [
     letter: 'T'
   }
 ];
+
+// Color/icon/letter are fixed brand design, matched to CMS content by position.
+const LENS_STYLES = defaultLenses.map(({ color, icon, letter }) => ({ color, icon, letter }));
 
 function LensCard({ lens, index }: { lens: Lens; index: number }) {
   return (
@@ -159,7 +163,21 @@ function LensCard({ lens, index }: { lens: Lens; index: number }) {
   );
 }
 
-export default function AnalyticalLenses() {
+export default function AnalyticalLenses({ lensesData }: { lensesData?: SanityApproachPage['lenses'] }) {
+  const heading = lensesData?.heading || 'Marrying Macro, Fundamentals, Sentiment & Technicals.';
+  const subheading =
+    lensesData?.subheading ||
+    'Every position we take is the product of all four analytical lenses working in alignment. We never act on one dimension alone.';
+  const lenses: Lens[] =
+    lensesData?.lenses && lensesData.lenses.length > 0
+      ? lensesData.lenses.map((l, i) => ({
+          title: l.title,
+          desc: l.description,
+          quote: l.quote,
+          ...LENS_STYLES[i % LENS_STYLES.length],
+        }))
+      : defaultLenses;
+
   const perView = useCardsPerView();
   const total = lenses.length;
   const maxIndex = Math.max(0, total - perView);
@@ -199,7 +217,7 @@ export default function AnalyticalLenses() {
               viewport={{ once: true, amount: 0.4 }}
               className="text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight text-center"
             >
-              {'Marrying Macro, Fundamentals, Sentiment & Technicals.'.split(
+              {heading.split(
                 /(Macro|Fundamentals|Sentiment|Technicals)/
               ).map((part, i) => {
                 const isHighlight = ['Macro', 'Fundamentals', 'Sentiment', 'Technicals'].includes(part);
@@ -232,7 +250,7 @@ export default function AnalyticalLenses() {
               className="font-sans text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-[28px] tracking-[0.04em] text-start"
               style={{ color: '#E3DFDB' }}
             >
-              Every position we take is the product of all four analytical lenses working in alignment. We never act on one dimension alone.
+              {subheading}
             </motion.p>
           </div>
 

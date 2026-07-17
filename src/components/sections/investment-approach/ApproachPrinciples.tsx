@@ -5,6 +5,7 @@ import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
+import type { SanityApproachPage } from '@/sanity/queries';
 
 const slideUpVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -28,30 +29,42 @@ const letterVariants: Variants = {
   })
 };
 
-const principles = [
+const defaultPrinciples = [
   {
-    num: '1',
     title: 'Identify the Right Asset Class First',
     desc: 'We start at the macro level. Asset class and market selection come before stock selection — always.'
   },
   {
-    num: '2',
     title: 'Marry Fundamentals with Technicals',
     desc: 'All four analytical lenses — fundamentals, macro, technicals, sentiment — must align before we deploy capital.'
   },
   {
-    num: '3',
     title: 'Be Flexible & Asset-Class Agnostic',
     desc: 'We have no permanent home — India, global equities, miners, derivatives. We go where the evidence is strongest.'
   },
   {
-    num: '4',
     title: 'Invest Personally First, Always',
     desc: 'Our own capital enters every fund before we invite investors in. Proof of conviction, not just conviction.'
   }
 ];
 
-export default function ApproachPrinciples() {
+export default function ApproachPrinciples({ principlesData }: { principlesData?: SanityApproachPage['principles'] }) {
+  const headingLine1 = principlesData?.headingLine1 || 'Safety of capital.';
+  const headingLine2 = principlesData?.headingLine2 || 'Alpha above everything.';
+  const paragraph1 =
+    principlesData?.paragraph1 ||
+    'At Rational, we believe that the highest returns come from making the correct wealth allocation decisions at the right time. We always start by asking a fundamental question: which asset class, market, and product gives us the best risk-adjusted opportunity and when should we enter? And then, we deep dive into which stocks to buy, at what time and valuation.';
+  const paragraph2 =
+    principlesData?.paragraph2 ||
+    'This is what we call disciplined capital allocation — the willingness and agility to move capital decisively from one asset class to another when the evidence is overwhelming';
+  const quote =
+    principlesData?.quote ||
+    'Safety of capital remains the primary goal. Alpha focus is what we do with the capital we protect.';
+  const principles =
+    principlesData?.principles && principlesData.principles.length > 0
+      ? principlesData.principles.map((p, i) => ({ num: String(i + 1), title: p.title, desc: p.description }))
+      : defaultPrinciples.map((p, i) => ({ num: String(i + 1), title: p.title, desc: p.desc }));
+
   return (
     <section className="bg-white py-6 lg:py-12">
       <Container>
@@ -66,7 +79,7 @@ export default function ApproachPrinciples() {
               className="font-playfair text-[44px] leading-[52px]"
             >
               <AnimatedHeader
-                title="Safety of capital."
+                title={headingLine1}
                 highlight=""
                 subheading=""
                 className=""
@@ -75,8 +88,8 @@ export default function ApproachPrinciples() {
                 subheadingClassName="text-start text-black/60 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed"
               />
               <AnimatedHeader
-                title="Alpha above everything."
-                highlight="Alpha above everything."
+                title={headingLine2}
+                highlight={headingLine2}
                 subheading=""
                 className=""
                 highlightClassName="italic"
@@ -94,12 +107,7 @@ export default function ApproachPrinciples() {
               custom={0.2}
               className="font-sans text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg  leading-[20px] lg:leading-[28px] tracking-[0.04em] text-black/60"
             >
-              At Rational, we believe that the highest returns come from making
-              the correct wealth allocation decisions at the right time. We always
-              start by asking a fundamental question: which asset class, market,
-              and product gives us the best risk-adjusted opportunity and when
-              should we enter? And then, we deep dive into which stocks to buy,
-              at what time and valuation.
+              {paragraph1}
             </motion.p>
             <motion.p
               initial="hidden"
@@ -109,7 +117,7 @@ export default function ApproachPrinciples() {
               custom={0.2}
               className="font-sans text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg leading-[20px] lg:leading-[28px] tracking-[0.04em] text-black/60"
             >
-              This is what we call disciplined capital allocation — the willingness and agility to move capital decisively from one asset class to another when the evidence is overwhelming
+              {paragraph2}
             </motion.p>
 
             {/* Quote Block */}
@@ -128,8 +136,7 @@ export default function ApproachPrinciples() {
               <p
                 className="font-playfair italic text-h4-mobile md:text-h4-tab lg:text-h4 lg:leading-8 text-black"
               >
-                &ldquo;Safety of capital remains the primary goal. Alpha focus is
-                what we do with the capital we protect.&rdquo;
+                &ldquo;{quote}&rdquo;
               </p>
             </motion.div>
           </div>

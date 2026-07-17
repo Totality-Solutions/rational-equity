@@ -5,6 +5,8 @@ import { motion, Variants } from 'framer-motion';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import Image from 'next/image';
+import { urlFor } from '@/sanity/image';
+import type { SanityHomePage } from '@/sanity/queries';
 
 const CRIMSON = 'brand-maroon';
 
@@ -26,7 +28,7 @@ const CARDS_PER_VIEW = {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 // ✅ Add as many milestones as you like — carousel activates automatically
 // when total items > cardsPerView for the current breakpoint.
-export const MILESTONES = [
+export const defaultMilestones = [
   {
     year: '2020',
     num: '01',
@@ -130,9 +132,25 @@ function useCardsPerView() {
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
-export default function Journey() {
+export default function Journey({ journey }: { journey?: SanityHomePage['journey'] }) {
+  const heading = journey?.heading || 'Built MILESTONE by milestone';
+  const highlightText = journey?.highlightText || 'MILESTONE';
+  const subheading =
+    journey?.subheading ||
+    'Over a decade of investing, distilled into a fund that allocates your capital in the best opportunities.';
+  const milestones =
+    journey?.milestones && journey.milestones.length > 0
+      ? journey.milestones.map((m) => ({
+          year: m.year,
+          num: m.num,
+          title: m.title,
+          description: m.description,
+          img: m.image ? urlFor(m.image).width(80).url() : '/images/journey/1.svg',
+        }))
+      : defaultMilestones;
+
   const perView     = useCardsPerView();
-  const total       = MILESTONES.length;
+  const total       = milestones.length;
   const needsCarousel = total > perView;          // ← key rule: carousel only when needed
   const maxIndex    = needsCarousel ? total - perView : 0;
 
@@ -167,10 +185,10 @@ export default function Journey() {
         {/* ── Header + nav ─────────────────────────────────────────────────── */}
         <div className="">
           <AnimatedHeader
-            title="Built MILESTONE by milestone"
-            highlight="MILESTONE"
+            title={heading}
+            highlight={highlightText}
             highlightColor={CRIMSON}
-            subheading="Over a decade of investing, distilled into a fund that allocates your capital in the best opportunities."
+            subheading={subheading}
             variant="light"
             titleClassName="text-black  text-h3-mobile md:text-h3-tab lg:text-h3"
             subheadingClassName="text-gray-600 font-normal max-w-2xl text-base text-body-lg leading-relaxed"
@@ -200,7 +218,7 @@ export default function Journey() {
                 transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1)',
               }}
             >
-              {MILESTONES.map((item, i) => (
+              {milestones.map((item, i) => (
                 <motion.div
                   key={item.year}
                   custom={i}
@@ -323,7 +341,7 @@ function MilestoneCard({
   item,
   crimson,
 }: {
-  item: (typeof MILESTONES)[number];
+  item: (typeof defaultMilestones)[number];
   crimson: string;
 }) {
   return (

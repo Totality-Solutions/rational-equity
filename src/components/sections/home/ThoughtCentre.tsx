@@ -2,42 +2,18 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
+import type { PortableTextBlock } from '@portabletext/react';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import CTAButton from '@/components/common/CTAButton';
 import { DynamicArticleModal } from '@/components/common/DynamicArticleModal';
+import ArticleContent from '@/components/common/ArticleContent';
+import { urlFor } from '@/sanity/image';
+import type { SanityArticle } from '@/sanity/queries';
 
-interface ArticleItem {
-  id: number;
-  date: string;
-  title: string;
-  description: string;
-  img: string;
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
-
-const articles: ArticleItem[] = [
-  {
-    id: 1,
-    date: 'October 12, 2025',
-    title: "Why the gold cycle isn't over.",
-    description: 'A look at miner economics, policy tailwinds, and why we still see asymmetric upside.',
-    img: '/images/home-thought/notes1.jpeg',
-  },
-  {
-    id: 2,
-    date: 'September 28, 2025',
-    title: 'The patience premium.',
-    description: 'How long holding periods quietly outperform in a market obsessed with quarters.',
-    img: '/images/home-thought/notes2.jpeg',
-  },
-  {
-    id: 3,
-    date: 'August 15, 2025',
-    title: 'Small-caps after a hot year',
-    description: "What changes — and what doesn't — when a corner of the market gets crowded.",
-    img: '/images/home-thought/notes3.jpeg',
-  },
-];
 
 // ─── Breakpoints ──────────────────────────────────────────────────────────────
 const BREAKPOINTS = { mobile: 640, tablet: 1024 } as const;
@@ -105,22 +81,26 @@ function NavButton({
 function ArticleCard({
   item,
   onReadMore,
+  priority,
 }: {
-  item: ArticleItem;
-  onReadMore: (article: ArticleItem) => void;
+  item: SanityArticle;
+  onReadMore: (article: SanityArticle) => void;
+  priority?: boolean;
 }) {
   return (
     <div className="bg-white border border-gray-100 rounded-[16px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between transition-all duration-300 group h-full">
       {/* Thumbnail */}
-      <div className="relative w-full h-52 sm:h-60 shrink-0">
-        <Image
-          src={item.img}
-          alt={item.title}
-          fill
-          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-          priority={item.id === 1}
-        />
+      <div className="relative w-full h-52 sm:h-60 shrink-0 bg-gray-100">
+        {item.mainImage && (
+          <Image
+            src={urlFor(item.mainImage).width(700).height(420).url()}
+            alt={item.mainImage.alt || item.title}
+            fill
+            sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            priority={priority}
+          />
+        )}
       </div>
 
       {/* Content */}
@@ -130,13 +110,13 @@ function ArticleCard({
             className="text-[13px] text-[#9B0000] font-semibold tracking-wide"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
-            {item.date}
+            {formatDate(item.publishedAt)}
           </p>
           <h3 className="text-[20px] md:text-[24px] lg:text-[26px] leading-snug font-playfair text-gray-900 font-normal tracking-tight group-hover:text-[#9B0000] transition-colors duration-200">
             {item.title}
           </h3>
           <p className="text-[14px] leading-relaxed text-gray-500 font-normal font-sans">
-            {item.description}
+            {item.subtitle}
           </p>
         </div>
 
@@ -155,14 +135,20 @@ function ArticleCard({
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
-export default function ThoughtCentre() {
+export default function ThoughtCentre({
+  articles,
+  disclaimer,
+}: {
+  articles: SanityArticle[];
+  disclaimer: PortableTextBlock[] | null;
+}) {
   const perView = useCardsPerView();
   const total = articles.length;
   const needsCarousel = total > perView;
   const maxIndex = needsCarousel ? total - perView : 0;
 
   const [index, setIndex] = useState(0);
-  const [activeArticle, setActiveArticle] = useState<ArticleItem | null>(null);
+  const [activeArticle, setActiveArticle] = useState<SanityArticle | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [slideWidth, setSlideWidth] = useState(0);
   const touchStartX = useRef<number | null>(null);
@@ -235,13 +221,13 @@ export default function ThoughtCentre() {
                   transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1)',
                 }}
               >
-                {articles.map((item) => (
+                {articles.map((item, i) => (
                   <div
-                    key={item.id}
+                    key={item._id}
                     className="shrink-0 px-3"
                     style={{ width: `${100 / perView}%` }}
                   >
-                    <ArticleCard item={item} onReadMore={setActiveArticle} />
+                    <ArticleCard item={item} onReadMore={setActiveArticle} priority={i === 0} />
                   </div>
                 ))}
               </div>
@@ -254,9 +240,9 @@ export default function ThoughtCentre() {
           </>
         ) : (
           <div className="grid grid-cols-3 gap-6 items-stretch">
-            {articles.map((item) => (
-              <div key={item.id}>
-                <ArticleCard item={item} onReadMore={setActiveArticle} />
+            {articles.map((item, i) => (
+              <div key={item._id}>
+                <ArticleCard item={item} onReadMore={setActiveArticle} priority={i === 0} />
               </div>
             ))}
           </div>
@@ -279,28 +265,22 @@ export default function ThoughtCentre() {
         isOpen={activeArticle !== null}
         onClose={() => setActiveArticle(null)}
         title={activeArticle?.title || ""}
-        subtitle={activeArticle?.date || ""}
-        heroImageUrl={activeArticle?.img}
-        heroImageAlt={activeArticle?.title}
+        subtitle={[activeArticle?.series?.title, activeArticle ? formatDate(activeArticle.publishedAt) : null]
+          .filter(Boolean)
+          .join(" · ")}
+        heroImageUrl={activeArticle?.mainImage ? urlFor(activeArticle.mainImage).width(1600).height(700).url() : undefined}
+        heroImageAlt={activeArticle?.mainImage?.alt || activeArticle?.title}
       >
-        <div className="space-y-6 text-gray-700 leading-relaxed text-[15px]">
-          {activeArticle?.description && (
-            <p className="font-serif text-lg text-neutral-900 italic border-l-2 border-[#9B0000] pl-4 my-4">
-              {activeArticle.description}
-            </p>
-          )}
-          {activeArticle?.id === 1 ? (
-            <>
-              <p>Gold asset velocities have scaled inflection margins over current cycles. Miner operations maintain a high operational leverage framework compared to simple gold spot alternatives.</p>
-              <p>As macro liquidity pipelines continue expanding across institutional targets, strategic allocations emphasize production margins and long-term asset security frameworks.</p>
-            </>
-          ) : (
-            <>
-              <p>Comprehensive research brief publication from the internal desk. Long-term positions capitalize on fundamental market pricing inefficiencies and high operational discipline metrics.</p>
-              <p>Our analysis framework avoids shifting trends, focusing instead on sustainable capital allocation routines across individual market cycles.</p>
-            </>
-          )}
-        </div>
+        {activeArticle?.subtitle && (
+          <p className="font-serif text-lg text-neutral-900 italic border-l-2 border-[#9B0000] pl-4 my-4">
+            {activeArticle.subtitle}
+          </p>
+        )}
+        <ArticleContent
+          content={activeArticle?.content ?? null}
+          disclaimer={disclaimer}
+          showDisclaimer={activeArticle?.showDisclaimer}
+        />
       </DynamicArticleModal>
     </section>
   );
