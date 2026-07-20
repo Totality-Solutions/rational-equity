@@ -85,7 +85,7 @@ export default function ThoughtCenterArticles({
         onClose={() => setActiveModal(null)}
         title={activeModal?.title || ""}
         subtitle={[activeModal?.series?.title, activeModal?.readTime].filter(Boolean).join(" · ")}
-        heroImageUrl={activeModal?.mainImage ? urlFor(activeModal.mainImage).width(1600).height(700).url() : undefined}
+        heroImageUrl={activeModal?.mainImage?.asset ? urlFor(activeModal.mainImage).width(1600).height(700).url() : undefined}
         heroImageAlt={activeModal?.mainImage?.alt || activeModal?.title}
       >
         {activeModal?.subtitle && (
@@ -106,17 +106,17 @@ export default function ThoughtCenterArticles({
 function ArticleCard({ item, onClick }: { item: SanityArticle; onClick: () => void }) {
   return (
     <div className="group bg-white rounded-2xl border border-brand-maroon/20 overflow-hidden flex flex-col ease-out hover:-translate-y-2 md:hover:-translate-y-3 hover:scale-[1.01] md:hover:scale-[1.02]">
-      <div className="h-40 sm:h-44 relative overflow-hidden bg-brand-maroon/10 shrink-0">
-        {item.mainImage && (
+      <div className="h-40 sm:h-44 relative overflow-hidden bg-black shrink-0">
+        {item.mainImage?.asset && (
           <Image
             src={urlFor(item.mainImage).width(600).height(360).url()}
-            alt={item.mainImage.alt || item.title}
+            alt={item.mainImage.alt || item.title || 'Article thumbnail'}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         )}
-        <div className="absolute inset-0 bg-[#2f3e46]/45" />
+        {/* <div className="absolute inset-0 bg-[#2f3e46]/45" /> */}
       </div>
 
       <div className="p-5 sm:p-6 flex flex-col flex-1 gap-3">

@@ -91,10 +91,10 @@ function ArticleCard({
     <div className="bg-white border border-gray-100 rounded-[16px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between transition-all duration-300 group h-full">
       {/* Thumbnail */}
       <div className="relative w-full h-52 sm:h-60 shrink-0 bg-gray-100">
-        {item.mainImage && (
+        {item.mainImage?.asset && (
           <Image
             src={urlFor(item.mainImage).width(700).height(420).url()}
-            alt={item.mainImage.alt || item.title}
+            alt={item.mainImage.alt || item.title || 'Article thumbnail'}
             fill
             sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
@@ -268,7 +268,7 @@ export default function ThoughtCentre({
         subtitle={[activeArticle?.series?.title, activeArticle ? formatDate(activeArticle.publishedAt) : null]
           .filter(Boolean)
           .join(" · ")}
-        heroImageUrl={activeArticle?.mainImage ? urlFor(activeArticle.mainImage).width(1600).height(700).url() : undefined}
+        heroImageUrl={activeArticle?.mainImage?.asset ? urlFor(activeArticle.mainImage).width(1600).height(700).url() : undefined}
         heroImageAlt={activeArticle?.mainImage?.alt || activeArticle?.title}
       >
         {activeArticle?.subtitle && (

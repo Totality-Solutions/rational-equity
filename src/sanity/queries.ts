@@ -20,7 +20,7 @@ export interface SanityArticle {
   series: { title: string; slug: string } | null;
   subtitle: string | null;
   readTime: string | null;
-  mainImage: { asset: { _ref: string; url: string }; alt: string | null; caption: string | null } | null;
+  mainImage: { asset: { _ref: string; url: string } | null; alt: string | null; caption: string | null } | null;
   author: { name: string } | null;
   publishedAt: string;
   tags: string[] | null;
