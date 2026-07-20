@@ -132,8 +132,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
       // { icon: <Tag size={16} />, label: "Category", value: "Equity — Multi Cap" },
     ],
     documents: [
-      { title: "Investor Deck", size: "1.1 MB",description: "Fund strategy & thesis", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "Fund Factsheets", size: "2.4 MB",description: "Monthly performance summary", fileUrl: "/pdf/pdf-1.pdf" },
+      { title: "Indian Long-Only Fund", size: "1.1 MB",description: "Fund strategy & thesis", fileUrl: "/pdf/india-long-only-fund.pdf" }
     ],
     philosophyTitle:"Why invest in the India Long-Only Fund?",
     philosophyHighlight:"India Long-Only Fund?",
@@ -262,8 +261,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
       // { icon: <Tag size={16} />, label: "Category", value: "Thematic — Metals" },
     ],
     documents: [
-      { title: "Investor Deck", size: "1.1 MB",description: "Fund strategy & thesis", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "Fund Factsheets", size: "2.4 MB",description: "Monthly performance summary", fileUrl: "/pdf/pdf-1.pdf" },
+      { title: "Gold & Silver Miners' Fund", size: "1.1 MB",description: "Fund strategy & thesis", fileUrl: "/pdf/gold-silver-miners-fund.pdf" }
     ],
     philosophyTitle:"Why invest in the Miners' Fund?",
     philosophyHighlight:"Miners' Fund?",
@@ -378,8 +376,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
       // { icon: <Tag size={16} />, label: "Category", value: "Hybrid — Arbitrage" },
     ],
     documents: [
-      { title: "Investor Deck", size: "1.1 MB",description: "Fund strategy & thesis", fileUrl: "/pdf/pdf-1.pdf" },
-      { title: "Fund Factsheets", size: "2.4 MB",description: "Monthly performance summary", fileUrl: "/pdf/pdf-1.pdf" },
+      { title: "Absolute Returns Fund", size: "1.1 MB",description: "Fund strategy & thesis", fileUrl: "/pdf/absolute-return-fund.pdf" }
     ],
     philosophyTitle:"Why invest in the Absolute Returns Fund",
     philosophyPoints: [
