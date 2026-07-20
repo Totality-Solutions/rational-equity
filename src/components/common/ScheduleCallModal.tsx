@@ -160,7 +160,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
             
             {/* Full Name Field */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="text-[13px] font-bold font-sans text-gray-900 capitalize tracking-wide">
+              <label htmlFor="name" className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
                 Full Name <span className="text-brand-maroon ml-0.5">*</span>
               </label>
               <input 
@@ -176,7 +176,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
 
             {/* Email Address / Phone Field */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="emailOrPhone" className="text-[13px] font-bold font-sans text-gray-900 capitalize tracking-wide">
+              <label htmlFor="emailOrPhone" className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
                 Email / Phone <span className="text-brand-maroon ml-0.5">*</span>
               </label>
               <input 
@@ -191,7 +191,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="emailOrPhone" className="text-[13px] font-bold font-sans text-gray-900 capitalize tracking-wide">
+              <label htmlFor="emailOrPhone" className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
                 Email / Phone <span className="text-brand-maroon ml-0.5">*</span>
               </label>
               <input 
@@ -207,7 +207,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
 
             {/* Investment Interest Dropdown Field */}
             <div className="flex flex-col gap-2 ">
-              <label htmlFor="category" className="text-[13px] font-bold font-sans text-gray-900 capitalize tracking-wide">
+              <label htmlFor="category" className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
                 Investment Interest
               </label>
               <div className="relative">
@@ -240,7 +240,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
 
           {/* Full Width Message/Requirements Textarea */}
           {/* <div className="flex flex-col gap-2 pt-1">
-            <label htmlFor="message" className="text-[13px] font-bold font-sans text-gray-900 capitalize tracking-wide">
+            <label htmlFor="message" className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
               Message / Requirements (optional)
             </label>
             <textarea 
@@ -318,7 +318,7 @@ function PreferredDatesBlock({ dates, setDates }: PreferredDatesBlockProps) {
     <div className="flex flex-col gap-3 w-full">
       {/* Structural Label Area Layout */}
       <div className="flex items-center justify-between">
-        <label className="text-[13px] font-bold font-sans text-gray-900 capitalize tracking-wide">
+        <label className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
           Preferred Dates <span className="text-brand-maroon ml-0.5">*</span>
           <span className="text-gray-400 font-normal normal-case ml-1.5">(Select up to 3 options)</span>
         </label>
@@ -328,7 +328,7 @@ function PreferredDatesBlock({ dates, setDates }: PreferredDatesBlockProps) {
           <button
             type="button"
             onClick={handleAddDate}
-            className="inline-flex items-center gap-1 text-xs font-bold text-brand-maroon hover:text-[#800000] transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1 text-medium font-medium text-brand-maroon hover:text-[#800000] transition-colors cursor-pointer"
           >
             <Plus size={14} strokeWidth={2.5} /> Add Alternate Date
           </button>

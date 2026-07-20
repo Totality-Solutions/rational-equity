@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import FundOverview from "@/components/sections/product/FundOverview";
 import ProductHero from "@/components/sections/product/ProductHero";
@@ -12,10 +13,12 @@ import FundPerformance from "@/components/sections/product/FundPerformance";
 import ProductNav from "@/components/sections/product/ProductNav";
 import ReadyToStart from "@/components/common/ReadyToStart";
 import Container from "@/components/common/Container";
+import { ScheduleCallModal } from "@/components/common/ScheduleCallModal";
 
 export default function FundPage() {
   const params = useParams();
   const id = params?.id as string;
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   if (!id) return <section className="py-20 text-center">Loading...</section>;
 
@@ -84,12 +87,23 @@ export default function FundPage() {
       </section>
 
       <section id="cta-2">
-        <ReadyToStart {...fund.finalCTA} />
+        <ReadyToStart
+          {...fund.finalCTA}
+          secondaryCTA={{
+            ...fund.finalCTA?.secondaryCTA,
+            onClick: () => setIsCallModalOpen(true),
+          }}
+        />
       </section>
 
       {/* <section id="faqs">
         <FAQ />
       </section> */}
+
+      <ScheduleCallModal
+        isOpen={isCallModalOpen}
+        onClose={() => setIsCallModalOpen(false)}
+      />
     </main>
   );
-} 
+}

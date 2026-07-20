@@ -35,10 +35,16 @@ const CTAButton: React.FC<CTAButtonProps> = ({
 
   return (
     <div className={`flex justify-center ${className}`}>
-      <Link 
-        href={href} 
+      <Link
+        href={href}
         className={`${borderRadiusClassName} group flex items-stretch border-2 border-brand-maroon overflow-hidden transition-all duration-500 w-full sm:w-auto hover:shadow-lg hover:shadow-brand-maroon-hover/27`}
-        onClick={onClick}
+        onClick={(e) => {
+          // A supplied onClick (e.g. opening a modal) replaces navigation instead of racing it.
+          if (onClick) {
+            e.preventDefault();
+            onClick();
+          }
+        }}
       >
         {/* TEXT AREA */}
         <div 
