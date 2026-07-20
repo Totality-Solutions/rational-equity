@@ -343,6 +343,7 @@ export interface SanityAboutPrinciple {
 export interface SanityAboutTeamMember {
   name: string;
   title: string;
+  linkedIn: string;
   description: string;
   education: string;
   image: SanityImage | null;

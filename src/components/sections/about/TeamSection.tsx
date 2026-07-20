@@ -7,6 +7,7 @@ import AnimatedHeader from "@/components/common/AnimatedHeader";
 import Container from "@/components/common/Container";
 import { urlFor } from '@/sanity/image';
 import type { SanityAboutPage } from '@/sanity/queries';
+import { Linkedin} from 'lucide-react';
 
 interface TeamMember {
   id: number;
@@ -15,6 +16,7 @@ interface TeamMember {
   description: string;
   education: string;
   image: string;
+  linkedIn: string;
 }
 
 const defaultTeamMembers: TeamMember[] = [
@@ -22,6 +24,7 @@ const defaultTeamMembers: TeamMember[] = [
     id: 1,
     name: "Vivek Iyer",
     title: "Chief Investment Officer",
+    linkedIn: 'https://www.linkedin.com/in/vivek-iyer-69145824?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
     description: "Vivek is the Founder and Partner at Rational - With over 10 years of experience in investment management and prior to that leading two start-ups, Vivek founded Rational with the aim of providing other investors the same opportunity of compunding wealth through dedicated capital allocation as he would create for himself. Vivek is diligent about creating opportunities for investors, is principled about safeguarding capital and compounding without unnecessary risks.",
     education: "B.Tech (Mechanical), IIT Bombay · MBA, IIM Ahmedabad",
     image: '/images/team/vivek.jpeg ',
@@ -30,6 +33,7 @@ const defaultTeamMembers: TeamMember[] = [
     id: 2,
     name: "Vishal Iyer",
     title: "Fund Manager & Head of Research",
+    linkedIn: 'https://www.linkedin.com/in/vishaliyer?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
     description: "Vishal is a Partner at Rational - With over 12 years of experience in investment management across both sell and buy side, Vishal brings with him a deep & rich understanding of equities, commodities & credit. Vishal has spent time with JP Morgan and RBC BlueBay creating a solid foundation of building thesis in assets and equities based on deep research, discplined process and pursuit of less-known opportunities",
     education: "B.Tech, VJTI Mumbai · PG Finance, Cranfield University, UK",
     image: '/images/team/vishal.jpeg',
@@ -38,6 +42,7 @@ const defaultTeamMembers: TeamMember[] = [
     id: 3,
     name: "Vikram Advani",
     title: "Chief Business Officer",
+    linkedIn: 'https://www.linkedin.com/in/vikram-advani-41a50117?utm_source=share_via&utm_content=profile&utm_medium=member_ios', 
     description: "With over 20 years of experience in the financial services industry, Vikram is among the most seasoned professionals in India's asset management space. He has held leadership positions at some of the country's largest financial institutions, including Aditya Birla AMC and Old Bridge where he led sales and distribution and built a strong book for them. Vikram is taking Rational to its next level of growth while maintaining long-term partnerships with clients keeping an investor-first philosophy.",
     education: "MBA, Edith Cowan University",
     image: '/images/team/vikram.jpeg',
@@ -46,23 +51,26 @@ const defaultTeamMembers: TeamMember[] = [
     id: 4,
     name: "JABA",
     title: "Co-Founder & Strategy",
-    description: "Jaba Misra is an ex-strategy consultant & macroeconomist with 8+ years of experience. As a strategy consultant with BCG & Mahindra Group, she has worked on financial services projects including building digital journeys, collections transformation, cost reduction, buy-side due diligence & investment projects.",
+    linkedIn: 'https://www.linkedin.com/in/jaba-misra-82b1077b?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+    description: "Jaba Misra is an ex-strategy consultant & macroeconomist with 10 years of experience. As a strategy consultant with BCG & Mahindra Group, she has worked on financial services projects including building digital journeys, collections transformation, cost reduction, buy-side due diligence & investment projects. As a macroeconomist, she has worked with World Bank and Mahindra Group on macro and fiscal policy work across multiple countries. At Rational, she oversees macro research, operations, investor relations, compliance, legal and technology. Her macro training informs the firm's thematic research, while her operational breadth ensures Rational runs to institutional standards across every function.",
     education: "MPhil Economics, Cambridge · MBA, ISB · Maths (Hons), Delhi University",
-    image: '/images/team/jaba.jpg',
+    image: '/images/team/jaba-1.jpg',
   },
   {
     id: 5,
     name: "AKSHAT",
     title: "Investment Analyst",
-    description: "4 years of experience in investment and quantitative research. Previously with Parbhudas Liladhar. Brings rigorous quant discipline and sector analysis to the research team.",
+    linkedIn: 'https://www.linkedin.com/in/akshat-rohatgi-1b2432192/',
+    description: "Akshat is an Analyst at Rational, focused on investment research, quantitative analysis, and systematic trading strategies. He brings a rigorous, data-driven approach to evaluating equities and building the models that underpin the firm's absolute return strategy. He graduated with a Gold Medal in Economics from Delhi University and previously worked at Parbhudas Liladhar, one of India's leading institutional broking firms.",
     education: "Gold Medalist, Economics, Delhi University",
-    image: '/images/team/akshat.jpeg',
+    image: '/images/team/akshat.jpg',
   },
   {
     id: 6,
     name: "KRISH",
     title: "Co-Founder & Advisor",
-    description: "40 years of experience in retail, banking and finance. Ex-CEO of Walmart India and Watsons across multiple Asian countries. Brings unparalleled operational and boardroom experience.",
+    linkedIn: 'https://www.linkedin.com/in/krish-iyer-87350412/',
+    description: "Before co-founding Rational, Krish built a four-decade career at the intersection of retail, finance, and general management — spanning India, Hong Kong, Taiwan, Thailand, the Philippines, and Japan. He served as President and CEO of Walmart India, CEO of Piramyd Retail, and Managing Director at A.S. Watson Group across multiple Asian markets. At Rational, he is a Co-Founder and Chairman, lending the firm a depth of institutional and operational experience that few investment managers can draw on.",
     education: "CA & CS by training",
     image: '/images/team/krish.jpg',
   },
@@ -124,10 +132,22 @@ function TeamCard({ member }: { member: TeamMember }) {
         />
       </div>
       <div className="p-6 md:p-8 flex flex-col flex-1">
-        <h3 className="text-lg font-playfair md:text-xl text-[#9B0000] font-medium mb-1 tracking-wide">
-          {member.name}
-        </h3>
-        <p className="text-sm text-gray-500 mb-5">{member.title}</p>
+        <div className="flex justify-between items-start gap-2 mb-4">
+          <div className="flex flex-col flex-1">
+            <h3 className="text-lg font-playfair md:text-xl text-[#9B0000] font-medium mb-1 tracking-wide">
+              {member.name}
+            </h3>
+            <p className="text-sm text-gray-500 mb-5">{member.title}</p>
+          </div>
+          <a
+            href={member.linkedIn}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 rounded-full border border-brand-maroon flex items-center justify-center text-blue-600 hover:bg-brand-maroon hover:text-white transition-all">
+                                        <Linkedin size={26} />
+
+          </a>
+        </div>
         <p
           className="text-body-mobile md:text-body-tab lg:text-body text-gray-600 leading-relaxed mb-6 flex-1"
           style={{ fontFamily: "'Lato', sans-serif" }}
@@ -153,6 +173,7 @@ export default function TeamSection({ team }: { team?: SanityAboutPage['team'] }
           id: i + 1,
           name: m.name,
           title: m.title,
+          linkedIn: m.linkedIn || '',
           description: m.description,
           education: m.education,
           image: m.image ? urlFor(m.image).width(640).url() : '/images/team/vivek.jpeg',

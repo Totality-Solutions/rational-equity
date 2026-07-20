@@ -42,7 +42,7 @@ export const defaultMilestones = [
     num: '02',
     title: 'AIF Journey Begins',
     description:
-      "Launched at a market bottom. 100% deployed Day 1 with manager's own net worth in the fund.",
+      "Launched India Long Only Flagship Fund at a market bottom. 100% deployed on Day 1 with high skin in the game.",
     img: '/images/journey/2.svg',
   },
   {
@@ -50,7 +50,7 @@ export const defaultMilestones = [
     num: '03',
     title: 'Gold & Silver Miners Spotted',
     description:
-      'Tracked Chinese Central Bank shift to gold. Invested in miners ahead of consensus.',
+      'Deep macro analysis of US economy, gold purchases, fundamental demand for silver and miners balance sheet led to personal investment in gold and silver miners, far ahead of consensus.',
     img: '/images/journey/3.svg',
   },
   {
@@ -58,7 +58,7 @@ export const defaultMilestones = [
     num: '04',
     title: 'Top Performing AIF in India',
     description:
-      'Delivered 80% post-tax return. Ranked #1 AIF in India for FY24.',
+      'Delivered 80% post- tax return. Ranked #1 AIF in India for FY24.',
     img: '/images/journey/4.svg',
   },
   {
@@ -72,9 +72,9 @@ export const defaultMilestones = [
   {
     year: 'Jul 2026',
     num: '06',
-    title: 'Absolute Returns Fund',
+    title: '80% on Miners\' Fund',
     description:
-      'Quant-plus-discretion Long-Short strategy. 41% 10-year model net CAGR.',
+      'Delivered 80% pre- tax, post fee return on the Miners\' Fund.',
     img: '/images/journey/2.svg',
   },
   // ↓ Add more milestones here freely ↓
