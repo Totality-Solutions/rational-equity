@@ -16,14 +16,15 @@ const defaultContactDetails: NonNullable<SanityContactPage['contactCards']> = [
   {
     type: "visit",
     label: "Visit Us",
-    value: "Lower Parel",
-    subValue: "Mumbai, Maharashtra 400013",
+    value: "Mumbai Address - Unit 903, One Lodha Place, Senapati Bapat Marg, Lower Parel, Mumbai, 400013",
+    subValue:
+      "GIFT City Address - Unit No 110 seat no 1 to 4 Ground floor, Pragya Accelerator II Building 15B Block 15, Road No 1C Zone 1 GIFT SEZ Gift City, Gandhi Nagar, Gujarat, India, 382355",
   },
   {
     type: "call",
     label: "Call Us",
     value: "+91 99119 00096 | +91 99872 61105",
-    subValue: "Mon – Fri, 9:30 AM – 6:00 PM",
+    subValue: "",
   },
   {
     type: "email",

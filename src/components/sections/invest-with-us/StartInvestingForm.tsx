@@ -166,7 +166,7 @@ export default function StartInvestingForm({ contact }: { contact?: SanityInvest
                       </p>
 
                       <p className="mt-1 lg:mt-2 text-body-md-mobile md:text-body-md-tab lg:text-body-md font-medium text-black break-words">
-                        {email1} · {email2}
+                        {email1} <span className="text-brand-maroon">|</span> {email2}
                       </p>
                     </div>
                   </a>

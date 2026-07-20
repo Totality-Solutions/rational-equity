@@ -32,11 +32,14 @@ const defaultFundLinks = [
 ];
 
 const defaultContact = {
-  address: 'Lower Parel, Mumbai',
+  address1: 'Mumbai Address - Unit 903, One Lodha Place, Senapati Bapat Marg, Lower Parel, Mumbai, 400013',
+  address2:
+    'GIFT City Address - Unit No 110 seat no 1 to 4 Ground floor, Pragya Accelerator II Building 15B Block 15, Road No 1C Zone 1 GIFT SEZ Gift City, Gandhi Nagar, Gujarat, India, 382355',
   phone1: '+91 99119 00096',
   phone2: '+91 99872 61105',
   email1: 'jaba@repllp.com',
   email2: 'vikram@repllp.com',
+  companyLinkedin: 'https://www.linkedin.com/company/rational-asset-management/posts/?feedView=all',
 };
 
 const defaultDisclaimer =
@@ -53,11 +56,13 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
   const description = footer?.description || defaultDescription;
   const quickLinks = footer?.quickLinks && footer.quickLinks.length > 0 ? footer.quickLinks : defaultQuickLinks;
   const fundLinks = footer?.fundLinks && footer.fundLinks.length > 0 ? footer.fundLinks : defaultFundLinks;
-  const address = footer?.address || defaultContact.address;
+  const address1 = footer?.address1 || defaultContact.address1;
+  const address2 = footer?.address2 || defaultContact.address2;
   const phone1 = footer?.phone1 || defaultContact.phone1;
   const phone2 = footer?.phone2 || defaultContact.phone2;
   const email1 = footer?.email1 || defaultContact.email1;
   const email2 = footer?.email2 || defaultContact.email2;
+  const companyLinkedin = footer?.companyLinkedin || defaultContact.companyLinkedin;
   const disclaimerText = footer?.disclaimerText || defaultDisclaimer;
   const companyName = footer?.companyName || defaultCompanyName;
 
@@ -67,9 +72,9 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
         <div className="flex flex-col lg:flex-row gap-12 md:gap-8 mb-4">
 
           {/* Left Side: Brand + Links */}
-          <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="flex-1 grid grid-cols-1 lg:grid-cols-8 gap-12">
             {/* Brand */} 
-            <div className="col-span-2">
+            <div className="col-span-7">
               <Link href="/" className="inline-block pb-6">
                 <img
                   src="/images/logo.png"
@@ -84,17 +89,22 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
                 {description}
               </p>
               <div className="flex gap-4 mt-8">
-                <Link href="#" className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all">
+                <Link
+                  href={companyLinkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all"
+                >
                   <Linkedin size={18} className="text-white" />
                 </Link>
-                <Link href="#" className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all">
+                {/* <Link href="#" className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all">
                   <Twitter size={18} className="text-white" />
                 </Link>
                 <Link href="#" className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all">
                   <svg role="img" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                     <path d="M22.539 8.242H1.46V5.406h21.079v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.079V0z" />
                   </svg>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
@@ -147,7 +157,11 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
               <ul className="space-y-4 text-[16px] font-sans">
                 <li className="flex items-start gap-3">
                   <MapPin className="text-white shrink-0 mt-0.5" size={20} />
-                  <span className="text-gray-400">{address}</span>
+                  <div className="flex flex-col">
+                    <span className="text-gray-400">{address1}</span>
+                    <br/>
+                    <span className="text-gray-400">{address2}</span>
+                  </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <Phone className="text-white shrink-0 mt-0.5" size={20} />

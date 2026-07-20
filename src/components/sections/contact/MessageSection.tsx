@@ -36,9 +36,11 @@ const defaultFormSection = {
 };
 
 const defaultOffice = {
-  title: "Mumbai Office",
+  title: "Our Offices",
   image: null,
-  address: "Lower Parel, Mumbai\nMaharashtra 400013",
+  address: "Mumbai Address - Unit 903, One Lodha Place, Senapati Bapat Marg, Lower Parel, Mumbai, 400013",
+  address2:
+    "GIFT City Address - Unit No 110 seat no 1 to 4 Ground floor, Pragya Accelerator II Building 15B Block 15, Road No 1C Zone 1 GIFT SEZ Gift City, Gandhi Nagar, Gujarat, India, 382355",
   phone1: "+91 99119 00096",
   phone2: "+91 99872 61105",
   mapLink:
@@ -160,7 +162,7 @@ export default function MessageSection({
                 {/* Row 1: Name + Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-body-lg font-bold font-playfair text-gray-900 capitalize">
+                    <label htmlFor="name" className="text-body-lg font-medium font-playfair text-gray-900 capitalize">
                       Full Name <Asterisk />
                     </label>
                     <input
@@ -174,7 +176,7 @@ export default function MessageSection({
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-body-lg font-bold font-playfair text-gray-900 capitalize">
+                    <label htmlFor="email" className="text-body-lg font-medium font-playfair text-gray-900 capitalize">
                       Email <Asterisk />
                     </label>
                     <input
@@ -192,7 +194,7 @@ export default function MessageSection({
                 {/* Row 2: Phone + Interested Fund Dropdown */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="phone" className="text-body-lg font-bold font-playfair text-gray-900 capitalize">
+                    <label htmlFor="phone" className="text-body-lg font-medium font-playfair text-gray-900 capitalize">
                       Phone <Asterisk />
                     </label>
                     <input
@@ -207,7 +209,7 @@ export default function MessageSection({
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="category" className="text-body-lg font-bold font-playfair text-gray-900 capitalize">
+                    <label htmlFor="category" className="text-body-lg font-medium font-playfair text-gray-900 capitalize">
                       Interested Fund (optional)
                     </label>
                     <div className="relative">
@@ -244,7 +246,7 @@ export default function MessageSection({
                       className=""
                     >
                       <div className="space-y-2">
-                        <label htmlFor="other" className="text-body-lg font-bold font-playfair text-gray-900 capitalize">
+                        <label htmlFor="other" className="text-body-lg font-medium font-playfair text-gray-900 capitalize">
                           Please specify <Asterisk />
                         </label>
                         <input
@@ -263,7 +265,7 @@ export default function MessageSection({
 
                 {/* Row 4: Message */}
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-body-lg font-bold font-playfair text-gray-900 capitalize">
+                  <label htmlFor="message" className="text-body-lg font-medium font-playfair text-gray-900 capitalize">
                     Message (optional)
                   </label>
                   <textarea
@@ -293,7 +295,7 @@ export default function MessageSection({
             </div>
           </motion.div>
 
-          {/* RIGHT: Mumbai Office Card */}
+          {/* RIGHT: Office Card */}
           <motion.div
             custom={1}
             variants={cardVariants}
@@ -317,6 +319,12 @@ export default function MessageSection({
                   <MapPin size={18} className="text-brand-maroon shrink-0 mt-0.5" />
                   <p className="whitespace-pre-line">{resolvedOffice.address}</p>
                 </div>
+                {resolvedOffice.address2 && (
+                  <div className="flex items-start gap-4 text-body-sm text-[#000000]/50 text-left">
+                    <MapPin size={18} className="text-brand-maroon shrink-0 mt-0.5" />
+                    <p className="whitespace-pre-line">{resolvedOffice.address2}</p>
+                  </div>
+                )}
                 <div className="flex items-center gap-4 text-body-sm text-[#000000]/50 text-left">
                   <Phone size={18} className="text-brand-maroon shrink-0" />
                   <p>{resolvedOffice.phone1}<br />{resolvedOffice.phone2}</p>

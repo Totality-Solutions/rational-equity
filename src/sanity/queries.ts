@@ -84,6 +84,7 @@ export interface SanityContactPage {
     title: string;
     image: SanityImage | null;
     address: string;
+    address2: string | null;
     phone1: string;
     phone2: string;
     mapLink: string;
@@ -128,11 +129,13 @@ export interface SanityFooter {
   description: string | null;
   quickLinks: SanityNavLink[] | null;
   fundLinks: SanityNavLink[] | null;
-  address: string | null;
+  address1: string | null;
+  address2: string | null;
   phone1: string | null;
   phone2: string | null;
   email1: string | null;
   email2: string | null;
+  companyLinkedin: string | null;
   socialLinks: { platform: string; url: string }[] | null;
   disclaimerText: string | null;
   companyName: string | null;
