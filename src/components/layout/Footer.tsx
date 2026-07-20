@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -67,19 +66,19 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
   const companyName = footer?.companyName || defaultCompanyName;
 
   return (
-    <footer className="bg-black text-gray-300 font-sans border-t border-gray-900 md:px-8">
-      <Container className="pt-12 pb-6">
-        <div className="flex flex-col lg:flex-row gap-12 md:gap-8 mb-4">
+    <footer className="bg-black text-gray-300 font-sans border-t border-gray-900 px-4 sm:px-6 md:px-8">
+      <Container className="pt-10 sm:pt-12 pb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_7fr] gap-10 sm:gap-12 md:gap-8 mb-4">
 
           {/* Left Side: Brand + Links */}
-          <div className="flex-1 grid grid-cols-1 lg:grid-cols-8 gap-12">
-            {/* Brand */} 
-            <div className="col-span-7">
+          <div className="flex-1 grid grid-cols-1 gap-10 sm:gap-12">
+            {/* Brand */}
+            <div className="">
               <Link href="/" className="inline-block pb-6">
                 <img
                   src="/images/logo.png"
                   alt="Rational Asset Management Logo"
-                  className="h-[50px] md:h-16 lg:h-[65px] w-auto object-contain invert"
+                  className="h-[42px] sm:h-[50px] md:h-16 lg:h-[65px] w-auto object-contain invert"
                 />
               </Link>
               <h2 className="text-body-lg font-playfair uppercase text-white">
@@ -111,17 +110,16 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
           </div>
 
           {/* Right Side: Explore + Fund + Contact */}
-          <div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-8 sm:gap-10 lg:gap-12">
             {/* Explore */}
-            <div>
-              <h3 className="text-white/60 font-semibold mb-6 uppercase">Explore</h3>
-              <ul className="space-y-4">
+            <div className="col-span-3">
+              <h3 className="text-white/60 font-semibold mb-4 sm:mb-6 uppercase text-sm sm:text-base">Explore</h3>
+              <ul className="space-y-3 sm:space-y-4">
                 {quickLinks.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href || '#'}
-                      className={`text-[16px] transition-colors hover:text-white ${
+                      className={`text-[15px] sm:text-[16px] transition-colors hover:text-white ${
                         isActive(link.href || '') ? 'text-brand-maroon font-bold' : 'text-gray-300'
                       }`}
                     >
@@ -133,14 +131,14 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
             </div>
 
             {/* Fund */}
-            <div>
-              <h3 className="text-white/60 font-semibold mb-6 uppercase">Fund</h3>
-              <ul className="space-y-4">
+            <div className="col-span-3">
+              <h3 className="text-white/60 font-semibold mb-4 sm:mb-6 uppercase text-sm sm:text-base">Fund</h3>
+              <ul className="space-y-3 sm:space-y-4">
                 {fundLinks.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href || '#'}
-                      className={`text-[16px] transition-colors hover:text-white ${
+                      className={`text-[15px] sm:text-[16px] transition-colors hover:text-white ${
                         isActive(link.href || '') ? 'text-brand-maroon font-bold' : 'text-gray-300'
                       }`}
                     >
@@ -152,9 +150,9 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
             </div>
 
             {/* Contact */}
-            <div>
-              <h3 className="text-white/60 font-semibold mb-6 uppercase">Contact</h3>
-              <ul className="space-y-4 text-[16px] font-sans">
+            <div className="col-span-3">
+              <h3 className="text-white/60 font-semibold mb-4 sm:mb-6 uppercase text-sm sm:text-base">Contact</h3>
+              <ul className="space-y-4 text-[15px] sm:text-[16px] font-sans">
                 <li className="flex items-start gap-3">
                   <MapPin className="text-white shrink-0 mt-0.5" size={20} />
                   <div className="flex flex-col">
@@ -172,7 +170,7 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
                 </li>
                 <li className="flex items-start gap-3">
                   <Mail className="text-white shrink-0 mt-0.5" size={20} />
-                  <div className="flex flex-col">
+                  <div className="flex flex-col break-all sm:break-normal">
                     <span className="text-gray-300">{email1}</span>
                     <span className="text-gray-300">{email2}</span>
                   </div>
@@ -180,12 +178,11 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
               </ul>
             </div>
           </div>
-          </div>
         </div>
 
         {/* Legal Bar */}
-        <div className="lg:flex lg:justify-between border-t border-gray-900 pt-4 space-y-6 ">
-          <div className=' max-w-[600px]'>
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 lg:gap-6 border-t border-gray-900 pt-4">
+          <div className="lg:max-w-[600px]">
             <p className="text-sm text-gray-300 max-w-4xl mx-auto leading-relaxed font-sans">
               {disclaimerText}
             </p>
@@ -207,7 +204,7 @@ export default function Footer({ footer }: { footer?: SanityFooter }) {
  */
 function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) {
   return (
-    <div className="md:col-span-2">
+    <div className="md:col-span-3">
       <h3 className="text-white font-bold mb-6 font-sans">{title}</h3>
       <ul className="space-y-4">
         {links.map((link) => (
