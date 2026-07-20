@@ -306,8 +306,7 @@ export default function Hero({ hero }: { hero?: SanityHomePage['hero'] }) {
       </Container>
 
       {/* Bottom Footer Ticker — Desktop: static, Mobile/Tablet: marquee */}
-      <div className="w-full border-t border-white/[0.05] pt-10 mt-16 bg-transparent overflow-hidden">
-        {/* Desktop: static logo strip */}
+      {/* <div className="w-full border-t border-white/[0.05] pt-10 mt-16 bg-transparent overflow-hidden">
         <Container className="hidden lg:flex mx-auto px-6 items-center justify-between opacity-40 grayscale contrast-200">
           {TICKER_LOGOS.map((logo, index) => (
             <div key={index} className="flex items-center gap-2 select-none">
@@ -322,7 +321,6 @@ export default function Hero({ hero }: { hero?: SanityHomePage['hero'] }) {
           ))}
         </ Container>
 
-        {/* Mobile/Tablet: infinite marquee */}
         <div className="flex lg:hidden overflow-hidden opacity-40 grayscale contrast-200">
           <motion.div
             className="flex shrink-0 gap-8 pr-8"
@@ -350,7 +348,7 @@ export default function Hero({ hero }: { hero?: SanityHomePage['hero'] }) {
             ))}
           </motion.div>
         </div>
-      </div>
+      </div> */}
 
     </section>
   );

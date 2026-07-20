@@ -79,7 +79,7 @@ const defaultContent = [
       {
         _type: 'span' as const,
         _key: 'p4s',
-        text: 'Our method has been consistent: recognise a worldwide mega-trend, assess and identify the best possible means to extract value from it, invest personally as proof of concept, and post-proof launch a fund on the same theme. So all the funds are aligned with our personal investments.',
+        text: 'Our method has been consistent: recognise a worldwide mega-trend ahead of consensus, assess and identify the best possible means to extract value from it, invest personally as proof of concept, and post-proof launch a fund on the same theme. So all the funds are aligned with our personal investments.',
       },
     ],
   },

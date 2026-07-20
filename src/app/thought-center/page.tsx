@@ -7,6 +7,8 @@ import MediaPage from '@/components/sections/thought-center/MediaPage';
 import Strip from '@/components/sections/thought-center/Strip';
 import ThoughtCenterArticles from '@/components/sections/thought-center/ThoughtCenterArticles';
 import { getAllArticles, getLegalDisclaimer } from '@/sanity/queries';
+import { mediaItems, getYouTubeVideoId } from '@/data/mediaData';
+import { getChannelLogosByVideoIds } from '@/lib/youtube';
 import type { Metadata } from 'next';
 
 
@@ -30,13 +32,16 @@ export const metadata: Metadata = {
 export default async function ThoughtCenterPage() {
   const [articles, disclaimer] = await Promise.all([getAllArticles(), getLegalDisclaimer()]);
 
+  const videoIds = mediaItems.map((item) => getYouTubeVideoId(item.url));
+  const channelLogosByVideoId = await getChannelLogosByVideoIds(videoIds);
+
   return (
     <main className="bg-white">
         {/* <Hero /> */}
         <HeadingSection />
         <ThoughtCenterArticles articles={articles} disclaimer={disclaimer} />
         {/* <InvestCTASection /> */}
-        <MediaPage />
+        <MediaPage channelLogosByVideoId={channelLogosByVideoId} />
          <div className='max-w-[90rem] mx-auto'>
                     <ReadyToStart
                     title="Ready to Start Investing?"

@@ -7,9 +7,16 @@ import AnimatedHeader from "@/components/common/AnimatedHeader";
 import { DynamicArticleModal } from '../../common/DynamicArticleModal';
 import Container from "@/components/common/Container";
 import { articles, Article } from "@/data/thoughtCenterData";
+import { mediaItems, getYouTubeVideoId, getYouTubeThumbnail } from "@/data/mediaData";
 
 const CRIMSON = "#9B0000";
 const PAGE_SIZE = 6;
+
+interface UnifiedInsightsAndMediaProps {
+  // Channel avatars aren't derivable from a video URL without the YouTube Data API,
+  // so the parent server component resolves them and passes them down keyed by video ID.
+  channelLogosByVideoId?: Record<string, string>;
+}
 
 // 1. Unified Interface to safely support both formats inside the modal frame
 interface ModalContentData {
@@ -22,7 +29,7 @@ interface ModalContentData {
   isMediaFormat?: boolean;
 }
 
-export default function UnifiedInsightsAndMedia() {
+export default function UnifiedInsightsAndMedia({ channelLogosByVideoId = {} }: UnifiedInsightsAndMediaProps) {
   const [page, setPage] = useState(1);
   const [activeModal, setActiveModal] = useState<ModalContentData | null>(null);
 
@@ -33,36 +40,6 @@ export default function UnifiedInsightsAndMedia() {
     setPage(p);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const mediaItems = [
-    {
-      icon: <div className="flex size-10 items-center justify-center rounded-lg bg-[#F1F1F1] font-sans text-xs font-semibold text-brand-maroon">ET</div>,
-      publisher: "Economic Times",
-      format: "Print & Digital",
-      title: "\"India's #1 AIF of FY24 — Rational Equity Partners delivers 80% post-tax return\"",
-      description: "Rational's India Long-Only Fund ranked top-performing AIF in India for FY24, beating large peers on a post-tax basis.",
-      date: "April 2024",
-      category: "COVERAGE",
-    },
-    {
-      icon: <div className="flex size-10 items-center justify-center rounded-lg bg-[#F1F1F1] font-sans text-xs font-semibold text-brand-maroon">BS</div>,
-      publisher: "Business Standard",
-      format: "Digital",
-      title: "Gold miners as a proxy — why Rational moved early on precious metals",
-      description: "An interview on the gold thesis, the GIFT City fund structure, and why junior miners offer asymmetric upside over gold itself.",
-      date: "September 2025",
-      category: "INTERVIEW",
-    },
-    {
-      icon: <div className="flex size-10 items-center justify-center rounded-lg bg-[#F1F1F1] font-sans text-xs font-semibold text-brand-maroon">MC</div>,
-      publisher: "Moneycontrol",
-      format: "Digital",
-      title: "GIFT City AIFs — how Indian investors can access global gold miners",
-      description: "A feature on the GIFT City fund landscape, with Rational's structure cited as the only India-domiciled fund enabling gold miner access for residents.",
-      date: "January 2026",
-      category: "FEATURE",
-    },
-  ];
 
   return (
     <div className="space-y-16">
@@ -82,9 +59,10 @@ export default function UnifiedInsightsAndMedia() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {mediaItems.map((item, index) => (
-              <MediaCard 
-                key={index} 
-                {...item} 
+              <MediaCard
+                key={index}
+                {...item}
+                logo={channelLogosByVideoId[getYouTubeVideoId(item.url) ?? ""]}
                 onOpenModal={() => setActiveModal({
                   title: item.title,
                   category: item.category,
@@ -141,7 +119,6 @@ export default function UnifiedInsightsAndMedia() {
 
 /* ── Media Card Component ─────────────────────────────────── */
 interface ExtendedMediaCardProps {
-  icon: React.ReactNode;
   publisher: string;
   format: string;
   title: string;
@@ -149,35 +126,61 @@ interface ExtendedMediaCardProps {
   date: string;
   category: string;
   onOpenModal: () => void;
+  url: string;
+  logo?: string;
 }
 
-function MediaCard({ icon, publisher, format, title, description, date, category, onOpenModal }: ExtendedMediaCardProps) {
+function MediaCard({ publisher, format, title, description, url, date, category, logo, onOpenModal }: ExtendedMediaCardProps) {
+  const thumbnail = getYouTubeThumbnail(url);
+
   return (
-    <div className="flex flex-col gap-6 rounded-3xl bg-white p-8 font-sans shadow-sm border border-neutral-100">
+    <div className="flex flex-col rounded-3xl bg-white p-8 font-sans shadow-sm border border-neutral-100">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
-          {icon}
+          {(logo ?? thumbnail) && (
+            <Image
+              src={(logo ?? thumbnail)!}
+              alt={publisher}
+              width={40}
+              height={40}
+              className="size-10 shrink-0 rounded-full object-cover"
+            />
+          )}
           <div className="flex flex-col">
             <span className="text-sm font-medium text-black">{publisher}</span>
             <span className="text-xs font-normal text-[#808080]">{format}</span>
           </div>
         </div>
-        <button 
-          onClick={onOpenModal}
+        <a
+          // onClick={onOpenModal}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex size-10 items-center justify-center rounded-full hover:bg-neutral-100 text-neutral-700 hover:text-black transition-colors cursor-pointer"
         >
           <SquareArrowOutUpRight className="size-5" />
-        </button>
+        </a>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 ">
         <h3 className="text-xl font-medium leading-snug text-brand-maroon">{title}</h3>
-        <p className="text-[15px] font-normal leading-relaxed text-[#555555]">{description}</p>
+        {/* <p className="text-[15px] font-normal leading-relaxed text-[#555555]">{description}</p> */}
+        {thumbnail && (
+          <div className="flex items-center w-full justify-center gap-3 overflow-hidden rounded-xl">
+            <Image
+              src={thumbnail}
+              alt={title}
+              width={480}
+              height={270}
+              className="w-full h-full shrink-0 object-cover"
+            />
+          </div>
+        )}
       </div>
 
       <div className="flex-grow" />
 
-      <div className="border-t border-[#EDEDED] pt-6 flex items-center justify-between">
+      <div className="border-t border-[#EDEDED] flex items-center justify-between">
         <span className="text-sm font-normal text-[#808080]">{date}</span>
         <span className="rounded-full bg-[#F3F6F9] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-black">
           {category}
