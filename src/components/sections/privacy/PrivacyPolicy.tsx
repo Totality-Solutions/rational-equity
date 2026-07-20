@@ -243,8 +243,9 @@ export default function PrivacyPolicy() {
             </p>
             <Highlight>
               <strong>Rational Equity and Asset Managers</strong><br />
-              Lower Parel, Mumbai — 400013<br />
-              GIFT City, Gandhinagar — Gujarat<br /><br />
+              <span className='font-bold'>Mumbai Address:</span> Unit 903, One Lodha Place, Senapati Bapat Marg, Lower Parel, Mumbai, 400013 <br/>
+              <span className='font-bold'>GIFT City Address:</span> Unit No 110 seat no 1 to 4 Ground floor, Pragya Accelerator II Building 15B Block 15, Road No 1C Zone 1 GIFT SEZ Gift City, Gandhi Nagar, Gujarat, India, 382355
+  <br /><br />
               Email:{' '}
               <a href="mailto:jaba@repllp.com" className="text-[#7A0000] underline">
                 jaba@repllp.com
