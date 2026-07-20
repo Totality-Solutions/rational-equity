@@ -2,8 +2,11 @@
 
 import React from "react";
 import CTAButton from "@/components/common/CTAButton";
+import { ScheduleCallModal } from "@/components/common/ScheduleCallModal";
 
 export default function Strip() {
+  const [isCallModalOpen, setIsCallModalOpen] = React.useState(false);
+
   return (
     <section className="group relative w-full bg-[#9B0000] py-6 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-8 transition-all duration-500 ease-in-out hover:bg-white border-t border-brand-maroon/10">
       
@@ -22,10 +25,15 @@ export default function Strip() {
         <CTAButton 
           href="/invest-with-us" 
           text="Schedule a Call" 
+          onClick={() => setIsCallModalOpen(true)}
           variant="light"
           className="h-[40px] transition-all duration-500 group-hover:!bg-[#9B0000] group-hover:!text-white group-hover:border-[#9B0000]" 
         />
       </div>
+      <ScheduleCallModal 
+              isOpen={isCallModalOpen} 
+              onClose={() => setIsCallModalOpen(false)} 
+            />
 
     </section>
   );

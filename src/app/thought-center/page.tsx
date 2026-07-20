@@ -33,10 +33,10 @@ export default async function ThoughtCenterPage() {
   const [articles, disclaimer] = await Promise.all([getAllArticles(), getLegalDisclaimer()]);
 
   const videoIds = mediaItems.map((item) => getYouTubeVideoId(item.url));
-  const channelLogosByVideoId = await getChannelLogosByVideoIds(videoIds);
-
+  const channelLogosByVideoId = (await getChannelLogosByVideoIds(videoIds)) as Record<string, string>;
+  
   return (
-    <main className="bg-white">
+    <main className="bg-white"> 
         {/* <Hero /> */}
         <HeadingSection />
         <ThoughtCenterArticles articles={articles} disclaimer={disclaimer} />

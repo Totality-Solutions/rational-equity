@@ -7,12 +7,9 @@ import type { SanityInvestWithUsPage } from '@/sanity/queries';
 
 // 🔹 Now includes fileUrl (important for download)
 const defaultDocuments: PdfItem[] = [
-  { title: "Fund Factsheets", size: "2.4 MB", type: "PDF", fileUrl: "/pdfs/factsheet.pdf" },
-  { title: "Application Forms", size: "1.1 MB", type: "PDF", fileUrl: "/pdfs/application.pdf" },
-  { title: "Scheme Documents", size: "3.8 MB", type: "PDF", fileUrl: "/pdfs/scheme.pdf" },
-  { title: "Annual Reports", size: "5.2 MB", type: "PDF", fileUrl: "/pdfs/report.pdf" },
-  { title: "Investment Brochures", size: "1.6 MB", type: "PDF", fileUrl: "/pdfs/brochure.pdf" },
-  { title: "KYC Documents", size: "0.8 MB", type: "PDF", fileUrl: "/pdfs/kyc.pdf" },
+  { title: "India Long-Only Fund", size: "2.4 MB", type: "PDF", fileUrl: "/pdf/india-long-only-fund.pdf" },
+  { title: "Gold & Silver Miners Fund", size: "1.1 MB", type: "PDF", fileUrl: "/pdf/gold-silver-miners-fund.pdf" },
+  { title: "Absolute Return Fund", size: "3.8 MB", type: "PDF", fileUrl: "/pdf/absolute-return-fund.pdf" }
 ];
 
 function formatSize(bytes: number): string {
