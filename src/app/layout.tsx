@@ -2,7 +2,7 @@
 import type { Metadata, Viewport } from 'next';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import { Playfair_Display, DM_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
 import { siteConfig } from '@/lib/seo.config'; // Importing our new config
 import './globals.css';
 import SmartScrollToTop from '@/components/common/ScrollToTop';
@@ -10,17 +10,35 @@ import RouteLoader from '@/components/common/RouteLoader';
 import FAQ from '@/components/sections/home/FAQ';
 import { getSiteHeader, getSiteFooter, getSiteFaq } from '@/sanity/queries';
 
-const playfairDisplay = Playfair_Display({
+// Self-hosted from Google Fonts (variable, latin subset) so the build/dev server
+// never depends on reaching fonts.googleapis.com at runtime.
+const playfairDisplay = localFont({
   variable: '--font-playfair-display',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  style: ['normal', 'italic'],
+  src: [
+    {
+      path: '../../public/fonts/PlayfairDisplay-variable-normal.woff2',
+      weight: '400 900',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/PlayfairDisplay-variable-italic.woff2',
+      weight: '400 900',
+      style: 'italic',
+    },
+  ],
+  display: 'swap',
 });
 
-const dmSans = DM_Sans({
+const dmSans = localFont({
   variable: '--font-dm-sans',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  src: [
+    {
+      path: '../../public/fonts/DMSans-variable-normal.woff2',
+      weight: '300 900',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
 });
 
 // ─── Global Metadata (Updated for Rational Equity) ───────────────────────────
