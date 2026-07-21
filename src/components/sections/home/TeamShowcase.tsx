@@ -245,11 +245,11 @@ export default function TeamShowcase({ team }: { team?: SanityHomePage['team'] }
                       </p>
                     </div>
 
-                    <a href="/about" className="block w-fit">
+                    {/* <a href="/about" className="block w-fit">
                       <button className="px-8 py-2.5 rounded-full text-white text-body-md-mobile md:text-body-md-tab lg:text-body-md font-semibold tracking-wide bg-[#800000] hover:opacity-90 active:scale-[0.98] transition-all shadow-sm">
                         More Info
                       </button>
-                    </a>
+                    </a> */}
                   </div>
                 </motion.div>
 
