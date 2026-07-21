@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Container from '@/components/common/Container';
 import AnimatedHeader from '@/components/common/AnimatedHeader';
 import { Linkedin, Twitter } from 'lucide-react';
@@ -71,24 +71,21 @@ export default function TeamShowcase({ team }: { team?: SanityHomePage['team'] }
         {/* MOBILE VIEW                                                               */}
         {/* ========================================================================= */}
         <div className="lg:hidden space-y-8">
-          {teamMembers.map((member) => {
-            const isActive = activeId === member.id;
-            return (
-              <div
-                key={member.id}
-                onClick={() => setActiveId(member.id)}
-                className="flex flex-col items-center justify-between cursor-pointer"
-              >
-                <div className="relative w-full max-w-[400px] lg:max-w-none h-80  aspect-2/3 rounded-2xl overflow-hidden shadow-sm border border-gray-100">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                
-                <div className="pt-4 text-center">
+          {teamMembers.map((member) => (
+            <div key={member.id} className="relative">
+              {/* Sticky photo — stays pinned in the background while the content card below scrolls up over it */}
+              <div className="sticky top-20 z-0 w-full max-w-[400px] lg:max-w-none h-[420px] mx-auto rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Content card rises up and scrolls over the photo above */}
+              <div className="relative z-10 -mt-24 bg-white rounded-t-[28px] px-5 pt-6 pb-24 space-y-4 text-left shadow-[0_-12px_30px_rgba(0,0,0,0.08)]">
+                <div className="text-center">
                   <h3 className="text-body-md-mobile md:text-body-md-tab lg:text-body-md font-playfair font-bold text-[#9B0000] tracking-wide uppercase">
                     {member.name}
                   </h3>
@@ -96,33 +93,17 @@ export default function TeamShowcase({ team }: { team?: SanityHomePage['team'] }
                     {member.role}
                   </p>
                 </div>
-
-                <AnimatePresence>
-                  {isActive && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden px-2"
-                    >
-                      <div className="pt-4 space-y-4 text-left">
-                        {/* <p className="text-gray-600 text-body-md-mobile md:text-body-md-tab lg:text-body-md leading-relaxed">{member.bio}</p> */}
-                        <div className="bg-brand-maroon/5 p-4 rounded-xl border border-brand-maroon/10">
-                          <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-800 leading-relaxed font-medium">{member.philosophy}</p>
-                        </div>
-                        <div className="flex gap-3 pt-1">
-                          <a href={member.linkedin} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
-                            <Linkedin size={16} />
-                          </a>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div className="bg-brand-maroon/5 p-4 rounded-xl border border-brand-maroon/10">
+                  <p className="text-body-md-mobile md:text-body-md-tab lg:text-body-md text-gray-800 leading-relaxed font-medium">{member.philosophy}</p>
+                </div>
+                <div className="flex gap-3 pt-1 justify-center">
+                  <a href={member.linkedin} className="w-9 h-9 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
+                    <Linkedin size={16} />
+                  </a>
+                </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
         {/* ========================================================================= */}
