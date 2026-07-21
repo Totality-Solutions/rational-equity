@@ -30,11 +30,14 @@ export const metadata: Metadata = {
 };
 
 export default async function ThoughtCenterPage() {
-  const [articles, disclaimer] = await Promise.all([getAllArticles(), getLegalDisclaimer()]);
-
   const videoIds = mediaItems.map((item) => getYouTubeVideoId(item.url));
-  const channelLogosByVideoId = (await getChannelLogosByVideoIds(videoIds)) as Record<string, string>;
-  
+
+  const [articles, disclaimer, channelLogosByVideoId] = await Promise.all([
+    getAllArticles(),
+    getLegalDisclaimer(),
+    getChannelLogosByVideoIds(videoIds) as Promise<Record<string, string>>,
+  ]);
+
   return (
     <main className="bg-white"> 
         {/* <Hero /> */}

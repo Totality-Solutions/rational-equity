@@ -31,7 +31,7 @@ const defaultNavLinks = [
   { label: 'Thought Center', href: '/thought-center', submenu: null },
 ];
 
-const defaultWhatsappLink = 'https://wa.me/yournumber';
+const defaultWhatsappLink = 'https://wa.me/919987261105';
 
 export default function Navbar({ header }: { header?: SanityHeader }) {
   const NAV_LINKS = header?.navLinks && header.navLinks.length > 0 ? header.navLinks : defaultNavLinks;

@@ -6,7 +6,7 @@ import { sanityClient } from './client';
 // let each component's own default content render instead.
 async function safeFetch<T>(query: string, params: Record<string, unknown>, fallback: T): Promise<T> {
   try {
-    return await sanityClient.fetch(query, params, { cache: 'no-store' });
+    return await sanityClient.fetch(query, params, { next: { revalidate: 60 } });
   } catch (error) {
     console.error('Sanity fetch failed, using fallback content:', error);
     return fallback;

@@ -52,6 +52,79 @@ const FUNDS = [
 
 type Fund = typeof FUNDS[0];
 
+function FundCard({ fund, index }: { fund: Fund; index: number }) {
+  return (
+    <motion.div
+      initial={{ y: 30, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
+      className="group relative border-t-4 border-brand-maroon bg-white rounded-2xl overflow-hidden flex flex-col shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,0,0,0.15)]"
+    >
+      <div className="p-6 md:p-7 flex flex-col flex-1 gap-4 text-left">
+
+        {/* Return row */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5 text-emerald-600 font-semibold text-sm">
+            <TrendingUp size={15} />
+            <span>{fund.annualReturn}</span>
+          </div>
+          <span className="text-[10px] tracking-widest uppercase text-gray-400 font-medium">
+            1Y return
+          </span>
+        </div>
+
+        {/* Icon + Title */}
+        <div className="flex-1">
+          <h3 className="text-gray-900 font-semibold text-[17px] leading-snug mb-2.5 flex items-center gap-2 transition-colors group-hover:text-[#9B0000]">
+            <Image
+              src={fund.img}
+              alt={fund.title}
+              width={24}
+              height={24}
+              className="w-6 h-6 shrink-0"
+            />
+            {fund.title}
+          </h3>
+          <p className="text-gray-500 text-[13px] leading-relaxed">
+            {fund.description}
+          </p>
+        </div>
+
+        {/* Stats */}
+        <div className="border-t border-gray-100 pt-4 flex flex-col gap-2.5">
+          <div className="flex justify-between items-center">
+            <span className="text-[11px] text-gray-400 uppercase tracking-wide font-medium">
+              3Y returns
+            </span>
+            <span className="text-[13px] font-semibold text-[#9B0000]">
+              {fund.returns}
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-[11px] text-gray-400 uppercase tracking-wide font-medium">
+              Min. investment
+            </span>
+            <span className="text-[13px] font-semibold text-gray-900">
+              {fund.minInvestment}
+            </span>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <Link href={fund.href}>
+          <button
+            className="w-full cursor-pointer bg-[#9B0000] text-white py-2.5 rounded-full text-[13px] font-semibold tracking-wide transition-all hover:bg-[#600000] active:scale-[0.98]"
+          >
+            View Details
+          </button>
+        </Link>
+
+      </div>
+    </motion.div>
+  );
+}
+
 export default function InvestLinksSection() {
   const [selectedFund, setSelectedFund] = useState<Fund | null>(null);
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
@@ -75,81 +148,19 @@ export default function InvestLinksSection() {
           titleClassName="text-h3-mobile md:text-h3-tab lg:text-h2 font-playfair font-normal leading-tight tracking-tight"
         />
 
-        {/* Fund cards */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-7">
+        {/* Fund cards — mobile & tablet: sticky stacking cards on scroll */}
+        <div className="lg:hidden space-y-6">
           {FUNDS.map((fund, index) => (
-            <motion.div
-              key={fund.title}
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
-              className="group relative border-t-4 border-brand-maroon bg-white rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(139,0,0,0.15)]"
-            >
-              {/* Top accent bar */}
-              {/* <div className={`h-2 w-full shrink-0 bg-${CRIMSON}`}/> */}
+            <div key={fund.title} className="sticky top-20" style={{ zIndex: index + 1 }}>
+              <FundCard fund={fund} index={index} />
+            </div>
+          ))}
+        </div>
 
-              <div className="p-6 md:p-7 flex flex-col flex-1 gap-4 text-left">
-
-                {/* Return row */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-emerald-600 font-semibold text-sm">
-                    <TrendingUp size={15} />
-                    <span>{fund.annualReturn}</span>
-                  </div>
-                  <span className="text-[10px] tracking-widest uppercase text-gray-400 font-medium">
-                    1Y return
-                  </span>
-                </div>
-
-                {/* Icon + Title */}
-                <div className="flex-1">
-                  <h3 className="text-gray-900 font-semibold text-[17px] leading-snug mb-2.5 flex items-center gap-2 transition-colors group-hover:text-[#9B0000]">
-                    <Image
-                      src={fund.img}
-                      alt={fund.title}
-                      width={24}
-                      height={24}
-                      className="w-6 h-6 shrink-0"
-                    />
-                    {fund.title}
-                  </h3>
-                  <p className="text-gray-500 text-[13px] leading-relaxed">
-                    {fund.description}
-                  </p>
-                </div>
-
-                {/* Stats */}
-                <div className="border-t border-gray-100 pt-4 flex flex-col gap-2.5">
-                  <div className="flex justify-between items-center">
-                    <span className="text-[11px] text-gray-400 uppercase tracking-wide font-medium">
-                      3Y returns
-                    </span>
-                    <span className="text-[13px] font-semibold text-[#9B0000]">
-                      {fund.returns}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-[11px] text-gray-400 uppercase tracking-wide font-medium">
-                      Min. investment
-                    </span>
-                    <span className="text-[13px] font-semibold text-gray-900">
-                      {fund.minInvestment}
-                    </span>
-                  </div>
-                </div>
-
-                {/* CTA */}
-                <Link href={fund.href}>
-                  <button
-                    className="w-full cursor-pointer bg-[#9B0000] text-white py-2.5 rounded-full text-[13px] font-semibold tracking-wide transition-all hover:bg-[#600000] active:scale-[0.98]"
-                  >
-                    View Details
-                  </button>
-                </Link>
-
-              </div>
-            </motion.div>
+        {/* Fund cards — desktop grid */}
+        <div className="hidden lg:grid w-full grid-cols-3 gap-5 lg:gap-7">
+          {FUNDS.map((fund, index) => (
+            <FundCard key={fund.title} fund={fund} index={index} />
           ))}
         </div>
 
