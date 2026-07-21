@@ -103,7 +103,8 @@ export default function ContactSection({
               <div className="space-y-2">
                 <span className="text-xs font-semibold text-[#000000]/50 ">
                   {item.label}
-                </p>
+                </span>
+              </div>
               <div className="space-y-1">
                 <h3 className="text-body-md -tab font-semibold text-black">
                   {item.value}

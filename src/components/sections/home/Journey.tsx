@@ -289,7 +289,6 @@ export default function Journey({ journey }: { journey?: SanityHomePage['journey
         </div>
 
       </Container>
-      </div>
     </section>
   );
 }

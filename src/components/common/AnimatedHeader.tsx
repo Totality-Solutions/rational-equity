@@ -148,6 +148,8 @@ interface AnimatedHeaderProps {
   subheading?: string;
   variant?: 'light' | 'dark';
   className?: string;
+  subheadingClassName?: string;
+  titleClassName?: string;
 }
 
 export default function AnimatedHeader({
@@ -157,10 +159,11 @@ export default function AnimatedHeader({
   highlightClassName,
   subheading,
   variant = 'light',
-  className = "" 
+  className = "",
+  titleClassName = "",
+  subheadingClassName = ""
 }: AnimatedHeaderProps) {
-  
-  // Theme Logic
+
   const titleDefaultColor = variant === 'light' ? 'text-black' : 'text-white';
   const subColor = variant === 'light' ? 'text-[#000000]/50' : 'text-white';
 
@@ -169,10 +172,10 @@ export default function AnimatedHeader({
     visible: (customDelay: number = 0) => ({
       opacity: 1,
       y: 0,
-      transition: { 
-        duration: 0.8, 
+      transition: {
+        duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
-        delay: customDelay 
+        delay: customDelay
       }
     })
   };
@@ -182,7 +185,11 @@ export default function AnimatedHeader({
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.05, duration: 0.4, ease: "easeOut" }
+      transition: {
+        delay: i * 0.05,
+        duration: 0.4,
+        ease: "easeOut"
+      }
     })
   };
 
@@ -245,7 +252,6 @@ export default function AnimatedHeader({
         {renderTitle()}
       </motion.h2>
 
-      {/* --- Subheading --- */}
       {subheading && (
         <motion.p
           initial="hidden"
@@ -258,6 +264,7 @@ export default function AnimatedHeader({
           {subheading}
         </motion.p>
       )}
+
     </div>
   );
 }
