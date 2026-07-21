@@ -7,16 +7,10 @@ import AnimatedHeader from "@/components/common/AnimatedHeader";
 import { DynamicArticleModal } from '../../common/DynamicArticleModal';
 import Container from "@/components/common/Container";
 import { articles, Article } from "@/data/thoughtCenterData";
-import { mediaItems, getYouTubeVideoId, getYouTubeThumbnail } from "@/data/mediaData";
+import { mediaItems, getYouTubeThumbnail } from "@/data/mediaData";
 
 const CRIMSON = "#9B0000";
 const PAGE_SIZE = 6;
-
-interface UnifiedInsightsAndMediaProps {
-  // Channel avatars aren't derivable from a video URL without the YouTube Data API,
-  // so the parent server component resolves them and passes them down keyed by video ID.
-  channelLogosByVideoId?: Record<string, string>;
-}
 
 // 1. Unified Interface to safely support both formats inside the modal frame
 interface ModalContentData {
@@ -29,7 +23,7 @@ interface ModalContentData {
   isMediaFormat?: boolean;
 }
 
-export default function UnifiedInsightsAndMedia({ channelLogosByVideoId = {} }: UnifiedInsightsAndMediaProps) {
+export default function UnifiedInsightsAndMedia() {
   const [page, setPage] = useState(1);
   const [activeModal, setActiveModal] = useState<ModalContentData | null>(null);
 
@@ -62,7 +56,6 @@ export default function UnifiedInsightsAndMedia({ channelLogosByVideoId = {} }: 
               <MediaCard
                 key={index}
                 {...item}
-                logo={channelLogosByVideoId[getYouTubeVideoId(item.url) ?? ""]}
                 onOpenModal={() => setActiveModal({
                   title: item.title,
                   category: item.category,
@@ -127,19 +120,18 @@ interface ExtendedMediaCardProps {
   category: string;
   onOpenModal: () => void;
   url: string;
-  logo?: string;
 }
 
-function MediaCard({ publisher, format, title, description, url, date, category, logo, onOpenModal }: ExtendedMediaCardProps) {
+function MediaCard({ publisher, format, title, description, url, date, category, onOpenModal }: ExtendedMediaCardProps) {
   const thumbnail = getYouTubeThumbnail(url);
 
   return (
     <div className="flex flex-col rounded-3xl bg-white p-8 font-sans shadow-sm border border-neutral-100">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
-          {(logo ?? thumbnail) && (
+          {thumbnail && (
             <Image
-              src={(logo ?? thumbnail)!}
+              src={thumbnail}
               alt={publisher}
               width={40}
               height={40}
