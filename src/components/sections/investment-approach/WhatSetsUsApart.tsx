@@ -4,6 +4,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Container from '@/components/common/Container';
+import AnimatedHeader from '@/components/common/AnimatedHeader';
 
 const differentiators = [
   {
@@ -162,7 +164,7 @@ export default function WhatSetsUsApart() {
           </div>
 
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

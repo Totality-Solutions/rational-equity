@@ -4,6 +4,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, BarChart3, Users } from 'lucide-react';
+import Container from '@/components/common/Container';
+import AnimatedHeader from '@/components/common/AnimatedHeader';
 
 const risks = [
   {
@@ -66,7 +68,7 @@ export default function RiskManagement() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
