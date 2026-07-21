@@ -143,7 +143,7 @@ function TeamCard({ member }: { member: TeamMember }) {
             href={member.linkedIn}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-12 h-12 rounded-full border border-brand-maroon flex items-center justify-center text-blue-600 hover:bg-brand-maroon hover:text-white transition-all">
+            className="w-12 h-12 rounded-full border border-brand-maroon flex items-center justify-center text-brand-maroon hover:bg-brand-maroon hover:text-white transition-all">
                                         <Linkedin size={26} />
 
           </a>
