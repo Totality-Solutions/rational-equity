@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import FundOverview from "@/components/sections/product/FundOverview";
 import ProductHero from "@/components/sections/product/ProductHero";
@@ -10,10 +11,14 @@ import FundCTA from "@/components/sections/product/FundCTA";
 import Philosophy from "@/components/sections/product/Philosophy";
 import FundPerformance from "@/components/sections/product/FundPerformance";
 import ProductNav from "@/components/sections/product/ProductNav";
+import ReadyToStart from "@/components/common/ReadyToStart";
+import Container from "@/components/common/Container";
+import { ScheduleCallModal } from "@/components/common/ScheduleCallModal";
 
 export default function FundPage() {
   const params = useParams();
   const id = params?.id as string;
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   if (!id) return <section className="py-20 text-center">Loading...</section>;
 
@@ -30,21 +35,49 @@ export default function FundPage() {
           // titleColor={fund.color}
         />
       
-      <ProductNav />
+      {/* <ProductNav /> */}
 
       <section id="overview">
         <FundOverview 
+          title={fund.overviewTitle}
+          titleItalics={fund.overviewTitleItalics}
           description={fund.overviewDesc} 
           stats={fund.stats} 
         />
       </section>
 
       <section id="performance">
-        <FundPerformance data={fund.performance} />
+        <FundPerformance
+          chartData={fund.performance.chartData}
+          kpis={fund.performance.kpis}
+          variant={fund.performance.variant}
+          heading={fund.performance.heading}
+          headingHighlight={fund.performance.headingHighlight}
+          subheading={fund.performance.subheading}
+          backtestKpis={fund.performance.backtestKpis}
+          fundTitle={fund.title}
+        />
       </section>
 
+      <Container className='mx-auto'>
+        <ReadyToStart
+          title= {fund.ctaTitle1}
+          description="Request the investor deck and speak to our team about onboarding."
+          primaryCTA={{
+            text: "Get In Touch",
+            href: "/contact",
+          }}
+        />
+      </Container>
+
       <section id="philosophy">
-        <Philosophy points={fund.philosophyPoints} />
+        <Philosophy
+          points={fund.philosophyPoints || []}
+          title={fund.philosophyTitle}
+          highlight={fund.philosophyHighlight}
+          highlightColor={fund.philosophyHighlightColor}
+          subheading={fund.philosophySubheading}
+        />
       </section>
 
       <section id="documents">
@@ -53,13 +86,24 @@ export default function FundPage() {
         />
       </section>
 
-      <section id="invest">
-        <FundCTA fundTitle={fund.title} />
+      <section id="cta-2">
+        <ReadyToStart
+          {...fund.finalCTA}
+          secondaryCTA={{
+            ...fund.finalCTA?.secondaryCTA,
+            onClick: () => setIsCallModalOpen(true),
+          }}
+        />
       </section>
 
-      <section id="faqs">
+      {/* <section id="faqs">
         <FAQ />
-      </section>
+      </section> */}
+
+      <ScheduleCallModal
+        isOpen={isCallModalOpen}
+        onClose={() => setIsCallModalOpen(false)}
+      />
     </main>
   );
 }

@@ -2,21 +2,43 @@
 import type { Metadata, Viewport } from 'next';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import { EB_Garamond, Lato } from 'next/font/google';
+import localFont from 'next/font/local';
 import { siteConfig } from '@/lib/seo.config'; // Importing our new config
 import './globals.css';
 import SmartScrollToTop from '@/components/common/ScrollToTop';
 import RouteLoader from '@/components/common/RouteLoader';
+import FAQ from '@/components/sections/home/FAQ';
+import { getSiteHeader, getSiteFooter, getSiteFaq } from '@/sanity/queries';
 
-const ebGaramond = EB_Garamond({ 
-  variable: '--font-eb-garamond', 
-  subsets: ['latin'] 
+// Self-hosted from Google Fonts (variable, latin subset) so the build/dev server
+// never depends on reaching fonts.googleapis.com at runtime.
+const playfairDisplay = localFont({
+  variable: '--font-playfair-display',
+  src: [
+    {
+      path: '../../public/fonts/PlayfairDisplay-variable-normal.woff2',
+      weight: '400 900',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/PlayfairDisplay-variable-italic.woff2',
+      weight: '400 900',
+      style: 'italic',
+    },
+  ],
+  display: 'swap',
 });
 
-const lato = Lato({ 
-  variable: '--font-lato', 
-  subsets: ['latin'],
-  weight: ['300', '400', '700', '900'] 
+const dmSans = localFont({
+  variable: '--font-dm-sans',
+  src: [
+    {
+      path: '../../public/fonts/DMSans-variable-normal.woff2',
+      weight: '300 900',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
 });
 
 // ─── Global Metadata (Updated for Rational Equity) ───────────────────────────
@@ -89,13 +111,18 @@ const jsonLd = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [header, footer, faq] = await Promise.all([getSiteHeader(), getSiteFooter(), getSiteFaq()]);
+
   return (
-    <html lang="en" className={`${ebGaramond.variable} ${lato.variable}`}>
+    <html
+  lang="en"
+  className={`${playfairDisplay.variable} ${dmSans.variable}`}
+>
       <head>
         <script
           type="application/ld+json"
@@ -106,9 +133,10 @@ export default function RootLayout({
 
         <RouteLoader />
 
-        <Navbar />
+        <Navbar header={header ?? undefined} />
         <main>{children}</main>
-        <Footer />
+        <FAQ faq={faq ?? undefined} />
+        <Footer footer={footer ?? undefined} />
         <SmartScrollToTop />
       </body>
     </html>

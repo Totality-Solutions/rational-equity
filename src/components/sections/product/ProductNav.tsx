@@ -45,9 +45,18 @@ export default function ProductNav() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 ">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-center h-16 md:h-22 gap-2 md:gap-8">
+    <nav className="sticky top-[72px] md:top-[80px] z-50 w-full bg-white border-b border-t border-gray-100">
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6">
+        
+        {/* Visual Fade Gradient: Prevents text from looking "cut in half" 
+            on small screens/tablets by adding a subtle fade at the edges */}
+        {/* <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none md:hidden" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none md:hidden" /> */}
+
+        <div 
+          ref={scrollContainerRef}
+          className="flex items-center justify-start md:justify-center h-16 md:h-22 gap-4 md:gap-8 max-w-full overflow-x-auto whitespace-nowrap no-scrollbar scroll-smooth px-8 md:px-0"
+        >
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.target;
 
@@ -65,7 +74,7 @@ export default function ProductNav() {
                 {isActive && (
                   <motion.div
                     layoutId="activeNavUnderline"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#8B0000]"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#9B0000]"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}

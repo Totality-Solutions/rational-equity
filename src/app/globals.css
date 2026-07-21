@@ -4,23 +4,131 @@
   --background: #ffffff;
   --foreground: #171717;
 
-  /* Brand Colors */
+  /* =========================
+     BRAND COLORS
+  ========================= */
   --brand-maroon: #9B0000;
   --brand-maroon-hover: #7B0000;
+  
+  --brand-grey:#f0eeec;
+
+ 
+   /* =========================
+     SECONDARY COLORS
+  ========================= */
+  --secondary-ylw: #B8860B;
+  --secondary-grn: #2E7D5B;
+  --secondary-blu: #2563EB;
+
+
+
+  /* =========================
+     LETTER SPACING
+  ========================= */
+  --tracking-h1: -0.5px;
+  --tracking-h2: -0.3px;
+  --tracking-cta: 0.5px;
+
+  /* =========================
+     DESKTOP TYPOGRAPHY
+  ========================= */
+  --text-h1: 56px;
+  --text-h2: 44px;
+  --text-h3: 36px;
+  --text-h4: 24px;
+
+  --text-body-lg: 18px;
+  --text-body-md: 16px;
+  --text-body-sm: 14px;
+  --text-cta: 16px;
+
+  /* =========================
+     TABLET TYPOGRAPHY
+  ========================= */
+  --tab-text-h1: 42px;
+  --tab-text-h2: 34px;
+  --tab-text-h3: 26px;
+  --tab-text-h4: 20px;
+
+  --tab-text-body-lg: 16px;
+  --tab-text-body-md: 15px;
+  --tab-text-body-sm: 14px;
+  --tab-text-cta: 18px;
+
+  /* =========================
+     MOBILE TYPOGRAPHY
+  ========================= */
+  --mobile-text-h1: 32px;
+  --mobile-text-h2: 26px;
+  --mobile-text-h3: 22px;
+  --mobile-text-h4: 18px;
+
+  --mobile-text-body-lg: 16px;
+  --mobile-text-body-md: 14px;
+  --mobile-text-body-sm: 13px;
+  --mobile-text-body-xs: 12px;
+  --mobile-text-cta: 14px;
 }
 
 @theme inline {
-  /* Mapping Next.js Font Variables to Tailwind */
-  --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-eb-garamond), ui-serif, Georgia, serif;
+  /* Fonts */
+  --font-sans: var(--font-dm-sans);
+  --font-playfair: var(--font-playfair-display);
 
   /* Custom Brand Colors */
   --color-brand-maroon: var(--brand-maroon);
   --color-brand-maroon-hover: var(--brand-maroon-hover);
 
-  /* Background/Foreground */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-brand-grey: var(--brand-grey);
+
+  --color-secondary-ylw: var(--secondary-ylw);
+  --color-secondary-grn: var(--secondary-grn);
+  --color-secondary-blu: var(--secondary-blu);
+  
+  /* =========================
+     DESKTOP
+  ========================= */
+  --text-h1: var(--text-h1);
+  --text-h2: var(--text-h2);
+  --text-h3: var(--text-h3);
+  --text-h4: var(--text-h4);
+
+  --text-body-lg: var(--text-body-lg);
+  --text-body-md: var(--text-body-md);
+  --text-body-sm: var(--text-body-sm);
+  --text-cta: var(--text-cta);
+
+  /* =========================
+     TABLET
+  ========================= */
+  --text-h1-tab: var(--tab-text-h1);
+  --text-h2-tab: var(--tab-text-h2);
+  --text-h3-tab: var(--tab-text-h3);
+  --text-h4-tab: var(--tab-text-h4);
+
+  --text-body-lg-tab: var(--tab-text-body-lg);
+  --text-body-md-tab: var(--tab-text-body-md);
+  --text-body-sm-tab: var(--tab-text-body-sm);
+  --text-cta-tab: var(--tab-text-cta);
+
+  /* =========================
+     MOBILE
+  ========================= */
+  --text-h1-mobile: var(--mobile-text-h1);
+  --text-h2-mobile: var(--mobile-text-h2);
+  --text-h3-mobile: var(--mobile-text-h3);
+  --text-h4-mobile: var(--mobile-text-h4);
+
+  --text-body-lg-mobile: var(--mobile-text-body-lg);
+  --text-body-md-mobile: var(--mobile-text-body-md);
+  --text-body-sm-mobile: var(--mobile-text-body-sm);
+  --text-body-xs-mobile: var(--mobile-text-body-xs);
+  --text-cta-mobile: var(--mobile-text-cta);
+
+  /* Letter Spacing */
+  --tracking-h1: var(--tracking-h1);
+  --tracking-h2: var(--tracking-h2);
+  --tracking-cta: var(--tracking-cta);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,8 +163,7 @@
   h5,
   h6,
   .font-brand {
-    @apply font-serif;
-    @apply font-sans;
+    @apply font-playfair;
   }
 }
 
@@ -88,18 +195,3 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*  */

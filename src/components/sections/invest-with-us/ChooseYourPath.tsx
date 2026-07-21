@@ -50,17 +50,18 @@ export default function ChooseYourPath() {
   }, [isModalOpen]);
 
   return (
-    <section className="bg-white pb-24 px-6 font-sans overflow-hidden">
+    <section className="bg-white px-6 py-10 font-sans overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-5xl md:text-4xl font-serif text-gray-900">
-            Choose Your <span className="text-brand-maroon">Path</span>
-          </h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Select the investment method that aligns with your financial goals
-          </p>
-        </div>
+
+        <AnimatedHeader 
+          title="Choose Your Path"
+          highlight="Path"
+          subheading="Select the investment method that aligns with your financial goals"
+          variant="light"
+          className="mb-6 sm:mb-7 text-h3 text-black"
+          subheadingClassName="text-body-lg tracking-wide text-black"
+        />
 
         {/* Path Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

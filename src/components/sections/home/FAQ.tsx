@@ -1,65 +1,85 @@
 'use client';
 
+import AnimatedHeader from '@/components/common/AnimatedHeader';
+import Container from '@/components/common/Container';
+import Image from 'next/image';
 import React, { useState } from 'react';
-import AnimatedHeader from '@/components/common/AnimatedHeader'; // Adjust path as needed
+import type { SanityFaq } from '@/sanity/queries';
 
-const FAQ_DATA = [
+type FAQItem = {
+  question: string;
+  answer: string | string[];
+};
+
+const defaultHeading = 'Questions we get asked.';
+const defaultHighlight = 'get asked.';
+const defaultSubtext = "Everything you need to know before investing with us. Can't find an answer? Reach out directly.";
+
+const defaultFaqData: FAQItem[] = [
+  {
+    question: "What are the asset management services offered by Rational?",
+    answer: [
+      "As one of the top asset management firms in India, we offer three investment opportunities focused on diversifying investor portfolios. All three follow the same investment philosophy but use different instruments based on investor suitability.",
+
+      "1. India Long-Only Fund — we invest in listed Indian companies.",
+
+      "2. Gold & Silver Miners' Fund — a GIFT City based fund investing in gold & silver mining companies listed in global markets.",
+
+      "3. Absolute Return Fund — we invest in derivatives of publicly listed Indian companies through a long-short strategy."
+    ]
+  },
   {
     question: "What is the minimum investment amount?",
-    answer: "The minimum investment amount varies by fund. For our Long-Only strategy, it typically starts at ₹50 Lakhs as per SEBI regulations for AIFs."
+    answer: [
+      "India Fund — ₹1 Crore",
+      "GIFT City Fund — US$ 150,000"
+    ]
   },
   {
-    question: "How can I invest in Rational AMC funds?",
-    answer: "You can start by clicking the 'Invest With Us' button. Our team will guide you through the digital onboarding and KYC process."
+    question: "How do I invest in Rational's funds?",
+    answer: [
+      'Click the "Invest with Us" button or fill out the contact form. Our team will reach out to walk you through the onboarding and KYC process, share the Private Placement Memorandum, and answer any questions you may have.',
+      "Alternatively, reach out on +91 99119 00096 or +91 99872 61105."
+    ]
   },
   {
-    question: "What makes Rational AMC different?",
-    answer: "We focus on high-conviction, long-only strategies with a disciplined research process and over 15 years of market excellence."
-  },
-  {
-    question: "How do I track my investments?",
-    answer: "Investors receive monthly performance reports and have access to a dedicated dashboard for real-time tracking."
-  },
-  {
-    question: "What is the redemption process?",
-    answer: "Redemption requests can be placed through your relationship manager, subject to the specific lock-in periods of the fund."
+    question: "Which is the regulatory body governing Rational?",
+    answer: [
+      "Rational is registered with SEBI as a Category II Alternative Investment Fund. Our GIFT City Fund operates under the IFSCA regulatory framework. All funds comply fully with applicable regulations."
+    ]
   }
 ];
 
-export default function FAQ() {
+export default function FAQ({ faq }: { faq?: SanityFaq }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  return (
-    <section className="bg-brand-maroon-hover py-12 text-white font-sans">
-      <div className="max-w-4xl mx-auto px-6">
-        
-        {/* --- REPLACED HEADER SECTION --- */}
-        <AnimatedHeader 
-          title="Frequently Asked Questions"
-          // highlight="QUESTIONS"
-          // highlightColor="#ffffff" // White highlight for the dark background
-          subheading="Find answers to common questions about investing with us"
-          variant="dark" // Ensures text is white
-          className="mb-12 md:mb-16"
-        />
+  const heading = faq?.heading || defaultHeading;
+  const highlight = faq?.highlightText || defaultHighlight;
+  const subtext = faq?.subtext || defaultSubtext;
+  const FAQ_DATA: FAQItem[] =
+    faq?.faqs && faq.faqs.length > 0
+      ? faq.faqs.map((item) => ({ question: item.question, answer: item.answer || [] }))
+      : defaultFaqData;
 
-        {/* Accordion List */}
-     {/* Accordion List */}
-<div className=" "> {/* Top border to start the list */}
-  {FAQ_DATA.map((faq, index) => (
+  // Split FAQs into two columns
+  const leftColumn = FAQ_DATA.filter((_, index) => index % 2 === 0);
+  const rightColumn = FAQ_DATA.filter((_, index) => index % 2 === 1);
+
+  const renderFAQ = (faq: FAQItem, actualIndex: number) => (
     <div 
-      key={index} 
-      // Move hover effect here so it highlights the whole block
-      className="group border-b border-white/10 transition-colors duration-200 hover:bg-black/10 cursor-pointer"
-      // Clicking anywhere on the block now toggles the FAQ
-      onClick={() => setOpenIndex(openIndex === index ? null : index)}
+      key={actualIndex} 
+      className="group border rounded-lg border-white/10 transition-colors duration-200 hover:bg-black/10 cursor-pointer"
+      onClick={() => setOpenIndex(openIndex === actualIndex ? null : actualIndex)}
     >
       {/* Question Header */}
-      <div className="w-full py-5 md:py-4 px-4 flex items-center justify-between text-left gap-4">
-        <span className="text-base md:text-xl font-medium tracking-tight group-hover:underline underline-offset-8 decoration-white/40 transition-all">
-          {faq.question}
+      <div className="w-full py-3 px-4 flex items-center justify-between text-left gap-4">
+        <div className="text-body-lg  font-medium  group-hover:underline underline-offset-8 decoration-white/40 transition-all flex items-center gap-2">
+        <span className={`shrink-0 transform transition-transform duration-300`}>
+          <Image src="/images/icons/faq1.png" alt="Question mark" width={25} height={25} className="shrink-0" />
         </span>
-        <span className={`flex-shrink-0 transform transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}>
+          <span>{faq.question}</span>
+        </div>
+        <span className={`shrink-0 transform transition-transform duration-300 ${openIndex === actualIndex ? 'rotate-180' : ''}`}>
           <svg 
             viewBox="0 0 24 24" 
             fill="none" 
@@ -74,18 +94,51 @@ export default function FAQ() {
       
       {/* Answer Content */}
       <div 
-        className={`overflow-hidden transition-all duration-300 ease-in-out px-4 ${
-          openIndex === index ? 'max-h-96 pb-8 opacity-100' : 'max-h-0 opacity-0'
+        className={`overflow-hidden transition-all duration-500 ease-in-out px-4 ${
+          openIndex === actualIndex ? 'max-h-96 pb-8 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <p className="text-white leading-relaxed font-sans text-sm md:text-base max-w-3xl">
-          {faq.answer}
-        </p>
+        <div className="space-y-4 text-rose-100/80 leading-relaxed font-sans text-body-md max-w-3xl">
+          {Array.isArray(faq.answer) ? (
+            faq.answer.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))
+          ) : (
+            <p>{faq.answer}</p>
+          )}
+        </div>
       </div>
     </div>
-  ))}
-</div>
-      </div>
+  );
+
+  return (
+    <section className="bg-brand-maroon-hover py-10 text-white font-sans">
+      <Container className="w-full mx-auto px-6 space-y-10">
+        
+        {/* Header - Fluid Sizing */}
+       <AnimatedHeader 
+          title="Questions we get asked."
+          highlight="get asked."
+          highlightColor="#ffffff"
+          subheading="Everything you need to know before investing with us. Can't find an answer? Reach out directly."
+          variant="dark"
+          titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
+          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
+        />
+
+        {/* Accordion List - Two Independent Columns */}
+        <div className="grid lg:grid-cols-2 gap-4">
+          {/* Left Column */}
+          <div className="space-y-4">
+            {leftColumn.map((faq, index) => renderFAQ(faq, index * 2))}
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-4">
+            {rightColumn.map((faq, index) => renderFAQ(faq, index * 2 + 1))}
+          </div>
+        </div>
+      </Container>
     </section>
   );
 }

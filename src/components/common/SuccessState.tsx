@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
-import CTAButton from "@/components/common/CTAButton"; // Adjust path as needed
+import { CheckCircle2, X } from "lucide-react";
+import CTAButton from "@/components/common/CTAButton";
 
 interface SuccessStateProps {
   onReset: () => void;
@@ -17,17 +17,26 @@ export function SuccessState({ onReset, variant = "page" }: SuccessStateProps) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.5 }}
-      className={`flex flex-col items-center justify-center text-center space-y-8 ${
-        variant === "page" ? "py-12" : "py-8"
+      className={`relative flex flex-col items-center justify-center text-center space-y-8 p-12 ${
+        variant === "page" ? "py-16" : "py-8"
       }`}
     >
+      {/* Close Button */}
+      <button
+        onClick={onReset}
+        className="absolute top-0 right-0 p-2 rounded-full text-brand-maroon hover:text-gray-600 hover:bg-gray-100 transition-all"
+        aria-label="Close"
+      >
+        <X size={32} />
+      </button>
+
       {/* Green Tick Circle */}
       <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center border border-emerald-100">
         <CheckCircle2 className="w-10 h-10 text-emerald-500" strokeWidth={1.5} />
       </div>
 
       <div className="space-y-4">
-        <h2 className={`font-serif font-bold text-gray-900 ${
+        <h2 className={`font-playfair font-bold text-gray-900 ${
           variant === "page" ? "text-xl md:text-3xl" : "text-3xl"
         }`}>
           Request Submitted!
@@ -37,12 +46,11 @@ export function SuccessState({ onReset, variant = "page" }: SuccessStateProps) {
         </p>
       </div>
 
-      {/* 🔹 Replaced standard button with your CTAButton */}
       <div onClick={onReset} className="cursor-pointer">
-        <CTAButton 
-          href="#" 
-          text="Submit another request" 
-          variant="light" 
+        <CTAButton
+          href="#"
+          text="Submit another request"
+          variant="light"
         />
       </div>
     </motion.div>

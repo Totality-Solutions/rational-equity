@@ -13,6 +13,8 @@ interface CTAButtonProps {
   paddingClassName?: string; // 🔹 Added optional padding prop
   iconClassName?: string;
   iconSrc?: string;
+  borderRadiusClassName?: string;
+  onClick?: () => void;
 }
 
 const CTAButton: React.FC<CTAButtonProps> = ({
@@ -22,18 +24,27 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   primaryColor = "#7B0000",
   textColor = "#7B0000",
   className = "",
-  paddingClassName = "px-3 md:px-3 py-3", // 🔹 Default padding
+  paddingClassName = "px-4 py-2", // 🔹 Default padding
   iconClassName = "",
-  iconSrc = "/images/arrowbtn.png"
+  iconSrc = "/images/arrowbtn.png",
+  borderRadiusClassName = "rounded-full",
+  onClick
 }) => {
   
   const isMaroonBg = variant === 'maroon-bg';
 
   return (
     <div className={`flex justify-center ${className}`}>
-      <Link 
-        href={href} 
-        className="group flex items-stretch border border-brand-maroon overflow-hidden transition-all duration-500 w-full sm:w-auto hover:shadow-lg hover:shadow-brand-maroon-hover/27"
+      <Link
+        href={href}
+        className={`${borderRadiusClassName} group flex items-stretch border-2 border-brand-maroon overflow-hidden transition-all duration-500 w-full sm:w-auto hover:shadow-lg hover:shadow-brand-maroon-hover/27`}
+        onClick={(e) => {
+          // A supplied onClick (e.g. opening a modal) replaces navigation instead of racing it.
+          if (onClick) {
+            e.preventDefault();
+            onClick();
+          }
+        }}
       >
         {/* TEXT AREA */}
         <div 
@@ -43,7 +54,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
             color: isMaroonBg ? '#ffffff' : textColor 
           }}
         >
-          <span className="font-sans  text-[13px] md:text-[22px]  whitespace-nowrap font-regular">
+          <span className="font-sans font-medium text-cta-mobile tracking-cta md:text-cta capitalize whitespace-nowrap">
             {text}
           </span>
         </div>
@@ -60,7 +71,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
             alt="" 
             className={`
               w-4 md:w-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
-              ${!isMaroonBg ? 'brightness-0 invert' : ''} 
+              ${!isMaroonBg ? 'brightness-0 invert' : 'brightness-0 invert-0'} 
               ${iconClassName}
             `}
           />

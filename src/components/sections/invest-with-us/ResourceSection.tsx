@@ -1,17 +1,20 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import PdfGrid, { PdfItem } from "@/components/common/PdfGrid"; 
+import PdfGrid, { PdfItem } from "@/components/common/PdfGrid";
+import AnimatedHeader from "@/components/common/AnimatedHeader";
+import type { SanityInvestWithUsPage } from '@/sanity/queries';
 
 // 🔹 Now includes fileUrl (important for download)
-const documents: PdfItem[] = [
-  { title: "Fund Factsheets", size: "2.4 MB", type: "PDF", fileUrl: "/pdfs/factsheet.pdf" },
-  { title: "Application Forms", size: "1.1 MB", type: "PDF", fileUrl: "/pdfs/application.pdf" },
-  { title: "Scheme Documents", size: "3.8 MB", type: "PDF", fileUrl: "/pdfs/scheme.pdf" },
-  { title: "Annual Reports", size: "5.2 MB", type: "PDF", fileUrl: "/pdfs/report.pdf" },
-  { title: "Investment Brochures", size: "1.6 MB", type: "PDF", fileUrl: "/pdfs/brochure.pdf" },
-  { title: "KYC Documents", size: "0.8 MB", type: "PDF", fileUrl: "/pdfs/kyc.pdf" },
+const defaultDocuments: PdfItem[] = [
+  { title: "India Long-Only Fund", size: "2.4 MB", type: "PDF", fileUrl: "/pdf/india-long-only-fund.pdf" },
+  { title: "Gold & Silver Miners Fund", size: "1.1 MB", type: "PDF", fileUrl: "/pdf/gold-silver-miners-fund.pdf" },
+  { title: "Absolute Return Fund", size: "3.8 MB", type: "PDF", fileUrl: "/pdf/absolute-return-fund.pdf" }
 ];
+
+function formatSize(bytes: number): string {
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
 
 // 🔹 Animations (same as yours)
 const titleVariants: Variants = {
@@ -32,7 +35,22 @@ const sublineVariants: Variants = {
   },
 };
 
-export default function ResourcesSection() {
+export default function ResourcesSection({ resources }: { resources?: SanityInvestWithUsPage['resources'] }) {
+  const heading = resources?.heading || 'Resources & Documents';
+  const highlightText = resources?.highlightText || 'Documents';
+  const subheading = resources?.subheading || 'Download important documents and reports';
+  const documents: PdfItem[] =
+    resources?.documents && resources.documents.length > 0
+      ? resources.documents
+          .filter((d) => d.file)
+          .map((d) => ({
+            title: d.title,
+            size: formatSize(d.file!.asset.size),
+            type: 'PDF',
+            fileUrl: d.file!.asset.url,
+          }))
+      : defaultDocuments;
+
   return (
     <section className="relative w-full bg-white font-sans py-24 overflow-hidden">
       
@@ -48,27 +66,14 @@ export default function ResourcesSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         
         {/* ✅ SAME HEADER (unchanged) */}
-        <div className="text-center mb-16 space-y-4">
-          <motion.h2 
-            variants={titleVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-5xl md:text-4xl font-serif font-regular text-gray-900"
-          >
-            Resources & <span className="text-brand-maroon">Documents</span>
-          </motion.h2>
-
-          <motion.p 
-            variants={sublineVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-gray-500 text-lg md:text-[16px]"
-          >
-            Download important documents and reports
-          </motion.p>
-        </div>
+          <AnimatedHeader
+            title={heading}
+            highlight={highlightText}
+            subheading={subheading}
+            variant="light"
+            className="mb-6 sm:mb-7 text-h3 text-black"
+          subheadingClassName="text-body-lg tracking-wide text-black"
+          />
 
         {/* ✅ REPLACED GRID WITH REUSABLE COMPONENT */}
         <PdfGrid data={documents} />

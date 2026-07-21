@@ -13,7 +13,7 @@ export default function FundDocuments({ documents }: FundDocumentsProps) {
   if (!documents || documents.length === 0) return null;
 
   return (
-    <section className="relative w-full bg-white font-sans pb-16 md:pb-20 overflow-hidden">
+    <section className="relative w-full bg-white font-sans pb-10 overflow-hidden">
       {/* Background Decorative Grid */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-40"
@@ -29,10 +29,11 @@ export default function FundDocuments({ documents }: FundDocumentsProps) {
         <AnimatedHeader 
           title="Fund Documents"
           highlight="Documents"
-          highlightColor="#8B0000"
+          highlightColor="brand-maroon"
           subheading="Access detailed insights, performance reports, and strategy documents for this fund."
           variant="light"
-          className="mb-16"
+          titleClassName="text-h3-mobile md:text-h3-tab lg:text-h3 text-black mb-2"
+          subheadingClassName="  text-body-lg-mobile md:text-body-lg-tab lg:text-body-lg tracking-wide text-black"
         />
 
         {/* PDF Grid Component */}

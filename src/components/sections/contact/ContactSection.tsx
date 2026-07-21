@@ -1,36 +1,44 @@
 'use client';
 
-import Link from "next/link";
 import { motion, Variants } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, ArrowLeft } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import AnimatedHeader from "@/components/common/AnimatedHeader"; // Adjust path as needed
+import Container from "@/components/common/Container";
+import type { SanityContactPage } from "@/sanity/queries";
 
-const contactDetails = [
+const ICONS_BY_TYPE = {
+  visit: <MapPin className="w-5 h-5" />,
+  call: <Phone className="w-5 h-5" />,
+  email: <Mail className="w-5 h-5" />,
+};
+
+const defaultContactDetails: NonNullable<SanityContactPage['contactCards']> = [
   {
-    icon: <MapPin className="w-5 h-5" />,
+    type: "visit",
     label: "Visit Us",
-    value: "123 Financial District",
-    subValue: "Mumbai, Maharashtra 400001",
+    value: "Mumbai Address - Unit 903, One Lodha Place, Senapati Bapat Marg, Lower Parel, Mumbai, 400013",
+    subValue:
+      "GIFT City Address - Unit No 110 seat no 1 to 4 Ground floor, Pragya Accelerator II Building 15B Block 15, Road No 1C Zone 1 GIFT SEZ Gift City, Gandhi Nagar, Gujarat, India, 382355",
   },
   {
-    icon: <Phone className="w-5 h-5" />,
+    type: "call",
     label: "Call Us",
-    value: "+91 22 1234 5678",
-    subValue: "Mon – Fri, 9:30 AM – 6:00 PM",
+    value: "+91 99119 00096 | +91 99872 61105",
+    subValue: "",
   },
   {
-    icon: <Mail className="w-5 h-5" />,
+    type: "email",
     label: "Email Us",
-    value: "info@rationalamc.com",
+    value: "jaba@repllp.com | vikram@repllp.com",
     subValue: "We reply within 24 hours",
   },
-  {
-    icon: <Clock className="w-5 h-5" />,
-    label: "Office Hours",
-    value: "Mon – Fri: 9:30 AM – 6:00 PM",
-    subValue: "Sat: 10:00 AM – 2:00 PM",
-  },
 ];
+
+const defaultHeader = {
+  heading: "Get in Touch",
+  highlightText: "Touch",
+  subtext: "Have questions about our funds or need help getting started? Our team is ready to assist you.",
+};
 
 const cardVariants: Variants = {
   hidden: { x: -80, opacity: 0 },
@@ -45,33 +53,35 @@ const cardVariants: Variants = {
   }),
 };
 
-export default function ContactSection() {
+export default function ContactSection({
+  header,
+  cards,
+}: {
+  header?: SanityContactPage['header'];
+  cards?: SanityContactPage['contactCards'];
+}) {
+  const resolvedHeader = header ?? defaultHeader;
+  const resolvedCards = cards && cards.length > 0 ? cards : defaultContactDetails;
+
   return (
-    <section className="bg-white py-16 px-6 font-sans overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* Top Navigation */}
-        <Link 
-          href="/" 
-          className="flex items-center gap-2 text-[#000000]/50 hover:text-gray-600 transition-colors text-sm mb-12 md:mb-20"
-        >
-          <ArrowLeft size={16} />
-          Back to Home
-        </Link>
+    <section className="bg-white py-6 lg:py-12 px-6 font-sans overflow-hidden">
+      <Container>
 
         {/* --- INTEGRATED ANIMATED HEADER --- */}
-        <AnimatedHeader 
-          title="Get in TOUCH"
-          highlight="TOUCH"
-          highlightColor="#8B0000"
-          subheading="Have questions about our funds or need help getting started? Our team is ready to assist you."
+        <AnimatedHeader
+          title={resolvedHeader.heading}
+          highlight={resolvedHeader.highlightText}
+          highlightColor="brand-maroon"
+          subheading={resolvedHeader.subtext}
+          subheadingClassName="text-gray-700 font-normal max-w-2xl mx-auto text-base text-body-lg leading-relaxed"
           variant="light"
-          className="mb-16 md:mb-24 !font-semibold"
+          className="mb-8 lg:mb-16"
+          titleClassName="text-black text-h3-mobile md:text-h3-tab lg:text-h3 mb-2"
         />
 
         {/* Info Cards Grid - Animated Staggered */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {contactDetails.map((item, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          {resolvedCards.map((item, index) => (
             <motion.div 
               key={index} 
               custom={index}
@@ -86,15 +96,16 @@ export default function ContactSection() {
               className="bg-[#F8F9FA] border border-gray-100 p-8 rounded-2xl flex flex-col items-start text-left shadow-sm hover:shadow-md transition-shadow cursor-default"
             >
               {/* Icon Container */}
-              <div className="bg-[#8B0000]/10 p-3 rounded-xl text-[#8B0000] mb-6">
-                {item.icon}
+              <div className="bg-[#9B0000]/10 p-3 rounded-xl text-[#9B0000] mb-6">
+                {ICONS_BY_TYPE[item.type]}
               </div>
 
               <div className="space-y-2">
                 <span className="text-xs font-semibold text-[#000000]/50 ">
                   {item.label}
-                </span>
-                <h3 className="text-md font-semibold text-black">
+                </p>
+              <div className="space-y-1">
+                <h3 className="text-body-md -tab font-semibold text-black">
                   {item.value}
                 </h3>
                 <p className="text-sm text-[#000000]/50 leading-relaxed">
@@ -104,7 +115,7 @@ export default function ContactSection() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

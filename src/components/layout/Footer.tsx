@@ -1,144 +1,225 @@
-
 "use client";
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Linkedin, Twitter, MapPin, Phone, Mail } from 'lucide-react';
 import Container from '../common/Container';
+import type { SanityFooter } from '@/sanity/queries';
 
-const QUICK_LINKS = [
+interface FooterLink {
+  label: string;
+  href: string;
+  color?: string; // The '?' makes it optional
+}
+
+const defaultDescription = 'A SEBI and GIFT City-registered fund based in Mumbai and GIFT City.';
+
+const defaultQuickLinks = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Investment Approach', href: '/investment-approach' },
-  { label: 'Thought Centre', href: '/thought-centre' },
-  { label: 'Call Us', href: '/contact' }
+  { label: 'Thought Center', href: '/thought-center' },
+  { label: 'Call Us', href: '/contact' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
 ];
 
-const PRODUCTS = [
+const defaultFundLinks = [
   { label: 'India Long-Only Fund', href: '/product/india-long-only' },
   { label: 'Gold & Silver Miners Fund', href: '/product/gold-silver-miners' },
   { label: 'Absolute Return Fund', href: '/product/absolute-return' },
   { label: 'Invest With Us', href: '/invest-with-us' },
 ];
 
-export default function Footer() {
+const defaultContact = {
+  address1: 'Mumbai Address - Unit 903, One Lodha Place, Senapati Bapat Marg, Lower Parel, Mumbai, 400013',
+  address2:
+    'GIFT City Address - Unit No 110 seat no 1 to 4 Ground floor, Pragya Accelerator II Building 15B Block 15, Road No 1C Zone 1 GIFT SEZ Gift City, Gandhi Nagar, Gujarat, India, 382355',
+  phone1: '+91 99119 00096',
+  phone2: '+91 99872 61105',
+  email1: 'jaba@repllp.com',
+  email2: 'vikram@repllp.com',
+  companyLinkedin: 'https://www.linkedin.com/company/rational-asset-management/posts/?feedView=all',
+};
+
+const defaultDisclaimer =
+  'Investments are subject to market risk. Read all scheme-related documents carefully. Past performance is not indicative of future results.';
+
+const defaultCompanyName = 'Rational Equity Partners LLP. ALL RIGHTS RESERVED.';
+
+export default function Footer({ footer }: { footer?: SanityFooter }) {
   const pathname = usePathname();
   const year = new Date().getFullYear();
 
-  // Highlight check
   const isActive = (href: string) => pathname === href;
 
+  const description = footer?.description || defaultDescription;
+  const quickLinks = footer?.quickLinks && footer.quickLinks.length > 0 ? footer.quickLinks : defaultQuickLinks;
+  const fundLinks = footer?.fundLinks && footer.fundLinks.length > 0 ? footer.fundLinks : defaultFundLinks;
+  const address1 = footer?.address1 || defaultContact.address1;
+  const address2 = footer?.address2 || defaultContact.address2;
+  const phone1 = footer?.phone1 || defaultContact.phone1;
+  const phone2 = footer?.phone2 || defaultContact.phone2;
+  const email1 = footer?.email1 || defaultContact.email1;
+  const email2 = footer?.email2 || defaultContact.email2;
+  const companyLinkedin = footer?.companyLinkedin || defaultContact.companyLinkedin;
+  const disclaimerText = footer?.disclaimerText || defaultDisclaimer;
+  const companyName = footer?.companyName || defaultCompanyName;
+
   return (
-    <footer className="bg-black text-gray-300 font-sans border-t border-gray-900">
-      <Container className="py-12 md:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-12 mb-16">
+    <footer className="bg-black text-gray-300 font-sans border-t border-gray-900 px-4 sm:px-6 md:px-8">
+      <Container className="pt-10 sm:pt-12 pb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_7fr] gap-10 sm:gap-12 md:gap-8 mb-4">
 
-          {/* Column 1: Brand */}
-          <div className="md:col-span-5 sm:col-span-2">
-            <Link href="/" className="inline-block pb-6">
-              <img
-                src="/images/logo.png"
-                alt="Rational Asset Management Logo"
-                className="h-[50px] md:h-[65px] w-auto object-contain invert"
-              />
-            </Link>
-            <p className="text-[16px] text-gray-300 max-w-sm">
-              A leading asset management company committed to delivering superior risk-adjusted returns
-              through disciplined investment strategies.
-            </p>
-            <div className="flex gap-4 mt-8">
-              {/* Social Icons */}
-              <Link href="#" className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all">
-                <Linkedin size={18} className="text-white" />
+          {/* Left Side: Brand + Links */}
+          <div className="flex-1 grid grid-cols-1 gap-10 sm:gap-12">
+            {/* Brand */}
+            <div className="">
+              <Link href="/" className="inline-block pb-6">
+                <img
+                  src="/images/logo.png"
+                  alt="Rational Asset Management Logo"
+                  className="h-[42px] sm:h-[50px] md:h-16 lg:h-[65px] w-auto object-contain invert"
+                />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all">
-                <Twitter size={18} className="text-white" />
-              </Link>
-              <Link href="#" className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all">
-                <svg role="img" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                  <path d="M22.539 8.242H1.46V5.406h21.079v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.079V0z" />
-                </svg>
-              </Link>
+              <h2 className="text-body-lg font-playfair uppercase text-white">
+                Rational Equity and Asset Managers
+              </h2>
+              <p className="text-body-md leading-relaxed max-w-sm text-gray-400 font-sans">
+                {description}
+              </p>
+              <div className="flex gap-4 mt-8">
+                <Link
+                  href={companyLinkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all"
+                >
+                  <Linkedin size={18} className="text-white" />
+                </Link>
+                {/* <Link href="#" className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all">
+                  <Twitter size={18} className="text-white" />
+                </Link>
+                <Link href="#" className="w-10 h-10 rounded-full bg-brand-maroon flex items-center justify-center hover:opacity-80 transition-all">
+                  <svg role="img" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M22.539 8.242H1.46V5.406h21.079v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.079V0z" />
+                  </svg>
+                </Link> */}
+              </div>
             </div>
+
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div className="md:col-span-2">
-            <h3 className="text-white font-bold mb-6">Quick Links</h3>
-            <ul className="space-y-4">
-              {QUICK_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className={`text-[14px] transition-colors hover:text-white ${
-                      isActive(link.href) ? 'text-brand-maroon font-bold' : 'text-gray-300'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
+          {/* Right Side: Explore + Fund + Contact */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-8 sm:gap-10 lg:gap-12">
+            {/* Explore */}
+            <div className="col-span-3">
+              <h3 className="text-white/60 font-semibold mb-4 sm:mb-6 uppercase text-sm sm:text-base">Explore</h3>
+              <ul className="space-y-3 sm:space-y-4">
+                {quickLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href || '#'}
+                      className={`text-[15px] sm:text-[16px] transition-colors hover:text-white ${
+                        isActive(link.href || '') ? 'text-brand-maroon font-bold' : 'text-gray-300'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Fund */}
+            <div className="col-span-3">
+              <h3 className="text-white/60 font-semibold mb-4 sm:mb-6 uppercase text-sm sm:text-base">Fund</h3>
+              <ul className="space-y-3 sm:space-y-4">
+                {fundLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href || '#'}
+                      className={`text-[15px] sm:text-[16px] transition-colors hover:text-white ${
+                        isActive(link.href || '') ? 'text-brand-maroon font-bold' : 'text-gray-300'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div className="col-span-3">
+              <h3 className="text-white/60 font-semibold mb-4 sm:mb-6 uppercase text-sm sm:text-base">Contact</h3>
+              <ul className="space-y-4 text-[15px] sm:text-[16px] font-sans">
+                <li className="flex items-start gap-3">
+                  <MapPin className="text-white shrink-0 mt-0.5" size={20} />
+                  <div className="flex flex-col">
+                    <span className="text-gray-400">{address1}</span>
+                    <br/>
+                    <span className="text-gray-400">{address2}</span>
+                  </div>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Products */}
-          <div className="md:col-span-2">
-            <h3 className="text-white font-bold mb-6">Products</h3>
-            <ul className="space-y-4">
-              {PRODUCTS.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className={`text-[14px] transition-colors hover:text-white ${
-                      isActive(link.href) ? 'text-brand-maroon font-bold' : 'text-gray-300'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
+                <li className="flex items-start gap-3">
+                  <Phone className="text-white shrink-0 mt-0.5" size={20} />
+                  <div className="flex flex-col">
+                    <span className="text-gray-300">{phone1}</span>
+                    <span className="text-gray-300">{phone2}</span>
+                  </div>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Contact */}
-          <div className="md:col-span-3">
-            <h3 className="text-white font-bold mb-6">Contact Us</h3>
-            <ul className="space-y-5 text-sm">
-              <li className="flex gap-3 text-gray-300">
-                <MapPin className="text-white shrink-0" size={20} /> 
-                <span>Mumbai, Maharashtra 400001</span>
-              </li>
-              <li className="flex gap-3 text-gray-300">
-                <Phone className="text-white shrink-0" size={20} /> 
-                <span>+91 22 1234 5678</span>
-              </li>
-              <li className="flex gap-3 text-gray-300">
-                <Mail className="text-white shrink-0" size={20} /> 
-                <span>info@rationalamc.com</span>
-              </li>
-            </ul>
+                <li className="flex items-start gap-3">
+                  <Mail className="text-white shrink-0 mt-0.5" size={20} />
+                  <div className="flex flex-col break-all sm:break-normal">
+                    <span className="text-gray-300">{email1}</span>
+                    <span className="text-gray-300">{email2}</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
         {/* Legal Bar */}
-        <div className="border-t border-gray-900 pt-10 text-center">
-          <p className="text-xs md:text-sm tracking-[0.01em] text-gray-300 mb-6 uppercase font-sans">
-            © {year} RATIONAL ASSET MANAGEMENT COMPANY. ALL RIGHTS RESERVED.
-          </p>
-
-          <div className="flex justify-center flex-wrap gap-4 md:gap-6 text-[14px] md:text-[16px] text-gray-300 mb-8 font-sans">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <span className="text-gray-300 hidden sm:block">|</span>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-            <span className="text-gray-300 hidden sm:block">|</span>
-            <Link href="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 lg:gap-6 border-t border-gray-900 pt-4">
+          <div className="lg:max-w-[600px]">
+            <p className="text-sm text-gray-300 max-w-4xl mx-auto leading-relaxed font-sans">
+              {disclaimerText}
+            </p>
           </div>
-
-          <p className="text-[12px] text-gray-300 max-w-3xl mx-auto leading-relaxed font-sans">
-            Mutual fund investments are subject to market risks. Please read all scheme related documents carefully before investing.
-          </p>
+          <div>
+            <p className="text-xs md:text-sm tracking-[0.01em] text-gray-300 uppercase font-sans">
+              &copy; {year} {companyName}
+            </p>
+          </div>
         </div>
       </Container>
     </footer>
+  );
+}
+
+/**
+ * 🔹 Reusable Column Component
+ * Handles Default vs. Custom Color logic
+ */
+function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) {
+  return (
+    <div className="md:col-span-3">
+      <h3 className="text-white font-bold mb-6 font-sans">{title}</h3>
+      <ul className="space-y-4">
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.href}
+              className={`text-body-sm transition-colors font-sans hover:text-white ${
+                link.color || 'text-gray-400' // 🔹 Default to gray-400 if no color provided
+              }`}
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
