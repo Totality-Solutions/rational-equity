@@ -11,11 +11,10 @@ export async function POST(req) {
     }
 
     // Capture fields aligned with the updated TSX payload structure
-    const { name, emailOrPhone, preferredDates, category, message } = body;
+    const { name, email, phone, preferredDates, category, message } = body;
 
-    // Validation matching your single input field architecture
-    if (!name || !emailOrPhone) {
-      return Response.json({ error: "Missing required fields: name, emailOrPhone" }, { status: 400 });
+    if (!name || !email || !phone) {
+      return Response.json({ error: "Missing required fields: name, email, phone" }, { status: 400 });
     }
 
     if (!preferredDates || !Array.isArray(preferredDates) || preferredDates.length === 0) {
@@ -50,8 +49,12 @@ export async function POST(req) {
             <td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;">${name}</td>
           </tr>
           <tr>
-            <td style="padding:12px 16px;background:#f8f9fa;font-weight:600;border-bottom:1px solid #e5e7eb;">Contact Information</td>
-            <td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;">${emailOrPhone}</td>
+            <td style="padding:12px 16px;background:#f8f9fa;font-weight:600;border-bottom:1px solid #e5e7eb;">Email</td>
+            <td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;">${email}</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;background:#f8f9fa;font-weight:600;border-bottom:1px solid #e5e7eb;">Phone</td>
+            <td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;">${phone}</td>
           </tr>
           <tr>
             <td style="padding:12px 16px;background:#f8f9fa;font-weight:600;vertical-align:top;border-bottom:1px solid #e5e7eb;">Preferred Date(s)</td>

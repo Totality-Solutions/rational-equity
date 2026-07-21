@@ -20,7 +20,8 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
   
   const [formData, setFormData] = useState({
     name: '',
-    emailOrPhone: '', // Consolidated key matching modified template field
+    email: '',
+    phone: '',
     category: '',
     message: '',
   });
@@ -70,7 +71,7 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
         setStatus({ type: 'success', message: 'Message sent successfully!' });
         
         // Reset states cleanly on successful transmission
-        setFormData({ name: '', emailOrPhone: '', category: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', category: '', message: '' });
         setDates(['']);
         setIsSubmitted(true);
         
@@ -174,34 +175,35 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
               />
             </div>
 
-            {/* Email Address / Phone Field */}
+            {/* Email Address Field */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="emailOrPhone" className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
-                Email / Phone <span className="text-brand-maroon ml-0.5">*</span>
+              <label htmlFor="email" className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
+                Email <span className="text-brand-maroon ml-0.5">*</span>
               </label>
-              <input 
-                id="emailOrPhone"
-                type="text" 
+              <input
+                id="email"
+                type="email"
                 required
-                value={formData.emailOrPhone}
+                value={formData.email}
                 onChange={handleChange}
-                placeholder="you@example.com or +91 99872 61105"
-                className="w-full h-13 px-4 rounded-xl bg-gray-50 text-[15px] border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon focus:bg-white transition-all text-gray-900" 
+                placeholder="you@example.com"
+                className="w-full h-13 px-4 rounded-xl bg-gray-50 text-[15px] border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon focus:bg-white transition-all text-gray-900"
               />
             </div>
 
+            {/* Phone Number Field */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="emailOrPhone" className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
-                Email / Phone <span className="text-brand-maroon ml-0.5">*</span>
+              <label htmlFor="phone" className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
+                Phone <span className="text-brand-maroon ml-0.5">*</span>
               </label>
-              <input 
-                id="emailOrPhone"
-                type="text" 
+              <input
+                id="phone"
+                type="tel"
                 required
-                value={formData.emailOrPhone}
+                value={formData.phone}
                 onChange={handleChange}
-                placeholder="you@example.com or +91 99872 61105"
-                className="w-full h-13 px-4 rounded-xl bg-gray-50 text-[15px] border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon focus:bg-white transition-all text-gray-900" 
+                placeholder="+91 99872 61105"
+                className="w-full h-13 px-4 rounded-xl bg-gray-50 text-[15px] border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon focus:bg-white transition-all text-gray-900"
               />
             </div>
 
