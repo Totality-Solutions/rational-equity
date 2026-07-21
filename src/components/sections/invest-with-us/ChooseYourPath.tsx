@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, X } from "lucide-react";
+import AnimatedHeader from "@/components/common/AnimatedHeader";
 
 const paths = [
   {
