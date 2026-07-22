@@ -9,7 +9,7 @@ const defaultMetrics = [
   { value: '3+', label: 'Years building multibaggers' },
   { value: '2', label: 'Active strategies' },
   { value: '100%', label: 'Long-only' },
-  { value: '1yr', label: 'Annual liquidity' },
+  { value: '1yr', label: 'Quarterly liquidity' },
 ];
 
 export default function AboutSection({ intro }: { intro?: SanityHomePage['intro'] }) {
@@ -28,7 +28,7 @@ export default function AboutSection({ intro }: { intro?: SanityHomePage['intro'
   const metrics = intro?.metrics && intro.metrics.length > 0 ? intro.metrics : defaultMetrics;
   const chartTitle1 = intro?.chartTitle1 || 'Rational thinking.';
   const chartTitle2 = intro?.chartTitle2 || 'Exceptional returns.';
-  const chartSinceText = intro?.chartSinceText || 'Since 2008';
+  const chartSinceText = intro?.chartSinceText || 'Since 2023';
 
   const barHeights = [
     120, 160, 200, 150, 180, 240, 210, 280, 320, 350, 290, 380, 420, 450, 410,

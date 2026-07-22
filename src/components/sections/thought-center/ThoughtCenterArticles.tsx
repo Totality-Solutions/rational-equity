@@ -228,8 +228,9 @@ function ArticleCard({ item, onClick }: { item: SanityArticle; onClick: () => vo
       </div>
 
       <div className="p-5 sm:p-6 flex flex-col flex-1 gap-3">
-        <p className="text-[10px] tracking-[0.18em] uppercase text-[#8A7A60]">
-          {[item.series?.title, item.readTime].filter(Boolean).join(" · ")}
+        <p className="text-[12px] tracking-[0.1em] uppercase text-[#6d604a]">
+          {/* {[item.series?.title, item.readTime].filter(Boolean).join(" · ")} */}
+          <span>{formatDate(item.publishedAt)}</span>
         </p>
 
         <h3 className="text-black font-semibold text-base sm:text-[17px] leading-snug group-hover:text-brand-maroon">
@@ -240,10 +241,10 @@ function ArticleCard({ item, onClick }: { item: SanityArticle; onClick: () => vo
           {item.subtitle}
         </p>
 
-        <div className="flex items-center justify-between text-[11px] text-gray-400 pt-1">
+        {/* <div className="flex items-center justify-between text-[11px] text-gray-400 pt-1">
           <span>{item.author?.name}</span>
           <span>{formatDate(item.publishedAt)}</span>
-        </div>
+        </div> */}
 
         <button
           type="button"

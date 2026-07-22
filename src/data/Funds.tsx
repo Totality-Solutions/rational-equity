@@ -122,7 +122,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
     stats: [
       { icon: <Wallet size={16} />, label: "Min. Investment", value: "₹1 Crore" },
       { icon: <Calendar size={16} />, label: "Risk Level", value: "High" },
-      { icon: <BarChart3 size={16} />, label: "Category", value: "Category III AIF" },
+      { icon: <BarChart3 size={16} />, label: "Category", value: "Category III" },
       { icon: <ShieldCheck size={16} />, label: "Strategy", value: "Long-Only Equity" },
       { icon: <Percent size={16} />, label: "Universe", value: "Indian Listed Equities" },
       { icon: <AlertCircle size={16} />, label: "Market Cap Bias", value: "Small & Mid Cap" },
