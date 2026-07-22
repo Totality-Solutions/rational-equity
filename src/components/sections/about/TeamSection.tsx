@@ -27,7 +27,7 @@ const defaultTeamMembers: TeamMember[] = [
     linkedIn: 'https://www.linkedin.com/in/vivek-iyer-69145824?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
     description: "Vivek is the Founder and Partner at Rational - With over 10 years of experience in investment management and prior to that leading two start-ups, Vivek founded Rational with the aim of providing other investors the same opportunity of compunding wealth through dedicated capital allocation as he would create for himself. Vivek is diligent about creating opportunities for investors, is principled about safeguarding capital and compounding without unnecessary risks.",
     education: "B.Tech (Mechanical), IIT Bombay · MBA, IIM Ahmedabad",
-    image: '/images/team/vivek.jpeg ',
+    image: '/images/team/vivek.jpeg',
   },
   {
     id: 2,
