@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
 import Container from '@/components/common/Container';
 import type { SanityHomePage } from '@/sanity/queries';
+import { ChartPanel } from '@/components/sections/product/FundPerformance';
+import { FUND_DATA } from '@/data/Funds';
 
 const defaultMetrics = [
   { value: '3+', label: 'Years building multibaggers' },
@@ -30,10 +32,10 @@ export default function AboutSection({ intro }: { intro?: SanityHomePage['intro'
   const chartTitle2 = intro?.chartTitle2 || 'Exceptional returns.';
   const chartSinceText = intro?.chartSinceText || 'Since 2023';
 
-  const barHeights = [
-    120, 160, 200, 150, 180, 240, 210, 280, 320, 350, 290, 380, 420, 450, 410,
-    490, 460, 520
-  ];
+  const fundChartData = FUND_DATA['india-long-only'].performance.chartData;
+  const periods = fundChartData ? Object.keys(fundChartData) : [];
+  const [active, setActive] = useState(periods[periods.length - 1] ?? '');
+  const data = fundChartData && active ? fundChartData[active] ?? [] : [];
 
   return (
    <section className="bg-[#ffffff] py-6 lg:py-12">
@@ -62,7 +64,7 @@ export default function AboutSection({ intro }: { intro?: SanityHomePage['intro'
                   <div className="text-[24px] sm:text-[30px] font-playfair text-[#1A1A1A]">
                     {metric.value}
                   </div>
-                  <div className="text-[14px] sm:text-[10px] tracking-normal text-[#6B6B6B] mt-1">
+                  <div className="text-[14px] sm:text-[12px] tracking-normal text-[#6B6B6B] mt-1">
                     {metric.label}
                   </div>
                 </div>
@@ -72,9 +74,9 @@ export default function AboutSection({ intro }: { intro?: SanityHomePage['intro'
       </div>
 
       {/* RIGHT CHART CARD */}
-      <div className="bg-white border border-[#E9E5E1] rounded-sm pb-10 px-4 sm:px-10 h-[360px] lg:h-full relative overflow-hidden">
+      <div className="bg-white border border-[#E9E5E1] rounded-sm py-6 sm:py-6 px-4 sm:px-10">
 
-        <div className="absolute top-6 sm:top-10 left-1/2 -translate-x-1/2 text-center z-10 w-full px-4">
+        <div className="text-center px-4">
 
           <p className="text-[15px] sm:text-[18px] font-medium text-[#333]">
             {chartTitle1}
@@ -95,40 +97,17 @@ export default function AboutSection({ intro }: { intro?: SanityHomePage['intro'
         </div>
 
         {/* CHART */}
-        <svg
-          className="absolute bottom-0 left-0 w-full h-[180px] sm:h-[220px] lg:h-[260px]"
-          viewBox="0 0 700 260"
-          preserveAspectRatio="xMidYMax meet"
-        >
-          <defs>
-            <linearGradient id="bars" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#D6A5A5" />
-              <stop offset="100%" stopColor="#D6A5A5" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-
-          {[80, 70, 120, 140, 80, 130, 170, 190, 120, 220, 250, 280].map(
-            (h, i) => (
-              <rect
-                key={i}
-                x={20 + i * 55}
-                y={260 - h}
-                width="42"
-                height={h}
-                rx="3"
-                fill="url(#bars)"
-              />
-            )
-          )}
-
-          <path
-            d="M20 240 C200 200 420 140 680 80"
-            fill="none"
-            stroke="#C97C7C"
-            strokeDasharray="6 6"
-            strokeWidth="2"
+        <div className="mt-6 sm:mt-8">
+          <ChartPanel
+            data={data}
+            periods={periods}
+            active={active}
+            setActive={setActive}
+            fundTitle="India Long-Only Fund"
+            disclaimer="* Returns as on 31 May 2024"
+            showControls={false}
           />
-        </svg>
+        </div>
 
       </div>
 

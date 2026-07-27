@@ -121,7 +121,7 @@ export const FUND_DATA: Record<string, FundDetails> = {
     overviewDesc: ["Our India Long-Only Fund is designed to capture the highest-return opportunities within this theme — primarily in small and mid-cap companies that are under-researched and mispriced by the market. We are sector-agnostic. We go where the conviction is strongest and hold positions through the inevitable volatility that comes with high-conviction investing."],
     stats: [
       { icon: <Wallet size={16} />, label: "Min. Investment", value: "₹1 Crore" },
-      { icon: <Calendar size={16} />, label: "Risk Level", value: "High" },
+      { icon: <Calendar size={16} />, label: "Product Type", value: "AIF" },
       { icon: <BarChart3 size={16} />, label: "Category", value: "Category III" },
       { icon: <ShieldCheck size={16} />, label: "Strategy", value: "Long-Only Equity" },
       { icon: <Percent size={16} />, label: "Universe", value: "Indian Listed Equities" },

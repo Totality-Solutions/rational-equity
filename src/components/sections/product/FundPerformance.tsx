@@ -179,13 +179,14 @@ function ReturnsTable({
    Chart Panel (shared between variants)
    ────────────────────────────────────────────── */
 
-function ChartPanel({
+export function ChartPanel({
   data,
   periods,
   active,
   setActive,
   fundTitle,
   disclaimer,
+  showControls = true,
 }: {
   data: ChartDataPoint[];
   periods: string[];
@@ -193,36 +194,39 @@ function ChartPanel({
   setActive: (p: string) => void;
   fundTitle: string;
   disclaimer: string;
+  showControls?: boolean;
 }) {
   return (
-    <div className="bg-white border border-[#E8E2D8] rounded-2xl p-5">
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-        <div className="flex gap-5">
-          <span className="flex items-center gap-2 text-xs text-[#444441]">
-            <span className="w-7 h-[2.5px] bg-brand-maroon rounded-full inline-block" />
-            {fundTitle}
-          </span>
-          <span className="flex items-center gap-2 text-xs text-[#444441]">
-            <span className="w-7 border-t-2 border-dashed border-[#B4B2A9] inline-block" />
-            Nifty 500 TRI (Benchmark)
-          </span>
+    <div className={`bg-white border border-[#E8E2D8] rounded-2xl p-5 ${showControls ? '' : 'border-0'}`}>
+      {showControls && (
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div className="flex gap-5">
+            <span className="flex items-center gap-2 text-xs text-[#444441]">
+              <span className="w-7 h-[2.5px] bg-brand-maroon rounded-full inline-block" />
+              {fundTitle}
+            </span>
+            <span className="flex items-center gap-2 text-xs text-[#444441]">
+              <span className="w-7 border-t-2 border-dashed border-[#B4B2A9] inline-block" />
+              Nifty 500 TRI (Benchmark)
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {periods.map((p) => (
+              <button
+                key={p}
+                onClick={() => setActive(p)}
+                className={`px-3 py-1.5 text-[11px] rounded-md border transition-all duration-150 ${
+                  active === p
+                    ? 'bg-brand-maroon text-white border-brand-maroon'
+                    : 'border-[#E0D9CE] text-[#8A7A60] hover:bg-[#F7F3EE] hover:text-[#333]'
+                }`}
+              >
+                {p}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-wrap gap-1.5">
-          {periods.map((p) => (
-            <button
-              key={p}
-              onClick={() => setActive(p)}
-              className={`px-3 py-1.5 text-[11px] rounded-md border transition-all duration-150 ${
-                active === p
-                  ? 'bg-brand-maroon text-white border-brand-maroon'
-                  : 'border-[#E0D9CE] text-[#8A7A60] hover:bg-[#F7F3EE] hover:text-[#333]'
-              }`}
-            >
-              {p}
-            </button>
-          ))}
-        </div>
-      </div>
+      )}
 
       <ResponsiveContainer width="100%" height={280}>
         <LineChart data={data} margin={{ top: 24, right: 12, bottom: 0, left: 0 }}>
@@ -265,9 +269,11 @@ function ChartPanel({
         </LineChart>
       </ResponsiveContainer>
 
-      <p className="text-[11px] text-[#8A7A60] text-right mt-2">
-        {disclaimer}
-      </p>
+      {showControls && (
+        <p className="text-[11px] text-[#8A7A60] text-right mt-2">
+          {disclaimer}
+        </p>
+      )}
     </div>
   );
 }
