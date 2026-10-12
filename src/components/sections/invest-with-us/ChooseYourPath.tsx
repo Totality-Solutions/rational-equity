@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Check, ArrowRight, X } from "lucide-react";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
+import PhoneInput from "@/components/common/PhoneInput";
 
 const paths = [
   {
@@ -146,7 +147,7 @@ export default function ChooseYourPath() {
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-medium text-gray-500">Phone number</label>
-                  <input type="tel" placeholder="+1 (555) 000-0000" className="w-full bg-gray-100 border-none px-4 py-3 text-sm focus:ring-1 focus:ring-brand-maroon outline-none" />
+                  <PhoneInput placeholder="XXXXX XXXXX" className="w-full bg-gray-100 border-none px-4 py-3 text-sm focus:ring-1 focus:ring-brand-maroon outline-none" />
                 </div>
 
                 <div className="space-y-1.5">

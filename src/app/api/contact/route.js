@@ -55,10 +55,11 @@ export async function POST(req) {
             <td style="padding:10px 16px;background:#f8f9fa;font-weight:600;">Interested Fund</td>
             <td style="padding:10px 16px;">${displayCategory}</td>
           </tr>
+          ${message ? `
           <tr>
             <td style="padding:10px 16px;background:#f8f9fa;font-weight:600;">Message</td>
-            <td style="padding:10px 16px;">${message || "—"}</td>
-          </tr>
+            <td style="padding:10px 16px;">${message}</td>
+          </tr>` : ""}
         </table>
       `,
     });

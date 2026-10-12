@@ -8,6 +8,7 @@ import { SuccessState } from "@/components/common/SuccessState";
 import CTAButton from "@/components/common/CTAButton";
 import AnimatedHeader from "@/components/common/AnimatedHeader";
 import Container from "@/components/common/Container";
+import PhoneInput from "@/components/common/PhoneInput";
 import { urlFor } from "@/sanity/image";
 import type { SanityContactPage } from "@/sanity/queries";
 
@@ -75,7 +76,6 @@ export default function MessageSection({
     phone: "",
     category: "",
     other: "",
-    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState({
@@ -117,7 +117,7 @@ export default function MessageSection({
 
       if (data.success) {
         setStatus({ type: "success", message: "Message sent successfully!" });
-        setFormData({ name: "", email: "", phone: "", category: "", other: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", category: "", other: "" });
         setIsSubmitted(true);
       } else {
         setStatus({ type: "error", message: data.error || "Failed to send message" });
@@ -197,13 +197,11 @@ export default function MessageSection({
                     <label htmlFor="phone" className="text-body-lg font-medium font-playfair text-gray-900 capitalize">
                       Phone <Asterisk />
                     </label>
-                    <input
+                    <PhoneInput
                       id="phone"
                       required
-                      type="text"
-                      placeholder="+91 XXXXX XXXXX"
                       value={formData.phone}
-                      onChange={handleChange}
+                      onChange={(phone) => setFormData((prev) => ({ ...prev, phone }))}
                       className="w-full px-4 py-3 rounded-xl bg-gray-50 text-body-md border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all"
                     />
                   </div>
@@ -264,7 +262,7 @@ export default function MessageSection({
                 </AnimatePresence>
 
                 {/* Row 4: Message */}
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <label htmlFor="message" className="text-body-lg font-medium font-playfair text-gray-900 capitalize">
                     Message (optional)
                   </label>
@@ -276,7 +274,7 @@ export default function MessageSection({
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl bg-gray-50 text-body-md border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all resize-none"
                   />
-                </div>
+                </div> */}
 
                 {/* Error message */}
                 {status.type === "error" && (

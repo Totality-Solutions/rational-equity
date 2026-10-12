@@ -8,6 +8,7 @@ import AnimatedHeader from "@/components/common/AnimatedHeader";
 import Container from "@/components/common/Container";
 import Image from "next/image";
 import CTAButton from "@/components/common/CTAButton";
+import PhoneInput from "@/components/common/PhoneInput";
 import type { SanityInvestWithUsPage } from '@/sanity/queries';
 
 const toSlug = (label: string) => label.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
@@ -252,13 +253,11 @@ export default function StartInvestingForm({ contact }: { contact?: SanityInvest
                         <label htmlFor="phone" className="text-body-md-mobile lg:text-body-md md:text-body-md-tab  font-semibold  text-black/60 capitalize">
                           Phone <Asterisk />
                         </label>
-                        <input
+                        <PhoneInput
                           id="phone"
                           required
-                          type="text"
-                          placeholder="+91 XXXXX XXXXX"
                           value={formData.phone}
-                          onChange={handleChange}
+                          onChange={(phone) => setFormData((prev) => ({ ...prev, phone }))}
                           className="w-full px-4 py-3 rounded-xl bg-gray-50 text-body-md border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon transition-all"
                         />
                       </div>

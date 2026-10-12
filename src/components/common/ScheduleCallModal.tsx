@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, X } from 'lucide-react';
 import AnimatedHeader from './AnimatedHeader';
+import PhoneInput from './PhoneInput';
 
 interface ScheduleCallModalProps {
   isOpen: boolean;
@@ -196,13 +197,12 @@ export const ScheduleCallModal: React.FC<ScheduleCallModalProps> = ({ isOpen, on
               <label htmlFor="phone" className="text-md font-medium font-sans text-gray-900 capitalize tracking-wide">
                 Phone <span className="text-brand-maroon ml-0.5">*</span>
               </label>
-              <input
+              <PhoneInput
                 id="phone"
-                type="tel"
                 required
                 value={formData.phone}
-                onChange={handleChange}
-                placeholder="+91 99872 61105"
+                onChange={(phone) => setFormData((prev) => ({ ...prev, phone }))}
+                placeholder="99872 61105"
                 className="w-full h-13 px-4 rounded-xl bg-gray-50 text-[15px] border border-gray-100 focus:outline-none focus:ring-1 focus:ring-brand-maroon focus:bg-white transition-all text-gray-900"
               />
             </div>

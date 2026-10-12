@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import CTAButton from '@/components/common/CTAButton';
 import Container from '@/components/common/Container';
@@ -131,7 +132,11 @@ function FundCard({ fund }: { fund: FundDisplay }) {
             </span>
           </div>
 
-          <Link href={fund.downloadpdf} target="_blank">
+          <Link
+            href={fund.downloadpdf}
+            target="_blank"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button className="w-full mt-8 py-2 rounded-full bg-[#9B0000] text-white text-[16px] font-normal transition-all hover:bg-[#7B0000] cursor-pointer">
               Download Investor Presentation
             </button>
@@ -144,6 +149,7 @@ function FundCard({ fund }: { fund: FundDisplay }) {
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function InvestmentSolutions({ solutions }: { solutions?: SanityHomePage['solutions'] }) {
+  const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isCarousel, setIsCarousel] = useState(false);
@@ -289,18 +295,23 @@ export default function InvestmentSolutions({ solutions }: { solutions?: SanityH
                     }}
                   >
                     {FUNDS.map((fund) => (
-                      <motion.a
-                        href={fund.href}
+                      <motion.div
+                        role="link"
+                        tabIndex={0}
+                        onClick={() => router.push(fund.href)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') router.push(fund.href);
+                        }}
                         key={fund.title}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.15 }}
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        className="shrink-0 px-3 group"
+                        className="shrink-0 px-3 group cursor-pointer"
                         style={{ width: '100%' }}
                       >
                         <FundCard fund={fund} />
-                      </motion.a>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
@@ -329,8 +340,13 @@ export default function InvestmentSolutions({ solutions }: { solutions?: SanityH
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {FUNDS.map((fund, index) => (
-                  <motion.a
-                    href={fund.href}
+                  <motion.div
+                    role="link"
+                    tabIndex={0}
+                    onClick={() => router.push(fund.href)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') router.push(fund.href);
+                    }}
                     key={fund.title}
                     initial={{ scaleY: 0, opacity: 0 }}
                     whileInView={{ scaleY: 1, opacity: 1 }}
@@ -346,10 +362,10 @@ export default function InvestmentSolutions({ solutions }: { solutions?: SanityH
                       backfaceVisibility: 'hidden',
                       WebkitFontSmoothing: 'antialiased',
                     }}
-                    className="relative group h-full"
+                    className="relative group h-full cursor-pointer"
                   >
                     <FundCard fund={fund} />
-                  </motion.a>
+                  </motion.div>
                 ))}
               </div>
             )}
